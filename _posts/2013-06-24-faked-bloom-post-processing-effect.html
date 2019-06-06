@@ -1,0 +1,148 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Faked: Bloom Post Processing Effect'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1498
+wordpress_url: http://www.avanderw.co.za/?p=1498
+date: '2013-06-24 17:34:50 +0200'
+date_gmt: '2013-06-24 15:34:50 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Effects
+tags:
+- flash
+- as3
+- actionscript
+- bloom
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/bloom-effect.swf"><img class="alignright size-full wp-image-1499" alt="Preview" src="http://www.avanderw.co.za/wp-content/uploads/2013/06/thumbshot.png" width="340" height="248" /></a></p>
+<p style="text-align: justify;">This effect is a simple and quick implementation of a bloom post processing effect. It does not do computations with a light source and it is therefore not dynamic. It is a post process effect that will reinforce the lighter colours and blur them back over the original.</p>
+<h2>What is Bloom?</h2>
+<p style="text-align: justify;"><a href="http://en.wikipedia.org/wiki/Bloom_(shader_effect)">From Wikipedia</a>,&nbsp;<b>Bloom</b>&nbsp;(sometimes referred to as&nbsp;<b>light bloom</b>&nbsp;or&nbsp;<b>glow</b>) is a&nbsp;<a title="Computer graphics" href="http://en.wikipedia.org/wiki/Computer_graphics">computer graphics</a>&nbsp;effect used in&nbsp;<a title="Video game" href="http://en.wikipedia.org/wiki/Video_game">video games</a>,&nbsp;<a title="Demo (computer programming)" href="http://en.wikipedia.org/wiki/Demo_(computer_programming)">demos</a>&nbsp;and&nbsp;<a title="High dynamic range rendering" href="http://en.wikipedia.org/wiki/High_dynamic_range_rendering">high dynamic range rendering</a>&nbsp;(HDR) to reproduce an imaging artifact of real-world cameras. The effect produces fringes (or feathers) of light extending from the borders of bright areas in an image, contributing to the illusion of an extremely bright light overwhelming the camera or eye capturing the scene.</p>
+<h2>The method used</h2>
+<ol>
+<li>The original image gets converted to grayscale- here is a snippet on <a title="Code Snippet: How to Grayscale an Image" href="http://www.avanderw.co.za/code-snippet-how-to-grayscale-an-image/">how to grayscale an image</a>.</li>
+<li>The grayscale image gets blended with itself numerous passes using the multiplication blend mode.</li>
+<li>The resulting grayscale image is then blurred using a blur filter.</li>
+<li>The final part of the process is to blend the result with the original image using the addition blend mode.</li>
+</ol>
+<h2>The code</h2>
+<pre class="brush: as3">package net.avdw.effect.bloom 
+{
+	import com.adobe.net.MimeTypeMap;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.BlendMode;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.filters.BitmapFilterQuality;
+	import flash.filters.BlurFilter;
+	import flash.filters.ColorMatrixFilter;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	import uk.co.soulwire.gui.SimpleGUI;
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	[SWF(backgroundColor="0x0",frameRate="60",width="680",height="495")]
+	public class Main extends Sprite
+	{
+		[Embed(source="../../../../../embed/monster.png")]
+		private const _monster:Class;
+		[Embed(source="../../../../../embed/yoda.png")]
+		private const _yoda:Class;
+		[Embed(source="../../../../../embed/sun.jpg")]
+		private const _sun:Class;
+
+		private const images:Array = [new _monster(), new _yoda(), new _sun()];
+		private var imageIndex:int = 0;
+
+		public var blur:int = 16;
+		public var passes:int = 4;
+
+		private const matrix:Array = [
+			0.3, 0.59, 0.11, 0, 0,
+			0.3, 0.59, 0.11, 0, 0,
+			0.3, 0.59, 0.11, 0, 0,
+			  0,    0,    0, 1, 0];
+		private const zero:Point = new Point();
+
+		private var result:Bitmap;
+		private var grayscale:Bitmap;
+		private var image:Bitmap;
+
+		public function Main() 
+		{
+			if (stage)
+				init();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+
+		private function init(e:Event = null):void
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+
+			addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
+
+			var gui:SimpleGUI = new SimpleGUI(this, "Faked Bloom Effect");
+			gui.addSlider("blur", 4, 32, { callback:update } );
+			gui.addSlider("passes", 1, 6, { callback:update } );
+			gui.addButton("Next image", { callback:next } );
+			gui.show();
+
+			next();
+		}
+
+		private function next():void {
+			if (image != null) {
+				removeChild(image);
+				removeChild(result);
+			}
+
+			image = images[imageIndex];
+			grayscale = new Bitmap(new BitmapData(image.width, image.height, true, 0x0));
+			result = new Bitmap(new BitmapData(image.width, image.height, true, 0x0));
+
+			addChild(image);
+			addChild(result);
+
+			grayscale.bitmapData.applyFilter(image.bitmapData, image.getRect(image), zero, new ColorMatrixFilter(matrix));
+
+			result.y = grayscale.y = image.y = stage.stageHeight - image.height;
+			result.x = stage.stageWidth - image.width;
+			image.x = result.x - result.width-5;
+
+			if (++imageIndex == images.length) {
+				imageIndex = 0;
+			}
+
+			update();
+		}
+
+		private function update():void {
+			result.bitmapData.draw(grayscale);
+			for (var i:int = 0; i < passes; i++) {
+				result.bitmapData.draw(result, null, null, BlendMode.MULTIPLY);
+				// result.bitmapData.draw(grayscale, null, null, BlendMode.MULTIPLY); // more pronounced
+			}
+			result.bitmapData.draw(image, null, null, BlendMode.MULTIPLY);
+			result.bitmapData.applyFilter(result.bitmapData, result.getRect(result), zero, new BlurFilter(blur, blur, BitmapFilterQuality.MEDIUM));
+			result.bitmapData.draw(image, null, null, BlendMode.ADD);
+		}
+
+	}
+
+}</pre>

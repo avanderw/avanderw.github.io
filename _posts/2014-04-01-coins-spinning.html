@@ -1,0 +1,121 @@
+---
+layout: post
+status: publish
+published: true
+title: Coins Spinning
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1815
+wordpress_url: http://www.avanderw.co.za/?p=1815
+date: '2014-04-01 18:40:00 +0200'
+date_gmt: '2014-04-01 16:40:00 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- animation
+- demo
+- stats
+- coin
+- interactive
+- bias
+- tween
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/coin-spin.swf"><img class="alignright size-full wp-image-1818" alt="Coins Spinning" src="http://www.avanderw.co.za/wp-content/uploads/2014/04/thumbshot1.jpg" width="340" height="246" /></a>The code for this post originally started out as example on how to remove bias from a biased coin flip. The code was written to transform a coin that landed heads up 25% of the time to get a result landing heads up 50% of the time.</p>
+<p>However, as the attempt was made to provide a pretty, graphical, interactive demo to explain this effect, a coin animation class was written. The time spent on writing this class ended up taking more time than the actual removing of the bias code. After a while it felt more like the emphasis of removing the coin bias was being overshadowed by the coin spinning effect itself.</p>
+<p>Thus, the post changed to highlight the coin spinning effect itself. The original concept of removing bias from the coin is still in there, but the emphasis on it has been diverted. The original idea was to include bump mapping on the coin and make the animation be totally awesome&hellip; and then a reality check was done. It might end up having bump mapping in the future, just not right now.</p>
+<p>A histogram graphing tool has been written to explain the process of removing bias better. It only makes sense to make use of a histogram to show a sample distribution. It is not really understood how I missed using a histogram to show distributions.</p>
+<h1>Implementation</h1>
+<ul>
+<li>The coin initialises to a random side (heads or tails)</li>
+<li>Two tweens are used for the effect&hellip;
+<ul>
+<li>One to speed up the spinning to halfway through the animation</li>
+<li>The other to slow down the spinning to the resting position</li>
+</ul>
+</li>
+<li>A sine interpolation is used to modify the tween</li>
+<li>The image is also squished width wise slightly to simulate motion better (I now realise that it should actually be widened and the height squashed *doh!* A fix for another time then)</li>
+</ul>
+<h1>Code</h1>
+<p>Each coin in the demo utilises the below code.</p>
+<pre class="brush: as3">import com.greensock.easing.*;
+import com.greensock.TweenLite;
+import flash.display.Bitmap;
+import flash.display.Sprite;
+import net.avdw.interpolation.sineEaseIn;
+
+class Coin extends Sprite
+{
+	[Embed(source="../../../../../../net.avdw.assets/images/coin-head.png")]
+	private const headsClass:Class;
+	[Embed(source="../../../../../../net.avdw.assets/images/coin-tail.png")]
+	private const tailsClass:Class;
+
+	private const headsBmp:Bitmap = new headsClass();
+	private const tailsBmp:Bitmap = new tailsClass();
+
+	private var spinCount:int;
+	private var maxSpinCount:int;
+
+	public function Coin()
+	{
+		Math.random() < .5 ? addChild(headsBmp) : addChild(tailsBmp);
+		headsBmp.x = tailsBmp.x = -headsBmp.width / 2;
+		headsBmp.y = tailsBmp.y = -headsBmp.height / 2;
+		width = height = 128;
+	}
+
+	private function startSpin():void
+	{
+		if (spinCount > 0)
+			TweenLite.to(this, .2 * (1 - spinCount / maxSpinCount), {width: 0, onComplete: halfwaySpin, ease: Sine.easeIn});
+	}
+
+	private function halfwaySpin():void
+	{
+		swap();
+		spinCount--;
+		TweenLite.to(this, .2 * (1 - spinCount / maxSpinCount), {width: 128 - 32 * sineEaseIn(spinCount / maxSpinCount), onComplete: startSpin, ease: Sine.easeOut});
+	}
+
+	public function spin(count:int = 8):void
+	{
+		spinCount = maxSpinCount = count;
+		startSpin();
+	}
+
+	public function swap():void
+	{
+		contains(headsBmp) ? tails() : heads();
+	}
+
+	public function tails(isTails:Boolean = true):void
+	{
+		if (!isTails) 
+			heads();
+		else if (contains(headsBmp))
+		{
+			removeChild(headsBmp);
+			addChild(tailsBmp);
+		}
+	}
+
+	public function heads(isHeads:Boolean = true):void
+	{
+		if (!isHeads)
+			tails();
+		else if (contains(tailsBmp))
+		{
+			removeChild(tailsBmp);
+			addChild(headsBmp);
+		}
+	}
+
+}</pre>

@@ -1,0 +1,69 @@
+---
+layout: post
+status: publish
+published: true
+title: Dice Distributions
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1645
+wordpress_url: http://www.avanderw.co.za/?p=1645
+date: '2013-10-09 12:50:10 +0200'
+date_gmt: '2013-10-09 10:50:10 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- as3
+- snippet
+- dice
+- distribution
+- stats
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/dice-distribution.swf"><img class="alignright size-full wp-image-1646" title="Demo" alt="Demo" src="http://www.avanderw.co.za/wp-content/uploads/2013/10/thumbshot.jpg" width="300" height="234" /></a>To generate random numbers that follow a certain distribution you can generate them using the formula of the distribution. This is great if you have a distribution which is in polynomial form. Another way to get such a distribution is to make use of dice.</p>
+<p style="text-align: justify;">I know what the distribution of 2 dice with 6 sides looks like, commonly expressed in the form 2D6. It gives a <a href="http://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a> over the range 2 to 12 with 7 being the most frequent. The original method I wrote did just this. This meant that I could generate values that followed a normal distribution. Shifting the distribution was done simply by offsetting the value returned with some other value.</p>
+<p style="text-align: justify;">What I did not know was how the distribution looked if I started applying bonuses to the rolls or if I started removing the highest or weakest rolls. An article at Red Blob Games discusses <a href="http://www.redblobgames.com/articles/probability/damage-rolls.html">damage rolls in D&amp;D style systems</a>&nbsp;and I decided to use it as a base for modifying the original dice method to cater for skewing of the distribution (e.g. removal of dice) and offsetting the distribution of 6D12 by 2 for instance, commonly expressed 6D12 + 2.</p>
+<p style="text-align: justify;">The demo in this post makes use of the below method to generate distributions. The inputs can be modified and the effect that they have on the distribution can be seen. This ends up being quite an effective way to express and control a distribution which can be used for damage rolls, attributes rolls and basically any value that needs to vary around a frequent point.</p>
+<h1 style="text-align: justify;">Notes</h1>
+<ul>
+<li>Removing the lowest roll skews the distribution to the right.</li>
+<li>Removing the highest roll skews the distribution to the left.</li>
+<li>Adding or removing successful criticals skews the distribution.</li>
+<li>Adding or removing successful criticals &nbsp;can&nbsp;be used to generate a local maxima.</li>
+<li>Use asymmetry to make higher-than-average or lower-than-average values occur more often.</li>
+<li>Attribute rolls often make higher than average values more common.</li>
+<li>Damage rolls often make lower than average values more common.</li>
+<li>Low number of rolls has high variance whereas high number of rolls has low variance.</li>
+<li>Bonuses offset the distribution.</li>
+<li>Die size controls the scale of the distribution.</li>
+<li>Positive offsets can be used for bonus damage or attributes; negative offsets can be used for blocking damage.</li>
+</ul>
+<h1 style="text-align: justify;">Code Snippet</h1>
+<pre class="brush: as3">package net.avdw.stats
+{
+
+	public function rollDice(numDice:int = 2, numSides:int = 6, bonus:int = 0, highThrowsToRemove:int = 0, lowThrowsToRemove:int = 0):Number
+	{
+		var i:int;
+		var rolls:Array = [];
+
+		for (i = 0; i < numDice; i++)
+			rolls.push(Math.floor(Math.random() * numSides));
+
+		rolls.sort(Array.NUMERIC);
+		rolls.splice(0, lowThrowsToRemove);
+		rolls.splice(rolls.length - highThrowsToRemove);
+
+		var value:int = 0;
+		for (i = 0; i < rolls.length; i++)
+			value += rolls[i];
+
+		return value + bonus;
+	}
+
+}</pre>

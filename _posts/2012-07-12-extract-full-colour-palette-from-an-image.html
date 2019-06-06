@@ -1,0 +1,155 @@
+---
+layout: post
+status: publish
+published: true
+title: Extract Full Colour Palette from an Image
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 997
+wordpress_url: http://www.avanderw.co.za/?p=997
+date: '2012-07-12 13:33:17 +0200'
+date_gmt: '2012-07-12 11:33:17 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- as3
+- tool
+- image
+- palette
+- colour
+---
+<p>I actually have needed to do this more than once now. So whilst clicking away in photoshop, trying to reduce an image to its base colour palette, I decided to look for a tool that would do it for me. It is significantly&nbsp;harder to find such a tool than it is to create one. Thus, I created this online tool to do what I needed.</p>
+<p>What this tool does: you provide it with an image; it identifies all the unique colours in the image; then creates a new image, 1px in height, with the unique colours.</p>
+<h3>Instructions</h3>
+<ol>
+<li>Click to select an image to reduce</li>
+<li>Save the reduced image to some location (for some reason this only works offline)</li>
+</ol>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/07/Colour-Palette-Extractor.swf" width="256" height="64" required_player_version="11"]Extract an image colour palette[/swfobj]</p>
+<p style="text-align: left;">I actually used this technique when working on the <a title="Complexification&rsquo;s Sandstorm in Actionscript" href="http://www.avanderw.co.za/complexifications-sandstorm-in-actionscript/">Sand Stroke Effect</a> by <a href="http://www.complexification.net/" target="_blank">Jared Tarbel</a>. I have seen this a few times now, where an image palette is used to determine colours for generative art. However, most of them are not reduced, which adds to bandwidth cost when online. Try to ignore my shameless grammar mistake :)</p>
+<h3 style="text-align: left;">Code</h3>
+<p style="text-align: left;">I am dumping the code here, seeing as it is not working in the browser.</p>
+<pre class="brush: as3">
+package avdw.tool {
+	import com.adobe.images.PNGEncoder;
+	import com.bit101.components.Label;
+	import com.demonsters.debugger.MonsterDebugger;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Loader;
+	import flash.display.Sprite;
+	import flash.events.DataEvent;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.net.FileReference;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
+	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
+	
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	[SWF(width="256",height="64",backgroundColor="0x0",frameRate="30")]
+	public class ExtractColours extends Sprite {
+		private var file:FileReference;
+		private var loader:Loader;
+		
+		public function ExtractColours() {
+			if (stage)
+				init();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event = null):void {
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			MonsterDebugger.initialize(this);
+			
+			var title:TextField = new TextField();
+			title.text = "Palette Extractor";
+			title.width = stage.stageWidth;
+			title.autoSize = TextFieldAutoSize.CENTER;
+			title.selectable = false;
+			title.setTextFormat(new TextFormat(null, 22, 0xFFFFFF, true));
+			var clickText:TextField = new TextField();
+			clickText.text = "click anywhere to start";
+			clickText.width = stage.stageWidth;
+			clickText.autoSize = TextFieldAutoSize.CENTER;
+			clickText.y = stage.stageHeight / 2;
+			clickText.textColor = 0xFFFFFF;
+			clickText.selectable = false;
+			
+			addChild(title);
+			addChild(clickText);
+			
+			addEventListener(MouseEvent.CLICK, click);
+			
+		}
+		
+		private function click(e:MouseEvent):void 
+		{
+			file = new FileReference();
+			file.addEventListener(Event.SELECT, selected);
+			file.browse();
+		}
+		
+		private function selected(e:Event):void 
+		{
+			file.removeEventListener(Event.SELECT, selected);
+			file.addEventListener(Event.COMPLETE, loadFile);
+			file.load();
+		}
+		
+		private function loadFile(e:Event):void 
+		{
+			file.removeEventListener(Event.COMPLETE, loadFile);
+			loader = new Loader();
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, extract);
+			loader.loadBytes(file.data);
+		}
+		
+		private function extract(e:Event):void {
+			loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, extract);
+			var bmp:BitmapData = new BitmapData(loaderInfo.width, loaderInfo.height);
+			bmp.draw(loader);
+			
+			var color:uint;
+			var extractedColors:Object = new Object();
+			for (var x:int = 0; x < bmp.width; x++) {
+				for (var y:int = 0; y < bmp.height; y++) {
+					color = bmp.getPixel(x, y);
+					extractedColors["c" + color] = color;
+				}
+			}
+			
+			var length:uint = 0;
+			for (var key:String in extractedColors) {
+				length++;
+			}
+			
+			var count:uint;
+			var palette:BitmapData = new BitmapData(length, 1);
+			for each (var value:*in extractedColors) {
+				palette.setPixel(count, 0, value);
+				count++;
+			}
+			
+			var ba:ByteArray = PNGEncoder.encode(palette);
+			var file:FileReference = new FileReference();
+			file.save(ba, "palette.png");
+		}
+	
+	}
+
+}
+</pre>

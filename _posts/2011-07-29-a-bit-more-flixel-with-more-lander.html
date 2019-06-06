@@ -1,0 +1,44 @@
+---
+layout: post
+status: publish
+published: true
+title: A BIT more Flixel with more Lander
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 200
+wordpress_url: http://avanderw.co.za/?p=200
+date: '2011-07-29 13:43:40 +0200'
+date_gmt: '2011-07-29 13:43:40 +0200'
+categories:
+- Techie talk
+tags:
+- flixel
+---
+<p>So i was mentioning yesterday how cool Flixel was and how easy it is to create a <a title="Very Rough Lander Clone" href="http://avanderw.co.za/very-rough-lander-clone/">quick and dirty lander clone</a>. I played with Flixel a bit more since then and have came up with the following.</p>
+<p>Most time was actually creating the sounds and hunting down images. I am not an artist and that is really what eats time in comparison to the coding. I have learnt a bit about Audacity and luckily know quite a bit about Photoshop (I should look into GIMP for future work).</p>
+<h5><em><strong>Sorry, but this version has very bad sound, please turn down your speakers</strong></em></h5>
+<p>[swfobj src="http://avanderw.co.za/wp-content/uploads/2011/07/flixel.lander-alpha.swf" width="640" height="480"]</p>
+<p>&nbsp;</p>
+<p>What has been added since the prototype:</p>
+<ul>
+<li><span class="Apple-style-span" style="font-weight: 300;">Updated the map generation code to allow for the custom&nbsp;</span>tile-set</li>
+<li><span class="Apple-style-span" style="font-weight: 300;">Textual representation of the velocity was added with an effect to show ideal landing conditions</span></li>
+<li><span class="Apple-style-span" style="font-weight: 300;">Updated generation code to have a minimum amount of land created</span></li>
+<li><span class="Apple-style-span" style="font-weight: 300;">Added a ship sprite and animations</span></li>
+<li><span class="Apple-style-span" style="font-weight: 300;">Added sound for the ships thrusting</span></li>
+<li><span class="Apple-style-span" style="font-weight: 300;">Landing physics implemented</span></li>
+<li>Added death effects</li>
+</ul>
+<p>Known Bugs:</p>
+<ul>
+<li><span class="Apple-style-span" style="font-weight: 300;">Pixel perfect collision needs to be implemented, you can die without actually touching the terrain</span></li>
+<li><span class="Apple-style-span" style="font-weight: 300;">Falling off the bottom of the map will do nothing (I am considering generating making it a seamless transition)</span></li>
+<li><span class="Apple-style-span" style="font-weight: 300;">The landing pad can be generated in areas that are unreachable (surrounded by terrain)</span></li>
+<li><span class="Apple-style-span" style="font-weight: 300;">Many others</span></li>
+</ul>

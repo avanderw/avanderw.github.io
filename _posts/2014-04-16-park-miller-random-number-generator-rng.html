@@ -1,0 +1,77 @@
+---
+layout: post
+status: publish
+published: true
+title: Park Miller Random Number Generator (RNG)
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1828
+wordpress_url: http://www.avanderw.co.za/?p=1828
+date: '2014-04-16 08:21:25 +0200'
+date_gmt: '2014-04-16 06:21:25 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- as3
+- random
+- park-miller
+- histographer
+- rng
+---
+<p>I remember seeing a <a href="http://gskinner.com/blog/archives/2008/01/source_code_see.html">seeded random number generator at gskinner.com</a> and thinking wow that has some cool functionality. I completely missed that it was a seeded random number generator. After a while I noticed <a href="http://lab.polygonal.de/?p=162">polygonal had implemented a Park Miller Carta psuedo random number generator</a> (PRNG). I remember wondering what the reason was for all this. After a bit more time I ran into the problem. While I was creating procedural content, I eventually (surprised at how long it took), wanted to reproduce some or other artefact. I could not do this reliably without seeding the sequence of numbers somehow.</p>
+<p>I had my AHA moment! That is why everyone was concerned with seeded random number generators. Recently I have started to wonder why it is not provided by the flash API? I initially used <a href="http://gskinner.com/blog/archives/2008/01/source_code_see.html">gskinner.com&rsquo;s Rndm class</a>. It is well written and fulfilled a lot of my needs. However, as <a title="Streaming descriptive statistics" href="http://www.avanderw.co.za/streaming-descriptive-statistics/">I started fiddling with statistics and other numbers more</a>, I got interested in the actual algorithms. Which eventually <a title="Streaming Histograph" href="http://www.avanderw.co.za/streaming-histograph/">led me to try recreate</a> the <a href="http://blog.controul.com/2009/04/standard-normal-distribution-in-as3/">histogram viewer at controul.com</a>. This was so that I could get a visual idea for the distributions of number generating methods.</p>
+<p>There are a lot of places to find out more about the Park Miller algorithm, here are just a few:</p>
+<ul>
+<li><a href="http://www.emkaynet.com/flash/introPage/images/lounge/slots/de/polygonal/math/PM_PRNG.as">polygonal</a></li>
+<li>used over at <a href="http://blog.controul.com/as3/ParkMiller.as">controul.com</a></li>
+<li>which was redone in javascript at <a href="http://dev.mothteeth.com/2012/08/seeded-perlin-noise-in-javascript/">dev.mothteeth.com</a></li>
+<li><a href="https://github.com/gskinner/AS3Libs/blob/master/Rndm/com/gskinner/utils/Rndm.as">gskinner.com</a></li>
+</ul>
+<p>I have made use of the above resources to put together an abstract RNG class which implement the methods that gskinner.com created [float(), bit(), chance(), int(), etc], which all make use of an abstract .random(). This allows for the richness of these methods to be used with various implementations of .random(). This post is addressing one such implementation&hellip; the Park Miller Carta PRNG which I grabbed from polygonal. An added benefit is that the focus is now on the actual implementation of the method and not all the fringe &ldquo;noise&rdquo; that make it more understandable.</p>
+<h1>The code</h1>
+<pre class="brush: as3">package net.avdw.random.generator
+{
+
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class ParkMillerRng extends ARng
+	{
+		/* The original seed used by this number generator */
+		protected var seed:uint;
+		protected var walkingNumber:uint;
+
+		/**
+		 * Setups the random number generator given a seed.
+		 * If no seed is provided then a random seed is selected.
+		 * @param	seed
+		 */
+		public function ParkMillerRng(seed:uint = 0)
+		{
+			if (seed == 0)
+				seed = uint.MAX_VALUE * Math.random();
+
+			walkingNumber = this.seed = seed;
+		}
+
+		override public function random():Number
+		{
+			return (walkingNumber = (walkingNumber * 16807) % 2147483647) / 0x7FFFFFFF + 0.000000000233;
+		}
+
+		override public function reset():ARng
+		{
+			walkingNumber = seed;
+			return this;
+		}
+	}
+}</pre>

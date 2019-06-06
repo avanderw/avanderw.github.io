@@ -1,0 +1,102 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Code Snippet: Collision Detection'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1605
+wordpress_url: http://www.avanderw.co.za/?p=1605
+date: '2013-08-15 09:03:50 +0200'
+date_gmt: '2013-08-15 07:03:50 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- as3
+- actionscript
+- snippet
+- color
+- collision
+- overlay
+- bitmapdata
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/collision-demo.swf"><img class="alignright size-full wp-image-1609" title="Demo, Click here to view" alt="Demo" src="http://www.avanderw.co.za/wp-content/uploads/2013/08/thumbshot.jpg" width="340" height="241" /></a></p>
+<p style="text-align: justify;">This bit of code uses blend modes to determine if two display objects intersect (if they are overlapping). It takes into account transparency, rotation, scale and translation. It enables near pixel level overlay detection. This forms the first part of any collision detection algorithm, firstly finding out if two objects intersect.</p>
+<p style="text-align: justify;">The idea was simple- draw two display objects onto a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/BitmapData.html">BitmapData </a>and find the intersection with some fun use of blending modes. I was having difficulty with this initially and out of interest I took a look at how Richard did it in his <a href="http://www.photonstorm.com/flixel-power-tools">Flixel Power Tools plugin set</a>. Plus, his demo of this is way cooler than mine. To my luck, in <a title="Code on Github" href="https://github.com/photonstorm/Flixel-Power-Tools/blob/master/Test%20Suite/src/org/flixel/plugin/photonstorm/FlxCollision.as">FlxCollision </a>he does exactly this.</p>
+<p style="text-align: justify;">Using <a title="Github source" href="https://github.com/photonstorm/Flixel-Power-Tools/blob/master/Test%20Suite/src/org/flixel/plugin/photonstorm/FlxCollision.as">FlxCollision pixelPerfectCheck</a>&nbsp;as a base, the code was reworked to fit with the Adobe framework without the need for <a href="http://flixel.org/">Flixel</a>. I found out that there were a lot of helper methods provided by the <a title="Flex SDK Download" href="http://www.adobe.com/devnet/flex/flex-sdk-download.html">SDK, </a>which made the job of doing the collision detection easier. The most beneficial one, being able to get the transformation matrix that has been already applied to the display object. Another is the ability to get a bounding rectangle given a coordinate space.</p>
+<p>Arguably the code is easier to read for some who do not know Flixel. A quick pseudo rundown of what is happening in the code below:</p>
+<ol>
+<li>determine the intersecting area from the bounding boxes</li>
+<li>create a bitmapdata object that is the size of the intersecting area</li>
+<li>draw the first object onto the bitmapdata using red and normal blend</li>
+<li>draw the second object onto the bitmapdata using white and difference blend</li>
+<li>all the while keeping their relative positions in tact</li>
+<li>get the rectangle which contains the light blue pixels (awesome method, getColorBoundsRect)</li>
+<li>if the rectangle is empty- there is no collision, otherwise there is</li>
+</ol>
+<h1>The code</h1>
+<pre class="brush: as3">package net.avdw.physics
+{
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.BlendMode;
+	import flash.display.DisplayObject;
+	import flash.display.Stage;
+	import flash.geom.ColorTransform;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+
+	public function overlap(displayObjectA:DisplayObject, displayObjectB:DisplayObject, stage:Stage, overlapTolerance:int = 127, debugBmp:Bitmap = null):Boolean
+	{
+		if (debugBmp != null)
+			debugBmp.bitmapData = null;
+
+		var intersectionRect:Rectangle = displayObjectA.getRect(stage).intersection(displayObjectB.getRect(stage));
+		if (intersectionRect.isEmpty())
+			return false;
+
+		intersectionRect.x = Math.floor(intersectionRect.x);
+		intersectionRect.y = Math.floor(intersectionRect.y);
+		intersectionRect.width = Math.ceil(intersectionRect.width);
+		intersectionRect.height = Math.ceil(intersectionRect.height);
+
+		if (intersectionRect.isEmpty())
+			return false;
+
+		var overlapAreaData:BitmapData = new BitmapData(intersectionRect.width, intersectionRect.height);
+
+		var matrixA:Matrix = displayObjectA.transform.matrix.clone();
+		matrixA.translate(-intersectionRect.x, -intersectionRect.y);
+
+		var matrixB:Matrix = displayObjectB.transform.matrix.clone();
+		matrixB.translate(-intersectionRect.x, -intersectionRect.y);
+
+		overlapAreaData.draw(displayObjectA, matrixA, new ColorTransform(0, 0, 0, 1, 255, -255, -255, overlapTolerance), BlendMode.NORMAL);
+		overlapAreaData.draw(displayObjectB, matrixB, new ColorTransform(0, 0, 0, 1, 255, 255, 255, overlapTolerance), BlendMode.DIFFERENCE);
+
+		if (debugBmp != null)
+		{ 
+			overlapAreaData.threshold(overlapAreaData, overlapAreaData.rect, new Point(), "!=", 0xFF00FFFF, 0);
+			debugBmp.bitmapData = overlapAreaData;
+			debugBmp.x = intersectionRect.x;
+			debugBmp.y = intersectionRect.y;
+		}
+
+		var overlapRect:Rectangle = overlapAreaData.getColorBoundsRect(0xFFFFFFFF, 0xFF00FFFF);
+
+		if (overlapRect.isEmpty())
+			return false;
+
+		return true;
+	}
+
+}</pre>

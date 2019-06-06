@@ -1,0 +1,190 @@
+---
+layout: post
+status: publish
+published: true
+title: Complexification's Sandstorm in Actionscript
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 918
+wordpress_url: http://www.avanderw.co.za/?p=918
+date: '2012-06-01 13:34:30 +0200'
+date_gmt: '2012-06-01 11:34:30 +0200'
+categories:
+- Techie talk
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+tags:
+- art
+- sandstroke
+- processing
+- complexification
+- jared tarbell
+---
+<p>If you know of <a title="Jared Tarbell when working at Levitated" href="http://levitated.net/jt/index.html" target="_blank">Jared Tarbell</a>, then you should be familiar with this effect. If you are not familiar with him... google him! He has really done some amazing work. He has a very old site, mostly done in processing and still looking good, <a title="Complexification | a collection of computer generate art" href="http://www.complexification.net/gallery/" target="_blank">called complexification</a>. I have always wanted to know how he did a gradient type effect on his drawings especially his <a title="Happy Place by Jared Tarbell at Complexification" href="http://www.complexification.net/gallery/machines/happyPlace/index.php" target="_blank">"happy place"</a>.</p>
+<p>I found the simplest version of it on his site, <a title="Jared Tarbell's Sandstroke" href="http://www.complexification.net/gallery/machines/sandstroke/" target="_blank">called Sandstroke</a>. I then went ahead to port the code to actionscript and by doing so, learnt the way in which he created the effect. It is a little more complicated than what I originally thought, but not too much so. Here is the ported Sandstroke.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/06/HobbyCode.swf" width="500" height="500" required_player_version="11"]</p>
+<p>What it does is sweep x lines from left to right over the stage. You would assume that he is drawing lines when looking at it, but he is not. The effect is done by drawing points, in this case, onto a bitmap. For each frame(30fps) a point gets placed on the base line and then a random length is drawn upwards and downwards from the original point. You should be able to see that the original horizontal line is a hard line.</p>
+<p>This is the actual magic. The points are very faint alphas of the original colour, but the same amount of points are drawn on the line, no matter the length. This is why the shorter lines are darker and they fade out the longer they become. The color for each point is also the base color being drawn relative to the original value on the stage.</p>
+<p>The algorithm is also very cheap. In the demo there are 22 lines drawing 400 points each per frame. I have gotten over 500 lines to draw without impacting the&nbsp;frame-rate.</p>
+<h3>Ported Code</h3>
+<p>&nbsp;</p>
+<pre class="brush: as3">package avdw.demo.effect {
+	import com.gskinner.utils.Rndm;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Sprite;
+	import flash.events.Event;
+
+	/**
+	 * Reference: http://www.complexification.net/gallery/machines/sandstroke/
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	[SWF(width="500",height="500",backgroundColor="0xFFFFFF",frameRate="30")]
+	public class SandStrokeEffect extends Sprite {
+		[Embed(source="../../../assets/100x1 Complexification - longcolor.png")]
+		private const LongColor:Class;
+		private var k:int = 22;
+		private var sweeps:Vector.<Sweep>;
+		private const goodcolor:Vector.<uint> = new Vector.<uint>();
+		private var bmp:Bitmap;
+
+		public function SandStrokeEffect() {
+			if (stage)
+				init();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+
+		private function init(e:Event = null):void {
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			bmp = new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight));
+			addChild(bmp);
+
+			var count:int;
+			var b:Bitmap = new LongColor();
+
+			// extract color
+			for (count = 0; count < b.width; count++) {
+				goodcolor.push(b.bitmapData.getPixel(count, 0));
+
+			}
+			// pad with whites
+			for (count = 0; count < 6; count++) {
+				goodcolor.push(0xFFFFFF);
+			}
+			// pad with blacks
+			for (count = 0; count < 6; count++) {
+				goodcolor.push(0x000000);
+			}
+
+			sweeps = new Vector.<Sweep>();
+			var g:int = int(stage.stageWidth / k);
+			for (count = 0; count < k; count++) {
+				sweeps.push(new Sweep(0, Rndm.float(stage.stageHeight), g * 10, bmp.bitmapData, goodcolor));
+			}
+
+			addEventListener(Event.ENTER_FRAME, loop);
+		}
+
+		private function loop(e:Event):void {
+			for each (var sweep:Sweep in sweeps) {
+				sweep.render(stage.stageWidth);
+			}
+		}
+
+	}
+
+}
+import flash.display.BitmapData;
+import com.gskinner.utils.Rndm;
+
+class Sweep {
+	// feet
+	private var ox:Number, oy:Number;
+	private var x:Number, y:Number;
+	private var vx:Number;
+
+	private var ogage:Number;
+	private var gage:Number;
+
+	private var myc:uint;
+
+	private var time:Number;
+	private var sc:Number, sg:Number;
+
+	private var _bmpData:BitmapData;
+	private var goodcolor:Vector.<uint>;
+
+	public function Sweep(X:Number, Y:Number, Gage:Number, bmpData:BitmapData, goodcolors:Vector.<uint>) {
+		// init
+		_bmpData = bmpData;
+		this.goodcolor = goodcolors;
+		ox = x = X;
+		oy = y = Y;
+		ogage = gage = Gage;
+
+		// randomize limb properties
+		selfinit();
+	}
+
+	private function selfinit():void {
+		// init color sweeps
+		myc = goodcolor[Rndm.integer(goodcolor.length)];
+		sg = Rndm.float(0.01, 0.1);
+		x = ox;
+		y = oy;
+		gage = ogage;
+		vx = 1.0;
+	}
+
+	public function render(width:int):void {
+		// move through time
+		x += vx;
+		if (x > width)
+			selfinit();
+
+		tpoint(int(x), int(y), myc, 0.07);
+
+		sg += Rndm.float(-0.042, 0.042);
+
+		if (sg < -0.3) {
+			sg = -0.3;
+		} else if (sg > 0.3) {
+			sg = 0.3;
+		} else if ((sg > -0.01) &amp;&amp; (sg < 0.01)) {
+			if (Rndm.random() < 0.01)
+				myc = goodcolor[Rndm.integer(goodcolor.length)];
+		}
+
+		var wd:Number = 200;
+		var w:Number = sg / wd;
+		_bmpData.lock();
+		for (var i:int = 0; i < wd; i++) {
+			tpoint(int(x), int(y + gage * Math.sin(i * w)), myc, 0.1 - i / (wd * 10 + 10)); // down
+			tpoint(int(x), int(y - gage * Math.sin(i * w)), myc, 0.1 - i / (wd * 10 + 10)); // up
+		}
+		_bmpData.unlock();
+	}
+
+	// translucent point
+	private function tpoint(x1:int, y1:int, myc:uint, a:Number):void {
+		var r:int, g:int, b:int;
+		var c:uint;
+
+		c = _bmpData.getPixel(x1, y1);
+
+		r = int((c >> 16 &amp; 0xFF) + ((myc >> 16 &amp; 0xFF) - (c >> 16 &amp; 0xFF)) * a);
+		g = int((c >> 8 &amp; 0xFF) + ((myc >> 8 &amp; 0xFF) - (c >> 8 &amp; 0xFF)) * a);
+		b = int((c >> 0 &amp; 0xFF) + ((myc >> 0 &amp; 0xFF) - (c >> 0 &amp; 0xFF)) * a);
+
+		_bmpData.setPixel(x1, y1, r << 16 | g << 8 | b);
+	}
+
+}</pre>

@@ -1,0 +1,57 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Potential Fields: Movement'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 702
+wordpress_url: http://www.avanderw.co.za/?p=702
+date: '2012-03-12 14:06:30 +0200'
+date_gmt: '2012-03-12 12:06:30 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+tags:
+- potential fields
+---
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/03/Movement.swf" width="400" height="400" align="center" required_player_version="11"]</p>
+<p style="text-align: center;"><em>Click to set goal to cursor position</em></p>
+<p style="text-align: left;">The above swf illustrates how potential fields can be generated with no obstacles. It is the <a title="Potential Fields, Influence Maps &amp; Behavioral Trees" href="http://www.avanderw.co.za/potential-fields-influence-maps-behavioral-trees/">first in a series on potential fields</a>. It highlights how the potential field is used when determining where the agent must move next.</p>
+<h3 style="text-align: left;">SWF Details</h3>
+<ul>
+<li>Goal is represented by full blue</li>
+<li>Potential degrades further away from the goal (represented by gradient in blue)</li>
+<li>Pink is the agent</li>
+<li>SWF size 400x400 pixels</li>
+<li>Grid size = 50x50 cells</li>
+<li>Cell size = 8x8 pixels</li>
+<li>Agents = 1</li>
+<li>Goals = 1</li>
+</ul>
+<h3 style="text-align: left;">Potential Field Generation&nbsp;PSEUDO&nbsp;Algorithm</h3>
+<ul>
+<li>Start with FIFO queue</li>
+<li>Set goal cell potential to 1</li>
+<li>Add goal cell position to queue</li>
+<li>While the queue is not empty (tip: add in check to make sure queue does not grow larger than max cells)</li>
+<li>Pop the position to be evaluated</li>
+<li>Check if&nbsp;neighbors&nbsp;have been calculated</li>
+<li>For each unset neighbor set neighbor = current energy * decay factor</li>
+<li>For each unset neighbor add it's position to the queue</li>
+</ul>
+<h3 style="text-align: left;">Agent Movement&nbsp;PSEUDO&nbsp;Algorithm</h3>
+<ul>
+<li>Determine neighbor with the most energy that is also higher than current energy</li>
+<li>Move agent to that neighbor's position</li>
+</ul>
+<h3>Optimization</h3>
+<p>If you are to represent the potential field as a vector field, then when the agent needs to determine where to move next, it only has to evaluate its current node for direction, instead of evaluating each neighbor for the highest energy neighbor.</p>
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/2012/03/LAB-PotentialFields.zip">Download the Flash Develop 4 project</a></p>

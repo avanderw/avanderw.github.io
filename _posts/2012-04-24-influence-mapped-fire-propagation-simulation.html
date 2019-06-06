@@ -1,0 +1,80 @@
+---
+layout: post
+status: publish
+published: true
+title: Influence Mapped Fire Propagation Simulation
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 815
+wordpress_url: http://www.avanderw.co.za/?p=815
+date: '2012-04-24 12:35:20 +0200'
+date_gmt: '2012-04-24 10:35:20 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- influence maps
+- simulation
+- propagation
+---
+<p style="text-align: left;">This is a simulation of fire propagating on a two-dimensional grid. There are agents thrown in that avoid the fire and try find safety away from&nbsp;eminent&nbsp;danger. They do this by making use of a combined influence map for movement (which has been generated ignoring obstacles, dumb of me, I know!).</p>
+<p style="text-align: left;">I at least generated <a title="Potential Fields: Multiple Agents" href="http://www.avanderw.co.za/potential-fields-multiple-agents/">the potential maps taking obstacles into account on my other post</a>, thus creating a graph to traverse instead of evaluating a flat grid. Something to note for the next implementation. Best of all is that I knew of this and it was <a href="http://aigamedev.com/open/tutorials/potential-fields/" target="_blank">detailed in this article</a> mentioned <a title="Potential Fields, Influence Maps &amp; Behavioral Trees" href="http://www.avanderw.co.za/potential-fields-influence-maps-behavioral-trees/">in a previous post</a>. SO I worked around it for my first implementation and then forgot on my second!</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/04/InfluenceMappedPerculationModel.swf" width="400" height="600" align="center" required_player_version="11"]</p>
+<p style="text-align: center;"><em>Click the image at the bottom to overlay the influence map</em></p>
+<p style="text-align: left;">There are a few parameters you can tweak.</p>
+<ul>
+<li>Initial tree ratio - is the ratio of the grid size which will be trees on setup</li>
+<li>Number of goals - is the number of goals that the agents will be attracted to</li>
+<li>Goal decay rate - is the ratio at which the influence will decay&nbsp;(current influence * rate)</li>
+<li>Fire decay rate - is the ratio at which &nbsp;the influence will decay (current influence * rate)</li>
+<li>Number of agents - is the number of initial agents on setup</li>
+<li>Number of fires - is the number of fires to start when clicking the start fires button</li>
+<li>Regrowth chance - is the chance that a burnt tree (brown) will regrow</li>
+</ul>
+<p>The graph shows the number of fires over time.</p>
+<h3>Representation</h3>
+<p>Normal View (default)</p>
+<ul>
+<li>Green = healthy tree</li>
+<li>Blue = agent</li>
+<li>Brown = burnt tree</li>
+<li>Red = fire</li>
+</ul>
+<p>Influence Map (after clicking the normal image)</p>
+<ul>
+<li>Red = negative and avoid</li>
+<li>Blue = positive and follow</li>
+<li>Climb gradient</li>
+<li>Opacity of the color = strength (1 = full blue [1] or full red [-1], 0 = transparent)</li>
+</ul>
+<h3>Assumptions / Hacks</h3>
+<ul>
+<li>Gave a 1px border by assigning a negative influence &nbsp;to that space, preventing agents from moving there to avoid border check calculations.</li>
+<li>Goals were introduced to attract the agents towards the center, otherwise they just run to the edge of the grid and stay there (could negatively charge the outside to rectify this, but lazy)</li>
+<li>Fire &amp; Agents can move in 8 directions (not just up, down, left, right)</li>
+<li>The various influence maps are generated over a few frames to spread out the calculation.</li>
+<li>The agents move every frame, fire propagates every 3 and trees regrow every 5</li>
+</ul>
+<div></div>
+<h3>Bugs / Errors</h3>
+<div>
+<ul>
+<li>Have local minima / maxima issues with the influence map because of a generic influence generation method, which does not take obstacles into account! [Causes agents to get stuck behind trees on the way to their goals]</li>
+<li>Movement code does not account for an error rate, so 0.0000001 != 0.00001 [Causes cycling movement of agents back and forth]</li>
+</ul>
+</div>
+<h3>Interesting points</h3>
+<ul>
+<li>Lots of fire quickly dies out</li>
+<li>Densely populated trees cause that almost all trees burn</li>
+<li>Higher regrowth and dense population increase probability of continued fire</li>
+<li>Continued fire lowers the effect of the local minima / maxima</li>
+</ul>
+<p>Know of any other "bugs" (hidden features) or other interesting points that I should include? Post them in the comments.&nbsp;<a href="http://www.avanderw.co.za/wp-content/uploads/2012/04/Influence-Mapped-Perculation-Model.zip">Here is the really bad source code for this project</a>.</p>
+<p>&nbsp;</p>

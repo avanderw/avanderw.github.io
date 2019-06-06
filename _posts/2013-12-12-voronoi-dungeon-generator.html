@@ -1,0 +1,155 @@
+---
+layout: post
+status: publish
+published: true
+title: Voronoi Dungeon Generator
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1715
+wordpress_url: http://www.avanderw.co.za/?p=1715
+date: '2013-12-12 14:58:31 +0200'
+date_gmt: '2013-12-12 12:58:31 +0200'
+categories:
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- algorithm
+- as3
+- toy
+- demo
+- snippet
+- voronoi
+- cave
+- cellular automata
+- room
+- dungeon
+- msp
+- delaunay triangulation
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/voronoi-dungeon-2013-12-12.swf"><img class="alignright size-full wp-image-1716" alt="Voronoi Dungeon Generation" src="http://www.avanderw.co.za/wp-content/uploads/2013/12/thumbshot-3.jpg" width="340" height="247" /></a></p>
+<p style="text-align: justify;">Continuing from the previous post on <a title="Irregular Shaped Rooms / Caves" href="http://www.avanderw.co.za/irregular-shaped-rooms-caves/">irregular shaped room generation</a>. The idea is to make use of multiple rooms to create a dungeon. A room's connectedness is determined by calculating a&nbsp;<a href="http://en.wikipedia.org/wiki/Minimum_spanning_tree">minimum spanning tree</a>&nbsp;on <a href="http://en.wikipedia.org/wiki/Delaunay_triangulation">a delaunay triangulation</a> using <a href="http://en.wikipedia.org/wiki/Voronoi_diagram">a voronoi diagram</a> from the <a href="https://github.com/nodename/as3delaunay">as3-delaunay library</a>. This ensures that all rooms are reachable given any starting room. The original idea for generating the dungeon came from <a href="http://noelberry.ca/2013/06/procedural-generation-the-dungeons">Noel Berry's post on the subject</a>. The algorithm can be modified to select a predefined room from a pool; to generate an irregular shaped room; to use a straight rectangular room or a combination of the three. The method shown here is modular enough to cater for this.</p>
+<h1>Algorithm</h1>
+<ul>
+<li>Create a blank map given dimensions (width, height)</li>
+<li>While there is space, place a room in the map
+<ul>
+<li>A room is generated using the <a title="Irregular Shaped Rooms / Caves" href="http://www.avanderw.co.za/irregular-shaped-rooms-caves/">irregular shaped room algorithm</a></li>
+<li>The location for placing the room is randomly selected</li>
+<li>There is space if there are no open spaces in the area to be affected</li>
+<li>There is no more space when placement has failed to place a random room 100 times</li>
+</ul>
+</li>
+<li>Remember to keep track of all center points for placed rooms</li>
+<li>Use the center points of the rooms to construct a voronoi diagram</li>
+<li>Use the delaunay triangulation (voronoi) to construct a minimum spanning tree</li>
+<li>Draw the minimum spanning tree onto the map
+<ul>
+<li>In this case 5 lines are drawn for each line segment of the minimum spanning tree</li>
+<li>The 5 lines are used to widen the passageway</li>
+<li>Using a drawLine() method with a thickness setting would be ideal</li>
+<li>Here the <a href="http://www.simppa.fi/blog/extremely-fast-line-algorithm-as3-optimized/">extremely fast line algorithm</a> is used to draw the lines (no wideness setting)</li>
+</ul>
+</li>
+<li>Drawing the lines this way leaves dots in the passageway, therefore a simple 1-pass cellula-automata is used to remove points that have fewer than 5 adjacent walls</li>
+</ul>
+<h1>Code</h1>
+<pre class="brush:as3">public function makeDungeon(width:int = 200, height:int = 150, minRoomWidth:int = 13, maxRoomWidth:int = 20, minRoomHeight:int = 10, maxRoomHeight:int = 15, roomEdge:int = 2, seed:int = 0):Vector.<Vector.>
+{
+	seed = seed == 0 ? Math.random() * int.MAX_VALUE : seed;
+	height = height == 0 ? width : height;
+	var rng:SeededRNG = new SeededRNG(seed);
+
+	var centers:Vector. = new Vector.();
+	var colors:Vector. = new Vector.();
+	var map:Vector.<Vector.> = createIntVectorMatrix(height, width, 1);
+	var isSpace:Boolean = true;
+	while (isSpace)
+	{
+		var roomData:Vector.<Vector.> = makeIrregularSquareRoom(rng.integer(minRoomWidth, maxRoomWidth), rng.integer(minRoomHeight, maxRoomHeight), roomEdge, 2, 5);
+		var roomWidth:int = roomData[0].length;
+		var roomHeight:int = roomData.length;
+		var pointInMap:Point = new Point();
+		var fits:Boolean = false;
+		var x:int, y:int;
+		var iteration:int = 0;
+		while (!fits &amp;&amp; isSpace)
+		{
+			fits = true;
+			pointInMap.x = rng.integer(1, width - (roomWidth + 2 * roomEdge) - 1);
+			pointInMap.y = rng.integer(1, height - (roomHeight + 2 * roomEdge) - 1);
+			for (x = 0; x < roomWidth &amp;&amp; fits; x++)
+				for (y = 0; y < roomHeight &amp;&amp; fits; y++) 					if (map[pointInMap.y + y][pointInMap.x + x] == 0) 						fits = false; 			 			iteration++; 			if (iteration > 100)
+				isSpace = false;
+		}
+
+		if (fits)
+		{
+			for (x = 0; x < roomWidth &amp;&amp; fits; x++)
+				for (y = 0; y < roomHeight &amp;&amp; fits; y++) 					map[pointInMap.y + y][pointInMap.x + x] = roomData[y][x]; 			 			centers.push(new Point(pointInMap.x + (roomWidth >> 1), pointInMap.y + (roomHeight >> 1)));
+			colors.push(0);
+		}
+	}
+
+	var plotBounds:Rectangle = new Rectangle(0, 0, width, height);
+	var voronoi:Voronoi = new Voronoi(centers, colors, plotBounds);
+	var shortestPath:Vector. = voronoi.spanningTree();
+	for each (var line:LineSegment in shortestPath)
+	{
+		drawFastLineVectorInts(map, line.p0.x, line.p0.y, line.p1.x, line.p1.y, 0);
+		drawFastLineVectorInts(map, line.p0.x + 1, line.p0.y + 1, line.p1.x + 1, line.p1.y + 1, 0);
+		drawFastLineVectorInts(map, line.p0.x - 1, line.p0.y + 1, line.p1.x - 1, line.p1.y + 1, 0);
+		drawFastLineVectorInts(map, line.p0.x + 1, line.p0.y - 1, line.p1.x + 1, line.p1.y - 1, 0);
+		drawFastLineVectorInts(map, line.p0.x - 1, line.p0.y - 1, line.p1.x - 1, line.p1.y - 1, 0);
+	}
+
+	widenSpaces(map, 1);
+
+	return map;
+}
+
+public function widenSpaces(map:Vector.<Vector.>, smoothness:int):void
+{
+	var i:int, x:int, y:int;
+	var height:int = map.length;
+	var width:int = map[0].length;
+
+	var mapBuffer:Vector.<Vector.>;
+	var oneStepWallCount:int;
+
+	var isBorder:Boolean;
+	var lessThan4Walls:Boolean;
+
+	for (i = 0; i < smoothness; i++)
+	{
+		mapBuffer = createIntVectorMatrix(height, width, 0);
+		for (y = 0; y < height; y++)
+		{
+			for (x = 0; x < width; x++)
+			{
+				oneStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 1);
+
+				isBorder = x == 0 || y == 0 || x == width - 1 || y == height - 1;
+				lessThan4Walls = oneStepWallCount < 5;
+
+				if (isBorder) {
+					mapBuffer[y][x] = 1;
+				} else if (lessThan4Walls) {
+					mapBuffer[y][x] = 0;
+				} else {
+					mapBuffer[y][x] = map[y][x];
+				}
+			}
+		}
+		copyIntVectorMatrixInto(mapBuffer, map);
+	}
+}</pre>
+<h1>Gallery</h1>
+<p>Examples of&nbsp;generated&nbsp;dungeons using this technique (e.g. the method described above)</p>
+<p>[gallery ids="1718,1719,1723,1720,1721,1722,1724"]</p>

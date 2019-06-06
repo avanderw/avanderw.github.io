@@ -1,0 +1,43 @@
+---
+layout: post
+status: publish
+published: true
+title: Procedural colors
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1185
+wordpress_url: http://www.avanderw.co.za/?p=1185
+date: '2012-11-07 12:52:03 +0200'
+date_gmt: '2012-11-07 10:52:03 +0200'
+categories:
+- Techie talk
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+tags:
+- flash
+- as3
+- colour
+- actionscript
+- demo
+---
+<p><a title="Procedural Colours" href="http://www.avanderw.co.za/wp-content/uploads/swf/Procedural.Color.swf"><img class="alignright size-full wp-image-1182" title="Procedural colour algorithms actionscript demo" src="http://www.avanderw.co.za/wp-content/uploads/2012/10/Procedural.Color-Thumb.png" alt="" width="340" height="247" /></a></p>
+<p style="text-align: justify;">How often are you going to sites like <a title="Color Scheme Designer 3" href="http://colorschemedesigner.com/" target="_blank">colorschemedesigner.com</a> to generate a colour palette for your design? This article on <a title="How to choose colours procedurally" href="http://devmag.org.za/2012/07/29/how-to-choose-colours-procedurally-algorithms/" target="_blank">devmag.org.za</a> had algorithms to generate procedural colours. Whilst I was porting the C# code, a commonality was found. All the algorithms relied on altering one of the dimensions of a given colour space. My requirements to generate colour palettes is enough to actually code up my own solution. This demo is the solution I came up with.</p>
+<h2 style="text-align: justify;">Operations</h2>
+<p style="text-align: justify;">Currently the library allows operations to be performed on three colour spaces, them being red, green &amp; blue (<a title="RGB colour model | Wikipedia" href="http://en.wikipedia.org/wiki/RGB_color_model" target="_blank">RGB</a>) or hue, saturation &amp; luminancy (<a title="HSL and HSV | Wikipedia" href="http://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSL</a>) or hue, saturation &amp; value&nbsp;(<a title="HSL and HSV | Wikipedia" href="http://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSV</a>) spaces. There are five operations that can be performed on each of the components of the selected colour space. They are no-, random-, offset-, walk- &amp; interp-operations.</p>
+<ul>
+<li><strong>No operation</strong>: One numeric parameter. Returns the parameter value when queried.</li>
+<li style="text-align: justify;"><strong>Random operation</strong>: Two numeric parameters. Returns a random value from 0 to the first parameter, if only the first one is set, otherwise it returns a random value between the first and second parameter.</li>
+<li style="text-align: justify;"><strong>Offset operation</strong>: Takes three numeric parameters. The first value is the reference value, the&nbsp;second is the minimum it should offset by, from the reference value, and the second is the maximum it should offset. If the maximum is not set, then a random value between 0 and the minimum is returned. By default it will positively offset from the reference value, however if you set the bi-directional flag, then it will offset both positively and negatively from the reference value.</li>
+<li style="text-align: justify;"><strong>Walk operation</strong>: Essentially the same as the offset operation except that it the new value returned becomes the new reference point, which causes the "walk" to occur.</li>
+<li style="text-align: justify;"><strong>Interpolation operation</strong>: Takes two numeric values to interpolate between, the interpolation function to use and how many times to sample between the start and end values.&nbsp;The final oscillate flag will trigger whether the values in the sample wrap or reverse when reaching the end of the sample.</li>
+</ul>
+<h2 style="text-align: justify;">Buttons</h2>
+<p style="text-align: justify;">There are three operational buttons. <strong>Add</strong> will put a colour into the palette and <strong>Remove</strong> will drop the first colour from the palette. <strong>Palette</strong> will simulate pressing add twenty times to create a palette with twenty colours. The <strong>Compile</strong> button is interesting.</p>
+<h2 style="text-align: justify;">Compiling</h2>
+<p style="text-align: justify;">The code dynamically builds the UI components from the selected algorithm, parameters that the algorithms require, and the functions chosen in some cases. However, because the algorithm&nbsp;is built up from user input, it cannot be built until all the inputs have been assigned. The user needs to compile the algorithm when changes have been made. Any other changes made thereafter require another compile before the changes take effect. This is important, if you have read&nbsp;till here, to&nbsp;<strong>COMPILE AFTER ANY CHANGES </strong>in order to<strong> BUILD THE ALGORITHM BEFORE USE</strong>. The code will not crash your computer and nothing will really happen if the parameters are alphanumeric, it just won't work. There is however, minor error checking in place to guide you through the process.</p>

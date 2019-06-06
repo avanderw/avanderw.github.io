@@ -1,0 +1,331 @@
+---
+layout: post
+status: publish
+published: true
+title: Streaming descriptive statistics
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1832
+wordpress_url: http://www.avanderw.co.za/?p=1832
+date: '2014-04-08 22:05:03 +0200'
+date_gmt: '2014-04-08 20:05:03 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- algorithm
+- as3
+- stats
+- quartiles
+- mean
+- sample
+- population
+- scale
+- histogram
+- stddev
+- observations
+- stream
+---
+<p>I recently ran into the problem of getting sample statistics from potentially infinite population or very large sample sizes. The problem is that most algorithms scale linearly with this problem domain. Especially when looking at quartiles. I am going to detail below firstly how I was doing things and secondly what estimations I put in place to remove the dependency on past observations. By not relying on past observations you automatically remove the linear scaling problem. Think of having observed 10, 100, 1,000, 10,000, etc. observations and keeping track of them. Iterating over that sample alone scales linearly.</p>
+<p>I will be honest, some of the code present in this post I do not understand. I just implemented it or ported it from another source. I have referenced where I did this.</p>
+<h1>Streaming Mean</h1>
+<p>Originally I was using the method below to calculate the mean. It is dependent on the size of the sample.</p>
+<pre class="brush: as3">package net.avdw.stats
+{
+	import net.avdw.math.sum;
+
+	public function mean(array:Array):Number
+	{
+		return sum(array) / array.length;
+	}
+}</pre>
+<p>A simple improvement is to keep track of running counts for the summation and size of the sample.</p>
+<pre class="brush: as3">sampleSum += observation;
+sampleSize++;
+return sampleSum / sampleSize;</pre>
+<p>However, when working with large numbers the count maintained for the sum of the sample (sampleSum) will quickly overflow. The solution to this is to &ldquo;normalise&rdquo; the sampleSum by some means. This leads to the code below:</p>
+<pre class="brush: as3">package net.avdw.stats
+{	
+	public function rollingMean(mean:Number, newSample:Number, newSampleSize:uint):Number
+	{
+		mean -= mean / newSampleSize;
+		return mean += newSample / newSampleSize;
+	}
+}</pre>
+<p>The method shown above is not used in the histographer. The reason for this is purely because the RollingStats.as class, detailed below, also keeps track of the mean and a few other things. That is one such class where I am not sure what is actually happening.</p>
+<h1>Streaming Variance</h1>
+<p>Below is the code I use to accurately calculate the variance in an array of numerical observations:</p>
+<pre class="brush: as3">package net.avdw.stats
+{
+	public function variance(array:Array):Number
+	{
+		var m:Number = mean(array);
+		var avg:Number = 0;
+		for each (var num:Number in array)
+		{
+			avg += Math.pow(m - num, 2);
+		}
+		return avg / array.length;
+	}
+
+}</pre>
+<p>The main reason for calculating the variance is to get the standard deviation:</p>
+<pre class="brush: as3">package net.avdw.stats
+{
+	public function stddev(array:Array):Number
+	{
+		return Math.sqrt(variance(array));
+	}
+}</pre>
+<p>To convert this statistic into an estimating stream statistic, I had to go to the internet for help. I mean how do you recalculate the average from the mean for all observations, when the mean keeps changing? Every change in the mean will influence all previous calculations. I found the solution over at <a href="http://www.johndcook.com/">Johndcook.com</a> when looking to&nbsp;<a href="http://www.johndcook.com/standard_deviation.html">stream the standard deviation</a>. At the bottom of John&rsquo;s post was an update where he made provision for <a href="http://www.johndcook.com/skewness_kurtosis.html">streaming the kurtosis and skewness</a>&nbsp;as well. I ported the updated implementation over to as3:</p>
+<pre class="brush: as3">package net.avdw.stats
+{
+
+	/**
+	 * http://www.johndcook.com/skewness_kurtosis.html
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class RollingStats
+	{
+		private var n:uint;
+		private var M1:Number, M2:Number, M3:Number, M4:Number;
+
+		public function RollingStats()
+		{
+			clear();
+		}
+
+		public function clear():void
+		{
+			n = 0;
+			M1 = M2 = M3 = M4 = 0;
+		}
+
+		public function push(x:Number):void
+		{
+			var delta:Number, deltaByN:Number, deltaByNSqr:Number, term1:Number;
+			var oldSampleSize:Number = n;
+
+			n++;
+			delta = x - M1;
+			deltaByN = delta / n;
+			deltaByNSqr = deltaByN * deltaByN;
+			term1 = delta * deltaByN * oldSampleSize;
+			M1 += deltaByN;
+			M4 += term1 * deltaByNSqr * (n * n - 3 * n + 3) + 6 * deltaByNSqr * M2 - 4 * deltaByN * M3;
+			M3 += term1 * deltaByN * (n - 2) - 3 * deltaByN * M2;
+			M2 += term1;
+		}
+
+		public function get mean():Number
+		{
+			return M1;
+		}
+
+		public function get variance():Number
+		{
+			return n == 1 ? 0 : M2 / (n - 1);
+		}
+
+		public function get stddev():Number
+		{
+			return Math.sqrt(variance);
+		}
+
+		public function get skewness():Number
+		{
+			return Math.sqrt(n) * M3 / Math.pow(M2, 1.5);
+		}
+
+		public function get kurtosis():Number
+		{
+			return n * M4 / (M2 * M2) - 3.0;
+		}
+
+		public function plus(stats:RollingStats):RollingStats
+		{
+			var combined:RollingStats = new RollingStats;
+			combined.n = this.n + stats.n;
+
+			var delta:Number = stats.M1 - M1;
+			var delta2:Number = delta * delta;
+			var delta3:Number = delta * delta2;
+			var delta4:Number = delta2 * delta2;
+
+			combined.M1 = (this.n * this.M1 + stats.n * stats.M1) / combined.n;
+
+			combined.M2 = this.M2 + stats.M2 + delta2 * this.n * stats.n / combined.n;
+
+			combined.M3 = this.M3 + stats.M3 + delta3 * this.n * stats.n * (this.n - stats.n) / (combined.n * combined.n);
+			combined.M3 += 3.0 * delta * (this.n * stats.M2 - stats.n * this.M2) / combined.n;
+
+			combined.M4 = this.M4 + stats.M4 + delta4 * this.n * stats.n * (this.n * this.n - this.n * stats.n + stats.n * stats.n) / (combined.n * combined.n * combined.n);
+			combined.M4 += 6.0 * delta2 * (this.n * this.n * stats.M2 + stats.n * stats.n * this.M2) / (combined.n * combined.n) + 4.0 * delta * (this.n * stats.M3 - stats.n * this.M3) / combined.n;
+
+			return combined;
+		}
+	}
+
+}</pre>
+<p>I really have little idea of what is happening in the above code. <a href="http://www.johndcook.com/standard_deviation.html">The previous version</a> is actually a bit easier to understand. I tested the accuracy with the below code and found that even with a small sample it is accurate within a 5% error.</p>
+<pre class="brush: as3">const errorTolerance:Number = 0.45;
+const rollingStats:RollingStats = new RollingStats();
+const array:Array = [1, 1, 1, 2, 3, 5, 3, 5, 2, 2, 3, 8, 5, 6, 4, 9, 2, 3, 4];
+for (var i:int = 0; i < array.length; i++) {
+	rollingStats.push(array[i]);
+	assertTrue(rollingStats.variance - variance(array.slice(0, i + 1)) < errorTolerance, rollingStats.variance + " != "+ variance(array.slice(0, i + 1)));
+	assertTrue(rollingStats.stddev - stddev(array.slice(0, i + 1)) < errorTolerance, rollingStats.stddev + " != "+ stddev(array.slice(0, i + 1)));
+	assertTrue(rollingStats.mean - mean(array.slice(0, i + 1)) < errorTolerance, rollingStats.mean + " != "+ mean(array.slice(0, i + 1)));
+}</pre>
+<h1>Streaming Quartiles</h1>
+<p>I was originally keeping a <a title="Binary Sorted Array" href="http://www.avanderw.co.za/binary-sorted-array/">sorted array</a> of the observations and would just select the observation at the percentage quartile I was looking for. This meant I had to keep track of all observations AND keep them sorted. This ended up being a major performance hit when I was working on the histographer.</p>
+<p>Finding out how to stream quartiles was far more difficult than either of the previous two categories. I found the <a href="http://www.cs.wustl.edu/~jain/papers/ftp/psqr.pdf">P2 method</a>, <a href="http://info.prelert.com/blog/q-digest-an-algorithm-for-computing-approximate-quantiles-on-a-collection-of-integers">QDigest</a>, <a href="https://github.com/tdunning/t-digest">TDigest</a>,&nbsp;<a href="http://infolab.stanford.edu/~datar/courses/cs361a/papers/quantiles.pdf">Space-efficient online computation of quantile summaries</a>, <a href="http://www.cs.rutgers.edu/~muthu/bquant.pdf">Effective Computation of Biased Quantiles over Data Streams</a>, after quite a bit of searching. I understood very little of what I found. However,<a href="https://github.com/umbrant/QuantileEstimation"> this Greenwald and Khanna implementation</a> seemed easy enough to port. So I did that and the results were adequate for my needs. A word of caution though, the algorithm can get seriously expensive when looking for a small epsilon in error (< 0.001).</p>
+<pre class="brush: as3">package net.avdw.stats
+{
+
+	/**
+	 * https://github.com/umbrant/QuantileEstimation
+	 * Greenwald and Khanna. "Space-efficient online computation of quantile summaries" in SIGMOD 2001.
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class QuantileEstimationGK
+	{
+		private const samples:Vector. = new Vector.;
+
+		private var compactSize:int;
+		private var epsilon:Number;
+		private var count:int = 0;
+
+		public function QuantileEstimationGK(epsilon:Number, compactSize:int)
+		{
+			this.epsilon = epsilon;
+			this.compactSize = compactSize;
+		}
+
+		public function insert(v:Number):void
+		{
+			var idx:int = 0;
+			for each (var item:Item in samples)
+			{
+				if (item.value > v)
+					break;
+
+				idx++;
+			}
+
+			var delta:Number;
+			if (idx == 0 || idx == samples.length)
+				delta = 0;
+			else
+				delta = Math.floor(2 * epsilon * count);
+
+			var newItem:Item = new Item(v, 1, delta);
+			samples.splice(idx, 0, newItem);
+
+			if (samples.length > compactSize)
+				compress();
+
+			count++;
+		}
+
+		private function compress():void
+		{
+			var removed:int = 0;
+			for (var i:int = 0; i < samples.length - 1; i++)
+			{
+				// merge items together if we don't need to maintain the error bound
+				if (samples[i].g + samples[i + 1].g + samples[i + 1].delta <= Math.floor(2 * epsilon * count))
+				{
+					samples[i + 1].g += samples[i].g;
+					samples.splice(i, 1);
+					removed++;
+				}
+			}
+		}
+
+		public function query(quantile:Number):Number
+		{
+			if (samples.length == 0)
+				return NaN;
+
+			var rankMin:int = 0;
+			var desired:int = quantile * count;
+
+			for (var i:int = 1; i < samples.length; i++) 			{ 				var prev:Item = samples[i - 1]; 				var curr:Item = samples[i]; 				 				rankMin += prev.g; 				 				if (rankMin + curr.g + curr.delta > desired + (2 * epsilon * count))
+				{
+					return prev.value;
+				}
+			}
+
+			// edge case of wanting the max value
+			return samples[samples.length - 1].value;
+		}
+	}
+}
+
+class Item
+{
+	public var delta:Number;
+	public var g:Number;
+	public var value:Number;
+
+	public function Item(value:Number, lowerDelta:Number, delta:Number)
+	{
+		this.value = value;
+		this.g = lowerDelta;
+		this.delta = delta;
+	}
+
+	public function toString():String
+	{
+		return value + ", " + g + ", " + delta;
+	}
+}</pre>
+<h1>Histogram</h1>
+<blockquote><p>In statistics, a histogram is a graphical representation of the distribution of data. It is an estimate of the probability distribution of a continuous variable and was first introduced by Karl Pearson. -<a href="http://en.wikipedia.org/wiki/Histogram">Wikipedia</a></p></blockquote>
+<p>Lastly, I looked for a powerful implementation of a histogram data-structure, one that would handle most of the naive mistakes I would make if trying to create my own. This in large part because as I do not know the problem domain well enough. Sadly I did not find one and have resorted to doing just that... rolling out my own (with all the naive mistakes).</p>
+<pre class="brush: as3">package net.avdw.ds
+{
+	import net.avdw.math.Range;
+
+	public class HistogramDs
+	{
+		public var expectedRange:Range;
+		public var actualRange:Range;
+		public var bins:Vector.;
+		public var maxBinCount:uint = 1;
+		public var binSize:Number;
+
+		public function HistogramDs(expectedRange:Range, numberBins:uint)
+		{
+			this.expectedRange = expectedRange;
+			actualRange = Range.closed(.5, .5);
+
+			binSize = expectedRange.size / numberBins;
+			bins = new Vector.;
+			for (var i:int = 0; i < numberBins; i++)
+				bins.push(0);
+		}
+
+		public function add(number:Number):void
+		{
+			if (number < actualRange.lower) 				actualRange.lower = number; 			 			if (number > actualRange.upper)
+				actualRange.upper = number;
+
+			var binIdx:int = Math.floor((number - expectedRange.lower) / binSize) ;
+			if (binIdx < bins.length &amp;&amp; binIdx > 0 &amp;&amp; ++bins[binIdx] > maxBinCount)
+				maxBinCount = bins[binIdx];
+		}
+	}
+}</pre>
+<h1>Conclusion</h1>
+<p>The various solutions posted above to the problem of maintaining streaming statistics, might not be the best or most accurate. However, credit is due to the original authors of the ported code. I could not find something as short nor as simple as their works. Additionally it fulfilled my need of gathering sample statistics on <a title="Streaming Histograph" href="http://www.avanderw.co.za/streaming-histograph/">large sample sizes used by the histographer</a>.</p>

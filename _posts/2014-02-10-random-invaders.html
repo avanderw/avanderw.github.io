@@ -1,0 +1,103 @@
+---
+layout: post
+status: publish
+published: true
+title: Random Invaders
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1779
+wordpress_url: http://www.avanderw.co.za/?p=1779
+date: '2014-02-10 15:49:44 +0200'
+date_gmt: '2014-02-10 13:49:44 +0200'
+categories:
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- as3
+- toy
+- demo
+- snippet
+- bitmapdata
+- invader
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/random-invader.swf"><img class="alignright size-full wp-image-1780" alt="Random Invaders" src="http://www.avanderw.co.za/wp-content/uploads/2014/02/thumbshot-9.jpg" width="340" height="248" /></a> I keep running across the incorrectly named invader "fractal". I originally saw the <a href="http://levitated.net/daily/levInvaderFractal.html">invader fractal on levitated</a>, created by Jared Tarbell. Shortly after I <a href="http://www.complexification.net/gallery/machines/invaderfractal/">noticed it at complexification</a>, also Jared. There are <a href="http://www.openprocessing.org/sketch/42740">also some sketches on openprocessing.org</a>. It was in large part to seeing a lot of these lately that I decided to put together my own implementation.</p>
+<h1>Demo Controls</h1>
+<p>These controls will change any new invaders that are drawn.</p>
+<ul>
+<li><strong>Fill Ratio</strong>: How much of the invader canvas should be filled, expressed as a ratio in the range [0 (empty) ; 1 (full)]</li>
+<li><strong>Light Color</strong>: The base color to use for the light pixels</li>
+<li><strong>Dark Color</strong>: The base color to use for the dark pixels</li>
+<li><strong>Light to Dark Ratio</strong>: The amount of light vs. dark pixels, [0 (dark) ; 1 (light)]</li>
+</ul>
+<h2>Resetting controls</h2>
+<p>These controls will redraw the whole display, e.g. all invaders.</p>
+<ul>
+<li>Invader <strong>Width</strong>: in pixels</li>
+<li>Invader <strong>Height</strong>: in pixels</li>
+<li><strong>Scale</strong>: how much to scale the invader by</li>
+<li><strong>Gap</strong>: The gap to leave before placing the neighbouring invaders</li>
+<li><strong>Reset</strong>: Same effect as changing any of the above parameters, e.g. used primarily in conjunction with the runtime controls.</li>
+</ul>
+<h1>Algorithm</h1>
+<ol>
+<li>The width of the invader should be an odd number. <em style="font-family: sans-serif; font-size: medium; font-variant: normal; line-height: normal;">No check for this currently</em>.</li>
+<li>Iterate over the first half of the pixels. <em style="font-family: sans-serif; font-size: medium; font-variant: normal; line-height: normal;">Avoid the middle width, e.g. Math.ceil(width / 2)</em></li>
+<li>For each pixel, determine whether it is filled, given the fill ratio.</li>
+<li>Next determine the color between light and dark, given that ratio.</li>
+<li>Fill / empty the pixel with the given setting and mirror to the other side of the center width.</li>
+<li>Lastly, iterate over the center pixels using the same steps as 3 and 4 above.</li>
+</ol>
+<p>Some people use an integer to seed the invader. Then use bitops to determine which pixels are set in the seed. However, that way has some limitations. This way has two main benefits over that one.</p>
+<ol>
+<li>There is no upper limit imposed by the total bits. An integer for instance is 32 or 64 bits and thus you limit the amount of maximum pixels in the one half to 32 or 64 pixels.</li>
+<li>The method listed above works well when there are binary colours. You would need to use a number system base 3 to seed three colours, 4 to seed four colours.</li>
+</ol>
+<p>Both of the above limitations can be overcome by using a random number generator and seeding that rather. I have not used a seeded random number generator in this case, but it is not too difficult to swap out the current one.</p>
+<h2>Additional Effects</h2>
+<ul>
+<li>An randomly selected invader changes every 25ms.</li>
+<li>Two randomly selected invaders scale up to double their scale and back down to their normal scale every 300ms.</li>
+</ul>
+<h1>The Code</h1>
+<pre class="brush: as3">package net.avdw.generate
+{
+	import flash.display.BitmapData;
+
+	public function makeInvader(width:int, height:int, fillRatio:Number = .5, lightToDarkRatio:Number = .5, lightColor:uint = 0xFFCCCCCC, darkColor:uint = 0xFF333333, bmpData:BitmapData = null):BitmapData
+	{
+		var r:int, useColor:uint;
+		if (bmpData == null)
+			bmpData = new BitmapData(width, height);
+
+		bmpData.fillRect(bmpData.rect, 0);
+
+		var col:int = Math.floor(bmpData.width / 2);
+
+		for (var c:int = 0; c < col; c++)
+			for (r = 0; r < bmpData.height; r++)
+				if (Math.random() < fillRatio)
+				{
+					useColor = Math.random() < lightToDarkRatio ? lightColor : darkColor;
+
+					bmpData.setPixel32(c, r, useColor);
+					bmpData.setPixel32(bmpData.width - 1 - c, r, useColor);
+				}
+
+		for (r = 0; r < bmpData.height; r++)
+			if (Math.random() < fillRatio)
+			{
+				useColor = Math.random() < lightToDarkRatio ? lightColor : darkColor;
+				bmpData.setPixel32(col, r, useColor);
+			}
+
+		return bmpData;
+	}
+
+}</pre>

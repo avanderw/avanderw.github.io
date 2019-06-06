@@ -1,0 +1,88 @@
+---
+layout: post
+status: publish
+published: true
+title: FNV32 hash in Actionscript
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 973
+wordpress_url: http://www.avanderw.co.za/?p=973
+date: '2012-06-21 11:42:26 +0200'
+date_gmt: '2012-06-21 09:42:26 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- algorithm
+- c
+- hash
+- fnv
+---
+<p>I am converting a library from C++ and some parts C to Actionscript. I am really learning a lot of things whilst doing this. One of them, which I cannot wait till the end to talk about, is the C <a title="Fowler Noll Vo on Wikipedia" href="http://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function" target="_blank">FNV hashing</a> that I converted. It might not be completely accurate, but from the testing and reading on how the hash works, it looks to be a pretty good implementation.</p>
+<p>Firstly, this is the C function</p>
+<pre class="brush: c">unsigned int fnv_32_a_buf(void *buf, unsigned int len)
+{
+    unsigned int hval=(unsigned int)FNV_32_INIT;
+    unsigned char *bp = (unsigned char *)buf;
+    unsigned char *be = bp+len;
+    while (bp<be)
+    {
+        hval ^=(unsigned int)*bp++;
+        hval*=FNV_32_PRIME;
+    }
+    return hval;
+}</pre>
+<p>Now my Actionscript version</p>
+<pre class="brush: as3">private static const FNV_32_PRIME:uint = 0x01000193;
+private static const FNV_32_INIT:uint = 2166136261;
+
+public static function fnv32(data:*):uint {
+	var bytes:ByteArray = new ByteArray();
+	bytes.writeObject(data);
+	bytes.position = 0;
+
+	var hval:uint = FNV_32_INIT;
+	for (var i:int = 0; i < bytes.length; i++) {
+		hval ^= uint(bytes.readByte());
+		hval *= FNV_32_PRIME;
+	}
+
+	return hval;
+}</pre>
+<p>And the test class to give some indication of the results</p>
+<pre class="brush: as3">public function TestBytes() {
+	var arr1:Array = [1, 2, 3, 4, 5, 6];
+	var obj1:Object = {ag: "my", vok: "do", you: "work"};
+	var str1:String = "something";
+
+	var arr2:Array = [2, 3, 4, 5, 6, 7];
+	var obj2:Object = {k: 0, g: 5};
+	var str2:String = "something";
+
+	var arr3:Array = [1, 2, 3, 4, 5, 6];
+	var obj3:Object = {ag: "my", vok: "do", you: "work"};
+	var str3:String = "something1";
+
+	trace(obj1 == obj3);
+	trace(fnv32(arr1), fnv32(obj1), fnv32(str1));
+	trace(fnv32(arr2), fnv32(obj2), fnv32(str2));
+	trace(fnv32(arr3), fnv32(obj3), fnv32(str3));
+}</pre>
+<p>The output of the above</p>
+<pre class="brush: text">false
+1972551783 3706586783 1964657230
+3727129393 3188748897 1964657230
+1972551783 3706586783 628426483</pre>
+<p>What is important to note:</p>
+<ul>
+<li>str1 and str3 give significantly different results</li>
+<li>obj1 and obj3 are not equal, but their hashes are</li>
+<li>similarly arr1 and arr3 are the same hash but different objects</li>
+<li>arr1 and arr2 are also decently different</li>
+</ul>

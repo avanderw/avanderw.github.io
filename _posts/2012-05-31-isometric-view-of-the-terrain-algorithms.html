@@ -1,0 +1,37 @@
+---
+layout: post
+status: publish
+published: true
+title: Isometric View of the Terrain Algorithms
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 912
+wordpress_url: http://www.avanderw.co.za/?p=912
+date: '2012-05-31 14:31:00 +0200'
+date_gmt: '2012-05-31 12:31:00 +0200'
+categories:
+- Techie talk
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+tags:
+- flixel
+- mountain
+- terrain
+- midpoint displacement
+- heightmap
+- diamond square
+- value noise
+- as3isolib
+---
+<p>I have been meaning to look into the <a title="Google project for as3isolib" href="http://code.google.com/p/as3isolib/" target="_blank">as3isolib library</a> for some time now. Partly out of interest and partly as research for a&nbsp;colleague. The library is very nice for displaying a scene. I wonder how difficult it would be to swap out the viewing system in <a title="Flixel Game Engine" href="http://flixel.org/" target="_blank">Flixel</a> with this library. I really like Flixel and it seems that this question <a title="Flixel forum post asking this very thing" href="http://forums.flixel.org/index.php?topic=4227.0" target="_blank">has</a>&nbsp;<a title="Flixel forum post asking this very thing" href="http://forums.flixel.org/index.php?topic=4227.0" target="_blank">already</a><a title="Flixel forum post asking this very thing" href="http://forums.flixel.org/index.php?topic=4227.0" target="_blank">&nbsp;been raised, with conflicting answers</a>. I will not be looking into it, unless I undertake a BIG&nbsp;project needing it.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/05/HobbyCode4.swf" width="600" height="500" allowfullscreen="true" required_player_version="11"]</p>
+<p style="text-align: center;"><em><strong>Click to generate new terrain</strong></em></p>
+<p style="text-align: left;">Even though this was something I quickly threw together, I found something I already do not like. I am sure there is a way to do it, but I did not spend much time researching it. The problem is that you cannot get the display as a flattened bitmap [or draw the display list to BitmapData]. I was wanting to use the <a title="Disintegrate Effect" href="http://www.avanderw.co.za/disintegrate-effect/">disintegrate effect</a> on the terrain whilst generating the new one. Alas, as you can see, I did not implement it.</p>
+<p style="text-align: left;">The terrain generation algorithms are the three I developed recently. The <a title="Midpoint Displacement in Two Dimensions" href="http://www.avanderw.co.za/midpoint-displacement-in-two-dimensions/">Midpoint Displacement</a>, <a title="Non-Wrapping Diamond Square Algorithm" href="http://www.avanderw.co.za/non-wrapping-diamond-square-algorithm/">Broken Diamond Square</a>, and the <a title="Value Noise Terrain Generation" href="http://www.avanderw.co.za/value-noise-terrain-generation/">Value Noise</a> ones.</p>

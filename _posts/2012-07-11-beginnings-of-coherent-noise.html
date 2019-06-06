@@ -1,0 +1,167 @@
+---
+layout: post
+status: publish
+published: true
+title: Beginnings of Coherent Noise
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 988
+wordpress_url: http://www.avanderw.co.za/?p=988
+date: '2012-07-11 23:24:56 +0200'
+date_gmt: '2012-07-11 21:24:56 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- perlin noise
+- c
+- as3
+- port
+- noise
+- coherent noise
+- perlin
+- billow
+- ridged-multi
+- coder toy
+---
+<p>I have tried to keep to a policy that I will spend no more than a day on something and post it at the end of the day if it is post worthy. This demo took a little longer than my usual half-day to put together. It is also by no means complete. I unsuccessfully ported the <a title="The Accidental Noise Library" href="http://accidentalnoise.sourceforge.net" target="_blank">accidental noise library</a> from c/c++. There were some minor bugs which made the port < 100% complete and it is a bit confusing to try find the bug. I learnt a lot during that process though.</p>
+<p>I have since found a nicer library for noise generation that is cleaner to look at and I have taken some of the design ideas from the accidental noise library and merged them with the ideas from the <a title="C/C++ LibNoise Library" href="http://libnoise.sourceforge.net/docs/index.html" target="_blank">libnoise library</a> (also c/c++). I have so far only implemented the Gradient signal with Perlin-, Billow-, and RidgedMulti- noise generators (or fractals, still not sure what they are). The demo will restrict you to the parameters relevant for each noise. Click render to see your results.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/07/HobbyCode.swf" width="512" height="300" required_player_version="11"]</p>
+<p>If you have been reading my blog for a while, you might remember my endevour into the <a title="AS3: Perlin Noise Experiment" href="http://www.avanderw.co.za/as3-perlin-noise-experiment/">Perlin Noise</a> function a few months ago. That was when I was fiddling with the functionality that as3 provided out of the box. It was just the beginning of the rabbit hole my friends. There are so many other types of coherent noise and I have been reading up on how to generate each one. Things can really get hair raising at times. This demo will hopefully mature to an example where I can show one such example.</p>
+<p>What is great about coherent noise is that it is so well suited for <a title="Wikipedia entry on shaders" href="http://en.wikipedia.org/wiki/Shader" target="_blank">shaders</a>. I might get adventurous and put together a <a title="Light using PixelBender with Normal-, Specular- and Occlusion Mapping" href="http://www.avanderw.co.za/light-using-pixelbender-with-normal-specular-and-occlusion-mapping/">pixelbender</a> that generates one of the noise functions. However, I have something else in mind for now (might even look into <a title="Isometric View of the Terrain Algorithms" href="http://www.avanderw.co.za/isometric-view-of-the-terrain-algorithms/">the terrain viewer</a> with these functions). If you have <a title="Monster Debugger Tour" href="http://www.monsterdebugger.com/tour" target="_blank">monster debugger</a> installed, I have left the hook in for the more adventurous (actually I forgot to take it out).</p>
+<h3>Code Snippets</h3>
+<h5>Perlin</h5>
+<pre class="brush: as3">public function value(x:Number, y:Number):Number {
+	var value:Number = 0;
+	var signal:Number = 0;
+	var curPersistence:Number = 1.0;
+	var seed:uint;
+
+	x *= _frequency;
+	y *= _frequency;
+
+	for (var curOctave:int = 0; curOctave < _ocaves; curOctave++) {
+		seed = (_seed + curOctave) &amp; 0xffffffff;
+		signal = _noiseFunction(x, y, seed, _interpolationFunction);
+		value += signal * curPersistence;
+
+		x *= _lacunarity;
+		y *= _lacunarity;
+		curPersistence *= _persistence;
+	}
+
+	return Math.min(1, Math.max(-1, value));
+}</pre>
+<h5>Billow</h5>
+<pre class="brush: as3">public function value(x:Number, y:Number):Number {
+	var value:Number = 0;
+	var signal:Number = 0;
+	var curPersistence:Number = 1.0;
+	var seed:uint;
+
+	x *= _frequency;
+	y *= _frequency;
+
+	for (var curOctave:int = 0; curOctave < _ocaves; curOctave++) {
+		seed = (_seed + curOctave) &amp; 0xffffffff;
+		signal = _noiseFunction(x, y, seed, _interpolationFunction);
+		signal = 2.0 * Math.abs(signal) - 1.0;
+		value += signal * curPersistence;
+
+		x *= _lacunarity;
+		y *= _lacunarity;
+		curPersistence *= _persistence;
+	}
+	value += 0.5;
+
+	return Math.min(1, Math.max(-1, value));
+}</pre>
+<h5>Ridged-Multi</h5>
+<pre class="brush: as3">public function value(x:Number, y:Number):Number {
+	var value:Number = 0;
+	var signal:Number = 0;
+	var weight:Number = 1.0;
+	var seed:uint;
+
+	x *= _frequency;
+	y *= _frequency;
+
+	for (var curOctave:int = 0; curOctave < _ocaves; curOctave++) {
+		seed = (_seed + curOctave) &amp; 0x7fffffff;
+		signal = _noiseFunction(x, y, seed, _interpolationFunction);
+
+		signal = _offset - Math.abs(signal);
+		signal *= signal;
+		signal *= weight;
+
+		weight = signal * _gain;
+		weight = Math.max(0, Math.min(1, weight));
+
+		value += signal * _spectralWeights[curOctave];
+
+		x *= _lacunarity;
+		y *= _lacunarity;
+	}
+
+	return Math.min(1, Math.max(-1, (value * 1.25) - 1.0));
+}
+
+private function calcSpectralWeights():void {
+	_spectralWeights = new Vector.<Number>();
+
+	var freq:Number = _frequency;
+	for (var i:int = 0; i < RIDGED_MAX_OCTAVE; i++) {
+		_spectralWeights.push(Math.pow(freq, -_exponent));
+		freq *= _lacunarity;
+	}
+}</pre>
+<h5>Gradient</h5>
+<pre class="brush: as3">public static const GRADIENT:Function = function(x:Number, y:Number, seed:uint, interp:Function):Number {
+	// create unit-length square around the point
+	var x0:Number = Math.floor(x);
+	var y0:Number = Math.floor(y);
+	var x1:Number = x0 + 1;
+	var y1:Number = y0 + 1;
+
+	// map the difference to the coordinate s-curve
+	var xs:Number = interp(x - x0);
+	var ys:Number = interp(y - y0);
+
+	// create noise for each vertex
+	var n0:Number = gradient(x, y, x0, y0, seed);
+	var n1:Number = gradient(x, y, x1, y0, seed);
+	var ix0:Number = CInterpolate.linearInterpolate(n0, n1, xs);
+
+	n0 = gradient(x, y, x0, y1, seed);
+	n1 = gradient(x, y, x1, y1, seed);
+	var ix1:Number = CInterpolate.linearInterpolate(n0, n1, xs);
+
+	return CInterpolate.linearInterpolate(ix0, ix1, ys);
+};
+
+public function CSignal2D() {
+
+}
+
+private static function gradient(x:Number, y:Number, ix:int, iy:int, seed:uint):Number {
+	// select gradients
+	var index:int = (X_NOISE_GEN * ix + Y_NOISE_GEN * iy + SEED_NOISE_GEN * seed) &amp; 0xffffffff;
+	index ^= (index >> SHIFT_NOISE_GEN);
+	index &amp;= 0xff;
+
+	var xvGradient:Number = CLookup.randomVector3D[(index << 2)];
+	var yvGradient:Number = CLookup.randomVector3D[(index << 2) + 1];
+
+	// setup another vector equal to the distance of the two vectors passed in
+	var xvPoint:Number = x - ix;
+	var yvPoint:Number = y - iy;
+
+	// dot product and scale to [-1:1]
+	return (xvGradient * xvPoint + yvGradient * yvPoint) * 2.12;
+}</pre>

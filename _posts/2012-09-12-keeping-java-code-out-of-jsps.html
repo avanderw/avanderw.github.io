@@ -1,0 +1,151 @@
+---
+layout: post
+status: publish
+published: true
+title: Keeping JAVA code out of .jsps
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1048
+wordpress_url: http://www.avanderw.co.za/?p=1048
+date: '2012-09-12 11:44:47 +0200'
+date_gmt: '2012-09-12 09:44:47 +0200'
+categories:
+- Techie talk
+- Java
+tags:
+- jsp
+- scriptlets
+---
+<p>Lets face it, scriptlets were a great way to make a page dynamic back when javascript was still a baby. However, anyone who has experienced jsp code in the past few years, especially within an enterprise, has seen some pretty horrible atrocities. So to clean things up a bit, here are some suggestions to avoid putting all the code into one jsp, if you are still unfortunate to be working with them.</p>
+<p>Firstly, the disadvantages of scriptlets:</p>
+<ol>
+<li>Reusability: You cannot reference scriptlets</li>
+<li>Replaceability: How can you abstract scriptlets</li>
+<li>OO-ability: Try inheriting a scriptlet lately?</li>
+<li>Debuggability: Did you find the compiled java jsp source file?</li>
+<li>Testability: Screw any type of TDD</li>
+<li>Maintainability: Same problem with embedding all your javascript into an html page.</li>
+</ol>
+<p>Secondly, some suggestions for avoiding too much embedded code:</p>
+<ul>
+<li>Code that executes on every request should be contained in a <a title="Stackoverflow tutorial on filters" href="http://stackoverflow.com/tags/servlet-filters/info" target="_blank">servlet doFilter()</a></li>
+</ul>
+<pre class="brush: java, collapse: true">public void doFilter(ServletRequest request, 
+  ServletResponse response, FilterChain chain) 
+    throws ServletException, IOException 
+{
+  if (((HttpServletRequest) request).getSession().getAttribute("user") == null) 
+  {
+    // Not logged in, redirect to login page.
+    ((HttpServletResponse) response).sendRedirect("login"); 
+  } 
+  else 
+  {
+    // Logged in, just continue request.
+    chain.doFilter(request, response); 
+  }
+}</pre>
+<ul>
+<li>Code that needs to execute before a specific page load should be routed through a <a title="Stackoverflow tutorial on servlets" href="http://stackoverflow.com/tags/servlets/info" target="_blank">servlet doGet()</a></li>
+</ul>
+<pre class="brush: java, collapse: true">protected void doGet(HttpServletRequest request, 
+  HttpServletResponse response) 
+    throws ServletException, IOException 
+{
+  try 
+  {
+    // Obtain all products.
+    List<Product> products = productService.list(); 
+    // Store products in request scope.
+    request.setAttribute("products", products); 
+    // Forward to JSP page to display them in a HTML table.
+    request.getRequestDispatcher("/WEB-INF/products.jsp").forward(request, response); 
+  } 
+  catch (SQLException e) 
+  {
+    throw new ServletException("Retrieving products failed!", e);
+  }
+}</pre>
+<ul>
+<li>Code that needs to be processed after the request should be handled by a <a title="Stackoverflow tutorial on servlets" href="http://stackoverflow.com/tags/servlets/info" target="_blank">servlet doPost()</a></li>
+</ul>
+<pre class="brush: java, collapse: true">protected void doPost(HttpServletRequest request, 
+  HttpServletResponse response) 
+    throws ServletException, IOException 
+{
+  String username = request.getParameter("username");
+  String password = request.getParameter("password");
+  User user = userService.find(username, password);
+
+  if (user != null) 
+  {
+    request.getSession().setAttribute("user", user); // Login user.
+    response.sendRedirect("home"); // Redirect to home page.
+  } 
+  else 
+  {
+    // Store error message in request scope.
+    request.setAttribute("message", "Unknown username/password. Please retry."); 
+    // Forward to JSP page to redisplay login form with error.
+    request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response); 
+  }
+}</pre>
+<ul>
+<li>Code that controls page navigation and actions should make use of some MVC framework (e.g. <a title="Stackoverflow on JSF" href="http://stackoverflow.com/tags/jsf/info" target="_blank">JSF</a>, <a title="Some horrible documentation on SpringMVC" href="http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html/mvc.html" target="_blank">SpringMVC</a>, <a title="Apache Wicket homepage" href="http://wicket.apache.org/" target="_blank">Wicket</a>)</li>
+</ul>
+<pre class="brush: java, collapse: true">protected void service(HttpServletRequest request, 
+  HttpServletResponse response) 
+    throws ServletException, IOException 
+{
+  try 
+  {
+    Action action = ActionFactory.getAction(request);
+    String view = action.execute(request, response);
+
+    if (view.equals(request.getPathInfo().substring(1)) 
+    {
+      request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
+    } 
+    else 
+    {
+      response.sendRedirect(view);
+    }
+  } 
+  catch (Exception e) 
+  {
+    throw new ServletException("Executing action failed.", e);
+  }
+}</pre>
+<ul>
+<li>Controlling flow within a page should make use of the taglibs</li>
+</ul>
+<pre class="brush: xml, collapse: true"><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+...
+<table>
+  <c:forEach items="${products}" var="product">
+    <tr>
+      <td>${product.name}</td>
+      <td>${product.description}</td>
+      <td>${product.price}</td>
+    </tr>
+  </c:forEach>
+</table>
+...</pre>
+<ul>
+<li>Utility methods should be referenced via the taglib standard to prevent XSS attacks</li>
+</ul>
+<pre class="brush: xml, collapse: true"><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+...
+<input type="text" name="foo" value="${fn:escapeXml(param.foo)}" />
+...</pre>
+<ul>
+<li>Retrieving any data set in the above methods, would be a simple expression language query</li>
+</ul>
+<pre class="brush: xml, collapse: true"><input type="text" name="foo" value="${param.foo}" /></pre>
+<p>Admittingly, most of the information above was neatly summarised on&nbsp;<a title="Original question on stackoverlow" href="http://stackoverflow.com/questions/3177733/how-to-avoid-java-code-in-jsp-files" target="_blank">stack-overflow</a>. Thought I would share it here though.</p>

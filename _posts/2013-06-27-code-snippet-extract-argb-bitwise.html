@@ -1,0 +1,51 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Code Snippet: Extract ARGB Bitwise'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1567
+wordpress_url: http://www.avanderw.co.za/?p=1567
+date: '2013-06-27 21:38:56 +0200'
+date_gmt: '2013-06-27 19:38:56 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- flash
+- as3
+- actionscript
+- snippet
+- color
+- bitwise
+---
+<p>The following code will extract the four 8 bit channels from a 32 bit color.</p>
+<pre class="brush: as3">
+package net.avdw.color
+{
+	/**
+	 * Extract four channels (a, r, g, b) from a 32 bit color.
+	 *
+	 * @param	color	A 32 bit color.
+	 * @return	An object with properties a, r, g, b
+	 */
+	public function extractARGB(color:uint):Object
+	{
+		return {a: color >> 24 & 0xFF, r: color >> 16 & 0xFF, g: color >> 8 & 0xFF, b: color & 0xFF};
+	}
+}
+</pre>
+<p>Here is an example of this method in action.</p>
+<pre class="brush: as3">
+var ec:Object = extractARGB(0xEECCFF);
+trace(ec.a.toString(16), ec.r.toString(16), ec.g.toString(16), ec.b.toString(16));
+// prints 0 ee cc ff
+</pre>

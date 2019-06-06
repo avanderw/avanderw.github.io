@@ -1,0 +1,83 @@
+---
+layout: post
+status: publish
+published: true
+title: Old CRT Monitor Effect
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1743
+wordpress_url: http://www.avanderw.co.za/?p=1743
+date: '2014-01-15 14:41:31 +0200'
+date_gmt: '2014-01-15 12:41:31 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Effects
+- Code Snippets
+tags:
+- perlin noise
+- as3
+- actionscript
+- demo
+- color
+- rgb shifting
+- trippy
+- scanlines
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/broken-crt.swf"><img class="alignright size-full wp-image-1745" alt="Old CRT Monitor Effect" src="http://www.avanderw.co.za/wp-content/uploads/2014/01/thumbshot-6.jpg" width="340" height="248" /></a>Does anyone remember the first CRT monitors? Those monochrome ones that had the ugly refresh line, scanlines, etc. This is an attempt to recreate that feel. <a href="http://dev.tutsplus.com/tutorials/create-a-retro-crt-distortion-effect-using-rgb-shifting--active-3359">I got the idea from tutsplus.com</a>. Actually I used the method there almost exactly and changed the image. This effect makes use of <a title="Trippy RGBShifting Effect" href="http://www.avanderw.co.za/trippy-rgbshifting-effect/">RGB shifting</a>, scanlines, animated noise and lastly an &nbsp;animated "refresh" bar. I liked the effect that was applied to the basic design in the tutorial, which reminded me of some old school games. However, I actually like the effect applied to the image I am using. It reminds me of some kind of horror movie.</p>
+<blockquote>
+<p style="text-align: justify;">I can just imagine some creepy music playing along to this ghostly "painting" hanging on the wall.</p>
+</blockquote>
+<h1 style="text-align: justify;">The algorithm</h1>
+<ul>
+<li>Create a scene to apply the effect to</li>
+<li><a title="Trippy RGBShifting Effect" href="http://www.avanderw.co.za/trippy-rgbshifting-effect/">Slightly shift the RGB layers</a> over each other</li>
+<li>Add in the scanline overlay</li>
+<li>Add in a noise overlay, which is generated each frame using BitmapData.noise()</li>
+<li>Lastly, add in a blurred bar overlay which animates from top to bottom and repeats</li>
+</ul>
+<h1 style="text-align: justify;">The code</h1>
+<pre class="brush: as3">package net.avdw.demo
+{
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.BlendMode;
+	import flash.display.Sprite;
+	import flash.filters.BlurFilter;
+	import net.avdw.fx.AnimatedNoiseFx;
+	import net.avdw.fx.RefreshBarFx;
+	import net.avdw.fx.RGBDistortableFx;
+	import net.avdw.generate.makeOverlayTextureFromPattern;
+	import net.avdw.generate.pattern.scanlinePattern;
+
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class BrokenCrtDemo extends Sprite
+	{
+		[Embed(source="../../../../../assets/images/680x495 Misty Pixie.jpg")]
+		private const MistyPixie:Class;
+
+		public function BrokenCrtDemo()
+		{
+			addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0)));
+
+			var mistyPixie:RGBDistortableFx = new RGBDistortableFx(new MistyPixie());
+			addChild(mistyPixie);
+			mistyPixie.distort({x: 10, y: 3, alpha: .3, speed: .8});
+
+			addChild(makeOverlayTextureFromPattern(scanlinePattern(), stage.stageWidth, stage.stageHeight));
+
+			new RefreshBarFx(stage);
+			new AnimatedNoiseFx(stage);
+		}
+
+	}
+
+}</pre>

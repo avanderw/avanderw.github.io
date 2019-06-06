@@ -1,0 +1,76 @@
+---
+layout: post
+status: publish
+published: true
+title: FNV Hash in Java
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1864
+wordpress_url: http://www.avanderw.co.za/?p=1864
+date: '2014-09-11 23:08:48 +0200'
+date_gmt: '2014-09-11 21:08:48 +0200'
+categories:
+- My lost &amp; found
+tags: []
+---
+<p>The need for this function cropped up again. This time I in Java. Below is an implementation for 64bit as well as 32bit.</p>
+<pre class="brush: java">public final class FNVHash {
+
+    private static final long FNV_64_INIT = 0xcbf29ce484222325L;
+    private static final long FNV_64_PRIME = 0x100000001b3L;
+
+    private static final int FNV_32_INIT = 0x811c9dc5;
+    private static final int FNV_32_PRIME = 0x01000193;
+
+    public FNVHash() {}
+
+    public static int hash32(final byte[] k) {
+        int rv = FNV_32_INIT;
+        final int len = k.length;
+        for(int i = 0; i < len; i++) {
+            rv ^= k[i];
+            rv *= FNV_32_PRIME;
+        }
+        return rv;
+    }
+
+    public static long hash64(final byte[] k) {
+        long rv = FNV_64_INIT;
+        final int len = k.length;
+        for(int i = 0; i < len; i++) {
+            rv ^= k[i];
+            rv *= FNV_64_PRIME;
+        }
+        return rv;
+    }
+
+    public static int hash32(final String k) {
+        int rv = FNV_32_INIT;
+        final int len = k.length();
+        for(int i = 0; i < len; i++) {
+            rv ^= k.charAt(i);
+            rv *= FNV_32_PRIME;
+        }
+        return rv;
+    }
+
+    public static long hash64(final String k) {
+        long rv = FNV_64_INIT;
+        final int len = k.length();
+        for(int i = 0; i < len; i++) {
+            rv ^= k.charAt(i);
+            rv *= FNV_64_PRIME;
+        }
+        return rv;
+    }
+
+}
+</pre>
+<h2>References</h2>
+<p><a title="http://www.java2s.com/Code/Java/Development-Class/FNVHash.htm" href="http://www.java2s.com/Code/Java/Development-Class/FNVHash.htm">http://www.java2s.com/Code/Java/Development-Class/FNVHash.htm</a></p>

@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Code Snippet: Make a Image Sepia'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1574
+wordpress_url: http://www.avanderw.co.za/?p=1574
+date: '2013-07-05 10:31:48 +0200'
+date_gmt: '2013-07-05 08:31:48 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- flash
+- as3
+- actionscript
+- snippet
+- color
+---
+<p style="text-align: center;"><img class="size-full wp-image-1596 aligncenter" alt="sepia-image" src="http://www.avanderw.co.za/wp-content/uploads/2013/07/sepia-image.jpg" width="526" height="373" /></p>
+<p>The below code will convert an image to sepia.</p>
+<pre class="brush: as3">package net.avdw.image 
+{
+	import flash.display.BitmapData;
+	import flash.filters.ColorMatrixFilter;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+
+	/**
+	 * Makes a bitmap data object sepia.
+	 * 
+	 * @param	destBitmapData 		The destination bitmap data object.
+	 * @param	sourceBitmapData	The source bitmap data where the pixel data is retrieved. The destination bitmap data will be used if not provided.
+	 * @param	sourceRect			The clipping rectangle for the source bitmap data. No clipping will occur if not provided.
+	 * @param	destPoint			The upper left point to draw the clipping into the destination bitmap data. (0,0) will be used if not provided.
+	 */
+	public function filterToSepia(destBitmapData:BitmapData, sourceBitmapData:BitmapData = null, sourceRect:Rectangle = null, destPoint:Point = null):void
+	{
+		const sepiaFilter:Array = [
+			 0.5, 0.59, 0.11, 0, 0,
+			 0.4, 0.59, 0.11, 0, 0,
+			0.16, 0.59, 0.11, 0, 0,
+			   0,    0,    0, 1, 0
+		];
+
+		sourceBitmapData = (sourceBitmapData == null) ? destBitmapData : sourceBitmapData;
+		sourceRect = (sourceRect == null) ? sourceBitmapData.rect : sourceRect;
+		destPoint = (destPoint == null) ? new Point() : destPoint;
+
+		destBitmapData.applyFilter(sourceBitmapData, sourceRect, destPoint, new ColorMatrixFilter(sepiaFilter));
+	}
+
+}</pre>

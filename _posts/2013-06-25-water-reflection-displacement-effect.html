@@ -1,0 +1,135 @@
+---
+layout: post
+status: publish
+published: true
+title: Water Reflection Displacement Effect
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1515
+wordpress_url: http://www.avanderw.co.za/?p=1515
+date: '2013-06-25 15:01:27 +0200'
+date_gmt: '2013-06-25 13:01:27 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- flash
+- as3
+- actionscript
+- displacement
+- water
+- ripple
+- reflection
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/water-reflection.swf"><img class="alignright size-full wp-image-1517" title="Demo" alt="Demo" src="http://www.avanderw.co.za/wp-content/uploads/2013/06/thumbshot3.png" width="340" height="247" /></a></p>
+<p style="text-align: justify;">This code simulates the effect you see when looking at a reflection in water- where the waves distort the reflection. It is a relatively simple effect.</p>
+<h2>The Method Used</h2>
+<ol>
+<li style="text-align: justify;">The reflection is achieved by copying the sprite to be reflected and rotating it about the x-axis. That will flip it or invert it downwards. Then you can scale it to be a bit smaller than the original in height. The whole operation can be achieved simply in flash by scaling the y-dimension by -3/4. The negative does the inversion and the 3/4 makes it 75% the height of the original image.</li>
+<li style="text-align: justify;">Once the reflection has been done, a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/filters/DisplacementMapFilter.html">DisplacementMapFilter </a>is run over the result. The input to the filter is a bitmap that was generated using perlin noise. <a href="http://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a>&nbsp;has been used extensively in <a title="Disintegrate Effect" href="http://www.avanderw.co.za/disintegrate-effect/">various effects on this site</a>&nbsp;and they started back&nbsp;with <a title="AS3: Perlin Noise Experiment" href="http://www.avanderw.co.za/as3-perlin-noise-experiment/">this one</a>. The perlin noise is generated in colour and the green (X) and red (Y) channels are used to shift the<span style="font-family: 'Droid Sans', 'Helvetica Neue', 'Nimbus Sans L', sans-serif; font-size: 15px; font-style: normal; font-variant: normal; line-height: 24.296875px;">&nbsp;</span>pixels.</li>
+<li style="text-align: justify;">To animate the effect, the parameters for generating the perlin noise are tweaked and the displacement filter is re-run on the original reflection. This traversal of the 2D perlin dimensional-space is what keeps the smoothness of the displacement effect.</li>
+</ol>
+<p>I added a simple GUI to fiddle with the perlin noise parameters to change the animation result.</p>
+<h2>The Code</h2>
+<pre class="brush: as3">package net.avdw.effect.reflection
+{
+	import avdw.action.ScreenshotAction;
+	import avdw.action.ThumbshotAction;
+	import avdw.math.vector2d.Vec2;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.BitmapDataChannel;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.filters.DisplacementMapFilter;
+	import flash.filters.DisplacementMapFilterMode;
+	import flash.geom.Point;
+	import uk.co.soulwire.gui.SimpleGUI;
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	[SWF(backgroundColor="0xFFFFFF",frameRate="60",width="680",height="495")]
+
+	public class Main extends Sprite
+	{
+		[Embed(source="../../../../../embed/yoda.png")]
+		private const _yoda:Class;
+		private var perlinBmp:Bitmap
+		private var i:int;;
+		private var refl:Bitmap;
+		private var dMap:DisplacementMapFilter;
+		public var perlin:Object;
+
+		public function Main()
+		{
+			if (stage)
+				init();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+
+		private function init(e:Event = null):void
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			ScreenshotAction.addTo(stage);
+			ThumbshotAction.addTo(stage);
+
+			var img:Bitmap = new _yoda();
+			img.y = 20;
+			img.x = (stage.stageWidth - img.width) / 2;
+
+			refl = new _yoda();
+			refl.scaleY = -3/4;
+			refl.y = img.height + refl.height + 10;
+			refl.x = img.x;
+			addChild(refl);
+
+			perlinBmp = new Bitmap(new BitmapData(img.width, img.height*3/4));
+			i = 1;
+
+			dMap = new DisplacementMapFilter(perlinBmp.bitmapData, new Point(), BitmapDataChannel.RED, BitmapDataChannel.GREEN, 10, 50, DisplacementMapFilterMode.CLAMP);
+
+			addEventListener(Event.ENTER_FRAME, loop);
+			addChild(img);
+
+			perlin = new Object();
+			perlin.baseX = 45;
+			perlin.baseY = 5;
+			perlin.numOctaves = 3;
+			perlin.speed = 1;
+			perlin.seamless = false;
+			perlin.fractalNoise = true;
+			perlin.moveX = 1;
+			perlin.moveY = 1 / 8;
+
+			var gui:SimpleGUI = new SimpleGUI(this, "Water reflection parameters");
+			gui.addSlider("perlin.baseX", 0, 90);
+			gui.addSlider("perlin.baseY", 0, 20);
+			gui.addSlider("perlin.numOctaves", 1, 8);
+			gui.addToggle("perlin.seamless");
+			gui.addToggle("perlin.fractalNoise");
+			gui.addSlider("perlin.speed", 0.1, 2);
+			gui.addSlider("perlin.moveX", -1, 1);
+			gui.addSlider("perlin.moveY", -1, 1);			
+			gui.show();
+		}
+
+		private function loop(e:Event):void
+		{
+			i++;
+			perlinBmp.bitmapData.perlinNoise(perlin.baseX, perlin.baseY, perlin.numOctaves, 50, perlin.seamless, perlin.fractalNoise, 7, true, [new Point(i * perlin.moveX/perlin.speed, i * perlin.moveY/perlin.speed)]);
+			refl.filters = [dMap];
+		}
+
+	}
+
+}</pre>
+<p>Here is a gist with a compilable and commented version, at the request of a commenter, Azazel, below.<br />
+<a href="https://gist.github.com/avanderw/6087271">https://gist.github.com/avanderw/6087271</a></p>

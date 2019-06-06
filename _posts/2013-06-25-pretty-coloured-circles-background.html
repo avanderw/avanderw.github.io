@@ -1,0 +1,173 @@
+---
+layout: post
+status: publish
+published: true
+title: Pretty Coloured Circles Background
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1539
+wordpress_url: http://www.avanderw.co.za/?p=1539
+date: '2013-06-25 11:45:28 +0200'
+date_gmt: '2013-06-25 09:45:28 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Effects
+tags:
+- flash
+- as3
+- actionscript
+- color
+- circles
+- vector
+- trig
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/colour-circles.swf"><img class="alignright size-full wp-image-1543" alt="Demo" src="http://www.avanderw.co.za/wp-content/uploads/2013/06/thumbshot.jpg" width="340" height="248" /></a>A while back I installed a new custom rom on my phone. Recently I changed the background from the default one to one that is similar to this effect. After a while I took more formal interest in this background image and decided that I could recreate it fairly easily. I made the time to look into it and am happy with the result.</p>
+<p style="text-align: justify;">I came to a realisation during this replication attempt. I was doing certain operations using trigonometry, which quickly became tedious. After a little thought I ended up dropping the trig for vector algebra- which made the code simpler and easier to understand. The realisation was that vector algebra is a nice representation of trigonometry operations and it is easier for me to work with than vanilla trig.</p>
+<h2>The method used</h2>
+<p>This effect is broken into layers which are combined to form the final effect.</p>
+<ol>
+<li><span style="line-height: 15px;">Create the colour layer using the HSV colour space- I wrote a demo a while back <a title="Procedural colors" href="http://www.avanderw.co.za/procedural-colors-2/">using different colour spaces</a>.</span></li>
+<li>I rotate that bitmap to get the angle in the colour- I tried to do it in the colour space itself, but that is only one dimension (the hue) and I was trying to rotate it in two dimensions (x &amp; y).</li>
+<li>Create the circle layers. There are four layers, each being blurred a little more than the previous one &nbsp;using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/filters/BlurFilter.html?filter_flash=cs5&amp;filter_flashplayer=10.2&amp;filter_air=2.6">BlurFilter </a>[no blur, 4x, 8x, 64x].</li>
+<li>The last layer I created is a brightness layer to increase the colour in the resulting effect- which is a pure white layer.</li>
+<li>The layers are combined in the following way...
+<ol>
+<li>The blur layers use the default blend mode and are added on top of each other, with the 64x blur being the bottom layer and the no blur the top one.</li>
+<li>After which the colour layer is added with the Multiplication blend mode.</li>
+<li>Finally, the brightness layer is added with the Overlay blend mode.</li>
+</ol>
+</li>
+<li>The final step is to draw the circles to the different layers.</li>
+</ol>
+<p>There is a simple GUI added to this demo to redraw the "art" and to edit a few parameters of the circles being drawn.</p>
+<h2>The code</h2>
+<p>This is raw code, meaning it is not refactored in any way. Note that the vector algebra is being used to determine the rotation and size of the colour layer.</p>
+<pre class="brush: as3">package net.avdw.art.circle
+{
+	import avdw.action.ScreenshotAction;
+	import avdw.math.vector2d.Vec2;
+	import avdw.math.vector2d.Vec2Const;
+	import com.demonsters.debugger.MonsterDebugger;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.BlendMode;
+	import flash.display.GradientType;
+	import flash.display.ShaderParameter;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.filters.BlurFilter;
+	import flash.geom.Matrix;
+	import uk.co.soulwire.gui.SimpleGUI;
+	import utils.color.HSLtoRGB;
+	import utils.color.toRGBComponents;
+
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	[SWF(backgroundColor="0x0",frameRate="30",width="680",height="495")]
+	public class Main extends Sprite
+	{
+		private var blurNoneLayer:Sprite= new Sprite();
+		private var blur2xLayer:Sprite= new Sprite();
+		private var blur4xLayer:Sprite= new Sprite();
+		private var blur8xLayer:Sprite = new Sprite();
+		public var brightnessLayer:Sprite = new Sprite();
+		public var numCircles:int = 50;
+		public var circleMinSize:int = 10;
+		public var circleVariability:int = 50;
+
+		public function Main()
+		{
+			if (stage)
+				init();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+
+		private function init(e:Event = null):void 
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			MonsterDebugger.initialize(this);
+
+			var hypV:Vec2Const = new Vec2Const(stage.stageWidth, stage.stageHeight);
+			var heightV:Vec2Const = new Vec2Const(0, stage.stageHeight);
+			var heightProjHypV:Vec2Const = hypV.normalize().scaleSelf(heightV.dot(hypV.normalize()));
+			var displaceV:Vec2Const = heightV.sub(heightProjHypV);
+			var colorLayer:Bitmap = new Bitmap(new BitmapData(hypV.length(), displaceV.length()*2));
+			for (var x:int = 0; x < hypV.length(); x++) {
+				for (var y:int = 0; y < displaceV.length()*2; y++) {
+					var color:Object = HSLtoRGB((x / hypV.length()) * 360, 0.5, 0.5);
+					colorLayer.bitmapData.setPixel(x, y, toRGBComponents(color.r * 0xFF, color.g * 0xFF, color.b * 0xFF));
+				}
+			}
+			colorLayer.blendMode = BlendMode.MULTIPLY;
+			colorLayer.rotation = -hypV.getDegrees();
+			colorLayer.y = stage.stageHeight; // move origin to bottom left
+			colorLayer.x += displaceV.x;
+			colorLayer.y -= displaceV.y;
+
+			brightnessLayer.graphics.beginFill(0xFFFFFF);
+			brightnessLayer.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight);
+			brightnessLayer.graphics.endFill();
+			brightnessLayer.blendMode = BlendMode.OVERLAY;
+
+			blur2xLayer.filters = [new BlurFilter()];
+			blur4xLayer.filters = [new BlurFilter(8, 8)];
+			blur8xLayer.filters = [new BlurFilter(64, 64)];
+
+			addChild(blur8xLayer);
+			addChild(blur4xLayer);
+			addChild(blur2xLayer);
+			addChild(blurNoneLayer);
+			addChild(colorLayer);
+			addChild(brightnessLayer);
+
+			generate();
+
+			var gui:SimpleGUI = new SimpleGUI(this);
+			gui.addSlider("numCircles", 25, 75);
+			gui.addSlider("circleMinSize", 5, 25);
+			gui.addSlider("circleVariability", 0, 75);
+			gui.addButton("generate", { callback: generate } );
+			gui.show();
+		}
+
+		private function generate():void {
+			resetLayer(blurNoneLayer);
+			resetLayer(blur2xLayer);
+			resetLayer(blur4xLayer);
+			resetLayer(blur8xLayer);
+
+			for (var i:int = 0; i < numCircles; i++ ) {
+				drawCircle(blurNoneLayer);
+				drawCircle(blur2xLayer);
+				drawCircle(blur4xLayer);
+				drawCircle(blur8xLayer);
+			}
+		}
+
+		private function drawCircle(s:Sprite):void {
+			var gradientMatrix:Matrix = new Matrix();
+			var rad:int = Math.random() * circleVariability + circleMinSize;
+			var x:int = Math.random() * stage.stageWidth;
+			var y: int = Math.random() * stage.stageHeight;
+			gradientMatrix.createGradientBox(rad*2, rad*2, 0, x-rad, y-rad);
+			s.graphics.beginGradientFill(GradientType.RADIAL, [0xFFFFFF, 0xFFFFFF], [0.075, 0.15], [0, 255], gradientMatrix);
+			s.graphics.drawCircle(x, y, rad);
+		}
+
+		private function resetLayer(s:Sprite):void {
+			s.graphics.clear();
+			s.graphics.lineStyle(1.5, 0xFFFFFF, 0.15);
+		}
+	}
+
+}</pre>

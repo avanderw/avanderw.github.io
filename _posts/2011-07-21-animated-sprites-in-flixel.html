@@ -1,0 +1,70 @@
+---
+layout: post
+status: publish
+published: true
+title: Animated Sprites in Flixel
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 132
+wordpress_url: http://avanderw.co.za/?p=132
+date: '2011-07-21 15:01:38 +0200'
+date_gmt: '2011-07-21 15:01:38 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- flixel
+---
+<p>I have started playing with <a title="Flixel" href="http://flixel.org/" target="_blank">Flixel</a>&nbsp;lately. I am quite impressed. I was worried about how to format the sprite-sheet for the library and discovered that the sprites could be in a single row layout<br />
+<a href="http://avanderw.co.za/wp-content/uploads/2011/07/crystalreflsheet.png"><img class="aligncenter size-full wp-image-137" title="crystalreflsheet" src="http://avanderw.co.za/wp-content/uploads/2011/07/crystalreflsheet.png" alt="" width="120" height="27" /></a><br />
+or the animation could span multiple lines.<br />
+<a href="http://avanderw.co.za/wp-content/uploads/2011/07/explosion.png"><img class="aligncenter size-medium wp-image-138" title="explosion" src="http://avanderw.co.za/wp-content/uploads/2011/07/explosion-300x200.png" alt="" width="300" height="200" /></a>The <strong>code</strong> to get the sprite animated <strong>remained the same</strong>. No need to even tell the API that it was a sprite that spanned multiple lines.</p>
+<p>The code to animate the crystal reflection was...</p>
+<pre class="brush:as3">[Embed(source = "/asset/img/crystalreflsheet.png")]
+private var CrystalReflSheet:Class;	
+
+// constructor for a FlxSprite implementation
+public function CrystalSprite()
+{
+	super(0, 0);
+	loadGraphic(CrystalReflSheet, true, false, 20, 27);
+	addAnimation("anim", [0, 1, 2, 3, 4, 5], 10, true);
+	play("anim");
+}</pre>
+<p>and for the explosion it was...</p>
+<pre class="brush:as3">[Embed(source = "/asset/img/explosion.png")]
+private var CrystalReflSheet:Class;		
+
+// constructor for a FlxSprite implementation
+public function ExplosionEffect()
+{
+	super(0, 27);
+	loadGraphic(CrystalReflSheet, true, false, 256, 128);
+	addAnimation("anim", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 15, true);
+
+	play("anim");
+}</pre>
+<p>The signatures of the <a href="http://flixel.org/docs/org/flixel/FlxSprite.html#loadGraphic()" target="_blank">loadGraphic</a> and <a href="http://flixel.org/docs/org/flixel/FlxSprite.html#addAnimation()" target="_blank">addAnimation</a> methods are as follows:</p>
+<pre class="brush:as3">public function loadGraphic(
+	Graphic:Class,
+	Animated:Boolean=false,
+	Reverse:Boolean=false,
+	Width:uint=0,
+	Height:uint=0,
+	Unique:Boolean=false
+):FlxSprite
+
+public function addAnimation(
+	Name:String,
+	Frames:Array,
+	FrameRate:Number=0,
+	Looped:Boolean=true
+):void</pre>
+<p>It is also nice addition to know that your designers can design their sprites according to preference. The library seems at first play, to be very flexible and I like how easy it is to use. I can configure the effects with relative ease and get decent results.</p>
+<p style="text-align: center;">[swfobj src="http://avanderw.co.za/wp-content/uploads/2011/07/flixel-animsprite.swf" width="512" height="316" align="center" allowfullscreen="false" required_player_version="10"]</p>

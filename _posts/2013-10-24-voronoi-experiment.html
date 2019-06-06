@@ -1,0 +1,67 @@
+---
+layout: post
+status: publish
+published: true
+title: Voronoi Experiment
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1653
+wordpress_url: http://www.avanderw.co.za/?p=1653
+date: '2013-10-24 14:33:16 +0200'
+date_gmt: '2013-10-24 12:33:16 +0200'
+categories:
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+tags:
+- animation
+- as3
+- demo
+- voronoi
+- points
+- fortune
+- world generation
+- lloyd
+- kruskal
+- spanning tree
+- delaunay
+- proximity map
+- bresenham
+- line algorithm
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/voronoi-toy.swf"><img class="alignright size-full wp-image-1655" style="font-family: 'Droid Sans', 'Helvetica Neue', 'Nimbus Sans L', sans-serif; font-size: 15px; line-height: 24.296875px; font-style: normal; font-variant: normal;" alt="Voronoi Experiment" src="http://www.avanderw.co.za/wp-content/uploads/2013/10/thumbshot1.jpg" width="340" height="248" /></a></p>
+<p style="text-align: justify;">I first encountered the <a href="http://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi</a> back in my <a href="http://shenzi.cs.uct.ac.za/~honsproj/cgi-bin/view/2006/longmore_vanderwesthuizen.zip/website/">honours thesis</a> when we were redistributing points on a plane to assist in up- and down-sampling point based 3D models. At the time I was using a library that did not use the <a href="http://en.wikipedia.org/wiki/Fortune%27s_algorithm">plane sweep algorithm by Steve Fortune</a>.&nbsp;This made the overall algorithm inefficient on the scale we were working. Since then I have always had an interest with the Voronoi. I noticed the plane sweep algorithm during my thesis, yet did not have the time to implement it.</p>
+<p style="text-align: justify;">I came across <a href="http://nodename.com/blog/2009/12/03/roll-over-delaunay-voronoi-library-goes-open-source/">this blog post</a> which is an actionscript port of Steve Fortune's algorithm, which was used by <a href="http://simblob.blogspot.com/2010/09/polygon-map-generation-part-1.html">Amit Patel in his world generation experiments</a>. I had seen Amit's article before and between the two my interest was sparked to fiddle with the Voronoi again. That is what this demo is about, fiddling with the Voronoi and <a href="https://github.com/nodename/as3delaunay">trying the library</a> out.</p>
+<p style="text-align: justify;">Interestingly I now realise that we should have made use of <a href="http://en.wikipedia.org/wiki/Lloyd%27s_algorithm">Lloyd's relaxation</a> during the upsampling process. What we were doing was trying to find the best spot to place a new point. What we should have have been doing was putting the point in anywhere (except over another point) and just relax the Voronoi.</p>
+<h1 style="text-align: justify;">Features</h1>
+<ul>
+<li>Fortune's algorithm, fast enough for animation.</li>
+<li>Lloyd's relaxation, great for spacing points.</li>
+<li>Region filling, great for generating a proximity map.</li>
+<li><a href="http://en.wikipedia.org/wiki/Kruskal's_algorithm">Kruskal's minimum spanning tree</a>.</li>
+</ul>
+<h1>Applications</h1>
+<ol>
+<li>Distributing points on a surface</li>
+<li>Determining the closest city, point, site, etc given a reference point</li>
+<li>Procedurally generating terrain (<a href="http://simblob.blogspot.com/2010/09/polygon-map-generation-part-1.html">see Amit's post</a>)</li>
+<li>Nearest neighbour searches</li>
+<li>Largest empty circle in a set of points</li>
+<li>Artificial intelligence collision avoidance, e.g. if sites are potential collisions then the edges are safe traversals to avoid collisions</li>
+<li><a href="http://en.wikipedia.org/wiki/Voronoi_diagram#Applications">and many more...</a></li>
+</ol>
+<h1>Issues</h1>
+<p style="text-align: justify;">Below are two problems that I ran into and possible solutions that I was too lazy to implement. I will be implementing them if I intend to make use of this library given the same context as when the issue arises.</p>
+<h2>Overlapping points</h2>
+<p style="text-align: justify;">The <a href="https://github.com/nodename/as3delaunay">as3-delaunay library</a> does not like it when points (sites) overlap. Thus when adding points I do a check to make sure that I am not adding any sites over existing ones. When animating the sites, it is important to make sure that they avoid each other to prevent this from happening as well. This is currently not done and leads to a bug, which can be fixed by removing points.</p>
+<h2>Proximity map</h2>
+<p style="text-align: justify;">There are currently two version of the proximity map generation in this demo. The first one was using <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Graphics.html#beginFill()">Graphics.beginFill</a> to draw the regions and then draw the graphic onto a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/BitmapData.html">BitmapData</a> object for the as3-delaunay library. However, I learnt that <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Graphics.html#lineTo()">Graphics.lineTo</a> makes use of anti-aliasing techniques when drawing, which cannot be easily disabled. Thus, on the borders of a region the index in the proximity map is aliased into another index. Sadly, this ends up being the fastest of the two methods.</p>
+<p style="text-align: justify;">The second version draws the graphic into a temp object and then the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/BitmapData.html#threshold()">BitmapData.threshold</a> is used to make sure that all values are actually the index value. Afterwhich the temp object is drawn to the proximity map. There are no bounds checking for the affected pixels in either the thresholding or drawing, which makes it even more inefficient as unaffected pixels are drawn over and over.</p>
+<p style="text-align: justify;">The first version is used when animating the Voronoi sites. The reason for this is because it is far faster and this keeps the animation fluid. Additionally the bug is less visible when in motion. The second version is used once when the sites are static and thus can take its sweet time. The proximity map is only used for determining which Voronoi cell the mouse pointer is over.</p>
+<p style="text-align: justify;">What I am going to look into next is the <a href="http://en.wikipedia.org/wiki/Bresenham's_line_algorithm">Bresenham's line algorithm</a> or the&nbsp;<a href="http://www.simppa.fi/blog/extremely-fast-line-algorithm-as3-optimized/">Extremely Fast Line Algorithm suggested at simppa.fi</a>&nbsp;for drawing the region borders and making use of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/BitmapData.html#floodFill()">BitmapData.floodFill</a> method to fill out the region without aliasing. My assumption is that the line algorithm used by the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Graphics.html#lineTo()">Graphics.lineTo</a> method is <a href="http://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm">Xiaolin Wu's line algorithm</a>, but that makes little difference as it is an anti-aliased way of drawing lines.</p>
+<p>&nbsp;</p>

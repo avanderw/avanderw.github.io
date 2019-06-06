@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: Lets All Burn !!! Fire Effect
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 940
+wordpress_url: http://www.avanderw.co.za/?p=940
+date: '2012-06-08 16:52:59 +0200'
+date_gmt: '2012-06-08 14:52:59 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+- Effects
+tags:
+- perlin noise
+- video
+- animation
+- fire
+- camera
+---
+<p>What would happen if I took a fire effect and used the outlines of the camera feed to become an emitter? Something pretty awesome,&nbsp;that's&nbsp;what. I spent most of the time trying to remove the noise from the edge detection. Sadly, I ended up introducing the noise again and actually enhanced it. The lines detected were too crisp for the emitter to fully work. Below is the effect. Have fun playing with it!</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/06/HobbyCode2.swf" width="320" height="240" required_player_version="11"]</p>
+<p style="text-align: left;">The code is still very dirty, as I was fiddling a lot to get things looking nice. I tried darkening the video feed, enhancing the emitter settings etc. So I will not be publishing the source just yet. I really need to clean things up a bit.</p>
+<p style="text-align: left;">The edge detection is the basic convolution filter with some minor modifications. I draw the detected lines to the emitter and then make the black, created by the filter, transparent. This allows me to overlay the fire over the video without&nbsp;hiding&nbsp;the detail. Perlin noise is used to make the fire and the fire is scrolled upwards by three pixels each frame. Here are some other images taken from our office burning :-)</p>
+<p>[gallery]</p>

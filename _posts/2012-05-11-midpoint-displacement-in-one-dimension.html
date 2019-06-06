@@ -1,0 +1,131 @@
+---
+layout: post
+status: publish
+published: true
+title: Midpoint Displacement in One Dimension
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 846
+wordpress_url: http://www.avanderw.co.za/?p=846
+date: '2012-05-11 14:17:46 +0200'
+date_gmt: '2012-05-11 12:17:46 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- flash
+- terrain
+- midpoint displacement
+- heightmap
+---
+<p>I decided to redo a demo I did back in 2008/9 on the midpoint displacement algorithm. For those of you who do not know what <a title="Wikipedia Article on the Diamond-Square Algorithm" href="http://en.wikipedia.org/wiki/Diamond-square_algorithm" target="_blank">Midpoint Displacement</a> is, it is the name of a fractal algorithm which generates shapes that are usually used for terrain&nbsp;height maps. This is a 1D implementation, the <a title="Midpoint Displacement in Two Dimensions" href="http://www.avanderw.co.za/midpoint-displacement-in-two-dimensions/">2D one can be found here</a>.</p>
+<p>I ended up doing a full re-write, as I lost the previous code, using the same resource as last time. This <a title="Fractal Terrain Generation" href="http://www.gameprogrammer.com/fractal.html" target="_blank">article by Paul Martz, regarding terrain generation</a>,&nbsp;is the best explanation I have found so far. His explanation is clear and he makes use of psuedo code to explain the algorithm. He also starts off in the 1st dimension, to keep things simple, and then scales up to the 2nd dimension. Here is a quick demo of the algorithm I put together.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/05/TerrainGenerationAlgorithms.swf" width="600" height="400"]</p>
+<p>The frame-rate is intentionally set to 1, to allow for the animation to make sense. Otherwise it is far too fast to see what is going on.</p>
+<p>Here is the psuedo code by Paul Martz:</p>
+<pre>Start with a single horizontal line segment.
+Repeat for a sufficiently large number of times {
+ Repeat over each line segment in the scene {
+  Find the midpoint of the line segment.
+  Displace the midpoint in Y by a random amount.
+  Reduce the range for random numbers.
+ }
+}</pre>
+<p>The code for the generation is:</p>
+<pre class="brush: as3">/**
+ * If a width is provided that does not conform to the pattern 2n + 1,
+ * then the next highest value conforming to the pattern is chosen,
+ * and the result is then clipped to the desired size. 
+ * 
+ * @param	width 
+ * @param 	smoothness
+ * @param	seed
+ * @return
+ */
+public static function generate1DHeightmap(width:int, smoothness:Number = 1, seed:Number = Number.NaN):Vector. {
+	if (isNaN(seed)) {
+		seed = Math.random() * 0xFFFFFF;
+	}
+	smoothness = Math.max(Math.min(1, smoothness), 0);
+
+	var i:int;
+	var heightmap:Vector. = new Vector.();
+	var size:int = isPowerOfTwo(width - 1) ? width : adjustUp(width);
+
+	// init
+	for (i = 0; i < size; i++) {
+		heightmap.push(0);
+	}
+
+	// setup
+	Rndm.seed = seed;
+	heightmap[0] = Rndm.random();
+	heightmap[size-1] = Rndm.random();
+
+	var toProcess:Vector. = new Vector.();
+	toProcess.push(0, size-1, smoothness);
+
+	// process
+	var min:Number = Math.min(heightmap[0], heightmap[size-1]);
+	var max:Number = Math.max(heightmap[0], heightmap[size-1]);
+	while (toProcess.length != 0) {
+		var low:int = toProcess.shift();
+		var high:int = toProcess.shift();
+		var offset:Number = toProcess.shift();
+		var midPoint:int = (low + high) / 2;
+
+		heightmap[midPoint] = ((heightmap[low] + heightmap[high]) / 2) + Rndm.float( -offset, offset);
+		min = Math.min(heightmap[midPoint], min);
+		max = Math.max(heightmap[midPoint], max);
+
+		// terminating condition
+		if (high - midPoint != 1) {
+			toProcess.push(low, midPoint, offset / Math.pow(2, smoothness));
+			toProcess.push(midPoint, high, offset / Math.pow(2, smoothness));
+		}
+	}
+
+	// clip length
+	heightmap = heightmap.slice(0, width);
+
+	// normalize
+	var range:Number = max - min;
+	for (i = 0; i < heightmap.length; i++) {
+		heightmap[i] = (heightmap[i] - min) / range;
+	}
+
+	return heightmap;
+}</pre>
+<p>Here are the two helper functions that were used:</p>
+<pre class="brush: as3">/**
+ * Determines if a value is a power of 2
+ * 
+ * @param	val
+ * @return
+ */
+private static function isPowerOfTwo(val:uint):Boolean {
+	return (val != 0) &amp;&amp; ((val &amp; (val - 1)) == 0);
+}
+
+/**
+ * Calculates returns a number that will contain val
+ * which is of the pattern 2n +1
+ * 
+ * @param	val
+ * @return
+ */
+private static function adjustUp(val:int):int {
+	var size:int = 2;
+
+	while (size + 1 < val) {
+		size *= 2;
+	}
+
+	return size + 1;
+}</pre>

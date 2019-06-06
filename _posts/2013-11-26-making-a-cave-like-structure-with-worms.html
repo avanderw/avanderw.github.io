@@ -1,0 +1,200 @@
+---
+layout: post
+status: publish
+published: true
+title: Making a cave-like structure with worms
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1676
+wordpress_url: http://www.avanderw.co.za/?p=1676
+date: '2013-11-26 16:15:14 +0200'
+date_gmt: '2013-11-26 14:15:14 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+tags:
+- waterfall
+- algorithm
+- as3
+- toy
+- demo
+- water
+- snippet
+- cave
+- cellular automata
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/worm-cave-demo-2013-11-26.swf"><img class="alignright size-full wp-image-1677" title="Worm cave-like structure demo" alt="Worm cave-like structure demo" src="http://www.avanderw.co.za/wp-content/uploads/2013/11/Fullscreen-capture-2013-11-027.jpg" width="340" height="258" /></a></p>
+<p style="text-align: justify;">Growing on the idea from a <a title="Making a cave-like structure" href="http://www.avanderw.co.za/making-a-cave-like-structure/">previous post on making a cave-like structure</a>,&nbsp;<a href="http://noelberry.ca/2011/04/procedural-generation-the-caves/">this is a different algorithm</a> which makes use of worms / miners to dig out the initial level layout from the rock layer. Thereafter fun things are done to the level to make it look nicer. For example: adding a water-layer at the bottom, smoothing the rough cave edges, narrowing the cave structure, making waterfalls, etc. <a href="#gallery-1">Examples of this algorithm</a> can be seen at the end of this post.</p>
+<h1 style="text-align: justify;">Inputs</h1>
+<ul>
+<li>Cave <strong>width</strong>:&nbsp;width in blocks (rendered here as a 3&times;3 pixel)</li>
+<li>Cave <strong>height</strong>: height in blocks</li>
+<li>Cave <strong>dig percentage</strong>: the percentage of the rock to dig away with miners / worms</li>
+<li>Cave <strong>miner spawn chance</strong>: the chance to spawn a new miner after a dig</li>
+<li>Cave <strong>miner move diagonally</strong>: can miners move diagonally</li>
+<li>Cave <strong>smooth</strong>: should the mined cave be put through a smoothing filter (<a title="Making a cave-like structure" href="http://www.avanderw.co.za/making-a-cave-like-structure/">exact same one as here</a>)</li>
+<li>Cave <strong>smooth amount</strong>: how many iterations to run the cellular automata</li>
+<li>Cave<strong> fill gaps</strong>: should the filling filter be run (<a title="Making a cave-like structure" href="http://www.avanderw.co.za/making-a-cave-like-structure/">exact same one as here</a>)</li>
+<li>Cave <strong>fill gaps amount</strong>: iterations to run the cellular automata</li>
+<li>Cave <strong>num waterfalls</strong>: number of waterfalls to generate</li>
+</ul>
+<h1 style="text-align: justify;">The algorithm</h1>
+<p>The major difference between this algorithm and <a title="Making a cave-like structure" href="http://www.avanderw.co.za/making-a-cave-like-structure/">the previous one</a>, is that this algorithm starts off with one miner which starts digging instead of randomly placing points.</p>
+<pre class="brush: as3">var miners:Vector. = new Vector.();
+miners.push(new Miner(width >> 1, height >> 1));</pre>
+<p style="text-align: justify;">The miners dig until the dugout blocks reach the threshold. A successful dig from a miner is when there are surrounding blocks to mine. A non-successful dig is when there are no surrounding blocks to mine. We remove unsuccessful miners. After each dig, the miners have a chance of spawning a new miner at their current location. At the end of this all, if there are no miners left and we have not dug out enough of the dirt / rock, then we add a new miner slightly off center from the last miner removed.</p>
+<pre class="brush: as3">while (dugBlocks / maxBlocks < digPercentage)
+	for each (var miner:Miner in miners)
+	{
+		if (!miner.dig(map, minerMoveDiagonally))
+			miners.splice(miners.indexOf(miner), 1);
+		else
+			dugBlocks++;
+
+		if (rng.boolean(minerSpawnChance))
+			miners.push(new Miner(miner.cell.x, miner.cell.y));
+
+		if (miners.length == 0)
+			miners.push(new Miner(clamp(miner.cell.x + rng.sign(.5) * 2, width - 2, 1), clamp(miner.cell.y + rng.sign(.5) * 2, height - 2, 1)));
+	}</pre>
+<p>This is the basis for how the algorithm differs <a title="Making a cave-like structure" href="http://www.avanderw.co.za/making-a-cave-like-structure/">from the previous one</a>. To add more variety to the map- the <strong>fillGapsAndSmooth</strong> cellular automata was added as well as the <strong>smoothEdges</strong> one, both from the previous post.</p>
+<pre class="brush: as3">	public function fillGapsAndSmooth(map:Vector.<Vector.>, smoothness:int):void
+	{
+		var i:int, x:int, y:int;
+		var height:int = map.length;
+		var width:int = map[0].length;
+
+		var mapBuffer:Vector.<Vector.>;
+		var oneStepWallCount:int;
+		var twoStepWallCount:int;
+
+		var isBorder:Boolean;
+		var atLeast5Walls:Boolean;
+		var atMost2Walls:Boolean;
+
+		for (i = 0; i < smoothness; i++)
+		{
+			mapBuffer = createIntVectorMatrix(height, width, 0);
+			for (y = 0; y < height; y++)
+			{
+				for (x = 0; x < width; x++) 				{ 					oneStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 1); 					twoStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 2); 					 					isBorder = x == 0 || y == 0 || x == width - 1 || y == height - 1; 					atLeast5Walls = oneStepWallCount >= 5 || (oneStepWallCount + map[y][x]) >= 5;
+					atMost2Walls = (twoStepWallCount + map[y][x]) <= 2;
+
+					mapBuffer[y][x] = (isBorder || atLeast5Walls || atMost2Walls) ? 1 : 0;
+				}
+			}
+			copyIntVectorMatrixInto(mapBuffer, map);
+		}
+	}
+
+	public function smoothEdges(map:Vector.<Vector.>, smoothness:int):void
+	{
+		var i:int, x:int, y:int;
+		var height:int = map.length;
+		var width:int = map[0].length;
+
+		var mapBuffer:Vector.<Vector.>;
+		var oneStepWallCount:int;
+
+		var isBorder:Boolean;
+		var atLeast5Walls:Boolean;
+
+		for (i = 0; i < smoothness; i++)
+		{
+			mapBuffer = createIntVectorMatrix(height, width, 0);
+			for (y = 0; y < height; y++)
+			{
+				for (x = 0; x < width; x++) 				{ 					oneStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 1); 					 					isBorder = x == 0 || y == 0 || x == width - 1 || y == height - 1; 					atLeast5Walls = oneStepWallCount >= 5 || (oneStepWallCount + map[y][x]) >= 5;
+
+					mapBuffer[y][x] = (isBorder || atLeast5Walls) ? 1 : 0;
+				}
+			}
+			copyIntVectorMatrixInto(mapBuffer, map);
+		}
+	}</pre>
+<p style="text-align: justify;">For a further look into the algorithm, here is how the miners dig. Essentially they look around at their neighbours for dirt to mine and then randomly select a direction to dig in that has dirt. If there is no dirt around them, they do not move / dig and return that they could not dig successfully.</p>
+<pre class="brush: as3">	public function dig(map:Vector.<Vector.>, minerMoveDiagonally:Boolean = true, rng:SeededRNG = null):Boolean
+	{
+		map[cell.y][cell.x] = 0;
+
+		var moveToCells:Vector. = new Vector.();
+		var xRange:Object = {low: Math.max(1, cell.x - 1), high: Math.min(map[0].length - 2, cell.x + 1)};
+		var yRange:Object = {low: Math.max(1, cell.y - 1), high: Math.min(map.length - 2, cell.y + 1)};
+
+		for (var x:int = xRange.low; x <= xRange.high; x++)
+			for (var y:int = yRange.low; y <= yRange.high; y++)
+			{
+				if ((x == cell.x &amp;&amp; y == cell.y) || (!minerMoveDiagonally &amp;&amp; ((x == cell.x - 1 &amp;&amp; y == cell.y - 1) || (x == cell.x + 1 &amp;&amp; y == cell.y - 1) || (x == cell.x - 1 &amp;&amp; y == cell.y + 1) || (x == cell.x + 1 &amp;&amp; y == cell.y + 1))))
+					continue;
+
+				if (map[y][x] == 1)
+					moveToCells.push(new Point(x, y));
+			}
+
+		if (moveToCells.length == 0)
+			return false;
+
+		if (rng == null)
+			rng = new SeededRNG(Math.random() * int.MAX_VALUE);
+
+		cell = moveToCells[rng.integer(moveToCells.length)];
+		return true;
+	}</pre>
+<p style="text-align: justify;">Lastly, waterfalls are added by randomly selecting empty spaces that have a wall above them and then running the water down until it hits something. The water runs off both left and right, falling if it can, until it cannot move anymore. The water layer at the bottom is added 15 blocks high from the lowest point in the cave.</p>
+<pre class="brush: as3">	public function addCaveWaterfalls(map:Vector.<Vector.>, numWaterFalls:int = 4, seed:int = 0):Vector.<Vector.>
+	{
+		var x:int, y:int;
+		var height:int = map.length;
+		var width:int = map[0].length;
+		seed = seed == 0 ? Math.random() * int.MAX_VALUE : seed;
+		var rng:SeededRNG = new SeededRNG(seed);
+
+		var waterFallSpawns:Vector. = new Vector.();
+		while (waterFallSpawns.length < numWaterFalls) 		{ 			x = rng.integer(width); 			y = rng.integer(height); 			 			if (map[y][x] == 0 &amp;&amp; y - 1 >= 0 &amp;&amp; map[y - 1][x] == 1)
+				waterFallSpawns.push(new Point(x, y));
+		}
+
+		var i:int;
+		var waterfall:Point;
+		while (waterFallSpawns.length != 0)
+		{
+			waterfall = waterFallSpawns.pop();
+			map[waterfall.y][waterfall.x] = 2;
+
+			while (map[waterfall.y + 1][waterfall.x] == 0)
+			{
+				waterfall.y++;
+				map[waterfall.y][waterfall.x] = 2;
+			}
+
+			if (map[waterfall.y][waterfall.x - 1] == 0)
+				waterFallSpawns.push(new Point(waterfall.x - 1, waterfall.y));
+			if (map[waterfall.y][waterfall.x + 1] == 0)
+				waterFallSpawns.push(new Point(waterfall.x + 1, waterfall.y));
+		}
+
+		return map;
+	}
+
+	public function fillCaveWithWater(map:Vector.<Vector.>, depth:int = 15):Vector.<Vector.>
+	{
+		var x:int, y:int;
+		var height:int = map.length;
+		var width:int = map[0].length;
+
+		var lowestPoint:int;
+		for (y = height - 1; y > 0; y--)
+			for (x = 0; x < width; x++) 				if (lowestPoint == 0 &amp;&amp; map[y][x] == 0) 					lowestPoint = y; 		 		for (y = lowestPoint; y > lowestPoint - depth; y--)
+			for (x = 0; x < width; x++)
+				if (map[y][x] == 0)
+					map[y][x] = 2;
+
+		return map;
+	}</pre>
+<h1>Examples</h1>
+<p>[gallery ids="1683,1682,1681,1680,1679"]</p>

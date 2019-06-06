@@ -1,0 +1,95 @@
+---
+layout: post
+status: publish
+published: true
+title: Binary Sorted Array
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1826
+wordpress_url: http://www.avanderw.co.za/?p=1826
+date: '2014-04-08 22:01:52 +0200'
+date_gmt: '2014-04-08 20:01:52 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- stats
+- array
+- sort
+- binary-search
+- quartiles
+- estimation
+---
+<p>Some versions of quick sort and some other sorting algorithms have their worst case when a list is mostly sorted. This post is about an array that keeps itself sorted. It makes use of <a href="http://en.wikipedia.org/wiki/Binary_search_algorithm">a binary search</a> to determine the place to insert a new element. Let it be noted however that it is generally faster to insert a lot of data directly into an array and then run a sort over it once, than to insert the mass of data, item for item, using a binary search to determine the insertion location. This method is ideal for inserting a few elements into a large amount of data that is already sorted.</p>
+<p>I originally made use of this array to determine <a title="Streaming descriptive statistics" href="http://www.avanderw.co.za/streaming-descriptive-statistics/">quartiles from a running set of observations</a>. However, this method of insertion degraded considerably when trying to insert 100 observations into a sorted array of around 200,000+ observations. The requirement at the time was to keep track of the quartiles for a stream of observations, where the population was unknown and potentially infinite. Essentially this meant the sample was orders of magnitude larger than 200,000 observations. The solution was to stream an estimation of the quartiles without keeping track of the observations.</p>
+<p>Even though I could not use this for <a title="Streaming Histograph" href="http://www.avanderw.co.za/streaming-histograph/">the histographer</a>, there are still other uses for this kind of array. I have not made use of it yet to provide a real example, as it is still a relatively new addition to my code library. Although as stated above, the ideal case is inserting a few elements into a large already sorted array. I copied <a href="http://jacksondunstan.com/articles/1848">Jackson Dunstan&rsquo;s implementation of the sorted array</a>. Additionally, he gives a very good explanation of the performance when inserting and querying elements on the array.</p>
+<h1>The code</h1>
+<pre class="brush: as3">package net.avdw.ds
+{
+	public class SortedArrayDs
+	{
+		public var array:Array;
+
+		public function SortedArrayDs(array:Array = null)
+		{
+			if (array == null)
+				array = [];
+
+			array.sort();
+			this.array = array;
+		}
+
+		public function add(element:*):int
+		{
+			var leftIndex:int;
+			var rightIndex:int = array.length - 1;
+			var middleIndex:int;
+			var middleElement:*;
+
+			while (leftIndex <= rightIndex)
+			{
+				middleIndex = (rightIndex + leftIndex) / 2;
+				middleElement = array[middleIndex];
+				if (middleElement < element)
+					leftIndex = middleIndex + 1;
+				else if (middleElement > element)
+					rightIndex = middleIndex - 1;
+				else
+				{
+					array.splice(middleIndex, 0, element);
+					return middleIndex;
+				}
+			}
+			array.splice(leftIndex, 0, element);
+			return leftIndex;
+		}
+
+		public function indexOf(element:*):int
+		{
+			var leftIndex:int;
+			var rightIndex:int = array.length - 1;
+			var middleIndex:int;
+			var middleElement:*;
+
+			while (leftIndex <= rightIndex)
+			{
+				middleIndex = (rightIndex + leftIndex) / 2;
+				middleElement = array[middleIndex];
+				if (middleElement < element)
+					leftIndex = middleIndex + 1;
+				else if (middleElement > element)
+					rightIndex = middleIndex - 1;
+				else
+					return middleIndex;
+			}
+			return -1;
+		}
+	}
+}</pre>

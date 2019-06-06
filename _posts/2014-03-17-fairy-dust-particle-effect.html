@@ -1,0 +1,201 @@
+---
+layout: post
+status: publish
+published: true
+title: Fairy Dust Particle Effect
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1799
+wordpress_url: http://www.avanderw.co.za/?p=1799
+date: '2014-03-17 20:10:10 +0200'
+date_gmt: '2014-03-17 18:10:10 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Effects
+- Code Snippets
+tags:
+- particle
+- as3
+- toy
+- actionscript
+- butterfly
+- curve
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/fairy-dust.swf"><img class="alignright size-full wp-image-1797" title="Fairy Dust Particle Effect" alt="Fairy Dust Particle Effect" src="http://www.avanderw.co.za/wp-content/uploads/2014/03/thumbshot.png" width="390" height="280" /></a>Here is another particle system which makes for some pretty graphics. The premise for this demo is a particle that chases something and fires hollow circles in the general direction of movement. I decided to hook three of these particles up to chase each other, with the lead particle chasing the outline of a butterfly curve. The butterfly curve is lightly drawn so that the path of the lead particle can be noticed with more ease. There is a hook tied to the mouse click which will make the lead particle chase the mouse. The direction of travel for the lead "fairy" has also been added to make it more transparent what is actually happening.</p>
+<h1>Code</h1>
+<pre class="brush: as3">package net.avdw.particle
+{
+	import com.greensock.TweenLite;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import net.avdw.curve.ButterflyCurve;
+	import net.avdw.file.loadTextFile;
+	import net.avdw.generate.makeBackgroundFromText;
+	import net.avdw.math.Point2D;
+	import net.avdw.math.Range;
+	import net.hires.debug.Stats;
+
+	public class FairyDustDemo extends Sprite
+	{
+		private var fairy1:Fairy;
+		private var fairy2:Fairy;
+		private var fairy3:Fairy;
+		private var center:Point2D;
+		private var t:Number = 0;
+		private var butterflyCurve:ButterflyCurve;
+
+		public var followingMouse:Boolean = false;
+
+		public function FairyDustDemo()
+		{
+			if (stage)
+				load();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, load);
+		}
+
+		private function load(e:Event = null):void
+		{
+			[Embed(source="FairyDustDemo.as",mimeType="application/octet-stream")]
+			const textClass:Class;
+			const text:String = loadTextFile(textClass);
+			addChild(makeBackgroundFromText(text, stage.stageWidth, stage.stageHeight));
+
+			center = new Point2D(stage.stageWidth / 2, stage.stageHeight / 2);
+
+			fairy1 = new Fairy(center);
+			fairy2 = new Fairy(center);
+			fairy3 = new Fairy(center);
+
+			addChild(fairy1);
+			addChild(fairy2);
+			addChild(fairy3);
+
+			butterflyCurve = new ButterflyCurve();
+			butterflyCurve.x = center.x;
+			butterflyCurve.y = center.y;
+			butterflyCurve.alpha = .25;
+			addChild(butterflyCurve);
+			fadeOutButterfly();
+
+			addEventListener(Event.ENTER_FRAME, update);
+			stage.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):void
+				{
+					followingMouse = true;
+				});
+			stage.addEventListener(MouseEvent.MOUSE_UP, function(e:MouseEvent):void
+				{
+					followingMouse = false
+				});
+		}
+
+		private function fadeOutButterfly():void
+		{
+			TweenLite.to(butterflyCurve, 2, {alpha: .05, onComplete: function():void
+				{
+					TweenLite.to(butterflyCurve, 2, {alpha: .25, onComplete: fadeOutButterfly})
+				}});
+		}
+
+		private function update(event:Event):void
+		{
+			t = t > ButterflyCurve.PERIOD ? 0 : t + .05;
+			var point:Point2D = ButterflyCurve.point(t);
+			point.add(center);
+
+			if (followingMouse)
+				fairy1.physics.springTo(stage.mouseX, stage.mouseY);
+			else
+				fairy1.physics.springTo(point);
+			fairy2.physics.springTo(fairy1);
+			fairy3.physics.springTo(fairy2);
+		}
+	}
+}
+
+import com.greensock.TweenLite;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.filters.BlurFilter;
+import net.avdw.math.Point2D;
+import net.avdw.math.Range;
+import net.avdw.math.Vector2D;
+import net.avdw.component.PhysicsComponent;
+import net.avdw.random.randomBoolean;
+import net.avdw.random.randomNumber;
+import net.avdw.random.randomOffsetFrom;
+
+class Fairy extends Sprite
+{
+	public const physics:PhysicsComponent = new PhysicsComponent(this);
+
+	public function Fairy(... args)
+	{
+		graphics.beginFill(0xe3f23e);
+		graphics.drawCircle(0, 0, 10);
+		graphics.endFill();
+
+		filters = [new BlurFilter(10, 10, 3)];
+
+		physics.position.set.apply(this, args);
+		physics.friction.set(.8, .8);
+		physics.spring.set(.075, .075);
+		addEventListener(Event.ENTER_FRAME, physics.update);
+
+		addEventListener(Event.ENTER_FRAME, update);
+		addEventListener(Event.REMOVED_FROM_STAGE, unload);
+	}
+
+	private function update(event:Event):void
+	{
+		for (var i:Number = 0; i < 3; i++)
+			parent.addChildAt(new FairyDust(physics.position, physics.velocity.clone().scale(.2)), 1);
+	}
+
+	private function unload(event:Event = null):void
+	{
+		removeEventListener(Event.REMOVED_FROM_STAGE, unload);
+		removeEventListener(Event.ENTER_FRAME, update);
+		removeEventListener(Event.ENTER_FRAME, physics.update);
+	}
+
+}
+
+class FairyDust extends Sprite
+{
+	public const physics:PhysicsComponent = new PhysicsComponent(this);
+
+	public function FairyDust(position:Point2D, velocity:Vector2D):void
+	{
+		graphics.clear();
+		graphics.beginFill(0xa6a53f);
+		graphics.drawCircle(0, 0, 4);
+		graphics.drawCircle(0, 0, 2);
+		graphics.endFill();
+
+		if (randomBoolean(.25))
+			scaleX = scaleY = Math.random() * 2 + 1;
+
+		var scaleTo:Number = randomNumber(.5, 1.6);
+		TweenLite.to(this, randomNumber(.5, 1.6), {alpha: 0, scaleX: scaleTo, scaleY: scaleTo, onComplete: unload})
+
+		physics.position.set(position);
+		physics.velocity.set(velocity);
+		physics.velocity.length(randomOffsetFrom(physics.velocity.length(), 2, 5, false));
+		physics.velocity.rotate(randomOffsetFrom(0, Math.PI / 3));
+		addEventListener(Event.ENTER_FRAME, physics.update);
+	}
+
+	private function unload(event:Event = null):void
+	{
+		this.parent.removeChild(this);
+		removeEventListener(Event.ENTER_FRAME, physics.update);
+	}
+}</pre>

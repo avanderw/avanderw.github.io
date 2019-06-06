@@ -1,0 +1,102 @@
+---
+layout: post
+status: publish
+published: true
+title: Data Source Handling with Tomcat 7.0
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1614
+wordpress_url: http://www.avanderw.co.za/?p=1614
+date: '2013-08-21 10:45:15 +0200'
+date_gmt: '2013-08-21 08:45:15 +0200'
+categories:
+- Techie talk
+- Java
+- Code Snippets
+tags:
+- database
+- j2ee
+- enterprise
+- datasource
+- web.xml
+- config.xml
+- tomcat
+- resource
+- injection
+---
+<p>The "new" J2EE6 standard allows for setting up of datasources in the web.xml of a web application. If the webserver is compliant- this feature will enable defining your database resources in the web.xml like the example below.</p>
+<h2>web.xml config</h2>
+<pre class="brush: xml">  MySQL Datasource example
+  jdbc/mkyongdb
+  javax.sql.DataSource
+  Container</pre>
+<p>Thanks to resource injection, the following code is used to obtain the data source, which can be used as per normal.</p>
+<h2>resource injection</h2>
+<pre class="brush: java">import javax.annotation.Resource;
+public class CustomerBean{
+
+    @Resource(name="jdbc/mkyongdb")
+    private DataSource ds;
+
+    public List getCustomerList() throws SQLException{
+
+      //get database connection
+      Connection con = ds.getConnection();
+      //...</pre>
+<p>What is great about resource injection, is that at class instantiation (e.g. beans / servlets / filters / etc), the J2EE server will pick up that you want to use a connection that it manages. It will then "inject" one of its free resources for you into the place you have marked in your code (the @Resource annotation). After which the instantiation of the class will complete. This means that you do not need to do any lookups or know of your famous "InitialContext" to obtain a database connection.</p>
+<p>The above is the recommended way to do this- according to the Tomcat documentation. I find this to be great if you are developer focused environment, where developers have access to every system and have access to all passwords in all environments.</p>
+<p>In short, this way of doing things is very developer focused:</p>
+<ul>
+<li>Benefit: Everything is managed in one project by the developers in one location.</li>
+<li>Negative: The developer / build needs to change the database config (web.xml) between environments.</li>
+<li>Negative: The developer needs to know about all database details and credentials.</li>
+</ul>
+<h1>Better alternative</h1>
+<p>NOTE: This is Tomcat 7.0 specific.</p>
+<p>Instead of defining the data source in the web.xml, setup the data source in the context.xml file, which is located in the "conf\" directory of the tomcat server. The connection is inherited into the web.xml as if it was defined there. Thus the developer only need know of the data sources on the server by name.</p>
+<p>The reason for editing the config.xml file and not the server.xml file (both equally viable ways to achieve this), is that editing the server.xml file requires a server restart- whilst the config.xml file is auto reloaded and does not require the restart.</p>
+<h2>config.xml config</h2>
+<pre class="brush: xml">...
+<!-- The contents of this file will be loaded for each web application -->
+
+    <!-- Default set of monitored resources -->
+    WEB-INF/web.xml
+
+...</pre>
+<p>This way of doing things shifts the work off to the sysadmin (if you have one) and allows for the developer to be completely agnostic of the environment that his code is running on. This way, the databases that are used can be changed without the developer ever knowing that this happened. Additionally it means that the developer will not gain the credentials for sensitive environments like production.</p>
+<p>In short, this way is more suited for enterprise (with the separation of concerns):</p>
+<ul>
+<li>Benefit: Moves data source configuration to the sysadmins.</li>
+<li>Benefit: Hides environment details from developers- making things more generic as well as secure.</li>
+<li>Benefit: Database and driver management is moved to the server and the client need not care about the driver or database used.</li>
+<li>Benefit: No need to change config between environments in the build.</li>
+<li>Negative: Moves the config from the developer project to the server, thus splitting the deploy configuration.</li>
+</ul>
+<h1>Gotcha</h1>
+<blockquote><p>The annotation variant works in servlets with context, otherwise context has to be collected manually</p></blockquote>
+<pre class="brush: java">import javax.naming.Context;
+import javax.naming.InitialContext;
+public class CustomerBean{
+
+	private DataSource ds;
+
+	public CustomerBean(){
+	  try {
+		Context ctx = new InitialContext();
+		ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mkyongdb");
+	  } catch (NamingException e) {
+		e.printStackTrace();
+	  }
+	}
+
+	public List getCustomerList() throws SQLException{
+
+	  //get database connection
+	  Connection con = ds.getConnection();
+	  //...</pre>

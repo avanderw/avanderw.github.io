@@ -1,0 +1,55 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Marsaglia Transform: Uniform to Standard Normal'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1822
+wordpress_url: http://www.avanderw.co.za/?p=1822
+date: '2014-04-28 22:00:50 +0200'
+date_gmt: '2014-04-28 20:00:50 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- distribution
+- stats
+- marsaglia
+---
+<blockquote>The polar method (attributed to George Marsaglia, 1964) is a pseudo-random number sampling method for generating a pair of independent standard normal random variables. While it is superior to the <a href="http://en.wikipedia.org/wiki/Box_Muller_transform">Box&ndash;Muller transform</a>, the <a href="http://en.wikipedia.org/wiki/Ziggurat_algorithm">Ziggurat algorithm</a> is even more efficient. &ndash; <a href="http://en.wikipedia.org/wiki/Marsaglia_polar_method">Wikipedia</a></p></blockquote>
+<p>This post by <a href="http://blog.controul.com/2009/04/standard-normal-distribution-in-as3/">Hristo Dachev on the Marsaglia transform</a> sent me down a long road of learning for which I am truly grateful. I learnt about <a title="Streaming Histograph" href="http://www.avanderw.co.za/streaming-histograph/">estimating statistics on streaming observations</a>, the <a title="Park Miller Random Number Generator (RNG)" href="http://www.avanderw.co.za/park-miller-random-number-generator-rng/">Park Miller random number generator</a>, the value of <a title="Binary Sorted Array" href="http://www.avanderw.co.za/binary-sorted-array/">descriptive statistics and maintaining a sorted array</a>. Additionally I ended up creating a histographer (poorly performing in comparison to Hristos) which I then used to visualise the output of the <a title="Park Miller distributions" href="http://www.avanderw.co.za/park-miller-distributions/">Marsaglia transform</a>.</p>
+<h1>The code</h1>
+<pre class="brush: as3">/**
+ * Marsaglia transform
+ * http://en.wikipedia.org/wiki/Marsaglia_polar_method
+ * http://blog.controul.com/2009/04/standard-normal-distribution-in-as3/
+ * @return A number from the standard normal distribution
+ */
+private var useCache:Boolean = true;
+private var cache:Number = 0;
+final public function stdNormal():Number
+{
+	useCache = !useCache;
+	if (useCache)
+		return cache;
+
+	var x:Number, y:Number, w:Number;
+	do 
+	{
+		x = float( -1, 1);
+		y = float( -1, 1);
+		w = x * x + y * y;
+	}
+	while (w >= 1 || w == 0);
+
+	w = Math.sqrt( -2 * Math.log(w) / w);
+	cache = x * w;
+	return y * w;
+}</pre>

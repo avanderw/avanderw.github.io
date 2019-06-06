@@ -1,0 +1,165 @@
+---
+layout: post
+status: publish
+published: true
+title: Park Miller distributions
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1824
+wordpress_url: http://www.avanderw.co.za/?p=1824
+date: '2014-04-08 22:01:29 +0200'
+date_gmt: '2014-04-08 20:01:29 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+- Code Snippets
+tags:
+- distribution
+- stats
+- random
+- park-miller
+- histographer
+- marsaglia transform
+- rng
+---
+<p>I have posted previously about the <a title="Park Miller Random Number Generator (RNG)" href="http://www.avanderw.co.za/park-miller-random-number-generator-rng/">Park Miller method for generating uniform random numbers</a>. This post is about visualising the distribution and any modifications of the .random() function. <a title="Streaming Histograph" href="http://www.avanderw.co.za/streaming-histograph/">The histographer is used</a> to visualise the distribution and estimate the descriptive statistics. The default <a href="http://en.wikipedia.org/wiki/Lehmer_RNG">ParkMiller.random()</a> uniform distribution is shown first. Thereafter a <a href="http://en.wikipedia.org/wiki/Marsaglia_polar_method">Marsaglia transform</a> is applied to generate the <a href="http://en.wikipedia.org/wiki/Normal_distribution">standard normal distribution</a>. Lastly, the standard normal is modified to give a <a href="http://en.wikipedia.org/wiki/Gaussian_function">guassian distribution</a>.</p>
+<p>The transforms to the .random() method are implemented in the inherited abstract random number generator class. This means that they can be applied to any implementation of the .random() method. I am interested to eventually see how they respond to other random number generators in the future.</p>
+<h2>Code</h2>
+<pre class="brush:as3">package net.avdw.gui
+{
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.utils.getTimer;
+	import net.avdw.align.alignHorizontalCenterVerticalMiddleTo;
+	import net.avdw.demo.ADemo;
+	import net.avdw.math.Range;
+	import net.avdw.random.generator.ParkMillerRng;
+	
+	public class ParkMillerRandomStreamingHistograph extends ADemo
+	{
+		private var histogram:StreamingHistograph;
+		
+		public function ParkMillerRandomStreamingHistograph()
+		{
+			if (stage)
+				setup();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, setup);
+		}
+		
+		private function setup(e:Event = null):void
+		{
+			histogram = new StreamingHistograph("ParkMiller.random()", Range.closedOpen(0, 1));
+			removeEventListener(Event.ADDED_TO_STAGE, setup);
+			
+			addChild(histogram);
+			alignHorizontalCenterVerticalMiddleTo(stage, histogram);
+			
+			addEventListener(Event.ENTER_FRAME, update);
+		}
+		
+		private const rng:ParkMillerRng = new ParkMillerRng();
+		private function update(e:Event):void
+		{
+			var ticksPerSec:uint = 1000 / 50;
+			var time:uint = getTimer();
+			while (getTimer() - time < ticksPerSec)
+				histogram.add(rng.random());
+			
+			histogram.refresh();
+		}
+	
+	}
+
+}</pre>
+<h1>Uniform</h1>
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/park-miller-random-streaming-histograph.swf"><img class="wp-image-1842 size-full aligncenter" src="http://www.avanderw.co.za/wp-content/uploads/2014/04/thumbshot2.jpg" alt="Park Miller RNG applied with a Marsaglia Transform" width="623" height="137" /></a></p>
+<h2>Code</h2>
+<pre class="brush: as3">package net.avdw.random.generator
+{
+	
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class ParkMillerRng extends ARng
+	{
+		/* The original seed used by this number generator */
+		protected var seed:uint;
+		protected var walkingNumber:uint;
+		
+		/**
+		 * Setups the random number generator given a seed.
+		 * If no seed is provided then a random seed is selected.
+		 * @param	seed
+		 */
+		public function ParkMillerRng(seed:uint = 0)
+		{
+			if (seed == 0)
+				seed = uint.MAX_VALUE * Math.random();
+			
+			walkingNumber = this.seed = seed;
+		}
+		
+		override public function random():Number
+		{
+			return (walkingNumber = (walkingNumber * 16807) % 2147483647) / 0x7FFFFFFF + 0.000000000233;
+		}
+		
+		override public function reset():ARng
+		{
+			walkingNumber = seed;
+			return this;
+		}
+	}
+}</pre>
+<h1>Standard Normal</h1>
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/park-miller-std-normal-streaming-histograph.swf"><img class="wp-image-1842 size-full aligncenter" src="http://www.avanderw.co.za/wp-content/uploads/2014/04/thumbshot2.jpg" alt="Park Miller RNG applied with a Marsaglia Transform" width="623" height="137" /></a></p>
+<h2>Code</h2>
+<pre class="brush: as3">/**
+ * Marsaglia transform
+ * http://en.wikipedia.org/wiki/Marsaglia_polar_method
+ * http://blog.controul.com/2009/04/standard-normal-distribution-in-as3/
+ * @return A number from the standard normal distribution
+ */
+private var useCache:Boolean = true;
+private var cache:Number = 0;
+final public function stdNormal():Number
+{
+	useCache = !useCache;
+	if (useCache)
+		return cache;
+		
+	var x:Number, y:Number, w:Number;
+	do 
+	{
+		x = float( -1, 1);
+		y = float( -1, 1);
+		w = x * x + y * y;
+	}
+	while (w >= 1 || w == 0);
+	
+	w = Math.sqrt( -2 * Math.log(w) / w);
+	cache = x * w;
+	return y * w;
+}
+</pre>
+<h1>Gaussian</h1>
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/park-miller-gaussian-streaming-histograph.swf"><img class="wp-image-1842 size-full aligncenter" src="http://www.avanderw.co.za/wp-content/uploads/2014/04/thumbshot2.jpg" alt="Park Miller RNG applied with a Marsaglia Transform" width="623" height="137" /></a></p>
+<h2>Code</h2>
+<pre class="brush: as3">/**
+ * Returns a number that fits the gaussian parameters
+ * @param	mean
+ * @param	stddev
+ * @return 	A number fitting the gaussian parameters
+ */
+final public function gaussian(mean:Number, stddev:Number):Number {
+	return mean + stdNormal() * stddev;
+}
+</pre>

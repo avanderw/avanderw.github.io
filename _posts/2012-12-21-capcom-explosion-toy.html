@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: Capcom Explosion Toy
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1128
+wordpress_url: http://www.avanderw.co.za/?p=1128
+date: '2012-12-21 09:00:18 +0200'
+date_gmt: '2012-12-21 07:00:18 +0200'
+categories:
+- Techie talk
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+- Effects
+tags:
+- particle
+- fun
+- toy
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/Capcom.Explosion.swf"><img class="alignright size-full wp-image-1450" title="Capcom Explosion Toy" alt="Capcom Explosion Toy" src="http://www.avanderw.co.za/wp-content/uploads/2012/10/Capcom.Explosion.thumbshot.png" width="340" height="247" /></a></p>
+<p style="text-align: justify;">This toy is a particle system. This particular particle system creates an explosion that is similar to the explosions found in Capcom's games, like <a title="Wiki article on the Metal Slug series" href="http://en.wikipedia.org/wiki/Metal_Slug_(series)">Metal Slug</a>.</p>
+<h2>How it works</h2>
+<p style="text-align: justify;">There is the initial explosion which starts with a set amount of particles. Then there is a chance that these particles will spawn littler particles to&nbsp;propagate&nbsp;the initial explosion. The explosion will start off flaring and as the initial particles start dying the effect moves into trail particles and finally finishes off with smoke particles. Additionally, there is a glow around the explosion. You can save the generated explosion and you can download the class that I created for this effect.</p>
+<p style="text-align: justify;">The whole premise is simple. The toy starts with the initial particles, which have a chance to explode into children particles. These children particles have a further chance of breaking into baby particles, and this process is repeated until the end. The type of particles created change over the life-cycle of the explosion. The life-cycle phases are&nbsp;Explosion > Flare &nbsp;> Trail > Smoke.&nbsp;You can control each phase of the life-cycle... and more.</p>
+<h3>Technical implementation</h3>
+<ul>
+<li style="text-align: justify;">The toy is a particle system</li>
+<li style="text-align: justify;">Each frame is calculated and saved to a bitmap</li>
+<li style="text-align: justify;">The frames are put sequentially after each other, horizontally, on a bitmap</li>
+<li style="text-align: justify;">A mask is applied to the bitmap to show a single frame</li>
+<li style="text-align: justify;">The animation is created by moving the mask over the bitmap <em>or by moving the bitmap under the mask</em></li>
+</ul>
+<h2>Gotchas</h2>
+<ul>
+<li style="text-align: justify;">You can fiddle with the settings of the explosion, but <strong>none of the changes will take effect until a new explosion is generated</strong></li>
+<li style="text-align: justify;"><strong>If the particle system carries on for too long</strong>, then you hit the upper limit for a bitmap-width and it crashes</li>
+<li style="text-align: justify;">Lots of particles take a long time to generate and calculate</li>
+<li style="text-align: justify;">The toy pauses for quite a while when generating, around 5 seconds with the default settings</li>
+<li style="text-align: justify;">Scaling-up quickly reduces the amount of frames allowed before breaking the bitmap-width limit</li>
+</ul>
+<h2>Original</h2>
+<p>The original code was from <a title="Wouter Visser" href="http://www.linkedin.com/in/interactief">this Dutch dude nuvorm</a>&nbsp;and <a title="Explosion Generator" href="http://www.nuvorm.nl/?p=1">it was the first post</a>&nbsp;to his blog.</p>
+<h3>My changes</h3>
+<ul>
+<li>Encapsulated it into one class</li>
+<li>Exposed only the essentials</li>
+<li>Parametarised most of the variables, hence the cramped controls</li>
+<li>Changed the variable names to something more descriptive</li>
+<li>Used a vector class for the particle direction and speed calculations</li>
+<li>Incorporated <a title="Grant Skinner's seeded number generator" href="http://gskinner.com/blog/archives/2008/01/source_code_see.html">Grant Skinner's seeded number generator</a></li>
+</ul>
+<p>Have fun with the toy. Remember that you can save your creation and download the code.</p>

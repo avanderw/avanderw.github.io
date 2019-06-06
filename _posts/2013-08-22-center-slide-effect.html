@@ -1,0 +1,224 @@
+---
+layout: post
+status: publish
+published: true
+title: Center Slide Effect
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1629
+wordpress_url: http://www.avanderw.co.za/?p=1629
+date: '2013-08-22 23:11:31 +0200'
+date_gmt: '2013-08-22 21:11:31 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Effects
+tags:
+- actionscript
+- demo
+- bitmapdata
+- center-slide
+- fx
+- transition
+---
+<h1><a href="http://www.avanderw.co.za/wp-content/uploads/swf/center-slide-fx.swf"><img class="alignright size-full wp-image-1631" title="Center Slide Fx" alt="Center Slide Fx" src="http://www.avanderw.co.za/wp-content/uploads/2013/08/center-slide-thumb.jpg" width="340" height="251" /></a></h1>
+<p style="text-align: justify;">This effect can be used as a transition effect or to animate the showing or hiding of a display object. The effect works by exposing / hiding the display object from the center line. The center line can be either the horizontal or vertical centre.</p>
+<p style="text-align: justify;">The original idea came when I was perusing the <a href="https://github.com/photonstorm/Flixel-Power-Tools/tree/master/Test%20Suite/src/org/flixel/plugin/photonstorm/FX">flixel power tool fx directory</a>. I was going to use Richard's code as a base and then realised that it would be easier to write the class from scratch. My original classes were split up across files and made use of inheritance instead of control logic (like Flixel Power tools does). After which I then tried to put each effect into a snippet which could be included anywhere. However, this lead to duplication of code and made making changes tedious- as there are four snippets [reveal / hide - vertical / horizontal].</p>
+<p style="text-align: justify;">In the end I created one class that contains the inheritance classes internally. Additionally the class packages the old snippet method names into static functions. Effectively hiding all the internal code and packaging it into one file. Doing things this way- the inheritance reduces the code duplication and the static wrapper methods give a stateless feel to the class.</p>
+<h1>Effect pseudo algorithm</h1>
+<ul>
+<li>hide the object that is to have the effect applied to it.</li>
+<li>create a pixel cache of the untransformed object.</li>
+<li>create a bitmap for the effect and add it to the display list.</li>
+<li>create two rectangles which will clip the pixel cache.</li>
+<li>copy the pixels from the clipping areas to the display bitmap, either side of the center line.</li>
+<li>animation is just resizing the clipping rectangles.</li>
+<li>remember to apply the original transformations to the display bitmap when done.</li>
+</ul>
+<p style="text-align: justify;">The effect has been developed to work with the original translation matrix and thus works with rotation and scaling. An added bonus is that interpolation was added to the effect animation, giving it more life. There might be a few bugs- as this has not been seriously tested yet.</p>
+<h1>The Uncommented FxClass</h1>
+<pre class="brush: as3">package net.avdw.fx
+{
+	import flash.display.DisplayObject;
+
+	public class CenterSlideFx
+	{
+		static public function hideHorizontally(displayObject:DisplayObject, effectMillis:int = 1000, interp:Function = null, callback:Function = null):void
+		{
+			new HorizontalControl(displayObject, effectMillis, interp, callback).hide();
+		}
+
+		static public function hideVertically(displayObject:DisplayObject, effectMillis:int = 1000, interp:Function = null, callback:Function = null):void
+		{
+			new VerticalControl(displayObject, effectMillis, interp, callback).hide();
+		}
+
+		static public function revealHorizontally(displayObject:DisplayObject, effectMillis:int = 1000, interp:Function = null, callback:Function = null):void
+		{
+			new HorizontalControl(displayObject, effectMillis, interp, callback).reveal();
+		}
+
+		static public function revealVertically(displayObject:DisplayObject, effectMillis:int = 1000, interp:Function = null, callback:Function = null):void
+		{
+			new VerticalControl(displayObject, effectMillis, interp, callback).reveal();
+		}
+	}
+
+}
+
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.DisplayObject;
+import flash.events.Event;
+import flash.geom.Matrix;
+import flash.geom.Point;
+import flash.geom.Rectangle;
+import flash.utils.getTimer;
+
+import net.avdw.interp.linear;
+import net.avdw.number.normalize;
+
+class FxControl
+{
+	private var displayObject:DisplayObject;
+	private var effectMillis:int;
+	private var lastMillis:int;
+	private var interp:Function;
+	private var fxBmp:Bitmap;
+	private var callback:Function;
+	private var isReveal:Boolean;
+
+	protected var halfway:int;
+	protected var pixelCache:BitmapData;
+	protected var srcSideAClipRect:Rectangle;
+	protected var srcSideBClipRect:Rectangle;
+	protected var dstPointA:Point;
+	protected var dstPointB:Point;
+
+	public function FxControl(displayObject:DisplayObject, effectMillis:int, interp:Function, callback:Function)
+	{
+		this.callback = callback;
+		this.interp = interp;
+		this.effectMillis = effectMillis;
+		this.displayObject = displayObject;
+
+		if (interp == null)
+			this.interp = linear;
+
+		setup();
+	}
+
+	public function reveal():void {
+		isReveal = true;
+		fxBmp.addEventListener(Event.ENTER_FRAME, animate);
+	}
+
+	public function hide():void {
+		isReveal = false;
+		fxBmp.addEventListener(Event.ENTER_FRAME, animate);
+	}
+
+	protected function setup():void
+	{
+		lastMillis = getTimer();
+		displayObject.visible = false;
+
+		// create pixel cache, without transforms
+		var tmpTransformMatrix:Matrix = displayObject.transform.matrix.clone();
+		displayObject.transform.matrix = new Matrix();
+		pixelCache = new BitmapData(displayObject.width, displayObject.height, true, 0);
+		pixelCache.draw(displayObject);
+		displayObject.transform.matrix = tmpTransformMatrix;
+
+		fxBmp = new Bitmap(new BitmapData(pixelCache.width, pixelCache.height));
+		displayObject.parent.addChild(fxBmp);
+	}
+
+	protected function resizeRectangles(pixels:int):void
+	{
+		throw new Error("this method is abstract");
+	}
+
+	private function animate(e:Event):void
+	{
+		var progress:Number = normalize(getTimer() - lastMillis, effectMillis);
+		var pixels:int = interp(progress) * halfway;
+		resizeRectangles(isReveal ? pixels : halfway - pixels);
+
+		fxBmp.bitmapData.fillRect(fxBmp.bitmapData.rect, 0x0);
+		fxBmp.bitmapData.copyPixels(pixelCache, srcSideAClipRect, dstPointA, null, null, true);
+		fxBmp.bitmapData.copyPixels(pixelCache, srcSideBClipRect, dstPointB, null, null, true);
+		fxBmp.transform.matrix = displayObject.transform.matrix;
+
+		if (progress >= 1)
+		{
+			fxBmp.removeEventListener(Event.ENTER_FRAME, animate);
+			fxBmp.bitmapData.dispose();
+			displayObject.parent.removeChild(fxBmp);
+
+			displayObject.visible = isReveal;
+
+			if (callback != null)
+				callback();
+		}
+	}
+}
+
+class HorizontalControl extends FxControl
+{
+	public function HorizontalControl(displayObject:DisplayObject, effectMillis:int, interp:Function, callback:Function)
+	{
+		super(displayObject, effectMillis, interp, callback);
+	}
+
+	override protected function resizeRectangles(pixels:int):void
+	{
+		srcSideAClipRect.width = srcSideBClipRect.width = pixels;
+		dstPointA.x = halfway - srcSideAClipRect.width;
+		srcSideBClipRect.x = pixelCache.width - srcSideBClipRect.width;
+	}
+
+	override protected function setup():void 
+	{
+		super.setup();
+		halfway = pixelCache.width >> 1;
+
+		dstPointA = new Point(0, 0);
+		srcSideAClipRect = new Rectangle(0, 0, 0, pixelCache.height);
+
+		dstPointB = new Point(halfway, 0);
+		srcSideBClipRect = new Rectangle(0, 0, 0, pixelCache.height);
+	}
+}
+
+class VerticalControl extends FxControl
+{
+	public function VerticalControl(displayObject:DisplayObject, effectMillis:int, interp:Function, callback:Function)
+	{
+		super(displayObject, effectMillis, interp, callback);
+	}
+
+	override protected function resizeRectangles(pixels:int):void
+	{
+		srcSideAClipRect.height = srcSideBClipRect.height = pixels;
+		dstPointA.y = halfway - srcSideAClipRect.height;
+		srcSideBClipRect.y = pixelCache.height - srcSideBClipRect.height;
+	}
+
+	override protected function setup():void 
+	{
+		super.setup();
+		halfway = pixelCache.height >> 1;
+
+		dstPointA = new Point(0, 0);
+		srcSideAClipRect = new Rectangle(0, 0, pixelCache.width, 0);
+
+		dstPointB = new Point(0, halfway);
+		srcSideBClipRect = new Rectangle(0, 0, pixelCache.width, 0);
+	}
+}</pre>

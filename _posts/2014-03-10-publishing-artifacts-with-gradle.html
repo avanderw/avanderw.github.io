@@ -1,0 +1,58 @@
+---
+layout: post
+status: publish
+published: true
+title: Publishing artifacts with Gradle
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1793
+wordpress_url: http://www.avanderw.co.za/?p=1793
+date: '2014-03-10 20:29:51 +0200'
+date_gmt: '2014-03-10 18:29:51 +0200'
+categories:
+- Techie talk
+tags:
+- maven
+- ivy
+- gradle
+- groovy
+- pom
+- publish
+---
+<p>This might not be the most interesting post compared to my normal posts. There are no pretty pictures to look at <img class="wlEmoticon wlEmoticon-sadsmile" style="border-style: none;" alt="Sad smile" src="http://www.avanderw.co.za/wp-content/uploads/2014/03/wlEmoticon-sadsmile.png" />.</p>
+<p>By default gradle publishes using the ivy protocol. Thus if you have the following setup&hellip;</p>
+<pre class="brush: groovy">uploadArchives {
+	repositories { mavenLocal() }
+}</pre>
+<p>You will end up publishing an ivy.xml artifact, let us call it artifactX, to your local maven.</p>
+<h2>The problem with doing this</h2>
+<p>Inherently this can be done and artifactX will be found in successive builds that reference it. However, artifactX&rsquo;s dependant libraries will not be identified as they are contained in an ivy.xml file and not an artifactX.pom file. So when you try to build another project, let us call it projectY, which is dependant on artifactX&hellip; the build will fail. The reason for this is because to build projectY you need to execute through artifactX and artifactX is dependant on other libraries which projectY is not directly dependant on. These libraries are also called transient libraries.</p>
+<h2>Using the ivy protocol</h2>
+<p>The fast workaround I came up with was to just use the ivy protocol, which gradle uses by default.</p>
+<pre class="brush: groovy">uploadArchives {
+	repositories { ivy { url "file://c:/temp/ivy" } }
+}</pre>
+<p>This worked phenomenally and the transient libraries were pulled in and projectY could be built. Here comes the but&hellip; the requirement is to publish artifactX into a maven repository. Thus, I had to get the publishing of artifactX to use the maven protocol and generate a pom instead of the ivy.xml file.</p>
+<h2>Using the maven protocol</h2>
+<p>It seems that there are two ways to publish to maven currently.</p>
+<ol>
+<li>A lot of the documentation refers to the maven-publish plugin for gradle. However, as it currently stands with gradle-v1.11: it is in an incubating stage and our environment will not allow for something that is not stable yet.</li>
+<li>The older way of publishing to maven is to use the maven plugin for gradle. This is the way that will be shown below. Take head though, it must have some restrictions otherwise there would not be any reason for the maven-publish plugin.</li>
+</ol>
+<p><strong>NB: do not attempt to use mavenLocal() in uploadArchives as shown above&hellip; it will use the ivy protocol.</strong></p>
+<pre class="brush: groovy">apply plugin: 'maven'
+uploadArchives {
+	repositories { mavenDeployer{repository(url: "file://c:/temp/maven") }
+}</pre>
+<p>The above code will publish artifactX into the directory similar to the ivy protocol. However, there are a few differences.</p>
+<ol>
+<li>It does not publish the ivy.xml into the maven directory, instead generates a pom, md5, sha1 for each artifact declared</li>
+<li>It additionally publishes to the local maven repository that sits in the user home (%user_home%/.m2)</li>
+</ol>
+<p>It took a bit of searching, but it seems that it is rather easy to publish between the two protocols.</p>

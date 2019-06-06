@@ -1,0 +1,67 @@
+---
+layout: post
+status: publish
+published: true
+title: Light using PixelBender with Normal-, Specular- and Occlusion Mapping
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 530
+wordpress_url: http://www.avanderw.co.za/?p=530
+date: '2012-01-18 14:32:06 +0200'
+date_gmt: '2012-01-18 12:32:06 +0200'
+categories:
+- Techie talk
+tags:
+- pixelbender
+- asctionscript
+- bump mapping
+- shader
+- textures
+---
+<p>I have been looking into writing a shader in pixelbender ever since I saw this post <a href="http://www.saltgames.com/2010/testing-out-pixel-bender/" target="_blank">@saltgames</a>. I originally found out about saltgames searching for an <a href="http://www.saltgames.com/2010/a-bitwise-method-for-applying-tilemaps/" target="_blank">algorithm to do tilemapping</a>. I never looked much further, because at the time I was playing with the tilemapping algorithm. Which works like a dream. However, a few months later I stumbled upon this <a href="http://whiteflashwhitehit.com/2010/06/02/advanced-rendering-in-flash/" target="_blank">post at whiteflashwhitehit</a> which had a very nice explanation of the shader he wrote and some enhancements. I took this code and modified it to produce this demo. Coincidentally, I had just downloaded free textures from <a href="http://www.photosculpt.net/" target="_blank">photosculpt</a>.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/01/PixelBenders.swf" width="512" height="512" align="center" required_player_version="11"]</p>
+<h3>Texture modification</h3>
+<p>To get this demo to work, I needed to modify the textures. The diffuse texture was fine, just scaled down so that it could fit on my laptop screen in the demo and to reduce the&nbsp;file size, admittingly&nbsp;this was done near the end of the development of this demo. The normal texture was perfect as well, which I also scaled down to match the diffuse texture. I did this with the occlussion map and specular one as well.</p>
+<p>To reduce the inputs to the shader, I decided to combine the occlusion and specular maps, as was done at whiteflashwhitehit. This was not easy however, the occlusion map was one channel, which I could add to the green channel of the new texture, however the specular map was using three channels. I emailed photosculpt to find out more on this, but they still have yet to reply. So instead of waiting for them, I converted the image of the specular map into a greyscale texture and then added that channel to the red of the new texture. Thus I had created the detail texture which contained both the specular and occlusion maps.</p>
+<p>[caption id="attachment_544" align="aligncenter" width="400" caption="Pebbles Texture"]<a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/pebbles.jpg"><img class="size-full wp-image-544" title="pebbles" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/pebbles.jpg" alt="pebbles-texture" width="400" height="480" /></a>[/caption]</p>
+<p>I had trouble with the shader initially and broke it down into various steps and created the other shaders, which are included in the demo. This helped me loads in finding bugs with certain aspects of the algorithm and allowed me to compare the differences of the effects in performance.</p>
+<h3>Performance Enhancements</h3>
+<p>Over at <a href="http://www.derschmale.com/2009/07/23/some-flash-pixel-bender-performance-tips-benchmarks/" target="_blank">derschmale</a>&nbsp;I searched for performance enhancements to the pixel bender. What was relevant was the following:</p>
+<ul>
+<li>Use 4 channels only if necessary. No transparency? Ditch it.</li>
+<li>Precalculate recurring constant calculations in Flash and pass them as parameters (such as width*height). Sure, it makes the &ldquo;interface&rdquo; of your Kernel potentially harder to read, but since Flash doesn&rsquo;t support dependents (I hope it will some day), this should be a no-brainer if performance is really important.</li>
+</ul>
+<p>So, I changed all the image4 to image3 and output4 to output3. Effectively,&nbsp;discarding&nbsp;the alpha channel. There was a performance increase, but at the cost of all the shaders breaking. In none of the shaders am I looking at the alpha channel and I assumed that I could just&nbsp;discard&nbsp;it. I could not, as it gave really different results on each of the shaders (some never worked, others turned the picture green, others only showed the light downwards). Very very strange. I think it has to do with the samplenearest function fitting into a float3 instead of a float4.</p>
+<p>What is highly of relevance though, but too much work for just a demo was the next point. Specular lighting hits the shader code the most. This has to do with the pow function that it uses. Remember, that the shader executes on every pixel of the texture (yes it gets parralised, but still every pixel!). I tried the second recommendation, but alas:</p>
+<ul>
+<li>the distance to the light source and brightness are variable per pixel</li>
+<li>so is the normal calculation, therefore we cannot really externalise these calculations</li>
+<li>the occlusion calculation is pretty fast, the fastest of the bunch, but cannot be externalised</li>
+<li>the specular calculation, which is expensive, can only have the 5.0-specularIntensity converted</li>
+</ul>
+<p>There might be some other very clever optimizations that can be done, but I am unaware of them and have not put serious thought into it. I am happy with the results.</p>
+<p>When profiling the swf within flashdevelop, the memory never exceeds 30MB. Strangly, when I am not profiling the swf the memory jumps in much larger increments, up to about 120MB of memory. Not sure why this is the case. Could possibly be explained with <a href="http://www.youtube.com/watch?v=DfPeprQ7oGc" target="_blank">the double slit experiment</a>&nbsp;(joke!). Larger textures&nbsp;exaggerate&nbsp;this even more. It seems that this is far more stable in chrome and not the desktop debug player.</p>
+<div></div>
+<h3>Note</h3>
+<p>From my results:</p>
+<ul>
+<li>If I have CPU cycles to waste, then I would apply everything</li>
+<li>The benefit of the specular and occlusion is noticeable, but not considerably so</li>
+<li>Specular mapping could be removed first, then occlusion and even just the normal mapping will give a good result for fewer calculations</li>
+<li>If I was not looking for depth, then I could apply no textures and have a very fast shader to simulate flat light</li>
+<li>The best-case most probably, would be using only the occlusion map, it would be the fastest depth effect of the three, but would need to be modified slightly as to not darken the texture too much</li>
+</ul>
+<h3>&nbsp;Files</h3>
+<div>
+<ul>
+<li><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/lightfull.zip">The Full Pixel Bender</a></li>
+<li><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/LAB-PixelBenders.zip">The Flashdevelop Project with Shaders &amp; Textures</a></li>
+</ul>
+<p>&nbsp;</p>
+</div>

@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Code Snippet: Combine ARGB Bitwise'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1557
+wordpress_url: http://www.avanderw.co.za/?p=1557
+date: '2013-06-27 21:26:22 +0200'
+date_gmt: '2013-06-27 19:26:22 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- flash
+- as3
+- actionscript
+- snippet
+- color
+- bitwise
+---
+<p>The following code will take the alpha, red, green and blue 8 bit channels and combine them into a 32 bit color.</p>
+<pre class="brush: as3">package net.avdw.color
+{
+	/**
+	 * Combine four 8 bit channels into a 32 bit color.
+	 *
+	 * @param	a	The 8 bit alpha channel.
+	 * @param	r	The 8 bit red channel.
+	 * @param	g	The 8 bit green channel.
+	 * @param	b	The 8 bit blue channel.
+	 * @return	A 32 bit color.
+	 */
+	public function combineARGB(a:int, r:int, g:int, b:int):uint
+	{
+		return (a << 24) | (r << 16) | (g << 8) | b;
+	}
+}</pre>
+<p>Here is an example of this method in action.</p>
+<pre class="brush: as3">var cc:uint = combineARGB(0x88, 0xEE, 0xCC, 0xFF);
+trace(cc.toString(16)); 
+// prints 88eeccff</pre>

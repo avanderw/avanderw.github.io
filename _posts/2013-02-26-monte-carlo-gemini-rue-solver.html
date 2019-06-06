@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: Monte Carlo, Gemini Rue Solver
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1468
+wordpress_url: http://www.avanderw.co.za/?p=1468
+date: '2013-02-26 10:05:28 +0200'
+date_gmt: '2013-02-26 08:05:28 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- game
+- flash
+- as3
+- puzzle
+- gemini rue
+- monte carlo
+- solver
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/GeminiRueSolver.swf"><img class="alignright size-full wp-image-1470" alt="Gemini Rue Monte Carlo Solver" src="http://www.avanderw.co.za/wp-content/uploads/2013/02/GeminiRueSolver-thumbshot.png" width="340" height="248" /></a>This is a solver for a puzzle found in a game called <a href="http://www.wadjeteyegames.com/gemini-rue.html">Gemini Rue</a>. This particular puzzle is found later in the game and can be frustrating, especially the second time you run into it. This particular toy recreates the puzzle for you to play, however it started as a text based Monte Carlo solver for the puzzle. It took longer to recreate the puzzle for play than it did to create the solver. Additionally Gemini Rue is quite fun if you are interested in getting it.<!--more--></p>
+<h2>The Puzzle</h2>
+<p style="text-align: justify;">The first time you run into the puzzle in the game, the goal is to connect node 3 to 10. Green represents on and red represents off. The restriction on the first puzzle was that you had to solve it with only 5 lights being on. This turned out to be relatively simple.</p>
+<p style="text-align: justify;">The second time you reach the puzzle the goal is to toggle all the lights to green. This proved to be far more of a challenge. I went online and found a <a href="https://github.com/codesnik/rue">solver for the puzzle written in Ruby</a>. I do not know how to write Ruby, but I can at least read it. I found out that the guy was just randomly toggling nodes on and off till a solution was found. This sounded like a crazy idea... but I have found often enough, in computer science theory, that random solutions tend to often be the best solutions. Thus I implemented my own implementation. I chose to use actionscript as it publishes easier than most other languages and it codes far nicer than javascript.</p>
+<p style="text-align: justify;">The game rules are simple. You toggle a node from red to green or visa versa. The catch is that when you toggle the light, all the connecting lights will toggle as well. The goal is to turn all of the lights to green. The additional panel shows the current state of the puzzle, which you can change. Please note that not all states are solvable.</p>
+<h2>The Algorithm</h2>
+<p style="text-align: justify;">The algorithm is a random solver. This means that the nodes are randomly selected to be toggled until a solution is found. Sometimes there are a lot of toggles before a solution is found. For this reason the solver will run 64 times on the board for a maximum of 1000 toggles each time. This mostly provides a solution that has fewer than 15 steps. I could run statistical tests on the solver to determine the mean and standard deviation, but I am too lazy to do it as well as certain that there are few people interested in those stats to begin with.</p>
+<p style="text-align: justify;">The state of the game is represented as a 10 bit number. This equates to a number with a maximum of 1023 in decimal or 11 1111 1111 in binary. This binary number represents each node's state with 1 being on and 0 being off. This means that all I have to do to test whether the puzzle is solved is to test if the state is equal to 1023. If I want to test whether node 2 is on, I can logical AND it with the binary number 01 0000 0000 and test to see if it is equal to 256 (decimal value). I cannot think of much else to do with the algorithm right now.</p>
+<p style="text-align: justify;">Play the game and let me know if you can solve it without using the solver...</p>

@@ -1,0 +1,96 @@
+---
+layout: post
+status: publish
+published: true
+title: Preventing calls to System.exit in Java
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1639
+wordpress_url: http://www.avanderw.co.za/?p=1639
+date: '2013-09-04 12:45:18 +0200'
+date_gmt: '2013-09-04 10:45:18 +0200'
+categories:
+- Techie talk
+- Java
+- Code Snippets
+tags:
+- maven
+- snippet
+- system
+- exit
+- prevention
+- cmd
+- ant
+- jvm
+---
+<p style="text-align: justify;">Java command line tools can be run from within a Java program. The benefit in doing this is that you can automate command line functionality from within Java code. This is great when you do not have things like <a href="http://ant.apache.org/">ant </a>and <a href="http://maven.apache.org/">maven </a>support and if you are running the "command" on different operating systems and do not want to maintain a separate run.bat and run.sh file.</p>
+<p style="text-align: justify;">However, some libraries that you use will make explicit calls to System.exit during their execution. The disadvantage of this is that the call does not just terminate their program, it terminates the execution environment from the JVM. This means that you cannot run any other code after making a call to the library's main method.</p>
+<p style="text-align: justify;">All is not lost. There is a way to prevent the termination of the program from the JVM when using a library with this method. The below code example shows the problem and the solution.</p>
+<pre class="brush: java">package net.avdw;
+
+import java.security.Permission;
+
+public class SystemExitPrevention {
+
+    public static void main(String[] args) {
+        System.out.println("Preventing System.exit");
+        SystemExitControl.forbidSystemExitCall();
+
+        try {
+            System.out.println("Running a program which calls System.exit");
+            ProgramWithExitCall.main(args);
+        } catch (SystemExitControl.ExitTrappedException e) {
+            System.out.println("Forbidding call to System.exit");
+        }
+
+        System.out.println("Allowing System.exit");
+        SystemExitControl.enableSystemExitCall();
+
+        System.out.println("Running the same program without System.exit prevention");
+        ProgramWithExitCall.main(args);
+
+        System.out.println("This code never executes because the JVM has exited");
+    }
+}
+
+class ProgramWithExitCall {
+
+    public static void main(String[] args) {
+        System.exit(0);
+    }
+}
+
+class SystemExitControl {
+
+    public static class ExitTrappedException extends SecurityException {
+    }
+
+    public static void forbidSystemExitCall() {
+        final SecurityManager securityManager = new SecurityManager() {
+            @Override
+            public void checkPermission(Permission permission) {
+                if (permission.getName().contains("exitVM")) {
+                    throw new ExitTrappedException();
+                }
+            }
+        };
+        System.setSecurityManager(securityManager);
+    }
+
+    public static void enableSystemExitCall() {
+        System.setSecurityManager(null);
+    }
+}</pre>
+<h2>Ouput</h2>
+<p>Notice that the last sentence "This code never executes because the JVM has exited" never appears in the output.</p>
+<pre class="brush: text">Preventing System.exit
+Running a program which calls System.exit
+Forbidding call to System.exit
+Allowing System.exit
+Running the same program without System.exit prevention</pre>

@@ -1,0 +1,145 @@
+---
+layout: post
+status: publish
+published: true
+title: Making a cave-like structure
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1663
+wordpress_url: http://www.avanderw.co.za/?p=1663
+date: '2013-11-21 14:41:56 +0200'
+date_gmt: '2013-11-21 12:41:56 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- algorithm
+- as3
+- toy
+- demo
+- snippet
+- cave
+- cellular automata
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/cave-generator-2013-11-21.swf"><img class="alignright size-full wp-image-1665" alt="Cave like algorithm" src="http://www.avanderw.co.za/wp-content/uploads/2013/11/cave-thumbshot.jpg" width="340" height="255" /></a>There are <a href="http://bigbadwofl.me/random-cave-generator/">a lot of tutorials on the net</a> that make use of <a href="http://en.wikipedia.org/wiki/Cellular_automaton">cellular automata</a> to <a title="Making a cave-like structure with worms" href="http://www.avanderw.co.za/making-a-cave-like-structure-with-worms/">generate cave-like structures</a>. Cellular automata are easy to program and I found <a href="http://roguebasin.roguelikedevelopment.org/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels">a C &amp; C# implementation</a> which I used as a base for this method. The relevant method to generate the cave is at the end of this post. The demo allows fiddling with the input parameters.</p>
+<h1>Inputs</h1>
+<ul>
+<li>Cave<strong> width</strong>: width in blocks (rendered here as a 3x3 pixel)</li>
+<li>Cave<strong> height</strong>: height in blocks</li>
+<li>Cave<strong> smoothness</strong>: iterations to run the cellular automata for, higher = smoother, but longer</li>
+<li>Cave <strong>density</strong>: the percentage of the space to be filled initially</li>
+<li><span style="text-align: justify;">Cave <strong>continuous</strong>: is there a pre-pass filter to fill in empty regions to try and enforce a more connected cave e.g. less isolated cave areas. It is better to start off with a less dense cave when this is enabled.</span></li>
+</ul>
+<h1>The algorithm</h1>
+<p>Seed the 2D matrix with random values, with density chance (1 = wall, 0 = floor)</p>
+<pre class="brush: as3">var map:Vector.<Vector.<int>> = new Vector.<Vector.<int>>();
+for (var y:int = 0; y < height; y++)
+{
+	var row:Vector.<int>> = new Vector.<int>>();
+	for (var x:int = 0; x < width; x++)
+		row.push(rnd.bit(density));
+	map.push(row);
+}</pre>
+<p>The above code creates a matrix of ints and randomly assigns a 1 to each cell with a chance of "density". If continuous? then runs the pre-filter for smoothness iterations and sets each cell to</p>
+<pre class="brush: as3">mapBuffer[y][x] = (isBorder || atLeast5Walls || atMost2Walls) ? 1 : 0;</pre>
+<p>Then always smooth with the following automata for smoothness iterations and set each cell to</p>
+<pre class="brush: as3">mapBuffer[y][x] = (isBorder || atLeast5Walls) ? 1 : 0;</pre>
+<p>That is all there is to the algorithm. The rendering is handled separately (<a href="mailto:avanderw@gmail.com?subject=[avanderw.co.za] Making a cave-like structure">email me</a> if you would like to know more).</p>
+<h1>The code</h1>
+<pre class="brush: as3">package net.avdw.generate
+{
+	import net.avdw.array.createIntVectorMatrix;
+	import net.avdw.number.SeededRNG;
+
+	/**
+	 * http://roguebasin.roguelikedevelopment.org/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels
+	 * 
+	 * @param	width
+	 * @param	height
+	 * @param	smoothness
+	 * @param	density (continuous) ? .35 : .5
+	 * @param	continuous reduces isolated caves
+	 * @param	seed
+	 * @return
+	 */
+	public function makeCave(width:int, height:int = 0, smoothness:int = 4, density:Number = 0.35, continuous:Boolean = true, seed:int = 0):Vector.<Vector.<int>>
+	{
+		seed = seed == 0 ? Math.random() * int.MAX_VALUE : seed;
+		height = height == 0 ? width : height;
+		var rnd:SeededRNG = new SeededRNG(seed);
+
+		var map:Vector.<Vector.<int>> = new Vector.<Vector.<int>>();
+		for (var y:int = 0; y < height; y++)
+		{
+			var row:Vector.<int>> = new Vector.<int>>();
+			for (var x:int = 0; x < width; x++)
+				row.push(rnd.bit(density));
+			map.push(row);
+		}
+
+		var calcNumWallsNStepsFromPoint:Function = function(map:Vector.<Vector.>, px:int, py:int, steps:int):int
+		{
+			var xRange:Object = {low: Math.max(0, x - steps), high: Math.min(width - 1, x + steps)};
+			var yRange:Object = {low: Math.max(0, y - steps), high: Math.min(height - 1, y + steps)};
+			var wallCount:int = 0;
+
+			for (var xi:int = xRange.low; xi <= xRange.high; xi++)
+				for (var yi:int = yRange.low; yi <= yRange.high; yi++)
+				{
+					if (xi == x &amp;&amp; yi == y)
+						continue;
+
+					wallCount += map[yi][xi];
+				}
+
+			return wallCount;
+		};
+
+		var oneStepWallCount:int;
+		var twoStepWallCount:int;
+		var isBorder:Boolean;
+		var atLeast5Walls:Boolean;
+		var atMost2Walls:Boolean;
+		var mapBuffer:Vector.<Vector.>;
+		var i:int;
+
+		// fill in gaps and smooth
+		if (continuous)
+			for (i = 0; i < smoothness; i++)
+			{
+				mapBuffer = createIntVectorMatrix(height, width, 0);
+				for (y = 0; y < height; y++)
+				{
+					for (x = 0; x < width; x++) 					{ 						oneStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 1); 						twoStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 2); 						 						isBorder = x == 0 || y == 0 || x == width - 1 || y == height - 1; 						atLeast5Walls = oneStepWallCount >= 5 || (oneStepWallCount + map[y][x]) >= 5;
+						atMost2Walls = (twoStepWallCount + map[y][x]) <= 2;
+
+						mapBuffer[y][x] = (isBorder || atLeast5Walls || atMost2Walls) ? 1 : 0;
+					}
+				}
+				map = mapBuffer;
+			}
+
+		// smooth edges
+		for (i = 0; i < smoothness; i++)
+		{
+			mapBuffer = createIntVectorMatrix(height, width, 0);
+			for (y = 0; y < height; y++)
+			{
+				for (x = 0; x < width; x++) 				{ 					oneStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 1); 					twoStepWallCount = calcNumWallsNStepsFromPoint(map, x, y, 2); 					 					isBorder = x == 0 || y == 0 || x == width - 1 || y == height - 1; 					atLeast5Walls = oneStepWallCount >= 5 || (oneStepWallCount + map[y][x]) >= 5;
+
+					mapBuffer[y][x] = (isBorder || atLeast5Walls) ? 1 : 0;
+				}
+			}
+			map = mapBuffer;
+		}
+
+		return map;
+	}
+
+}</pre>

@@ -1,0 +1,213 @@
+---
+layout: post
+status: publish
+published: true
+title: Fireworks Particle Effect
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 931
+wordpress_url: http://www.avanderw.co.za/?p=931
+date: '2012-06-06 16:30:41 +0200'
+date_gmt: '2012-06-06 14:30:41 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+- Effects
+tags:
+- animation
+- particle
+- hanabi
+---
+<p style="text-align: left;">Particle effects are really fun to play with. This is a simple explosion with drag and gravity applied to the particles. What is interesting in this effect is the way in which the "sparkles" are generated and how the colour transform class is modified to cycle the colours. I have called the modularized class by the effects original author's name.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/06/HobbyCode1.swf" width="320" height="480" required_player_version="11"]</p>
+<p style="text-align: center;"><em><strong>You can click to generate your own explosions</strong></em></p>
+<p style="text-align: left;">This effect is from <a title="Particle Explosions" href="http://wonderfl.net/c/rp2U" target="_blank">wonderfl</a>. I modified it to work with a transparent background, made some minor performance modifications and modularized it, so that the usage is simple. The performance enhancements were mostly the removal of unnecessary class instantiations.</p>
+<p style="text-align: left;">A quicky on how the effect works. The colour transform is exactly that... the ColorTransform class with modifications done to the red channel every 100ms. The glow is another bitmap, a 4th in size to the original area and with PixelSnapping set to NEVER. This means that when you scale down the original particles by a factor of 4, many of them are lost as they are not snapped to the closest pixel. Then when you scale it up again, you have a blurry version of that pixel (exactly 4 times larger). This way of doing things was new to me and way faster in performance than what I had in mind.</p>
+<h3 style="text-align: left;">Class for the Effect</h3>
+<pre class="brush: as3">package avdw.generate.particle {
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.BlendMode;
+	import flash.display.PixelSnapping;
+	import flash.display.Sprite;
+	import flash.events.TimerEvent;
+	import flash.filters.BlurFilter;
+	import flash.geom.ColorTransform;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.utils.Timer;
+
+	/**
+	 * Reference: http://wonderfl.net/c/rp2U
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class Hanabi extends Sprite {
+		private const colorTransform:ColorTransform = new ColorTransform(.8, .8, .9, .8);
+		private const particles:Vector.<Particle> = new Vector.<Particle>();
+		private const blur:BlurFilter = new BlurFilter(1, 1);
+		private const zero:Point = new Point();
+
+		private var canvas:Bitmap;
+		private var glow:Bitmap;
+		private var explosionSize:int;
+
+		private var animationTimer:Timer;
+		private var changeColorTransformTimer:Timer;
+
+		public function Hanabi(width:int, height:int, fps:int = 30, explosionSize:int = 10) {
+			this.explosionSize = explosionSize;
+
+			canvas = new Bitmap(new BitmapData(width, height, true, 0x0));
+
+			glow = new Bitmap(new BitmapData(width / 4, height / 4, true, 0x0), PixelSnapping.NEVER, true);
+			glow.scaleX = glow.scaleY = 4;
+			glow.blendMode = BlendMode.ADD;
+
+			addChild(canvas);
+			addChild(glow);
+
+			animationTimer = new Timer(1000 / Math.min(60, Math.max(1, fps)));
+			animationTimer.addEventListener(TimerEvent.TIMER, animate);
+			animationTimer.start();
+
+			changeColorTransformTimer = new Timer(100);
+			changeColorTransformTimer.addEventListener(TimerEvent.TIMER, changeColorTransform);
+			changeColorTransformTimer.start();
+		}
+
+		private function changeColorTransform(e:TimerEvent):void {
+			(colorTransform.redMultiplier > 0.9) ? colorTransform.redMultiplier = 0.8 : colorTransform.redMultiplier += 0.01;
+		}
+
+		public function explode(x:int, y:int):void {
+			var i:int = 200;
+			while (i--)
+				createParticle(x, y);
+		}
+
+		private function createParticle(x:int, y:int):void {
+			var p:Particle = new Particle();
+			p.x = x;
+			p.y = y;
+
+			var radius:Number = Math.sqrt(Math.random()) * explosionSize;
+			var angle:Number = Math.random() * (Math.PI) * 2;
+			p.vx = Math.cos(angle) * radius;
+			p.vy = Math.sin(angle) * radius;
+
+			particles.push(p);
+		}
+
+		private function animate(e:TimerEvent):void {
+			canvas.bitmapData.lock();
+			canvas.bitmapData.applyFilter(canvas.bitmapData, canvas.bitmapData.rect, zero, blur);
+			canvas.bitmapData.colorTransform(canvas.bitmapData.rect, colorTransform);
+
+			var i:int = particles.length;
+			while (i--) { // backwards to alleviate removing items whilst iterating through vector
+				var p:Particle = particles[i];
+				p.vy += 0.2; // gravity
+				p.vx *= 0.9; // drag
+				p.vy *= 0.9; // drag
+				p.x += p.vx;
+				p.y += p.vy;
+				canvas.bitmapData.setPixel32(p.x, p.y, p.c);
+
+				// remove pixels that are offstage / that are too slow in either direction
+				if ((p.x > canvas.bitmapData.width || p.x < 0) || (p.y < 0 || p.y > canvas.bitmapData.height) || Math.abs(p.vx) < .01 || Math.abs(p.vy) < .01) {
+					particles.splice(i, 1);
+				}
+			}
+
+			canvas.bitmapData.unlock();
+
+			// think the below also loses detail and causes the glow to only happen on some particles
+			// the never pixel snapping setting will remove the pixels on resize
+			glow.bitmapData.fillRect(glow.bitmapData.rect, 0x0);
+			glow.bitmapData.draw(canvas.bitmapData, new Matrix(0.25, 0, 0, 0.25));
+		}
+
+		public function destroy():void {
+			changeColorTransformTimer.stop();
+			changeColorTransformTimer.removeEventListener(TimerEvent.TIMER, changeColorTransform);
+
+			animationTimer.stop();
+			animationTimer.removeEventListener(TimerEvent.TIMER, animate);
+		}
+
+	}
+
+}
+
+class Particle {
+	public var x:Number;
+	public var y:Number;
+	public var vx:Number;
+	public var vy:Number;
+	public var c:uint;
+
+	public function Particle() {
+		this.x = 0;
+		this.y = 0;
+		this.vx = 0;
+		this.vy = 0;
+		this.c = 0xFFFFFFFF;
+	}
+}</pre>
+<h3 style="text-align: left;">Example of Usage</h3>
+<p>The full class for the demo on this page is below. What is important is the creation of the Hanabi class, where you specify the dimensions. The addition to the stage and lastly the explode method which generates an explosion of 200 pixels at that location on the Hanabi bitmap.</p>
+<pre class="brush: as3">package avdw.demo.particle {
+	import avdw.generate.particle.Hanabi;
+	import com.gskinner.utils.Rndm;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	/**
+	 * Reference: http://wonderfl.net/c/rp2U
+	 * Background: http://idesigniphone.net/wallpapers/04445.jpg
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	[SWF(width="320",height="480",backgroundColor="0x0",frameRate="30")]
+
+	public class Fireworks extends Sprite {
+		[Embed(source="../../../assets/320x480 Night Sky.jpg")]
+		private const Background:Class;
+
+		public function Fireworks() {
+			if (stage)
+				init();
+			else
+				addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+
+		private function init(e:Event = null):void {
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+
+			addChild(new Background());
+
+			var hanabi:Hanabi = new Hanabi(stage.stageWidth, stage.stageHeight);
+			addChild(hanabi);
+
+			stage.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):void {
+					hanabi.explode(mouseX, mouseY);
+				});
+
+			var timer:Timer = new Timer(1000);
+			timer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent):void {
+					hanabi.explode(Rndm.integer(50, stage.stageWidth - 50), Rndm.integer(50, 240));
+				});
+			timer.start();
+		}
+	}
+}</pre>

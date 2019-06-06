@@ -1,0 +1,180 @@
+---
+layout: post
+status: publish
+published: true
+title: Smoke Effect (Moku Moku)
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 953
+wordpress_url: http://www.avanderw.co.za/?p=953
+date: '2012-06-12 13:09:44 +0200'
+date_gmt: '2012-06-12 11:09:44 +0200'
+categories:
+- Techie talk
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+- Effects
+tags:
+- perlin noise
+- anime
+- animation
+- particle
+- one piece
+---
+<p>I have kept the original authors name for the effect and did a little research on what it means. <a title="Moku Moku no Mi on the One Piece Wiki" href="http://onepiece.wikia.com/wiki/Moku_Moku_no_Mi" target="_blank">Moku Moku no Mi</a>&nbsp;is reference to a smoke skill from an <a title="One Piece over at Anime News Network" href="http://www.animenewsnetwork.com/encyclopedia/anime.php?id=836" target="_blank">Anime called One Piece</a>. I never really got into that Anime, so the reference was lost on me until I did the search. The original effect is from a user <a title="Moku Moku effect on Wonderfl" href="http://wonderfl.net/c/5hBU" target="_blank">over at wonderfl</a>. I modularized it for ease of use in the future. I am sure it can be combined with the <a title="Lets All Burn !!! Fire Effect" href="http://www.avanderw.co.za/lets-all-burn-fire-effect/" target="_blank">previous Fire Effect</a> to enhance the impact.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/06/HobbyCode3.swf" width="320" height="480" required_player_version="11"]</p>
+<p>The particles are pre-generated with <a title="AS3: Perlin Noise Experiment" href="http://www.avanderw.co.za/as3-perlin-noise-experiment/">Perlin Noise</a>, two white-based and one black-based. Thereafter they are randomly selected to spawn at a given point. The particles are then scaled, translated, and rotated on each tick of the timer. If the particle leaves the viewing area or if it's alpha falls below 0, then it is removed. Below is the modularized code.</p>
+<h3>Code</h3>
+<pre class="brush: as3">package avdw.generate.effect {
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.BlendMode;
+	import flash.display.GradientType;
+	import flash.display.Shape;
+	import flash.display.Sprite;
+	import flash.events.TimerEvent;
+	import flash.geom.ColorTransform;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.utils.Timer;
+
+	/**
+	 * Reference: http://wonderfl.net/c/5hBU
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class MokuMoku extends Bitmap {
+		private static const ZERO_POINT:Point = new Point();
+		private const mat:Matrix = new Matrix();
+		private const tbl:Array = new Array();
+
+		private var cnt:int = 0;
+		private var ar:Array = new Array();
+		private var emitterX:int;
+		private var emitterY:int;
+		private var smokeSize:int;
+		private var verticalClimb:Number;
+
+		private var animationTimer:Timer;
+		private var emitterTimer:Timer;
+
+		public function MokuMoku(width:int, height:int, smokeSize:int = 100, verticalClimb:Number = 2, fps:int = 30) {
+			super(new BitmapData(width, height, true, 0));
+
+			this.verticalClimb = verticalClimb;
+			this.smokeSize = smokeSize;
+			tbl.push(createSmokyCircle(smokeSize, smokeSize));
+			tbl.push(createSmokyCircle(smokeSize, smokeSize));
+			tbl.push(createSmokyCircle(smokeSize, smokeSize, 0));
+
+			animationTimer = new Timer(1000 / Math.min(60, Math.max(1, fps)));
+			animationTimer.addEventListener(TimerEvent.TIMER, animate);
+			animationTimer.start();
+		}
+
+		public function startEmitter(x:int, y:int, smokesPerSecond:int = 5):void {
+			emitterX = x;
+			emitterY = y;
+			emitterTimer = new Timer(1000 / Math.min(60, Math.max(1, smokesPerSecond)));
+			emitterTimer.addEventListener(TimerEvent.TIMER, emitSmoke);
+			emitterTimer.start();
+		}
+
+		private function emitSmoke(e:TimerEvent):void {
+			var r:Number = (cnt &amp; 15) >> 2;
+			addSmoke(emitterX + Math.cos(r * Math.PI / 4) * 24, emitterY + Math.sin(r * Math.PI / 4) * 24);
+		}
+
+		public function stopEmitter():void {
+			emitterTimer.stop();
+			emitterTimer.removeEventListener(TimerEvent.TIMER, emitSmoke);
+		}
+
+		public function addSmoke(x:int, y:int):void {
+			var r:Number = 0.4 + Math.random() * 0.4;
+			ar.push([x + Math.random() * 20, y + Math.random() * 20, r, 0, 0.06, 0, tbl[(int)(Math.random() * 3)], 0, Math.random() * 0.02 - 0.01]);
+		}
+
+		private function animate(e:TimerEvent):void {
+			bitmapData.lock();
+			bitmapData.fillRect(bitmapData.rect, 0x0);
+
+			var arNext:Array = new Array();
+			for each (var obj:Array in ar) {
+				obj[1] -= verticalClimb;
+				obj[2] += 0.005;
+				obj[3] += obj[4];
+				obj[5] += 0.03;
+				obj[7] += obj[8];
+				if (obj[3] > 1.3)
+					obj[4] = -0.007;
+				if (obj[3] < 0)
+					obj[3] = 0;
+				if (obj[5] > 1)
+					obj[5] = 1;
+				mat.identity();
+				mat.translate(-50, -50);
+				mat.scale(obj[2], obj[2]);
+				mat.rotate(obj[7]);
+				mat.translate(obj[0], obj[1]);
+				bitmapData.draw(obj[6], mat, new ColorTransform(obj[5], obj[5], obj[5], obj[3]));
+				if (obj[1] > -smokeSize &amp;&amp; obj[3] > 0)
+					arNext.push(obj);
+			}
+			bitmapData.unlock();
+			ar = arNext;
+			cnt++;
+		}
+
+		private function createSmokyCircle(w:int, h:int, col:int = 0xffffff):BitmapData {
+			var buf:BitmapData = new BitmapData(w, h);
+			var buf2:BitmapData = new BitmapData(w, h);
+			var buf3:BitmapData = new BitmapData(w, h);
+			var sh:Shape = new Shape();
+			var colors:Array = [0xd0d0d0, 0xa0a0a0, 0x000000];
+			var alphas:Array = [1, 1, 1];
+			var ratios:Array = [0, 127, 255];
+			var matrix:Matrix = new Matrix();
+
+			buf.perlinNoise(w, w, 4, Math.random() * 0xffff, true, true, 4);
+			matrix.createGradientBox(w, h, 0, 0, 0);
+			sh.graphics.beginGradientFill(GradientType.RADIAL, colors, alphas, ratios, matrix);
+			sh.graphics.drawRect(0, 0, w, h);
+			sh.graphics.endFill();
+
+			buf3.draw(sh);
+			buf.draw(buf3, null, null, BlendMode.MULTIPLY);
+
+			colors = [col, 0, 0];
+			alphas = [1, 1, 1];
+			ratios = [0, 192, 255];
+			matrix.createGradientBox(w, h, 45);
+			sh.graphics.beginGradientFill(GradientType.LINEAR, colors, alphas, ratios, matrix);
+			sh.graphics.drawRect(0, 0, w, h);
+			sh.graphics.endFill();
+
+			buf2.perlinNoise(buf2.width, buf2.height, 4, Math.random() * 0xffff, true, false, 7, true);
+			buf2.draw(sh, null, null, BlendMode.ADD);
+
+			buf2.copyChannel(buf, buf.rect, ZERO_POINT, 4, 8);
+			return buf2;
+		}
+
+		public function destroy():void {
+			emitterTimer.stop();
+			emitterTimer.removeEventListener(TimerEvent.TIMER, emitSmoke);
+
+			animationTimer.stop();
+			animationTimer.removeEventListener(TimerEvent.TIMER, animate);
+		}
+
+	}
+
+}</pre>

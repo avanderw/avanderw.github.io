@@ -1,0 +1,135 @@
+---
+layout: post
+status: publish
+published: true
+title: Non-Wrapping Diamond Square Algorithm
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 867
+wordpress_url: http://www.avanderw.co.za/?p=867
+date: '2012-05-18 14:51:20 +0200'
+date_gmt: '2012-05-18 12:51:20 +0200'
+categories:
+- Techie talk
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+tags:
+- flash
+- terrain
+- heightmap
+- diamond square
+---
+<p>An updated form of the <a title="Midpoint Displacement in Two Dimensions" href="http://www.avanderw.co.za/midpoint-displacement-in-two-dimensions/">Midpoint Displacement algorithm</a>, is the Diamond Square algorithm. The major difference is that it doesn't generate a linear gradient when calculating the diamond, like <a title="Midpoint Displacement on Wikipedia" href="http://en.wikipedia.org/wiki/Diamond-square_algorithm" target="_blank">Midpoint Displacement</a> does. The main reason this algorithm is more popular, is because it reduces the square artifacts that are visible in many of the generated textures produced by <a title="Progression from Midpoint Displacement to Diamond Square" href="http://www.gameprogrammer.com/fractal.html#diamond" target="_blank">Midpoint Displacement</a>. My implementation still has 1 or 2 pixel artifacts, which can be reduced by running a blur filter on the texture.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2012/05/2D-Diamon-Square.swf" width="400" height="400"]</p>
+<h3 style="text-align: left;">Code</h3>
+<p>The below code is not really optimized and I have not made the distinction clear between the diamond step and the midpoint displacement step. Also this code cannot be used to wrap the texture, as it is at its heart a <a title="Depth-First Search on Wikipedia" href="http://en.wikipedia.org/wiki/Depth-first_search" target="_blank">depth-first recursive algorithm</a>. An iterative solution will allow for wrapping, as you need to do a <a title="Breadth-First Search on Wikipedia" href="http://en.wikipedia.org/wiki/Breadth-first_search" target="_blank">breadth-first pass</a> to have values, which you can use to calculate the wrap. You can read more about <a title="PCG Noise Examples on Google Code" href="http://code.google.com/p/fractalterraingeneration/wiki/Diamond_Square" target="_blank">the two algorithms on Google Code</a>.</p>
+<p>Just an FYI, because I didn't split the diamond and square steps, I introduced a bug, which is the artifacts seen in some generations. This is because the square step / diamond step is looking for data that has yet to be generated. I will fix this when motivated to, or when I use the algorithm again.</p>
+<pre class="brush: as3">package avdw.generate.terrain.dimension.two {
+	import flash.geom.Point;
+	import com.gskinner.utils.Rndm;
+	import avdw.generate.terrain.dimension.MathUtil;
+
+	/**
+	 * ...
+	 * @author Andrew van der Westhuizen
+	 */
+	public class DiamondSquare {
+		/**
+		 *
+		 * @param	size
+		 * @param	smoothness
+		 * @param	seed
+		 * @return
+		 */
+		public static function generate(size:int, smoothness:Number = 1, seed:Number = Number.NaN):Vector.<Vector.<Number>> {
+			if (isNaN(seed)) {
+				seed = Math.random() * 0xFFFFFF;
+			}
+			smoothness = Math.max(Math.min(1, smoothness), 0);
+
+			var i:int, j:int;
+			var heightmap:Vector.<Vector.<Number>> = new Vector.<Vector.<Number>>();
+			var length:int = MathUtil.isPowerOfTwo(size) ? size : MathUtil.adjustUp(size);
+
+			// init
+			for (i = 0; i < length; i++) {
+				var rowData:Vector.<Number> = new Vector.<Number>();
+				for (j = 0; j < length; j++) {
+					rowData.push(0);
+				}
+				heightmap.push(rowData);
+			}
+
+			// setup
+			Rndm.seed = seed;
+			heightmap[0][0] = Rndm.random();
+			heightmap[0][length - 1] = Rndm.random();
+			heightmap[length - 1][length - 1] = Rndm.random();
+			heightmap[length - 1][0] = Rndm.random();
+
+			// new Point(row, col);
+			var toProcess:Vector.<Object> = new Vector.<Object>();
+			toProcess.push(new Point(0, 0), new Point(length - 1, length - 1), smoothness);
+
+			// process
+			var min:Number = Math.min(heightmap[0][0], heightmap[0][length - 1], heightmap[length - 1][length - 1], heightmap[length - 1][0]);
+			var max:Number = Math.max(heightmap[0][0], heightmap[0][length - 1], heightmap[length - 1][length - 1], heightmap[length - 1][0]);
+			while (toProcess.length != 0) {
+				var topLeft:Point = toProcess.shift() as Point;
+				var bottomRight:Point = toProcess.shift() as Point;
+				var offset:Number = toProcess.shift() as Number;
+				var midpoint:Point = new Point((topLeft.x + bottomRight.x) / 2, (topLeft.y + bottomRight.y) / 2);
+
+				heightmap[midpoint.x][midpoint.y] = ((heightmap[topLeft.x][topLeft.y] + heightmap[topLeft.x][bottomRight.y] + heightmap[bottomRight.x][bottomRight.y] + heightmap[bottomRight.x][topLeft.y]) / 4) + Rndm.float(-offset, offset);
+				heightmap[topLeft.x][midpoint.y] = (topLeft.x - (midpoint.x - topLeft.x) >= 0)
+					? ((heightmap[topLeft.x][topLeft.y] + heightmap[topLeft.x][bottomRight.y] + heightmap[midpoint.x][midpoint.y] + heightmap[topLeft.x - (midpoint.x - topLeft.x)][midpoint.y]) / 4) + Rndm.float(-offset, offset)
+					: ((heightmap[topLeft.x][topLeft.y] + heightmap[topLeft.x][bottomRight.y] + heightmap[midpoint.x][midpoint.y]) / 3) + Rndm.float(-offset, offset);
+				heightmap[midpoint.x][bottomRight.y] = (bottomRight.y + (bottomRight.y - midpoint.y) < size)
+					? ((heightmap[topLeft.x][bottomRight.y] + heightmap[bottomRight.x][bottomRight.y] + heightmap[midpoint.x][midpoint.y] + heightmap[midpoint.x][bottomRight.y + (bottomRight.y - midpoint.y)]) / 4) + Rndm.float( -offset, offset)
+					: ((heightmap[topLeft.x][bottomRight.y] + heightmap[bottomRight.x][bottomRight.y] + heightmap[midpoint.x][midpoint.y]) / 3) + Rndm.float(-offset, offset);
+				heightmap[bottomRight.x][midpoint.y] = (bottomRight.x + (bottomRight.x - midpoint.x) < size)
+					? ((heightmap[bottomRight.x][bottomRight.y] + heightmap[bottomRight.x][topLeft.y] + heightmap[midpoint.x][midpoint.y] + heightmap[bottomRight.x + (bottomRight.x - midpoint.x)][midpoint.y]) / 4) + Rndm.float( -offset, offset)
+					: ((heightmap[bottomRight.x][bottomRight.y] + heightmap[bottomRight.x][topLeft.y] + heightmap[midpoint.x][midpoint.y]) / 3) + Rndm.float(-offset, offset);
+				heightmap[midpoint.x][topLeft.y] = (topLeft.y - (midpoint.y - topLeft.y) >= 0)
+					? ((heightmap[bottomRight.x][topLeft.y] + heightmap[topLeft.x][topLeft.y] + heightmap[midpoint.x][midpoint.y] + heightmap[midpoint.x][topLeft.y - (midpoint.y - topLeft.y)]) / 4) + Rndm.float( -offset, offset)
+					: ((heightmap[bottomRight.x][topLeft.y] + heightmap[topLeft.x][topLeft.y] + heightmap[midpoint.x][midpoint.y]) / 3) + Rndm.float(-offset, offset);
+
+				min = Math.min(heightmap[midpoint.x][midpoint.y], min);
+				max = Math.max(heightmap[midpoint.x][midpoint.y], max);
+
+				// terminating condition (recursive is breaking algorithm wrap)
+				if (bottomRight.x - midpoint.x != 1) { // square so no need to check column diff
+					offset = offset / Math.pow(2, smoothness); // reduce randomness
+					toProcess.push(topLeft, midpoint, offset);
+					toProcess.push(new Point(topLeft.x, midpoint.y), new Point(midpoint.x, bottomRight.y), offset);
+					toProcess.push(midpoint, bottomRight, offset);
+					toProcess.push(new Point(midpoint.x, topLeft.y), new Point(bottomRight.x, midpoint.y), offset);
+				}
+			}
+
+			// clip length
+			heightmap = heightmap.slice(0, size);
+			for (i = 0; i < size; i++) {
+				heightmap[i] = heightmap[i].slice(0, size);
+			}
+
+			// normalize
+			var range:Number = max - min;
+			for (i = 0; i < size; i++) {
+				for (j = 0; j < size; j++) {
+					heightmap[i][j] = (heightmap[i][j] - min) / range;
+				}
+			}
+
+			return heightmap;
+		}
+
+	}
+
+}</pre>

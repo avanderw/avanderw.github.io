@@ -1,0 +1,43 @@
+---
+layout: post
+status: publish
+published: true
+title: Bitmap fonts in Flixel
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 153
+wordpress_url: http://avanderw.co.za/?p=153
+date: '2011-07-21 15:34:34 +0200'
+date_gmt: '2011-07-21 15:34:34 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags:
+- flixel
+---
+<p>I thought that bitmap fonts were like the ones that you install in your OS, not the&nbsp;true-type&nbsp;ones. I was a little surprised to find out that it was essentially a sprite-sheet. Pleasantly surprised that is. Artists can work on a font and leave it in the picture format. I can look at the sheet and get a good feel for how things are going to look. It removes some of the complexity that exists around fonts.</p>
+<p>You may have read my recent article on <a title="Animated Sprites in Flixel" href="http://avanderw.co.za/animated-sprites-in-flixel/">animated sprites and Flixel</a>, where I started playing with the library. I have been playing with this library as apposed to <a href="http://flashpunk.net/" target="_blank">FlashPunk</a>, which many seem to enjoy more. I like how <a href="http://flixel.org/" target="_blank">Flixel</a>&nbsp;does things and will take a look at FlashPunk in the future. For now however, this is how Flixel does bitmap fonts.</p>
+<p>It is <strong>important to note</strong> that this example is not pure Flixel, it has been extended with <a href="http://www.photonstorm.com/flixel-power-tools" target="_blank">Flixel Power Tools</a>. At the bottom of the previous link you will find a very nice example of what Flixel Power Tools can do. It has a very nostalgic feeling to it. Anyways onto the code.</p>
+<p><a href="http://avanderw.co.za/wp-content/uploads/2011/07/070.gif"><img class="aligncenter size-medium wp-image-154" title="070" src="http://avanderw.co.za/wp-content/uploads/2011/07/070-300x73.gif" alt="" width="300" height="73" /></a>Using the above image and the Flixel Power Tools extension to Flixel, you can get this result</p>
+<p>[swfobj src="http://avanderw.co.za/wp-content/uploads/2011/07/flixel-bitmapfont.swf" width="640" height="128" align="center" allowfullscreen="false" required_player_version="10"]</p>
+<p>all with just this code.
+<pre class="brush:as3">font = new FlxBitmapFont(
+	godFont, 16, 16, 
+	FlxBitmapFont.TEXT_SET10 +".?0123456789", // TEXT_SET10 is the characters [A-Z]
+	20, 0, 0);
+font.setText(
+	"using bitmap fonts\nin flixel is\nas easy as?. 123", 
+	true, 0, 8, 
+	FlxBitmapFont.ALIGN_CENTER, false);
+FlxDisplay.screenCenter(font); // center width
+
+add(font);
+// to modify text past this point
+// i used font.text = "new" to set the text</pre>
+<p>Essentially you are just linking characters to the locations in the sprite and then displaying text becomes very simple. I assume the characters are just&nbsp;evaluated&nbsp;to the index in the sprite sheet and viola. It seems very fast and it also takes away a lot of the grunt work involved. Visit the <a href="http://www.photonstorm.com/flxbitmapfont" target="_blank">documentation on FlxBitmapFont</a> if you want to know more.</p>

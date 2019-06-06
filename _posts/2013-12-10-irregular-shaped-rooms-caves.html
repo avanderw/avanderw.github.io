@@ -1,0 +1,162 @@
+---
+layout: post
+status: publish
+published: true
+title: Irregular Shaped Rooms / Caves
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1696
+wordpress_url: http://www.avanderw.co.za/?p=1696
+date: '2013-12-10 10:37:44 +0200'
+date_gmt: '2013-12-10 08:37:44 +0200'
+categories:
+- Procedural
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- algorithm
+- as3
+- toy
+- demo
+- water
+- snippet
+- cave
+- stalagmite
+- stalactite
+- room
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/irregular-shaped-room-2013-12-10.swf"><img class="alignright size-full wp-image-1709" title="Irregular shaped room" alt="Irregular shaped room" src="http://www.avanderw.co.za/wp-content/uploads/2013/11/thumbshot-2.jpg" width="340" height="248" /></a><br />
+I was looking at <a href="http://noelberry.ca/2013/06/procedural-generation-the-dungeons">procedural dungeon generation</a> and found a link on <a href="http://roguebasin.roguelikedevelopment.org/index.php?title=Irregular_Shaped_Rooms">how to generate irregular shaped rooms</a> which can be included in dungeon generation. The idea is to reduce the repetition of square rooms and give a more natural look to the dungeon. I decided to implement the algorithm and at the same time decided to look into generating more features for the cave or room structure. In this case I treated the irregular shape as a cave and added stalagmites and stalactites as features.</p>
+<h1>Algorithm</h1>
+<p style="text-align: center;"><img class="size-full wp-image-1710 aligncenter" alt="rooms1" src="http://www.avanderw.co.za/wp-content/uploads/2013/12/rooms1.jpg" width="360" height="90" /></p>
+<ul>
+<li>Given the room size, create rectangles at the edges outwards to enclose the area. E.g. one on the top, right, bottom, and left</li>
+<li>In each rectangle generate at least one random point, after which order the points
+<ul>
+<li>Order the points in the top rectangle by their X value, from low to high</li>
+<li>Order the points in the right rectangle by their Y value, from low to high</li>
+<li>Order the points in the bottom rectangle by their X value, for high to low</li>
+<li>Order the points in the left rectangle by their Y value, from high to low</li>
+</ul>
+</li>
+<li>Drawing from the first point through the points in order, draw a line to the last point and back to the first</li>
+<li>Run a flood fill on the centre point of the room to flesh out the irregular shape</li>
+</ul>
+<h2>Features</h2>
+<ul>
+<li>Adding additional points in each rectangles produces a more square shaped room</li>
+<li>Increasing the width of the rectangles will increase the variability of the shape edges</li>
+</ul>
+<h3>Water</h3>
+<ul>
+<li>Starting at the lowest row that contains an empty space</li>
+<li>Iterate upwards through X amount of rows filling all empty spaces with water</li>
+</ul>
+<p>Here, X is the width of the rectangles- which helps with visualising the algorithm</p>
+<h3>Stalagmites / Stalactites</h3>
+<p>This is a slight modification of the waterfall algorithm I used in a previous demo. I will describe the stalactite algorithm here, as the stalagmite is the reverse of the algorithm.</p>
+<ul>
+<li>Firstly, choose X amount of random locations which are empty that have a roof block above</li>
+<li>Grow each of those locations downwards for Y steps</li>
+</ul>
+<p>X is the amount of random stalactites you want. Y is the length of the stalactite being grown. It is best to have Y normally distributed around point Y or uniformly distributed between a low and high length.</p>
+<h1>Code</h1>
+<pre class="brush: as3">/**
+ * http://roguebasin.roguelikedevelopment.org/index.php?title=Irregular_Shaped_Rooms
+ * 
+ * @param	width
+ * @param	height
+ * @param	edge
+ * @param	minPoints
+ * @param	maxPoints
+ * @return
+ */
+public function makeIrregularSquareRoom(width:int, height:int, edge:int, minPoints:int = 1, maxPoints:int = 4):Vector.<Vector.>
+{
+	var rectangleTop:Rectangle = new Rectangle(edge, 0, width - 2 * edge, edge);
+	var rectangleRight:Rectangle = new Rectangle(width - edge, edge, edge, height - 2 * edge);
+	var rectangleBottom:Rectangle = new Rectangle(edge, height - edge, width - 2 * edge, edge);
+	var rectangleLeft:Rectangle = new Rectangle(0, edge, edge, height - 2 * edge);
+
+	var i:int = 0;
+	var drawCoords:Vector. = new Vector.();
+	drawCoords = drawCoords.concat(randomPointsInRectangle(rectangleTop, randomInteger(minPoints, maxPoints)).sort(function(p1:Point, p2:Point):Number{return p1.x - p2.x;}));
+	drawCoords = drawCoords.concat(randomPointsInRectangle(rectangleRight, randomInteger(minPoints, maxPoints)).sort(function(p1:Point, p2:Point):Number{return p1.y - p2.y;}));
+	drawCoords = drawCoords.concat(randomPointsInRectangle(rectangleBottom, randomInteger(minPoints, maxPoints)).sort(function(p1:Point, p2:Point):Number{return p2.x - p1.x;}));
+	drawCoords = drawCoords.concat(randomPointsInRectangle(rectangleLeft, randomInteger(minPoints, maxPoints)).sort(function(p1:Point, p2:Point):Number{return p2.y - p1.y;}));
+
+	var bmpData:BitmapData = new BitmapData(width, height, false, 1);
+	var lastPoint:Point = drawCoords[0];
+	for each (var point:Point in drawCoords)
+	{
+		drawFastLine(bmpData, lastPoint.x, lastPoint.y, point.x, point.y, 0);
+		lastPoint = point;
+	}
+	drawFastLine(bmpData, lastPoint.x, lastPoint.y, drawCoords[0].x, drawCoords[0].y, 0);
+
+	bmpData.floodFill(width >> 1, height >> 1, 0);
+
+	var room:Vector.<Vector.> = createIntVectorMatrix(height, width, 0);
+	for (var y:int = 0; y < height; y++) 
+		for (var x:int = 0; x < width; x++) 
+			room[y][x] = (bmpData.getPixel(x, y));
+	bmpData.dispose();
+
+	return room;
+}
+
+public function addCaveStalactites(map:Vector.<Vector.>, numSpawns:int = 16, low:int = 2, high:int = 10, seed:int = 0):Vector.<Vector.>
+{
+	var x:int, y:int;
+	var height:int = map.length;
+	var width:int = map[0].length;
+	seed = seed == 0 ? Math.random() * int.MAX_VALUE : seed;
+	var rng:SeededRNG = new SeededRNG(seed);
+
+	// spawn locations
+	var spawns:Vector. = new Vector.();
+	while (spawns.length < numSpawns) 	{ 		x = rng.integer(width); 		y = rng.integer(height); 		 		if (map[y][x] == 0 &amp;&amp; y - 1 >= 0 &amp;&amp; map[y - 1][x] == 1)
+			spawns.push(new Point(x, y));
+	}
+
+	// grow spawns
+	var length:int;
+	while (spawns.length != 0)
+	{
+		var loc:Point = spawns.pop();
+		length = rng.integer(low, high);
+		for (var i:int = 0; i < length; i++)
+		{
+			if (map[loc.y + i][loc.x] == 0)
+				map[loc.y + i][loc.x] = 3;
+			else
+				break;
+		}
+	}
+
+	return map;
+}
+
+public function fillCaveWithWater(map:Vector.<Vector.>, depth:int = 15):Vector.<Vector.>
+{
+	var x:int, y:int;
+	var height:int = map.length;
+	var width:int = map[0].length;
+
+	var lowestPoint:int;
+	for (y = height - 1; y > 0; y--)
+		for (x = 0; x < width; x++) 			if (lowestPoint == 0 &amp;&amp; map[y][x] == 0) 				lowestPoint = y; 	 	for (y = lowestPoint; y > lowestPoint - depth; y--)
+		for (x = 0; x < width; x++)
+			if (map[y][x] == 0)
+				map[y][x] = 2;
+
+	return map;
+}</pre>
+<h1>Gallery</h1>
+<p>[gallery ids="1700,1701,1702,1703,1704,1705,1706,1707" orderby="rand"]</p>

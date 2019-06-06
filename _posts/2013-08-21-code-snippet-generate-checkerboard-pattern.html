@@ -1,0 +1,67 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Code Snippet: Generate Checkerboard Pattern'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1619
+wordpress_url: http://www.avanderw.co.za/?p=1619
+date: '2013-08-21 16:22:49 +0200'
+date_gmt: '2013-08-21 14:22:49 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+- Code Snippets
+tags:
+- as3
+- actionscript
+- snippet
+- bitmapdata
+- checkerboard
+- background
+---
+<p><img class="wp-image-1620 alignright" alt="checkerboard" src="http://www.avanderw.co.za/wp-content/uploads/2013/08/checkerboard.jpg" width="403" height="292" /></p>
+<p style="text-align: justify;">Pure solid backgrounds are getting just a little too plain for me of late. The alternative is to provide a pattern. Now you can use an image- where the size of the background determines the file size (not cool) or you could just procedurally generate one (file size determined by code size).</p>
+<p style="text-align: justify;">Here is a snippet of code to generate a checkerboard pattern, as seen to the left. The code works by simply providing the size of the area to fill. There are further optional parameters to control the cell size (32x32) and colors (<code></code><code></code><code>0xffe7e6e6,&nbsp;</code><code></code><code>0xffd9d5d5)</code>.</p>
+<p style="text-align: justify;">On a side note, <a href="http://www.wilton.com/idea/Chocolate-Checkerboard-Cake">I found this awesome cake</a> whilst googling the correct use of the word checkerboard.</p>
+<pre class="brush: as3">package net.avdw.generate
+{
+	import flash.display.BitmapData;
+	import flash.geom.Rectangle;
+
+	public function generateCheckerboard(width:int, height:int, cellWidth:int = 32, cellHeight:int = 32, color1:uint = 0xffe7e6e6, color2:uint = 0xffd9d5d5):BitmapData
+	{
+		var bitmapData:BitmapData = new BitmapData(width, height);
+		var numRows:int = Math.ceil(height / cellHeight);
+		var numCols:int = Math.ceil(width / cellWidth);
+
+		var clipRect:Rectangle = new Rectangle(0, 0, cellWidth, cellHeight);
+
+		var y:int;
+		var x:int;
+		var lastColor:uint = color1;
+
+		for (y = 0; y < numRows; y++)
+		{
+			for (x = 0; x < numCols; x++)
+			{
+				clipRect.y = y * cellHeight;
+				clipRect.x = x * cellWidth;
+				bitmapData.fillRect(clipRect, lastColor);
+
+				lastColor = (lastColor == color1) ? color2 : color1;
+				if (x + 1 == numCols &amp;&amp; x % 2 != 0)
+					lastColor = (lastColor == color1) ? color2 : color1;
+			}
+		}
+
+		return bitmapData;
+	}
+
+}</pre>

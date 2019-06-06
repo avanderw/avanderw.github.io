@@ -1,0 +1,47 @@
+---
+layout: post
+status: publish
+published: true
+title: Any Database Table Should Have All of These
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 115
+wordpress_url: http://avanderw.co.za/?p=115
+date: '2011-07-19 14:39:40 +0200'
+date_gmt: '2011-07-19 14:39:40 +0200'
+categories:
+- Techie talk
+tags:
+- database
+- design
+---
+<p>Okay, maybe not all of them. Lookup tables can be excused, although I think that they could even benefit from these extra columns.</p>
+<ul>
+<li>ID: Data should always be uniquely identifiable</li>
+<li>Standard Auditing Columns</li>
+<ul>
+<li>Created Date: So we can track the age of the data</li>
+<li>Modified Data: So we can track the last usage of the data</li>
+<li>Modified By: So we know who edited the data last</li>
+</ul>
+<li>Tag: Logical grouping of data, comma delimited</li>
+</ul>
+<p><span class="Apple-style-span" style="font-family: Vegur, sans-serif; font-size: 16px; font-weight: 200; line-height: 18px;">The last one is a very obscure one I know. Let me explain:</span></p>
+<p>I have worked on and designed a few systems where we would build certain information into the data model to cater for&nbsp;categories, sections, subsections etc. Mostly this was to be able to group the data in some form that was&nbsp;predominantly&nbsp;used only by developers. Examples would be:</p>
+<ul>
+<li>Having data grouped by year or semester at a Higher Education institution</li>
+<li>Having a&nbsp;hierarchy&nbsp;for users and roles</li>
+<li>Creating calendars in an hierarchy or events having parents, etc</li>
+<li>Further subdivision of a tutorial class into groups of six</li>
+<li>Recurring events and allowing for modification of one to update the rest</li>
+<li>Many more...</li>
+</ul>
+<p>I must admit, that for the examples above, I still want to embed this into structure and most probably would. What was nice about the recent system that I have recently dug into, is that they through out all of this. They decided to not logically group data, as I am sure their clients did it differently for each institution.</p>
+<p>They decided to tag their data, only through developer interfaces. This means that when I upload data or update data programatically, I can tag it. If I make a mistake, I delete that tag of data. It can be linked to all the data e.g. users, course, groups, roles, etc, that I did the update on. I can link data that is unrelated. I can make connections in the data where I need them. It is extremely handy way of doing it IMHO and it is unseen and unknown by the user.</p>
+<p>This might be trivial to some... I think that this is a nice feature to have in database design, as it helps with scope creep as well as changing requirements, integration, enhancements, etc.</p>

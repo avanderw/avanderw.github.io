@@ -1,0 +1,56 @@
+---
+layout: post
+status: publish
+published: true
+title: Potential Fields, Influence Maps & Behavioral Trees
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 697
+wordpress_url: http://www.avanderw.co.za/?p=697
+date: '2012-02-24 11:42:12 +0200'
+date_gmt: '2012-02-24 09:42:12 +0200'
+categories:
+- Techie talk
+tags:
+- potential fields
+- influence maps
+- behavioral trees
+- navier-stokes
+- fluid simulation
+- concept
+---
+<p>I have been reading up on Potential Fields,&nbsp;Influence&nbsp;Maps and Behavioral Trees for the past week. What I have determined so far is that:</p>
+<ul>
+<li>Potential Fields are used for path finding</li>
+<li>Influence Maps are used for determining information within&nbsp;zones (risk, historical, rainfall, fire hazard, traffic, anything really)</li>
+<li>Behavioral&nbsp;Trees are used to organise and control states of an agent</li>
+</ul>
+<p>Behavioral Trees are essentially an evolution on Hierarchical&nbsp;Finite&nbsp;State Machines (HFSM's). I would like to play around with implementing these ideas in code. It will be difficult to manage the time between MBA, work, and this. I do feel that it is possible. Essentially I will start with developing the path finding using potential fields to get to goals. I will then implement the behavioral trees to assist in identifying what these goals will be and how they will transition between states given priority and then I will go on to implementing some form of an influence map to assist the agent in making better decisions in the behavioral tree.</p>
+<p>Here are the three resources I am going to use as a base:</p>
+<ul>
+<li>Potential Fields - <a href="http://aigamedev.com/open/tutorials/potential-fields/">http://aigamedev.com/open/tutorials/potential-fields/</a></li>
+<li>Behavioral Tress - <a href="http://altdevblogaday.com/2011/02/24/introduction-to-behavior-trees/">http://altdevblogaday.com/2011/02/24/introduction-to-behavior-trees/</a>&nbsp;(although I am not going to worry about the data oriented design for now)</li>
+<li>Influence Maps -&nbsp;<a href="http://aigamedev.com/open/tutorial/influence-map-mechanics/">http://aigamedev.com/open/tutorial/influence-map-mechanics/</a></li>
+</ul>
+<p>I will blog my progress as I achieve certain milestones or when something interesting happens. I have been meaning to look into potential fields for some time now and hope that this will&nbsp;kick-start&nbsp;me to actually give it some attention.</p>
+<p>Potential Field Posts:</p>
+<ul>
+<li><a title="Potential Fields: Movement" href="http://www.avanderw.co.za/potential-fields-movement/">Movement</a></li>
+<li><a title="Potential Fields: Navigation" href="http://www.avanderw.co.za/potential-fields-navigation/">Navigation</a></li>
+<li><a title="Potential Fields: Multiple Agents" href="http://www.avanderw.co.za/potential-fields-multiple-agents/">Multiple Agents</a></li>
+<li><a title="Potential Fields: Multiple Agents, Multiple Goals" href="http://www.avanderw.co.za/potential-fields-multiple-agents-multiple-goals/">Multiple Agents with Multiple Goals</a></li>
+</ul>
+<p>Influence Map Posts:</p>
+<div>
+<ul>
+<li><a title="Influence Mapped Fire Propagation Simulation" href="http://www.avanderw.co.za/influence-mapped-fire-propagation-simulation/">Fire Propagation</a></li>
+</ul>
+</div>
+<p>On a side note: I want to also fiddle with some <a href="http://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations" target="_blank">Navier-Stokes&nbsp;for fluid simulation</a>. Here is an <a href="http://code.google.com/p/in-spirit/wiki/FluidSolver" target="_blank">actionscript port of a fluid solver</a> using&nbsp;Navier-Stokes based on this academic paper <a href="http://www.dgp.toronto.edu/people/stam/reality/Research/pdf/GDC03.pdf" rel="nofollow" target="_blank">"Real-Time Fluid Dynamics for Games"</a>.</p>
+<p>&nbsp;</p>

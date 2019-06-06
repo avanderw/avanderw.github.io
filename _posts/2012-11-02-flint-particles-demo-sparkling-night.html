@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Flint particles demo - Sparkling night
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1129
+wordpress_url: http://www.avanderw.co.za/?p=1129
+date: '2012-11-02 14:07:35 +0200'
+date_gmt: '2012-11-02 12:07:35 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+- Experiments
+tags:
+- particle
+- flint
+- fun
+---
+<p><a href="http://www.avanderw.co.za/wp-content/uploads/swf/Playground.Sparkling.Night.swf"><img class="size-full wp-image-1152 alignright" title="Playground.Sparkling.Night-Screenshot" alt="" src="http://www.avanderw.co.za/wp-content/uploads/2012/10/Playground.Sparkling.Night-Screenshot1.png" width="340" height="247" /></a></p>
+<p style="text-align: justify;">I have been wanting to look into <a title="Flint particles for flash" href="http://flintparticles.org/">flint particles</a> for some time now. I have tried to use the library for some other demos, however at the time it felt like I would struggle to get into the inner workings of the library. I wanted to push some particles around with gravitational wells.</p>
+<p style="text-align: justify;">The flint library had a demo for <a title="Gravity wells demo on the flint website" href="http://flintparticles.org/examples/gravity-wells">gravity-wells</a> and there is a similar effect for anti-gravity physics. After a bit of fiddling I found that some of the physics effects could be attached to the mouse.</p>
+<p style="text-align: justify;">The <a href="https://github.com/avanderw/as3-ancient-code/blob/develop/src/avdw/playground/sparklingnight/Main.as">code for this demo</a> has been uploaded to github due to popular demand.</p>
+<h2 style="text-align: justify;">Procedural</h2>
+<p style="text-align: justify;">Everything in this demo is&nbsp;procedural and placed randomly. The image that looks like a planet is code that came from the <a title="Smoke Effect (Moku Moku)" href="http://www.avanderw.co.za/smoke-effect-moku-moku/">smoke demo</a> I posted a while back. The particles spawn randomly on the canvas and avoid the planets by making use of anti-gravity wells. Yes, this is not realistic portrayal of the galaxy! Who cares? If you look closely, you will be able to see that the particles are pulled towards another type of image. That image is supposed to depict a black hole. This image is essentially a inverse of the planet graphic. The black holes attract the particles with the gravity-well physics and they have a dead zone in their center to kill the particles.</p>
+<h2 style="text-align: justify;">Particle tracking</h2>
+<p style="text-align: justify;">There are five particles that are tracked with a target. The reason for this is that I wanted to know if I could identify and interact with the particles managed by the flint particle-system. I also hid the mouse to remind myself that I can actually do that and replaced it with the rings. The particles react with the mouse and try to avoid the mouse, just like with the planets. The only difference being that the mouse can move.</p>
+<h2 style="text-align: justify;">The twinkle effect</h2>
+<p style="text-align: justify;">The twinkle effect is borrowed from <a title="Fireworks Particle Effect" href="http://www.avanderw.co.za/fireworks-particle-effect/">another demo</a> that I did a while back. It essentially draws the particles to a canvas four times smaller than the particle canvas, without pixel snapping enabled. This forces the pixels to disappear if they do not fit on the smaller canvas. Then when you scale the bitmap back up to the size of the original canvas, only some of the particles remain and they are blurred, giving the sparkle effect.</p>

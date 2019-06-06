@@ -1,0 +1,69 @@
+---
+layout: post
+status: publish
+published: true
+title: Isometric Waves
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 1730
+wordpress_url: http://www.avanderw.co.za/?p=1730
+date: '2014-01-06 10:51:37 +0200'
+date_gmt: '2014-01-06 08:51:37 +0200'
+categories:
+- Flash, actionscript, flex &amp; AIR
+tags:
+- processing
+- as3
+- port
+- isometric
+- performance
+---
+<p style="text-align: justify;"><a href="http://www.avanderw.co.za/wp-content/uploads/swf/isometric-waves.swf"><img class="alignright size-full wp-image-1732" alt="Isometric Waves" src="http://www.avanderw.co.za/wp-content/uploads/2014/01/thumbshot-4.jpg" width="340" height="248" /></a><br />
+Whilst looking into some processing demos over at <a href="http://openprocessing.org/">openprocessing.org</a> I ran into this <a href="http://www.openprocessing.org/sketch/5671">isometric wave sketch</a>. Each isometric tile's height is determined by the distance it is from the center of the grid fitted to a sine curve. Animation is achieved by adding time to the distance. All I did was convert this to actionscript and add in some parameters to control the animation. The performance is not great. I have seen a modification of this on openprocessing that draws&nbsp;<a href="http://www.openprocessing.org/sketch/64384">many more isometric tiles</a> without the performance hit that actionscript takes when making all those draw calls. The amount of code is minimal which makes this an excellent base demo for testing performance in other languages. I intend to try this one out in python, javascript and java in the future.</p>
+<h1>Parameters</h1>
+<ul>
+<li><strong>Period</strong>: The period of the sine wave</li>
+<li><strong>Speed</strong>: The magnitude of the time-shift of the sine curve</li>
+<li><strong>Base</strong>: The depth of the base of all isometric tiles</li>
+<li><strong>Size</strong>: The width and depth of the demo specified in tiles</li>
+<li><strong>Block Size</strong>: The size of each isometric tile</li>
+</ul>
+<p>The reason the <strong>Size</strong> is capped at 10 is for performance reasons.</p>
+<h1>Code</h1>
+<pre class="brush: as3">private function render(e:Event):void
+{
+	var zt:Number, zm:Number, xt:Number, xm:Number;
+	var y:int;
+
+	a -= settings.speed;
+	bmp.bitmapData.fillRect(bmp.bitmapData.rect, 0xFFFFFF);
+	for (var x:int = -settings.size; x < settings.size; x++)
+	{
+		for (var z:int = -settings.size; z < settings.size; z++) 		{ 			y = 24 * Math.cos(settings.period * distance(x, z, 0, 0) + a); 			 			xm = x * settings.blockSize - (settings.blockSize >> 1);
+			xt = x * settings.blockSize + (settings.blockSize >> 1);
+			zm = z * settings.blockSize - (settings.blockSize >> 1);
+			zt = z * settings.blockSize + (settings.blockSize >> 1);
+
+			iso1.x = xm - zm + halfw;
+			iso1.y = (xm + zm) * .5 + halfh;
+			iso2.x = xm - zt + halfw;
+			iso2.y = (xm + zt) * .5 + halfh;
+			iso3.x = xt - zt + halfw;
+			iso3.y = (xt + zt) * .5 + halfh;
+			iso4.x = xt - zm + halfw;
+			iso4.y = (xt + zm) * .5 + halfh;
+
+			bmp.bitmapData.draw(quad(iso2.x, iso2.y - y, iso3.x, iso3.y - y, iso3.x, iso3.y + settings.base, iso2.x, iso2.y + settings.base, 0, c2));
+			bmp.bitmapData.draw(quad(iso3.x, iso3.y-y, iso4.x, iso4.y - y, iso4.x, iso4.y + settings.base, iso3.x, iso3.y + settings.base, 0, c3));
+
+			c1 = combineARGB(1, (210 + y) / 255);
+			bmp.bitmapData.draw(quad(iso1.x, iso1.y - y, iso2.x, iso2.y - y, iso3.x, iso3.y - y, iso4.x, iso4.y - y, 0, c1));
+		}
+	}
+}</pre>
