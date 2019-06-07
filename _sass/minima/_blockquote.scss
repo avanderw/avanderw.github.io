@@ -1,0 +1,25 @@
+/**
+ * Blockquotes
+ */
+body blockquote {
+  margin-bottom: 20px;
+}
+blockquote {
+  font-style: italic;
+  font-family:Georgia, serif;
+  font-size: 17px;
+  border-top: 3px solid #333;
+  border-bottom: 3px solid #333;
+  padding: 10px 20px 10px 50px;
+}
+blockquote:before {
+  font-style: italic;
+  font-family: Georgia, serif;
+  font-size: 90px;
+  height: 90px;
+  margin-left: -60px;
+  margin-top: -25px;
+  content: "\201f";
+  display: block;
+  float: left;
+}
