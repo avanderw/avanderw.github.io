@@ -63,7 +63,8 @@ Share your personal story. How did you get into your industry? What experience a
 
 Creating and distributing free content is one of the most effective ways to build your brand and earn the trust of your target audience. Instead of trying to convince your audience that you can help them, you create content that *actually* helps them. This builds trust and helps to position you as an expert and an authority in your industry.
 
-> Identify some core themes in which you strongly believe and build a series of content around that and then keep hammering it home. *~ some author*
+> Identify some core themes in which you strongly believe and build a series of content around that and then keep hammering it home. 
+> *some author*
 
 ### Focus on quality & consistency
 
