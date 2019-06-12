@@ -13,6 +13,65 @@ What skills have you acquired throughout your life? What training, credentials, 
 
 What industries and topics are you most interested in? What are you passionate about?
 
+###### bash
+
+```bash
+~ $ git clone https://github.com/avanderw/avanderw.github.io
+~ $ cd avanderw.github.io
+~ $ echo "Hello World" > index.html
+~ $ git add --all
+~ $ git commit -m "Initial commit"
+~ $ git push -u origin master
+```
+
+###### java
+
+```java
+package za.co.entelect.challenge;
+
+import com.google.gson.Gson;
+import za.co.entelect.challenge.command.Command;
+import za.co.entelect.challenge.entities.GameState;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    private static final String ROUNDS_DIRECTORY = "rounds";
+    private static final String STATE_FILE_NAME = "state.json";
+
+    /**
+     * Read the current state, feed it to the bot, get the output and print it to stdout
+     *
+     * @param args the args
+     **/
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Gson gson = new Gson();
+        Random random = new Random(System.nanoTime());
+
+        while (true) {
+            try {
+                int roundNumber = sc.nextInt();
+
+                String statePath = String.format("./%s/%d/%s", ROUNDS_DIRECTORY, roundNumber, STATE_FILE_NAME);
+                String state = new String(Files.readAllBytes(Paths.get(statePath)));
+
+                GameState gameState = gson.fromJson(state, GameState.class);
+                Command command = new Bot(random, gameState).run();
+
+                System.out.println(String.format("C;%d;%s", roundNumber, command.render()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
 ## Core values & beliefs
 
 What are some of your most important core values? What do you believe in? What do you stand for? What do you stand against?
