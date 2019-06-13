@@ -5,13 +5,12 @@ permalink: /about/
 ---
 
 Hey, I'm Andrew. 
-I am stupidly powerful and act as a exceptional catalyst. 
+I am an exceptional catalyst and am stupidly powerful. 
 What you see is what you get... and I get shit done!
 
-I love
-Programming
-My dogs
-My family
+I love programming, my family and games. 
+I started programming on a XT writing BASIC.
+I work in IT serving the needs of others.
 
 Thankful
 
