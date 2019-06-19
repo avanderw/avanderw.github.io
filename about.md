@@ -10,25 +10,15 @@ What you see is what you get... and I get shit done!
 
 I love programming, my family and games. 
 I started programming on a XT writing BASIC.
-I work in IT serving the needs of others.
+I am not really the dog type. However, I truly love my two pekingese; almost more than my daughter.
+I aim to play board games once a week with friends.
 
-Thankful
+I like to believe that I work for myself, do what I choose and care about others.
+My corporate job allows me the freedom to be who I choose to be.
+I am who I am because of the choices I have made not the consequence of my circumstances.
+I will often challenge your thinking in an attempt to broaden horizons and open doors.
+I center myself by writing nybble's of code.
 
-How can I serve you?
+Find out more about my career on [linkedin](https://www.linkedin.com/in/avanderw/)
 
-Find out more about my career on [linkedin]()
-
-Find out more about my about my code on [github]() 
-
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+Find out more about my about my nybbles on [github](https://github.com/avanderw) 
