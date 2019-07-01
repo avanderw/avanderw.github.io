@@ -13,15 +13,17 @@ What skills have you acquired throughout your life? What training, credentials, 
 
 What industries and topics are you most interested in? What are you passionate about?
 
+Talk about what I do at work. Successfully
+
 ###### bash
 
 ```bash
-~ $ git clone https://github.com/avanderw/avanderw.github.io
-~ $ cd avanderw.github.io
-~ $ echo "Hello World" > index.html
-~ $ git add --all
-~ $ git commit -m "Initial commit"
-~ $ git push -u origin master
+$ git clone https://github.com/avanderw/avanderw.github.io
+$ cd avanderw.github.io
+$ echo "Hello World" > index.html
+$ git add --all
+$ git commit -m "Initial commit"
+$ git push -u origin master
 ```
 
 ###### java
@@ -74,7 +76,19 @@ public class Main {
 ```
 ## Core values & beliefs
 
-What are some of your most important core values? What do you believe in? What do you stand for? What do you stand against?
+### Values
+
+
+
+- Open-mindedness
+- Honesty
+- Efficiency
+- Courage
+- Challenge
+
+### Beliefs
+
+What do you believe in? What do you stand for? What do you stand against?
 
 ## Your brand vision
 
@@ -106,17 +120,13 @@ What is their desired future? What are their dreams, goals, and aspirations?
 
 What are they struggling with? What is preventing them from achieving their goals?
 
-## What do you do?
+## What I do?
 
 Your answer to this question is your **value proposition**. What is the value that you provide to your clients in exchange for charging them?
 
 ## How do you do it?
 
 Give your process, product, or service a unique name. When you give it a unique name, it immediately stands out from any competing offers that promise the same result.
-
-## About page
-
-Share your personal story. How did you get into your industry? What experience and credential do you have? Who do you help? How do you help them? Why do you do what you do?
 
 ## Have a content strategy
 
