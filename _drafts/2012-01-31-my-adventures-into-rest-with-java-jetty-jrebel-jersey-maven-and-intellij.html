@@ -1,0 +1,261 @@
+---
+layout: post
+status: publish
+published: true
+title: My Adventures into REST with Java, Jetty, JRebel, Jersey, Maven, and IntelliJ
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 570
+wordpress_url: http://www.avanderw.co.za/?p=570
+date: '2012-01-31 15:20:01 +0200'
+date_gmt: '2012-01-31 13:20:01 +0200'
+categories:
+- Techie talk
+- Java
+tags:
+- academic
+- jersey
+- jrebel
+- intellij
+- rest
+- services
+- jetty
+- maven
+---
+<p>Okay, so last week I read through this book on <a href="http://www.goodreads.com/book/show/11056588-rest-in-practice">REST in practice by Ian Robinson</a>. It was a real eye-opener. The book goes through CRUD services and then takes it a step further by using AtomPub for collections and history tracking for implementing a publish-subscribe protocol. I originally passed of the idea as stupid or not worth looking into, but I gave that section a go and have been converted. I have been tasked with redoing the service (now seen as resource) architecture for another project and was wondering how I could get it done most effectively.</p>
+<p>I was first very reluctant to do the research wondering what was wrong with traditional SOA and SOAP. Briefly put, there is nothing wrong with it, but there are nicer ways to achieve simple things which are more redundant to change and extension. The way proposed in the book really fits an agile development approach better. During my research into how to do things the easiest way, I was questioning everything, even <a href="http://stackoverflow.com/questions/8938752/why-use-a-framework-for-restful-services-in-java-instead-of-vanilla-servlets">the value in using certain libraries</a>.</p>
+<p>After much consideration and discussion, the following POC was put together:</p>
+<ul>
+<li><a href="http://www.jetbrains.com/idea/">IntelliJ IDE</a>: JDeveloper 10g is really starting to age quickly and I have experience with eclipse. I have also heard amazing things about IntelliJ, hence the decision to use this IDE for the POC.</li>
+<li><a href="http://jetty.codehaus.org/jetty/">Jetty Webserver</a>: It can be embedded into the test code, boots REALLY &nbsp;fast and is broken down into only the components you need, very lightweight.</li>
+<li><a href="http://zeroturnaround.com/jrebel/">JRebel plugin</a>: I hate having to wait for redeploys to servers, or packaging of EARs or WARs for deployment and then going through the process of deploying for each change. Stopping and starting servers is also not on!</li>
+<li><a href="http://jersey.java.net/">Jersey REST</a>: I was reluctant to use it at first, but after reading the REST in Practice book, I decided to give it a go and now truly understand how much it actually does for me. It is not just URI templating.</li>
+<li><a href="http://mvnrepository.com/">Maven</a>: Once again, was not a decision to be taken likely, but Jersey and Jetty both make heavy use of maven and the integration with IntelliJ is phenomenal.</li>
+</ul>
+<h3>Configuring IntelliJ</h3>
+<p>This is the easiest step. Firstly download IntelliJ and install it. It is a licensed IDE, but you can test it out for 30 days. Mine has 4 days left on the trial. I went with all the standard options for the IDE as I was testing it out. I did make sure that I had the J2EE stuff enabled though. You will see loads of options that can be set, feel free to fiddle.</p>
+<h3>Configuring JRebel</h3>
+<p>There is no separate install for JRebel. You can get the plugin by installing via the plugin manager within the IDE. There are literally loads of plugins to choose from, but we are only interested in the JRebel plugin. Once again you will have to register for a JRebel license. It too has a 30 day trial and you should get one, this is by far the coolest thing here. My license expires in 5 days.</p>
+<h3>Configuring Maven</h3>
+<p>There is really nothing you need to do here except start a new Maven module in IntelliJ.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-01.jpg"><img class="aligncenter size-full wp-image-571" title="rest-01" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-01.jpg" alt="" width="729" height="522" /></a></p>
+<p>You should then be starting with the following blank project</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-02.jpg"><img class="aligncenter size-full wp-image-572" title="rest-02" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-02.jpg" alt="" width="722" height="361" /></a></p>
+<p>Now I know that you can create the projects from archetypes&hellip; this is how I went about it.</p>
+<h3>Configuring Jetty</h3>
+<p>The largest difficulty I had was actually figuring out how to get all the correct modules for Jetty. Also I was not really familiar with Maven, so it took some time to find out where to get everything. The documentation for Jetty is good, if you can find it. Also, my needs were very specific. I did not want to run Jetty using maven to start it. I wanted a main method that would boot a simple server that would read a web.xml for its configuration, to get the web.xml &ndash; I right-clicked on the project and added framework support for a web application.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-03.jpg"><img class="aligncenter size-full wp-image-573" title="rest-03" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-03.jpg" alt="" width="422" height="248" /></a></p>
+<p>I found out where you can get the information for dependencies in maven at mvnrepositories and here is the page for <a href="http://mvnrepository.com/artifact/org.mortbay.jetty">maven Jetty dependencies</a>. If you include the following into your pom, IntelliJ will tell you that the modules do not exist and ask if it can import them.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-04.jpg"><img class="aligncenter size-full wp-image-574" title="rest-04" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-04.jpg" alt="" width="346" height="389" /></a></p>
+<p>The reason I am not providing the textual representation, is that these version will become outdated and you should learn to use the mvnrespository to get your dependencies. It really does make life easier, so why the four dependencies?</p>
+<ul>
+<li>jetty-server is the bare bones and allows you to host html pages</li>
+<li>jetty-webapp is the module I included to allow me to configure jetty with a web.xml file, which should be easier to migrate between servers, as nothing is specific to jetty in this POC.</li>
+<li>jetty-servlet was required for me to test the basic servlet case to know that I actually configured jetty correctly, it is also used for Jersey as we shall shortly see.</li>
+<li>jsp-2.1-glassfish was more of me being pedantic than anything else. I configured my web.xml to have a welcome page which was a jsp and not html and was irritated that there was no support for it in jetty. The initial included module I used did not work, this one does.</li>
+</ul>
+<p>The nicest thing about jetty is that, if you want extra functionality, all you have to do is include the dependencies and you will have it when you next boot the server. No configuration necessary besides the include. The added bonus is that IntelliJ handles all of this really neatly through highlighting libraries in your pom that are not there and, with your permission, auto acquiring them.</p>
+<h3>Configuring Jersey</h3>
+<p>Lastly, here is the jersey information in the pom.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-05.jpg"><img class="aligncenter size-full wp-image-575" title="rest-05" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-05.jpg" alt="" width="348" height="300" /></a></p>
+<p>Should be self-explanatory, the jersey-json module is included because I still want to test the application/xml, application/json <a href="http://www.theserverlabs.com/blog/2009/01/12/rest-web-services-with-jaxb-jax-rs-and-sun-jersey/">auto conversion when using jaxb, as discussed at theserverlabs.com</a>. <a href="http://mvnrepository.com/artifact/com.sun.jersey">The mvnrespository for Jersey</a> has more modules you can include if you so wish. I have this repository linked in my pom, although I got it from the Jersey documentation, I do not think it is needed. I am just including it here for brevity.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-06.jpg"><img class="aligncenter size-full wp-image-576" title="rest-06" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-06.jpg" alt="" width="570" height="170" /></a></p>
+<h3>Booting the server</h3>
+<p>There is a lot of documentation for embedding the server within code for quick development cycles. Here is the easiest configuration I found to work. I will not be packing the resources into a war when developing, it takes time, complicates jrebel, and all for no benefit.</p>
+<pre class="brush: java">public class StartJetty {
+    public static void main(String[] args) throws Exception {
+        Server server = new Server(8081);
+        WebAppContext context = new WebAppContext();
+        context.setDescriptor("web/WEB-INF/web.xml");
+        context.setResourceBase("web");
+        context.setContextPath("/");
+        context.setParentLoaderPriority(true);
+        server.setHandler(context);
+        server.start();
+        server.join();
+
+    }
+}</pre>
+<p>The base path when you run anything in IntelliJ is the project directory. Thus relatively you start referencing files from there (web.xml). I use port 8081 because there is a lot of competition for that port on my machine (8081 as well actually). I like to keep the embedded server with my test code, as it will not be deployed to production.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-07.jpg"><img class="aligncenter size-full wp-image-577" title="rest-07" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-07.jpg" alt="" width="213" height="93" /></a></p>
+<p>What is really nice is that IntelliJ automatically includes everything in the classpath for the classloaders to use without you needing to do anything, so separating it out is really easy. Now that you can start your server, how do you configure it?</p>
+<h3>Configuring by using the web.xml</h3>
+<p>Here is an <a href="http://wiki.metawerx.net/wiki/Web.xml">excellent resource for reference on the web.xml file</a>. Starting with the basics, let us configure the server to host a html page. The page needs to be in the root of the web folder for this configuration. Here is the snippet from the web.xml file to achieve this.</p>
+<pre class="brush: xml"><welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+</welcome-file-list></pre>
+<p>And here is what is contained in the html file.</p>
+<pre class="brush: html"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        ">
+<html>
+<head>
+    <title>HTML Page</title>
+</head>
+<body>
+<h1>HTML Page</h1>
+</body>
+</html></pre>
+<h3>Test the basic server is working</h3>
+<p>To test the basic jetty server module we will boot the server and go to the URI <a href="http://localhost:8081/">http://localhost:8081</a>. You should see now how quickly jetty boots, even with the additional modules added. You should be seeing the following when you navigate to the URI.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-08.jpg"><img class="aligncenter size-full wp-image-578" title="rest-08" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-08.jpg" alt="" width="294" height="171" /></a></p>
+<h3>Test the JSP module is working</h3>
+<p>Now to test that the JSP module we included for jetty is actually working. Change your web.xml file to look like this.</p>
+<pre class="brush: xml"><welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+</welcome-file-list></pre>
+<p>The JSP page code is the following and also in the root of the web directory.</p>
+<pre class="brush: html"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+  <head>
+    <title>JSP Page</title>
+  </head>
+  <body>
+  <h1>Index JSP Page WOOT! JSPs work!</h1>
+  </body>
+</html></pre>
+<p>You will have to restart the server, as you have changed the config for the server, just kill it and start it again (there is an optimisation you can make here). You should be seeing something along the lines of this.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-09.jpg"><img class="aligncenter size-full wp-image-579" title="rest-09" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-09.jpg" alt="" width="534" height="135" /></a></p>
+<p>Your web directory should be looking something like this now.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-10.jpg"><img class="aligncenter size-full wp-image-580" title="rest-10" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-10.jpg" alt="" width="159" height="106" /></a></p>
+<h3>Test the servlet module is working</h3>
+<p>So let us make sure that jetty can handle servlets before we try to even consider looking into jersey (it is actually easy). Here is some code for the simplest vanilla servlet you could write.</p>
+<pre class="brush: java">public class HelloServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/plain");
+        resp.getWriter().println("hello world");
+    }
+}</pre>
+<p>We will want to register the servlet with the jetty server, so in the web.xml include</p>
+<pre class="brush: xml"><servlet>
+    <servlet-name>servlet</servlet-name>
+    <servlet-class>avdw.HelloServlet</servlet-class>
+</servlet></pre>
+<p>And we want to give it a location, so also include</p>
+<pre class="brush: xml"><servlet-mapping>
+    <servlet-name>servlet</servlet-name>
+    <url-pattern>/servlet</url-pattern>
+</servlet-mapping></pre>
+<p>If you were to restart your server now and navigate to <a href="http://localhost:8081/servlet">http://localhost:8081/servlet</a>, you should be seeing the following.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-11.jpg"><img class="aligncenter size-full wp-image-581" title="rest-11" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-11.jpg" alt="" width="303" height="120" /></a></p>
+<h3>Test the jersey module is working</h3>
+<p>Now, we know that the jetty server works and can handle JSP pages and servlets. To allow it to handle jersey classes, we only need to register where to find the jersey classes (which represent resources), notice that the init-param is the packages where the jersey classes sit.</p>
+<pre class="brush: xml">    <servlet>
+        <servlet-name>jersey</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>avdw</param-value>
+        </init-param>
+    </servlet></pre>
+<p>And then we map the jersey container to a context path, enabling us to access it</p>
+<pre class="brush: xml"><servlet-mapping>
+    <servlet-name>jersey</servlet-name>
+    <url-pattern>/jersey/*</url-pattern>
+</servlet-mapping></pre>
+<p>Which allows us to now run the jersey resources. So given the following HelloResource jersey class</p>
+<pre class="brush: java">@Path("/hello")
+public class HelloResource {
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sayHello() {
+        return "Hello World PLAIN text";
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_XML)
+    public String sayXMLHello() {
+        return "<?xml version="1.0"?><hello> Hello World XML, YAY!!!</hello>";
+    }
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public String sayHtmlHello() {
+        return "<html><title>Hello World HTML</title><body><h1>Hello World HTML JRebel Rules!</body></h1></html>";
+    }
+
+    @POST
+    @Consumes({"text/xml", "text/plain", MediaType.TEXT_HTML})
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sayPostHello() {
+        return "Hello World Post!";
+    }
+}</pre>
+<p>Which is located in the following package structure</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-12.jpg"><img class="aligncenter size-full wp-image-582" title="rest-12" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-12.jpg" alt="" width="233" height="143" /></a></p>
+<p>When you run the server and navigate to <a href="http://localhost:8081/jersey/hello">http://localhost:8081/jersey/hello</a>, you should be seeing&hellip;</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-13.jpg"><img class="aligncenter size-full wp-image-583" title="rest-13" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-13.jpg" alt="" width="527" height="131" /></a></p>
+<p>Notice that in the logs, jetty only checks the package for resources when you load the URI for the first time and then collects what is running there and does the mappings, and then it caches the information. Also, notice that it does not pick up the servlet and thus does not serve the servlet as well.</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-14.jpg"><img class="aligncenter size-full wp-image-584" title="rest-14" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-14.jpg" alt="" width="748" height="205" /></a></p>
+<p>Everything configured!!!! Not quite yet, there are some other things that make this POC very efficient for developing.</p>
+<h3>Speed up development with JRebel</h3>
+<p>You still have to restart the server for each change you make to the classes, JSP&rsquo;s, and I think the HTML files. However, instead of booting the server with the normal [run/debug] commands, boot it with the JRebel [run/debug] commands. What JRebel does is identify which files have been changed when you build the whole project, or when you build a single file, and will hotswap the file in the JVM with the newly compiled file. Thus, instead of</p>
+<ol>
+<li>Spelling mistake fixed or debug statement inserted</li>
+<li>Compile change</li>
+<li>Kill server</li>
+<li>Start server</li>
+<li>Refresh page</li>
+</ol>
+<p>All you have to do now is</p>
+<ol>
+<li>Fix spelling mistake, or insert debug statement</li>
+<li>Compile change [ctrl+F9]</li>
+<li>Refresh page</li>
+</ol>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-15.jpg"><img class="aligncenter size-full wp-image-585" title="rest-15" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-15.jpg" alt="" width="132" height="48" /></a></p>
+<p>Try it! It is a huge boost in productivity. Especially for small changes, you will compile and refresh more often and identify bugs sooner, instead of developing for longer without deploying to avoid the time that is wasted and potentially introducing various bugs, where you struggle to identify them because you did so many things.</p>
+<h3>Testing with the RESTful service tools in IntelliJ</h3>
+<p>There is a built in tool for testing RESTful services in IntelliJ. Here is a screenshot of it and it can be found at <em><strong>Tools->WebServices->RESTful Web Services->TEST RESTful Web Service</strong></em></p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-16.jpg"><img class="aligncenter size-full wp-image-586" title="rest-16" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-16.jpg" alt="" width="914" height="213" /></a></p>
+<h3>Results</h3>
+<p>Let us quickly review what has been done here:</p>
+<ol>
+<li>First we installed IntelliJ &amp; JRebel</li>
+<li>Configured Jetty &amp; Jersey</li>
+<li>Configured our Jetty Server with a web.xml</li>
+<li>Made sure our embedded Jetty server was working correctly</li>
+<li>Tested JRebel and Jersey</li>
+</ol>
+<p>The way forward from here is to actually write the RESTful service. The work progression would be to only implement what is needed on the resource for when it is needed. To understand more about RESTful services, I highly recommend reading the book <a href="http://restinpractice.com/book/">REST in Practice</a>.</p>
+<p>To give you an idea of how the test REST client in IntelliJ can benefit you, remember that in our HelloResource there were three methods mapped to the GET verb. Watch what happens when we configure the request header&rsquo;s Accept parameter (here is the full <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC2616 of the HTTP/1.1 header</a>).</p>
+<p align="center">text/xml</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-17.jpg"><img class="aligncenter size-full wp-image-587" title="rest-17" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-17.jpg" alt="" width="280" height="179" /></a></p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-18.jpg"><img class="aligncenter size-full wp-image-588" title="rest-18" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-18.jpg" alt="" width="393" height="72" /></a></p>
+<p align="center">text/html</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-19.jpg"><img class="aligncenter size-full wp-image-589" title="rest-19" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-19.jpg" alt="" width="254" height="114" /></a></p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-20.jpg"><img class="aligncenter size-full wp-image-590" title="rest-20" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-20.jpg" alt="" width="613" height="80" /></a></p>
+<p align="center">OPTIONS</p>
+<p align="center"><a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-21.jpg"><img class="aligncenter size-full wp-image-591" title="rest-21" src="http://www.avanderw.co.za/wp-content/uploads/2012/01/rest-21.jpg" alt="" width="440" height="441" /></a></p>
+<p>Making small changes can be executed in lightning speed with a simple compile and refresh with this configuration. If you do not believe me then try it, if you have a better way, then please let me know! I am eager to learn.</p>
+<h3>EDIT: to get Jersey working with json</h3>
+<p>I have since gotten jersey to work with POJO conversion to JSON. Once you have included the library, as shown above, you will have to update the web.xml to have this init parameter.</p>
+<pre class="brush: xml"> &nbsp; &nbsp;<servlet>
+&nbsp; &nbsp; &nbsp; &nbsp; <servlet-name>jersey</servlet-name>
+&nbsp; &nbsp; &nbsp; &nbsp; <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+&nbsp; &nbsp; &nbsp; &nbsp; <init-param>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <param-name>com.sun.jersey.config.property.packages</param-name>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <param-value>avdw</param-value>
+&nbsp; &nbsp; &nbsp; &nbsp; </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet></pre>
+<p>After which you can just set the return type to be a POJO and say that it produces json.</p>
+<pre class="brush: java">public class StartJetty {
+&nbsp; &nbsp; @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public LinkVO newAttempt(AttemptVO attempt) {
+        return new LinkVO();
+    }</pre>
+<p>&nbsp;</p>
+<h3>Downloads</h3>
+<p>IntelliJ Project:&nbsp;<a href="http://www.avanderw.co.za/wp-content/uploads/2012/01/POC-JettyJRebelJersey.zip">POC-JettyJRebelJersey</a></p>
+<p>&nbsp;</p>

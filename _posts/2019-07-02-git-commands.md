@@ -1,3 +1,7 @@
+---
+layout: post
+title:  "Git commands"
+---
 ## Branch
 
 ### List branches

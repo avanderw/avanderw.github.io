@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: 'AS3: Perlin Noise Experiment'
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 494
+wordpress_url: http://www.avanderw.co.za/?p=494
+date: '2011-12-21 11:37:24 +0200'
+date_gmt: '2011-12-21 09:37:24 +0200'
+categories:
+- Techie talk
+- Experiments
+tags:
+- perlin noise
+---
+<p>I have some time to experiment again... total win for the end of the year. It is not a lot of time but enough to fiddle with some perlin noise. I have been wanting to get around to this for quite some time now. Hope you like the demo I put together. It is not very complex and here is the just of what is in it.</p>
+<ul>
+<li>background image has been generated using 2d perlin noise</li>
+<li>the top and bottom lines are drawn using each row of the 2d perlin noise as a heightmap</li>
+<li>the 2d perlin here is near seamless and line animation has been done by looping over the rows</li>
+<li>this effectively removes a dimension and animates by making use of the higher dimension</li>
+<li>similarly&nbsp;you can loop through 3d planes to animate 2d textures, although it is expensive</li>
+<li>music is played using <a href="http://www.photonstorm.com/flod" target="_blank">flod</a> for actionscript... there is a port for javascript</li>
+<li>mod filename is "awaken_ciyana_ii.mod", i do not know the author</li>
+<li>the header text is animated using flupie to control each character and <a href="http://www.greensock.com/" target="_blank">greensock</a> for the tweening</li>
+<li>the particles in the middle are tweened using greensock as well</li>
+<li>the height of the particles are determined from row 0 of the 2d perlin noise</li>
+<li>the mod size is 206,336 bytes, total swf size is 175,409 bytes... i dont know</li>
+</ul>
+<p>My assumption for the swf size being smaller than the mod, is that Adobe's flex compiler packs the bytes better and uses higher compression.</p>
+<p style="text-align: center;">[swfobj src="http://www.avanderw.co.za/wp-content/uploads/2011/12/2d-perlin-experiment.swf" width="400" height="400" align="center" allowfullscreen="false" required_player_version="10"]</p>
+<p>P.S. photonstorm's blog is pretty&nbsp;awesome&nbsp;to read through</p>
+<p>--</p>

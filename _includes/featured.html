@@ -1,0 +1,14 @@
+<h2>Featured posts</h2>
+{% assign featuredcount = '0' %}
+{% for post in site.posts %}
+  {% if post.featured %}
+  {% assign featuredcount = featuredcount | plus:'1' %}
+		<h3><a class="post-link" href="{{ post.url | relative_url }}">
+		{{ post.title | escape }}
+		</a></h3>
+  {% endif %}
+{% endfor %}
+
+{% if featuredcount == '0' %}
+	<h1>No posts has been featured yet</h1>
+{% endif %}

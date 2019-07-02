@@ -1,0 +1,225 @@
+---
+layout: post
+status: publish
+published: true
+title: Actionscript Optimizations (Including Bitwise Ones)
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 557
+wordpress_url: http://www.avanderw.co.za/?p=557
+date: '2012-01-27 13:56:49 +0200'
+date_gmt: '2012-01-27 11:56:49 +0200'
+categories:
+- Techie talk
+- Flash, actionscript, flex &amp; AIR
+tags: []
+---
+<p>The following information is a collective update of some posts I remember reading in the past. Finding them is always difficult. So I decided to collate them into a single post. The idea is to minimize the information into a reference format, instead of explaining everything. Some of the optimisations are moot when dealing with later versions of AS3, but I want them here for allowing me to test this functionality in other languages as well. It is just a nice place to group everything for quick reference. Some of them are AS3 specific, but most can be applied elsewhere.</p>
+<h3>Smaller variable sizes increase performance</h3>
+<pre class="brush: as3;gutter: false">for (var i:Number = 0; i < 50; i++) {}</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">for (var i:int = 0; i < 50; i++) {}</pre>
+<h3>&nbsp;</h3>
+<h3>Accessing variables in other classes has overhead</h3>
+<pre class="brush: as3;gutter: false">for (var i:int = 0; i < 1000; i++) {
+    var = SomeClass.SOME_CONSTANT;
+}</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">var myConst:int = SomeClass.SOME_CONSTANT;
+for (var i:int = 0; i < 1000; i++) {
+   var = myConst;
+}</pre>
+<h3>&nbsp;</h3>
+<h3>Multiple variable instantiation</h3>
+<p>For some reason</p>
+<pre class="brush: as3;gutter: false">for (var i:int=0; i < 100000; i++) {
+    var v1:Number=10;
+    var v2:Number=10;
+    var v3:Number=10;
+    var v4:Number=10;
+    var v5:Number=10;
+}</pre>
+<p>is significantly slower than</p>
+<pre class="brush: as3;gutter: false">for (var i:int=0; i < 100000; i++) {
+    var v1:Number=10, 
+        v2:Number=10, 
+        v3:Number=10, 
+        v4:Number=10, 
+        v5:Number=10;
+}</pre>
+<h3>&nbsp;</h3>
+<h3>Bitwise for multiplication and division</h3>
+<p>The following only really works with division and multiplication in powers of 2</p>
+<pre class="brush: as3;gutter: false">var i:int = 4 * 2;
+i = 4 * 4;
+i = 4 / 2;
+i = 4 / 4;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">var i:int = 4 << 1;
+i = 4 << 2;
+i = 4 >> 1;
+i = 4 >> 2;</pre>
+<h3>&nbsp;</h3>
+<h3>Integer Addition / Subtraction</h3>
+<pre class="brush: as3;gutter: false">a = a + 1;
+b = b - 1;</pre>
+<p>might be slower than</p>
+<pre class="brush: as3;gutter: false">a += 1;
+b -= 1;</pre>
+<p>which in turn might be slower than</p>
+<pre class="brush: as3;gutter: false">a++;
+a--;</pre>
+<h3>&nbsp;</h3>
+<h3>Division is slower than multiplication</h3>
+<pre class="brush: as3;gutter: false">= 20 / 5;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">= 20 * 0.25;</pre>
+<h3>&nbsp;</h3>
+<h3>Math.floor / Math.ceil</h3>
+<p>Casting can be faster than the method calls e.g.</p>
+<pre class="brush: as3;gutter: false">var floor:int = int(1.5); // = 1
+// only works with positive numbers
+// Math.floor(-1.5) = 2 whereas int(-1.5) = -1
+
+var ceil:int = int(1.5) + 1; // = 2
+// only works on fractions int(1.0) + 1 = 2
+// whereas Math.ceil(1.0) = 1</pre>
+<p>For safety sake I would consider only using the above if performance is extremely critical. The following might be a wiser alternative.</p>
+<pre class="brush: as3;gutter: false">floor = num >> 0;
+ceil = num == int(num) ? num : int(num) + 1;</pre>
+<h3>&nbsp;</h3>
+<h3>Color extraction</h3>
+<pre class="brush: as3;gutter: false">// 32 bit
+var color:uint = 0xFF112233; // 0xAARRGGBB
+var a:uint = color >> 24; // only need to shift
+var r:uint = color >> 16 &amp; 0xFF; // shift and mask
+var g:uint = color >> 8 &amp; 0xFF; // shift and mask
+var b:uint = color >> 0 &amp; 0xFF; // shift and mask</pre>
+<h3>&nbsp;</h3>
+<h3>Color combination</h3>
+<pre class="brush: as3;gutter: false">var color:uint = a << 24 | r << 16 | g << 8 | b;</pre>
+<h3>&nbsp;</h3>
+<h3>Swapping integers (no temp var)</h3>
+<pre class="brush: as3;gutter: false">var temp:int = a;
+a = b;
+b = temp;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">a ^= b;
+b ^= a;
+a ^= b;</pre>
+<h3>&nbsp;</h3>
+<h3>Flipping sign using NOT / OR</h3>
+<pre class="brush: as3;gutter: false">i = -i;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">i = ~i + 1;
+// or
+i = (i ^ -1) + 1;</pre>
+<h3>&nbsp;</h3>
+<h3>Modulo ops with Bitwise AND</h3>
+<pre class="brush: as3;gutter: false">var x:int = num % 4;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">var x:int = num &amp; (4-1);</pre>
+<p>* this only works with divisors in powers of 2</p>
+<h3>&nbsp;</h3>
+<h3>Determining even / uneven</h3>
+<pre class="brush: as3;gutter: false">var isEven:Boolean = (i % 2) == 0;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">var isEven:Boolean = (i &amp; 1) == 0;</pre>
+<h3>&nbsp;</h3>
+<h3>Absolute value</h3>
+<pre class="brush: as3;gutter: false">var i:int = Math.abs(value);</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">var i:int = x < 0 ? -x : x;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">var i:int = (x ^ (x >> 31)) - (x >> 31);</pre>
+<p>* although I think the last line is on a 32bit number</p>
+<h3>&nbsp;</h3>
+<h3>Comparing integers for sign equality</h3>
+<pre class="brush: as3;gutter: false">var eqSign:Boolean = a * b > 0;</pre>
+<p>is slower than</p>
+<pre class="brush: as3;gutter: false">var eqSign:Boolean = a ^ b >= 0;</pre>
+<h3>&nbsp;</h3>
+<h3>Color conversions from R5G5B5 to R8G8B8</h3>
+<pre class="brush: as3;gutter: false">R8 = (R5 << 3) | (R5 >> 2);
+G8 = (G5 << 3) | (G5 >> 2);
+B8 = (B5 << 3) | (B5 >> 2);</pre>
+<h3>&nbsp;</h3>
+<h3>Simplifying logic</h3>
+<pre class="brush: as3;gutter: false">var ctrl : Boolean = event.ctrlKey;
+var alt : Boolean = event.altKey;
+var shift : Boolean = event.shiftKey;
+
+if (!shift &amp;&amp; !alt &amp;&amp; ctrl) {
+    // CTRL
+}
+else if (!shift &amp;&amp; alt &amp;&amp; !ctrl) {
+    // ALT
+}
+else if (!shift &amp;&amp; alt &amp;&amp; ctrl) {
+    // CTRL-ALT
+}
+else if (shift &amp;&amp; !alt &amp;&amp; !ctrl) {
+    // SHIFT
+}
+else if (shift &amp;&amp; !alt &amp;&amp; ctrl) {
+    // CTRL-SHIFT
+}
+else if (shift &amp;&amp; alt &amp;&amp; !ctrl) {
+    // SHIFT-ALT
+}
+else if (shift &amp;&amp; alt &amp;&amp; ctrl) {
+    // CTRL-SHIFT-ALT
+}</pre>
+<p>can become easier with a function</p>
+<pre class="brush: as3;gutter: false">private static function getFlags(event : KeyboardEvent) : uint {
+    var flags : uint = 0;
+    flags += (event.ctrlKey) ? 1 : 0;
+    flags += (event.altKey) ? 2 : 0;
+    flags += (event.shiftKey) ? 4 : 0;
+
+    return flags;
+}</pre>
+<p>and a switch</p>
+<pre class="brush: as3;gutter: false">switch ( getFlags(event) ) {
+case 1: // CTRL
+    break;
+case 2: // ALT
+    break;
+case 3: // CTRL-ALT
+    break;
+case 4: // SHIFT
+    break;
+case 5: // CTRL-SHIFT
+    break;
+case 6: // SHIFT-ALT
+    break;
+case 7: // CTRL-SHIFT-ALT
+    break;
+}</pre>
+<p>and the following can be done to determine if a bit is on or off</p>
+<pre class="brush: as3;gutter: false">if (getFlags(event) &amp; 4 == 4) { // apply mask and test
+    // shift enabled
+}</pre>
+<h3>&nbsp;</h3>
+<h3>References</h3>
+<ul>
+<li><a href="http://www.nicolabortignon.com/as3-bitwise-operations/" target="_blank">http://www.nicolabortignon.com/as3-bitwise-operations/</a></li>
+<li><a href="http://blog.andre-michelle.com/2005/as3-optimations-suggestions/" target="_blank">http://blog.andre-michelle.com/2005/as3-optimations-suggestions/</a></li>
+<li><a href="http://osflash.org/as3_speed_optimizations" target="_blank">http://osflash.org/as3_speed_optimizations</a></li>
+<li><a href="http://www.rozengain.com/blog/2007/05/01/some-actionscript-30-optimizations/" target="_blank">http://www.rozengain.com/blog/2007/05/01/some-actionscript-30-optimizations/</a></li>
+<li><a href="http://lab.polygonal.de/?p=81" target="_blank">http://lab.polygonal.de/?p=81</a></li>
+<li><a href="http://googolflex.com/?p=378" target="_blank">http://googolflex.com/?p=378</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>explanation on Bitwise operations</h3>
+<ul>
+<li>in C: <a href="http://www.gamedev.net/page/resources/_/technical/general-programming/bitwise-operations-in-c-r1563" target="_blank">http://www.gamedev.net/page/resources/_/technical/general-programming/bitwise-operations-in-c-r1563</a></li>
+<li>in AS: <a href="http://www.moock.org/asdg/technotes/bitwise/" target="_blank">http://www.moock.org/asdg/technotes/bitwise/</a></li>
+</ul>
+<p>&nbsp;</p>

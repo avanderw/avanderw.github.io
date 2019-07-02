@@ -1,3 +1,8 @@
+---
+layout: post
+title:  "Powershell formatting"
+categories: jekyll update
+---
 function h1 {
 param($message)
     $underline = '-' * $message.length

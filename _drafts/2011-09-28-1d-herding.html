@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: 1D Herding
+author:
+  display_name: Andrew van der Westhuizen
+  login: admin
+  email: avanderw@gmail.com
+  url: http://www.avanderw.co.za
+author_login: admin
+author_email: avanderw@gmail.com
+author_url: http://www.avanderw.co.za
+wordpress_id: 225
+wordpress_url: http://avanderw.co.za/?p=225
+date: '2011-09-28 08:23:45 +0200'
+date_gmt: '2011-09-28 06:23:45 +0200'
+categories:
+- Techie talk
+tags: []
+---
+<p>I was interested in trying to portray some wildlife recently. As always the idea started off ambitious and has since lost traction. Where I originally planned to have a herd of deer, flock of birds, pride of lions and pack of wolves simulated. It lost track after the deer. Maybe I will pick up the rest when I get inspiration again. The graphics used are my own creations, kind of proud. They are 16x16 for the deer and 8x8 for the grass. The swf is 70k and it makes me wonder how much procedural code goes into 64k demos.</p>
+<p>The basic actions are:</p>
+<ul>
+<li>When hungry search for food</li>
+<li>When hungry and @food, eat</li>
+<li>When tired sleep</li>
+<li>When frightened [of cursor] then alert herd and flee</li>
+<li>When herd fleeing, flee from nearest threat</li>
+<li>When !hungry and !tired, stay with herd</li>
+<li>When with herd and idle, avoid group members (fights with previous one, bug)</li>
+</ul>
+<div>I like the results, although I want to continue with the lions and improve on the idea using states. This example only uses boolean variables to control the system. Which is nice when you just fiddling, but nowhere near production quality code. I am however getting stuck with trying to create the gfx, which I was previously not concerned with. I think it is my way of procrastinating, which means I am loosing interest.</div>
+<p>[swfobj src="http://avanderw.co.za/wp-content/uploads/2011/08/1DFlocking-Aleph.swf" align="center" width="640" height="280"]</p>
