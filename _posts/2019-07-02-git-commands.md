@@ -2,7 +2,25 @@
 layout: post
 title:  "Git commands"
 ---
+## Cleanup
+
+Various commands to cleanup / reset branches to their server state.
+
+### Clean untracked files and directories
+
+```bash
+$ git clean -fd
+```
+
+### Reset changes
+
+```bash
+$ git reset --hard
+```
+
 ## Branch
+
+Various commands to assist with branch management.
 
 ### List branches
 
