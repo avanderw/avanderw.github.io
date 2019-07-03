@@ -5,6 +5,11 @@
 layout: home
 ---
 
+## Github
+
+[avanderw / git-templates](https://avanderw.github.io/git-templates/) - git-templates is a collection of git hooks implementing standards for commits
+
+
 ## Skills & credentials
 
 What skills have you acquired throughout your life? What training, credentials, certifications, or awards have you received?
