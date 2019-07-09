@@ -16,6 +16,18 @@
 
 #### analyze-maven-plugin
 
+<https://stackoverflow.com/questions/21265735/how-to-execute-mavens-antrun-between-testcompile-and-test-phases-before-surefi>
+
+<https://maven.apache.org/plugins/maven-dependency-plugin/examples/exclude-dependencies-from-dependency-analysis.html>
+
+<https://maven.apache.org/plugins/maven-dependency-plugin/analyze-mojo.html>
+
+<http://maven.apache.org/enforcer/enforcer-rules/requireReleaseDeps.html>
+
+<http://maven.apache.org/enforcer/enforcer-rules/bannedDependencies.html>
+
+<http://maven.apache.org/enforcer/enforcer-rules/dependencyConvergence.html>
+
 ## Strategize
 
 ### event-based programming
