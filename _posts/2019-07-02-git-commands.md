@@ -57,3 +57,11 @@ origin/master is ahead origin/develop by 2 commits
 
 origin/master is behind origin/develop by 47 commits
 
+- `git log --pretty=oneline` shows a terse history mapping containing the commit id and the summary
+- `git rebase --interactive` provides the summary for each commit in the editor it invokes
+- if the config option `merge.summary` is set, the summaries from all merged commits will make their way into the merge commit message
+- `git shortlog` uses summary lines in the changelog-like output it produces
+- `git format-patch`, `git send-email`, and related tools use it as the subject for emails
+- reflogs, a local history accessible with `git reflog` intended to help you recover from stupid mistakes, get a copy of the summary
+- `gitk` has a column for the summary
+- GitHub uses the summary in various places in their user interface
