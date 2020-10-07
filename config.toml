@@ -28,6 +28,11 @@ icon = "fa-envelope"
 title = "e-mail"
 url = "mailto:avanderw@gmail.com"
 
+[[params.socialIcons]]
+icon = "fa-steam"
+title = "Steam"
+url = "https://steamcommunity.com/id/avanderw"
+
 [menu]
 
   [[menu.main]]
