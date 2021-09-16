@@ -8,10 +8,16 @@ hr {
   border: 1px solid #75715E; }
 
 a {
-  color: inherit;
+  color: #E6DB74;
   text-decoration: none; }
   a:hover {
     text-decoration: underline; }
+
+code {
+  color: #E69F66; }
+
+blockquote {
+  color: #F92672; }
 
 #header, #footer {
   margin: 0 10%; }
@@ -39,10 +45,7 @@ a {
 .dir, .file {
   margin-left: 20px; }
 
-.dir {
+.dir a {
   color: #66D9EF; }
-
-.file {
-  color: #E6DB74; }
 
 /*# sourceMappingURL=index.css.map */

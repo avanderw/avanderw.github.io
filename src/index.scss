@@ -21,11 +21,19 @@ hr {
 }
 
 a {
-    color: inherit;
+    color: $yellow;
     text-decoration: none;
     &:hover {
         text-decoration: underline;
     }
+}
+
+code {
+    color: $lightOrange;
+}
+
+blockquote {
+    color: $red;
 }
 
 #header, #footer {
@@ -63,9 +71,7 @@ a {
 }
 
 .dir {
-    color: $blue;
-}
-
-.file {
-    color: $yellow;
+    a {
+        color: $blue;
+    }
 }
