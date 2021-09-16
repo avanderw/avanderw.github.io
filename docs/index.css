@@ -1,0 +1,48 @@
+body {
+  background-color: #272822;
+  color: #F8F8F2;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0 20%; }
+
+hr {
+  border: 1px solid #75715E; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+#header, #footer {
+  margin: 0 10%; }
+
+.command {
+  margin: 24px 0; }
+
+.username {
+  color: #A6E22E; }
+
+.machine {
+  color: #75715E; }
+
+.path {
+  color: #E69F66;
+  margin-left: 20px; }
+
+.branch {
+  color: #AE81FF;
+  margin-left: 20px; }
+
+.input, .output {
+  color: #F8F8F2; }
+
+.dir, .file {
+  margin-left: 20px; }
+
+.dir {
+  color: #66D9EF; }
+
+.file {
+  color: #E6DB74; }
+
+/*# sourceMappingURL=index.css.map */
