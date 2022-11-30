@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Digital playground of Andrew van der Westhuizen." />
+    <title>Andrew van der Westhuizen</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="tufte-css/tufte.css" />
+</head>
+
+<body>
+    <article>
+        <h1>Golang</h1>
+        <p class="subtitle">Andrew van der Westhuizen</p>
+        <section>
+            <p>
+                // Some text about golang and what to expect
+            </p>
+        </section>
+        <section>
+            <h2>Improving the main function (2022)</h2>
+            <p>
+                The go main function is simple and should remain that way. 
+                It should only contain the code that is required to start the application. 
+                The rest of the code should be moved to other functions. 
+                This makes the code more readable and easier to maintain. 
+            </p>
+            <p>
+                It is tempting to put everything in the main function, but this is not a good idea.
+                Error handling is subject to higher levels of entropy and it is difficult to test.
+                We do not control the relevant environment variables.
+                We do not control the command line arguments.
+                We do not control stdin, stdout or stderr.
+            </p>
+            <p>
+                One solution to the challenge is breaking out to a run function.
+                The run function is responsible for the main logic of the program.
+                The main function is responsible for the error handling and clean exit.
+            </p>
+            <p>
+            <pre><code class="language-go">
+func main() {
+    if err := run(os.Args, os.Stdout); err != nil {
+        fmt.Fprintf(os.Stderr, "%s\n", err)
+        os.Exit(1)
+    }
+}
+    
+func run(args []string, stdout io.Writer) error {
+    db, err := psql.Connect(...)
+    if err != nil {
+        // Note: This is another example of wrapping your errors!
+        return fmt.Errorf("connecting to db: %w", err)
+    }
+    app := App{db}
+    return app.Start()
+}
+            </code></pre>
+            </p>
+            <p>
+                The immediate benefit is that we can test the run function.
+                Giving us control of the environment variables and command line arguments.
+                We can also redirect stdin, stdout and stderr.
+                <label for="toggle-1" class="margin-toggle">&#8853;</label>
+                <input type="checkbox" id="toggle-1" class="margin-toggle"/>
+                <span class="marginnote">
+                    <code>stdin := strings.NewReader(someString)</code><br/>
+                    <code>var stdout bytes.Buffer</code>
+                </span>
+            </p>
+            <p>
+                The other benefit is that the main function is now responsible for error handling.
+                This means that we can handle and log errors in a consistent manner.
+                We can also exit the program in a consistent manner.
+                To achieve this we need to bubble errors up to the main function.
+                We do this by returning errors instead of failing/exiting.
+            </p>
+            <p>
+                The last benefit is that we can avoid global flags.
+                Global flags are a bad idea because they are difficult to test.
+                Encapsulating them within run solves the problem.
+            </p>
+            <p>
+                <label for="toggle-2" class="margin-toggle">&#8853;</label>
+                <input type="checkbox" id="toggle-2" class="margin-toggle"/>
+                <span class="marginnote">
+                    <code>run([]string{"program", "-v", "-debug=true"})</code>
+                </span>
+                <pre><code class="language-go">
+flags := flag.NewFlagSet(args[0], flag.ExitOnError)
+var (
+    verbose    = flags.Bool("v", false, "verbose logging")
+    format     = flags.String("f", "Hi %s", "greeting format")
+)
+if err := flags.Parse(args[1:]); err != nil {
+    return err
+}
+                </code></pre>
+            </p>
+            <p>
+                The idea for this section came from a mail sent by <a href="https://www.calhoun.io/">Jon Calhoun</a>.
+                Which itself was a summary of a post by <a href="https://pace.dev/blog/2020/02/12/why-you-shouldnt-use-func-main-in-golang-by-mat-ryer.html">Mat Ryer</a>.
+            </p>
+        </section>
+    </article>
+</body>
+
+</html>
