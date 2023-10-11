@@ -5,6 +5,11 @@
 	import Link from './Link.svelte';
 </script>
 
+<svelte:head>
+	<title>Andrew van der Westhuizen</title>
+	<meta name="description" content="Discover a diverse collection of projects, tools, and code crafted by Andrew van der Westhuizen on his personal website. Explore a wide range of topics, from software development and design to innovative solutions, all in one place. Dive into Andrew van der Westhuizen's creative work and expertise today." />
+</svelte:head>
+
 <Contact />
 <Feedback />
 <h1>Andrew van der Westhuizen</h1>
