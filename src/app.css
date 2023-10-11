@@ -1,0 +1,116 @@
+:root {
+    --primary-1: #f8f9fa;
+    --primary-2: #e9ecef;
+    --primary-3: #dee2e6;
+    --primary-4: #ced4da;
+    --primary-5: #adb5bd;
+    --primary-6: #6c757d;
+    --primary-7: #495057;
+    --primary-8: #343a40;
+    --primary-9: #212529;
+    --secondary-1: #caf0f8;
+    --secondary-2: #ade8f4;
+    --secondary-3: #90e0ef;
+    --secondary-4: #48cae4;
+    --secondary-5: #00b4d8;
+    --secondary-6: #0096c7;
+    --secondary-7: #0077b6;
+    --secondary-8: #023e8a;
+    --secondary-9: #03045e;
+    --accent-1: #ffccd5;
+    --accent-2: #ffb3c1;
+    --accent-3: #ff8fa3;
+    --accent-4: #ff758f;
+    --accent-5: #ff4d6d;
+    --accent-6: #c9184a;
+    --accent-7: #a4133c;
+    --accent-8: #800f2f;
+    --accent-9: #590d22;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: var(--primary-2);
+        --panel: var(--primary-1);
+        --border: var(--primary-7);
+        --text: var(--primary-9);
+        --link: var(--secondary-6);
+        --link-visited: var(--secondary-4);
+        --link-hover: var(--secondary-8);
+        --feedback-background: var(--accent-2);
+        --feedback-text: var(--primary-9);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+        --background: var(--primary-8);
+        --panel: var(--primary-9);
+        --border: var(--primary-3);
+        --text: var(--primary-1);
+        --link: var(--secondary-5);
+        --link-visited: var(--secondary-7);
+        --link-hover: var(--secondary-3);
+        --feedback-background: var(--accent-8);
+        --feedback-text: var(--primary-1);
+	}
+}
+
+@media (orientation: landscape) {
+    body {
+        margin: auto 10%;
+    }    
+}
+
+@media (orientation: portrait) {
+    body {
+        margin: auto 5%;
+    }
+}
+
+body {
+    color: var(--text);
+	background-color: var(--background);
+    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+    padding: 0;
+}
+
+h1 {
+    font-weight: 400;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 3.2rem;
+    line-height: 1;
+}
+
+h2 {
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 2.1rem;
+    margin-top: 1.4rem;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+p {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
+
+a {
+    color: var(--link);
+}
+
+a:visited {
+    color: var(--link-visited);
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+
