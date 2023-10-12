@@ -15,7 +15,7 @@
 			justify-content: right;
 		}
         div > * {
-            margin-right: 1rem;
+            margin-right: 3rem;
         }
 	}
 	@media (orientation: portrait) {
@@ -26,12 +26,12 @@
 			justify-content: space-between;
 		}
         div > * {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 	}
     div  {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: smaller;
+        font-size: normal;
         margin: 1rem 0rem;
     }
 </style>

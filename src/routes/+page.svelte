@@ -3,6 +3,7 @@
 	import Contact from './Contact.svelte';
 	import Feedback from './Feedback.svelte';
 	import Link from './Link.svelte';
+	import Tracking from './Tracking.svelte';
 </script>
 
 <svelte:head>
@@ -66,6 +67,7 @@
 	description="Every December, I eagerly participate in the Advent of Code, an annual coding challenge. It consists of increasingly complex programming problems, providing a fantastic opportunity for creative problem-solving. As I progress through the challenge, I document my journey and solutions, aiming to offer valuable insights to fellow participants and programming enthusiasts."
 />
 <About />
+<Tracking />
 <Contact />
 
 <style>
