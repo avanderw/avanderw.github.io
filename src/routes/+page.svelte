@@ -44,6 +44,16 @@
 	description="I'm excited to share my Bitburner scripts repository, a collection of modular and customizable scripts designed to automate various tasks in the popular text-based hacking simulator, Bitburner. These scripts cover hacking, upgrading servers, and optimizing networks, and I'm constantly adding and refining them. Feel free to explore, download, modify, and share them, as I welcome feedback and suggestions. While not a formal project, this repository reflects my passion for programming and desire to inspire others in their programming endeavors."
 />
 <Link
+	href="https://github.com/avanderw/autohotkey"
+	title="AutoHotkey - GTD and productivity scripts"
+	description="A collection of AutoHotkey scripts that I use to automate various tasks and improve my productivity. These scripts are designed to be modular and customizable, allowing you to easily adapt them to your needs."
+/>
+<Link
+	href="https://github.com/avanderw/git-templates"
+	title="A collection of useful git templates"
+	description="This repository offers essential aliases and hooks for Git, enabling you to standardize and customize your terminal workflow across multiple computers."
+/>
+<Link
 	href="https://www.codingame.com/profile/161aabfa51e53989d7f4fd4d5bcfb712259018"
 	title="CodinGame - A gamified approach to coding"
 	description="As an online platform that offers a variety of coding challenges and puzzles, Codingame is the perfect place to improve your programming abilities and show off your achievements.
@@ -54,11 +64,6 @@
 	href="https://avanderw.co.za/advent-of-code"
 	title="Advent of Code"
 	description="Every December, I eagerly participate in the Advent of Code, an annual coding challenge. It consists of increasingly complex programming problems, providing a fantastic opportunity for creative problem-solving. As I progress through the challenge, I document my journey and solutions, aiming to offer valuable insights to fellow participants and programming enthusiasts."
-/>
-<Link
-	href="https://github.com/avanderw/git-templates"
-	title="A collection of useful git templates"
-	description="This repository offers essential aliases and hooks for Git, enabling you to standardize and customize your terminal workflow across multiple computers."
 />
 <About />
 <Contact />
