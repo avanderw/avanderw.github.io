@@ -8,7 +8,10 @@
 
 <svelte:head>
 	<title>Andrew van der Westhuizen</title>
-	<meta name="description" content="Discover a diverse collection of projects, tools, and code crafted by Andrew van der Westhuizen on his personal website. Explore a wide range of topics, from software development and design to innovative solutions, all in one place. Dive into Andrew van der Westhuizen's creative work and expertise today." />
+	<meta
+		name="description"
+		content="Discover a diverse collection of projects, tools, and code crafted by Andrew van der Westhuizen on his personal website. Explore a wide range of topics, from software development and design to innovative solutions, all in one place. Dive into Andrew van der Westhuizen's creative work and expertise today."
+	/>
 </svelte:head>
 
 <Contact />
@@ -21,14 +24,9 @@
 	a lot of my time exploring new projects and passions. This site serves as the perfect hub for my
 	online presence, where I can showcase my personal works and connect with other like-minded
 	individuals. I'm confident that you'll find my latest creations and endeavors to be both
-	fascinating and inspiring. 
+	fascinating and inspiring.
 </p>
 
-<Link
-	href="https://avanderw.co.za/todo-txt/"
-	title="Todo.txt - A simple and powerful way to manage your tasks"
-	description="A privacy-focused web tool that locally edits and saves todo.txt files dropped into the browser, with no network traffic and no server components, ensuring data remains completely local."
-/>
 <Link
 	href="https://avanderw.co.za/spyfall"
 	title="Spyfall - A social deduction game"
@@ -38,6 +36,16 @@
 	href="https://avanderw.co.za/joke"
 	title="Jokes - A Progressive Web App"
 	description="A Progressive Web App created with the goal of learning PWA development, delivering an array of dad jokes to brighten your day with just a tap."
+/>
+<Link
+	href="https://avanderw.co.za/todo-txt/"
+	title="Todo.txt - A simple and powerful way to manage your tasks"
+	description="A privacy-focused web tool that locally edits and saves todo.txt files dropped into the browser, with no network traffic and no server components, ensuring data remains completely local."
+/>
+<Link
+	href="https://avanderw.co.za/bookmarks/"
+	title="Bookmarks - A privacy-focused bookmark manager"
+	description="A privacy-focused web tool that locally edits and saves bookmarks dropped into the browser, with no network traffic and no server components, ensuring data remains completely local."
 />
 <Link
 	href="https://github.com/avanderw/bitburner-ts"
