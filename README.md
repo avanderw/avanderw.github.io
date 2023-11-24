@@ -1,20 +1,26 @@
-# create-svelte
+# My Personal Website
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This repository contains the code for my personal website located at [myusername].github.io.
 
-## Creating a project
+## About
 
-If you're seeing this, you've probably already done this step. Congrats!
+I built this site to showcase my work and share a bit more about myself personally and professionally. I used HTML, CSS and JavaScript to create an interactive, responsive site.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The site features different sections including:
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+About - A brief background and overview
+Skills - Technical abilities and competencies
+Projects - Notable works with images and descriptions
+Contact - Ways to get in touch with me
+And more. I will continue adding content over time.
 
-## Developing
+## Usage
+
+The site is hosted on GitHub pages and the main page can be accessed via the domain above. Feel free to poke around the code, just please provide attribution if reusing significant portions elsewhere.
+
+## Customization
+
+The site can be forked or cloned to make changes or use parts for your own purposes:
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
@@ -25,14 +31,6 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+## License
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+The code and content of this site is under the MIT License. This covers the custom code I created, though some embedded content such as themes or libraries may be under other licenses.
