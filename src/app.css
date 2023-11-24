@@ -58,6 +58,7 @@
 
 @media (orientation: landscape) {
     body {
+        font-size: xx-small;
         margin: auto 10%;
     }    
 }
@@ -113,4 +114,12 @@ a:hover {
     color: var(--link-hover);
 }
 
-
+svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}

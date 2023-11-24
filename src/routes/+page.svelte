@@ -45,7 +45,7 @@
 <Link
 	href="https://avanderw.co.za/bookmarks/"
 	title="Bookmarks - A privacy-focused bookmark manager"
-	description="A privacy-focused web tool that locally edits and saves bookmarks dropped into the browser, with no network traffic and no server components, ensuring data remains completely local."
+	description="A privacy-focused web tool that locally keeps bookmarks, with no network traffic and no server components, ensuring data remains completely local. It is developed as an alternative to LinkDing."
 />
 <Link
 	href="https://github.com/avanderw/bitburner-ts"
@@ -76,7 +76,6 @@
 />
 <About />
 <Tracking />
-<Contact />
 
 <style>
 	h2 {
