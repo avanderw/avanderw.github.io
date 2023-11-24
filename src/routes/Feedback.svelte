@@ -2,8 +2,8 @@
 
 <style>
 	a {
-		background-color: var(--feedback-background);
-		color: var(--feedback-text);
+		background-color: var(--accent-2);
+		color: var(--primary-9);
 		position: fixed;
 		top: 20rem;
 		transform: rotate(-90deg);

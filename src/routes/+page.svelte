@@ -27,6 +27,7 @@
 	fascinating and inspiring.
 </p>
 
+<div>
 <Link
 	href="https://avanderw.co.za/spyfall"
 	title="Spyfall - A social deduction game"
@@ -74,14 +75,15 @@
 	title="Advent of Code"
 	description="Every December, I eagerly participate in the Advent of Code, an annual coding challenge. It consists of increasingly complex programming problems, providing a fantastic opportunity for creative problem-solving. As I progress through the challenge, I document my journey and solutions, aiming to offer valuable insights to fellow participants and programming enthusiasts."
 />
+</div>
 <About />
 <Tracking />
 
 <style>
-	h2 {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
-		font-size: 1.8rem;
-		line-height: 1;
+	div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
 	}
 </style>
