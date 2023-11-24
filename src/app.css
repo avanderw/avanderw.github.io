@@ -31,7 +31,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
+    :root {
         --primary-9: #f8f9fa;
         --primary-8: #e9ecef;
         --primary-7: #dee2e6;
@@ -59,16 +59,28 @@
         --accent-3: #a4133c;
         --accent-2: #800f2f;
         --accent-1: #590d22;
-	}
+    }
+}
+
+body {
+    width: 95%;
+    margin: 0 auto;
+}
+
+html {
+    font-size: 14pt;
 }
 
 body {
     color: var(--primary-9);
-	background-color: var(--primary-1);
+    background-color: var(--primary-1);
     font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 400;
 }
 
