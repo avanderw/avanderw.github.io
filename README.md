@@ -1,6 +1,6 @@
 # My Personal Website
 
-This repository contains the code for my personal website located at avanderw.github.io.
+This repository contains the code for my personal website located at <https://avanderw.github.io>.
 
 ## About
 
