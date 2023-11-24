@@ -14,12 +14,6 @@
 	leadership abilities.
 </p>
 <p>
-	In my spare time, I dedicated myself to tutoring mathematics for matric pupils, nurturing their
-	academic growth. This commitment to education complements my formal educational journey, which
-	includes earning a computer science degree and an MBA. These qualifications have provided me with
-	a robust foundation for technical expertise and strategic thinking.
-</p>
-<p>
 	I'm passionate about technology and education and look forward to new challenges and opportunities
 	in both fields.
 </p>
