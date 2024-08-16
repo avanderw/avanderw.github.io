@@ -1,9 +1,5 @@
-<script>
-	import About from './About.svelte';
-	import Contact from './Contact.svelte';
-	import Feedback from './Feedback.svelte';
-	import Link from './Link.svelte';
-	import Tracking from './Tracking.svelte';
+<script lang="ts">
+	let page = 'projects';
 </script>
 
 <svelte:head>
@@ -14,75 +10,163 @@
 	/>
 </svelte:head>
 
-<Contact />
-<Feedback />
 <h1>Andrew van der Westhuizen</h1>
+
 <h2>Getting things done and enjoying life</h2>
 
 <p>
-	Hey there, fellow tech enthusiast! I'm excited to welcome you to my digital domain, where I spend
-	a lot of my time exploring new projects and passions. This site serves as the perfect hub for my
-	online presence, where I can showcase my personal works and connect with other like-minded
-	individuals. I'm confident that you'll find my latest creations and endeavors to be both
-	fascinating and inspiring.
+	Welcome to my digital space! I share my tech passions and projects here. Let’s connect and explore
+	together.
+</p>
+
+<h3><a href="?projects" on:click={() => (page = 'projects')}>Projects</a></h3>
+<h3><a href="?career" on:click={() => (page = 'career')}>Career</a></h3>
+<h3><a href="?social" on:click={() => (page = 'social')}>Social</a></h3>
+
+{#if page === 'projects'}
+	<table>
+		<tr>
+			<td class="year">2024</td>
+			<td><a href="https://avanderw.co.za/sudoku">Sudoku</a></td>
+			<td>Exploring solving, generating and grading sudoku puzzles.</td>
+		</tr>
+		<tr>
+			<td rowspan="4" class="year">2023</td>
+			<td><a href="https://avanderw.co.za/spyfall">Spyfall</a></td>
+			<td>I built a Spyfall web app to enhance group fun. It’s ad-free and easy to use.</td>
+		</tr>
+		<tr>
+			<td><a href="https://avanderw.co.za/todo-txt">Todo.txt Editor</a></td>
+			<td>Securely manage your todo list offline with this web tool.</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/avanderw/bitburner-ts">Bitburner</a></td>
+			<td>Automate Bitburner with my modular scripts.</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/avanderw/autohotkey">AutoHotkey</a></td>
+			<td>Automate your tasks with my AutoHotkey scripts.</td>
+		</tr>
+		<tr>
+			<td class="year">2022</td>
+			<td><a href="https://avanderw.co.za/joke">Jokes</a></td>
+			<td>Need a laugh? This PWA serves up dad jokes on demand.</td>
+		</tr>
+		<tr>
+			<td class="year">2020</td>
+			<td><a href="https://avanderw.co.za/bookmarks">Bookmarks</a></td>
+			<td>Local bookmark manager, a LinkDing alternative.</td>
+		</tr>
+		<tr>
+			<td class="year">2019</td>
+			<td><a href="https://github.com/avanderw/git-templates">Git templates</a></td>
+			<td>Streamline your Git workflow with these aliases and hooks.</td>
+		</tr>
+		<tr>
+			<td class="year">2018</td>
+			<td><a href="https://avanderw.co.za/advent-of-code">Advent of Code</a></td>
+			<td>Annual Advent of Code participant. Love coding challenges!</td>
+		</tr>
+	</table>
+{/if}
+
+{#if page === 'social'}
+	<table>
+		<tr>
+			<td class="year">2010</td>
+			<td><a href="https://www.linkedin.com/in/avanderw/">LinkedIn</a></td>
+			<td>1 billion members | Manage your professional identity.</td>
+		</tr>
+		<tr>
+			<td class="year">2005</td>
+			<td>
+				<a href="https://www.codingame.com/profile/161aabfa51e53989d7f4fd4d5bcfb712259018">
+					CodinGame
+				</a>
+			</td>
+			<td>Codingame: Level up your coding skills through fun challenges.</td>
+		</tr>
+	</table>
+{/if}
+
+{#if page === 'career'} 
+<table>
+	<tr>
+		<td class="year">2014 -</td>
+		<td>Product Head<br/>Development Manager<br/>Scrum Master<br/>Senior Developer</td>
+		<td><a href="https://www.capitecbank.co.za/">Capitec Bank</a></td>
+		<td>Cape Town</td>
+	</tr>
+	<tr>
+		<td class="year">2010 - 2014</td>
+		<td>Senior Developer</td>
+		<td><a href="https://www.sun.ac.za/">University of Stellenbosch</a></td>
+		<td>Cape Town</td>
+	</tr>
+	<tr>
+		<td class="year">2007 - 2010</td>
+		<td>Developer</td>
+		<td><a href="?#" title="Site no longer exists">eSight</a></td>
+		<td>Cape Town</td>
+	</tr>
+	<tr>
+		<td class="year">2003 - 2004</td>
+		<td>Tutor</td>
+		<td><a href="https://www.mastermaths.co.za/">Master Maths</a></td>
+		<td>Cape Town</td>
+	</tr>
+</table>
+{/if}
+
+<p>
+	I've built a diverse career spanning consulting, academia, and finance. My tech expertise and
+	leadership skills grew across these roles. I'm passionate about tech and education, eager for new
+	challenges.
 </p>
 
 <div>
-<Link
-	href="https://avanderw.co.za/spyfall"
-	title="Spyfall game"
-	description="This Spyfall Web App that has greatly improved our gaming experience with friends. I initially built the app using WebSockets to learn go. I'm enthusiasticly aiming to offer a seamless and ad-free gaming experience to all."
-/>
-<Link
-	href="https://avanderw.co.za/joke"
-	title="Jokes web app"
-	description="A Progressive Web App created with the goal of learning PWA development, delivering an array of dad jokes to brighten your day with just a tap."
-/>
-<Link
-	href="https://avanderw.co.za/todo-txt/"
-	title="Todo.txt editor"
-	description="A privacy-focused web tool that locally edits and saves todo.txt files dropped into the browser, with no network traffic and no server components, ensuring data remains completely local."
-/>
-<Link
-	href="https://avanderw.co.za/bookmarks/"
-	title="Bookmarks"
-	description="A local-first web tool that manages bookmarks. It is developed as an alternative to LinkDing."
-/>
-<Link
-	href="https://github.com/avanderw/bitburner-ts"
-	title="Bitburner scripts"
-	description="I'm excited to share my Bitburner scripts repository, a collection of modular and customizable scripts designed to automate various tasks in the popular text-based hacking simulator, Bitburner."
-/>
-<Link
-	href="https://github.com/avanderw/autohotkey"
-	title="AutoHotkey scripts"
-	description="A collection of AutoHotkey scripts that I use to automate various tasks and improve my productivity. These scripts are designed to be modular and customizable, allowing you to easily adapt them to your needs."
-/>
-<Link
-	href="https://github.com/avanderw/git-templates"
-	title="Git templates"
-	description="This repository offers essential aliases and hooks for Git, enabling you to standardize and customize your terminal workflow across multiple computers."
-/>
-<Link
-	href="https://www.codingame.com/profile/161aabfa51e53989d7f4fd4d5bcfb712259018"
-	title="CodinGame profile"
-	description="As an online platform that offers a variety of coding challenges and puzzles, Codingame is the perfect place to improve your programming abilities and show off your achievements."
-/>
-<Link
-	href="https://avanderw.co.za/advent-of-code"
-	title="Advent of Code"
-	description="Every December, I eagerly participate in the Advent of Code, an annual coding challenge. It consists of increasingly complex programming problems, providing a fantastic opportunity for creative problem-solving."
-/>
+	<a
+		aria-label="Chat on WhatsApp"
+		href="https://wa.me/27763347342"
+		title="Please don't just say hello in chat"
+	>
+		<svg><use href="feather-sprite.svg#phone" /></svg> WhatsApp
+	</a>
+	<a href="tel:+27763347342" title="I prefer WhatsApp">
+		<svg><use href="feather-sprite.svg#phone-call" /></svg>+27&nbsp;(0)76&nbsp;334&nbsp;7342
+	</a>
+	<a href="mailto:avanderw@gmail.com" title="Will respond within 48 hours">
+		<svg><use href="feather-sprite.svg#at-sign" /></svg>avanderw@gmail.com
+	</a>
 </div>
-<About />
-<Tracking />
 
 <style>
+	h3 {
+		display: inline-block;
+		margin: 0.5rem 1.5rem;
+	}
 	div {
+		font-size: smaller;
 		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-		justify-content: center;
-		margin-top: 2rem;
+	}
+	svg {
+		width: 1rem;
+		height: 1rem;
+		margin: 0rem 0.5rem;
+	}
+	.year {
+		color: var(--primary-4);
+		padding: 0.5rem 1rem;
+		vertical-align: top;
+		font-size: xx-large;
+		border-bottom: none;
+	}
+	td {
+		border-bottom: 1px dashed var(--primary-3);
+	}
+	a {
+		display: inline-block;
+		padding: 0.25rem 0.5rem;
+		text-decoration: none;
 	}
 </style>
