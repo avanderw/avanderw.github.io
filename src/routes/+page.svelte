@@ -19,9 +19,11 @@
 	together.
 </p>
 
-<h3><a href="?projects" on:click={() => (page = 'projects')}>Projects</a></h3>
-<h3><a href="?career" on:click={() => (page = 'career')}>Career</a></h3>
-<h3><a href="?social" on:click={() => (page = 'social')}>Social</a></h3>
+<div>
+<h3><a class:selected={page==='projects'} href="?projects" on:click={() => (page = 'projects')}>Projects</a></h3>
+<h3><a class:selected={page==='career'} href="?career" on:click={() => (page = 'career')}>Career</a></h3>
+<h3><a class:selected={page==='social'} href="?social" on:click={() => (page = 'social')}>Social</a></h3>
+</div>
 
 {#if page === 'projects'}
 	<table>
@@ -143,11 +145,19 @@
 <style>
 	h3 {
 		display: inline-block;
-		margin: 0.5rem 1.5rem;
+		padding: 0.5rem 1.5rem;
+		margin: 0;
+		border-right: var(--neutral-4) 1px dashed;
+	}
+	h3:last-child {
+		border-right: none;
 	}
 	div {
 		font-size: smaller;
 		display: flex;
+	}
+	div h3 {
+		font-size: x-large;
 	}
 	svg {
 		width: 1rem;
@@ -155,14 +165,17 @@
 		margin: 0rem 0.5rem;
 	}
 	.year {
-		color: var(--primary-4);
+		color: var(--neutral-4);
 		padding: 0.5rem 1rem;
 		vertical-align: top;
 		font-size: xx-large;
 		border-bottom: none;
 	}
+	.selected {
+		color: var(--secondary-3);
+	}
 	td {
-		border-bottom: 1px dashed var(--primary-3);
+		border-bottom: 1px dashed var(--neutral-4);
 	}
 	a {
 		display: inline-block;
