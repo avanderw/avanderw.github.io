@@ -71,7 +71,7 @@
 		</tr>
 		<tr>
 			<td class="year">2016</td>
-			<td><a href="https://avanderw.confirm.za/icebreaker">Icebreaker</a></td>
+			<td><a href="https://avanderw.co.za/icebreaker">Icebreaker</a></td>
 			<td>A web app for team-building activities.</td>
 		</tr>
 	</table>
