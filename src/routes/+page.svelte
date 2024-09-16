@@ -69,6 +69,11 @@
 			<td><a href="https://avanderw.co.za/advent-of-code">Advent of Code</a></td>
 			<td>Annual Advent of Code participant. Love coding challenges!</td>
 		</tr>
+		<tr>
+			<td class="year">2016</td>
+			<td><a href="https://avanderw.confirm.za/icebreaker">Icebreaker</a></td>
+			<td>A web app for team-building activities.</td>
+		</tr>
 	</table>
 {/if}
 
