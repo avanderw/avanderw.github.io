@@ -28,14 +28,18 @@
 {#if page === 'projects'}
 	<table>
 		<tr>
-			<td class="year">2024</td>
+			<td rowspan="2" class="year">2024</td>
+			<td><a href="https://avanderw.co.za/image-flood-fill">2D Flood Fill</a></td>
+			<td>Old retro image loading effect which flood fills an image from bottom to top.</td>
+		</tr>
+		<tr>
 			<td><a href="https://avanderw.co.za/sudoku">Sudoku</a></td>
 			<td>Exploring solving, generating and grading sudoku puzzles.</td>
 		</tr>
 		<tr>
 			<td rowspan="4" class="year">2023</td>
 			<td><a href="https://avanderw.co.za/spyfall">Spyfall</a></td>
-			<td>I built a Spyfall web app to enhance group fun. It’s ad-free and easy to use.</td>
+			<td>I built a Spyfall web app to enhance group fun. It's ad-free and easy to use.</td>
 		</tr>
 		<tr>
 			<td><a href="https://avanderw.co.za/todo-txt">Todo.txt Editor</a></td>
@@ -61,7 +65,7 @@
 		</tr>
 		<tr>
 			<td class="year">2019</td>
-			<td><a href="https://github.com/avanderw/git-templates">Git templates</a></td>
+			<td><a href="https://github.com/avanderw/git-templates">Git Templates</a></td>
 			<td>Streamline your Git workflow with these aliases and hooks.</td>
 		</tr>
 		<tr>
