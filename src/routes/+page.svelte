@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Header from "./Header.svelte";
+
 	let page = 'projects';
 </script>
 
@@ -9,6 +11,8 @@
 		content="Discover a diverse collection of projects, tools, and code crafted by Andrew van der Westhuizen on his personal website. Explore a wide range of topics, from software development and design to innovative solutions, all in one place. Dive into Andrew van der Westhuizen's creative work and expertise today."
 	/>
 </svelte:head>
+
+<Header />
 
 <h1>Andrew van der Westhuizen</h1>
 
