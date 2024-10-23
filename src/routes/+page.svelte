@@ -32,7 +32,11 @@
 {#if page === 'projects'}
 	<table>
 		<tr>
-			<td rowspan="2" class="year">2024</td>
+			<td rowspan="3" class="year">2024</td>
+			<td><a href="https://avanderw.co.za/rgb-shift-fx">2D RGB Shift</a></td>
+			<td>An image distortion technique often seen in glitch art and modern digital design.</td>
+		</tr>
+		<tr>
 			<td><a href="https://avanderw.co.za/image-flood-fill">2D Flood Fill</a></td>
 			<td>Old retro image loading effect which flood fills an image from bottom to top.</td>
 		</tr>
