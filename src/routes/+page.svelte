@@ -32,6 +32,11 @@
 {#if page === 'projects'}
 	<table>
 		<tr>
+			<td class="year">2025</td>
+			<td><a href="https://avanderw.co.za/diamond-square">Diamond Square</a></td>
+			<td>Procedural generation of terrain using the Diamond Square algorithm.</td>
+		</tr>
+		<tr>
 			<td rowspan="3" class="year">2024</td>
 			<td><a href="https://avanderw.co.za/rgb-shift-fx">2D RGB Shift</a></td>
 			<td>An image distortion technique often seen in glitch art and modern digital design.</td>
