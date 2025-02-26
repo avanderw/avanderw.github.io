@@ -32,7 +32,11 @@
 {#if page === 'projects'}
 	<table>
 		<tr>
-			<td class="year">2025</td>
+			<td rowspan="2" class="year">2025</td>
+			<td><a href="https://avanderw.co.za/point-distribution">Point Distribution</a></td>
+			<td>A visualization tool comparing 2D point distribution algorithms with real-time analysis.</td>
+		</tr>
+		<tr>
 			<td><a href="https://avanderw.co.za/diamond-square">Diamond Square</a></td>
 			<td>Procedural generation of terrain using the Diamond Square algorithm.</td>
 		</tr>
