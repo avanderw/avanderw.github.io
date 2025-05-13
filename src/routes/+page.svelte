@@ -33,7 +33,7 @@
 	<table>
 		<tr>
 			<td rowspan="4" class="year">2025</td>
-			<td><a href="https://github.com/avanderw/weighted-sort">Weighted Sort</a></td>
+			<td><a href="https://avanderw.co.za/weighted-sort">Weighted Sort</a></td>
 			<td>A flexible web application for sorting items by weighted criteria.</td>
 		</tr>
 		<tr>
