@@ -25,6 +25,7 @@
 
 <div>
 <h3><a class:selected={page==='projects'} href="?projects" on:click={() => (page = 'projects')}>Projects</a></h3>
+<h3><a class:selected={page==='mind-leak'} href="?mind-leak" on:click={() => (page = 'mind-leak')}>Mind Leak</a></h3>
 <h3><a class:selected={page==='career'} href="?career" on:click={() => (page = 'career')}>Career</a></h3>
 <h3><a class:selected={page==='social'} href="?social" on:click={() => (page = 'social')}>Social</a></h3>
 </div>
@@ -32,12 +33,7 @@
 {#if page === 'projects'}
 	<table>
 		<tr>
-			<td rowspan="5" class="year">2025</td>
-			<td><a href="https://avanderw.co.za/laws-of-software">Laws of Software</a></td>
-			<td>A collection of software development principles and best practices.</td>
-		</tr>
-		<tr>
-			
+			<td rowspan="4" class="year">2025</td>
 			<td><a href="https://avanderw.co.za/weighted-sort">Weighted Sort</a></td>
 			<td>A flexible web application for sorting items by weighted criteria.</td>
 		</tr>
@@ -107,6 +103,16 @@
 			<td class="year">2016</td>
 			<td><a href="https://avanderw.co.za/icebreaker">Icebreaker</a></td>
 			<td>A web app for team-building activities.</td>
+		</tr>
+	</table>
+{/if}
+
+{#if page === 'mind-leak'}
+	<table>
+		<tr>
+			<td class="year">2025</td>
+			<td><a href="https://avanderw.co.za/laws-of-software">Laws of Software</a></td>
+			<td>A collection of software development principles and best practices.</td>
 		</tr>
 	</table>
 {/if}
