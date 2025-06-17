@@ -25,7 +25,7 @@
 
 <div>
 <h3><a class:selected={page==='projects'} href="?projects" on:click={() => (page = 'projects')}>Skunkworks</a></h3>
-<h3><a class:selected={page==='mind-leak'} href="?mind-leak" on:click={() => (page = 'mind-leak')}>Mind Leak</a></h3>
+<h3><a class:selected={page==='blog'} href="?blog" on:click={() => (page = 'mind-leak')}>Mind Leak</a></h3>
 <h3><a class:selected={page==='career'} href="?career" on:click={() => (page = 'career')}>Career</a></h3>
 <h3><a class:selected={page==='social'} href="?social" on:click={() => (page = 'social')}>Social</a></h3>
 </div>
@@ -107,7 +107,7 @@
 	</table>
 {/if}
 
-{#if page === 'mind-leak'}
+{#if page === 'blog'}
 	<table>
 		<tr>
 			<td class="year">2025</td>
