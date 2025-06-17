@@ -32,7 +32,12 @@
 {#if page === 'projects'}
 	<table>
 		<tr>
-			<td rowspan="4" class="year">2025</td>
+			<td rowspan="5" class="year">2025</td>
+			<td><a href="https://avanderw.co.za/laws-of-software">Laws of Software</a></td>
+			<td>A collection of software development principles and best practices.</td>
+		</tr>
+		<tr>
+			
 			<td><a href="https://avanderw.co.za/weighted-sort">Weighted Sort</a></td>
 			<td>A flexible web application for sorting items by weighted criteria.</td>
 		</tr>
