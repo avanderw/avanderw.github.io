@@ -25,7 +25,7 @@
 
 <div>
 <h3><a class:selected={page==='projects'} href="?projects" on:click={() => (page = 'projects')}>Sandbox</a></h3>
-<h3><a class:selected={page==='blog'} href="?blog" on:click={() => (page = 'mind-leak')}>Stream</a></h3>
+<h3><a class:selected={page==='blog'} href="?blog" on:click={() => (page = 'blog')}>Stream</a></h3>
 <h3><a class:selected={page==='career'} href="?career" on:click={() => (page = 'career')}>Stack</a></h3>
 <h3><a class:selected={page==='social'} href="?social" on:click={() => (page = 'social')}>Handshake</a></h3>
 </div>
