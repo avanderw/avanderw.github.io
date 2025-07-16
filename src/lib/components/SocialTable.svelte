@@ -4,10 +4,25 @@
 	export let socialLinks: SocialLink[];
 	export let searchTerm: string = '';
 	
+	// Group social links by year, similar to how projects are grouped
 	$: filteredSocialLinks = socialLinks.filter(link =>
 		link.platform.toLowerCase().includes(searchTerm.toLowerCase()) ||
 		link.description.toLowerCase().includes(searchTerm.toLowerCase())
 	);
+	
+	// Group by year and sort by year descending
+	$: groupedByYear = filteredSocialLinks.reduce((acc, link) => {
+		const year = link.year;
+		if (!acc[year]) {
+			acc[year] = [];
+		}
+		acc[year].push(link);
+		return acc;
+	}, {} as Record<number, SocialLink[]>);
+	
+	$: yearGroups = Object.entries(groupedByYear)
+		.map(([year, links]) => ({ year: Number(year), links }))
+		.sort((a, b) => b.year - a.year);
 </script>
 
 <section aria-labelledby="social-heading">
@@ -22,17 +37,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each filteredSocialLinks as link}
-				<tr>
-					<td class="year">{link.year}</td>
-					<td><a href={link.url}>{link.platform}</a></td>
-					<td>{link.description}</td>
-				</tr>
+			{#each yearGroups as yearGroup}
+				{#each yearGroup.links as link, i}
+					<tr>
+						{#if i === 0}
+							<td rowspan={yearGroup.links.length} class="year">{yearGroup.year}</td>
+						{/if}
+						<td><a href={link.url}>{link.platform}</a></td>
+						<td>{link.description}</td>
+					</tr>
+				{/each}
 			{/each}
 		</tbody>
 	</table>
 
-	{#if searchTerm && filteredSocialLinks.length === 0}
+	{#if searchTerm && yearGroups.length === 0}
 		<p class="no-results">No social links found matching "{searchTerm}"</p>
 	{/if}
 </section>
