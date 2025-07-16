@@ -1,7 +1,32 @@
 <script lang="ts">
-	import Header from "./Header.svelte";
+	import Header from './Header.svelte';
+	import TabNavigation from '$lib/components/TabNavigation.svelte';
+	import ProjectsTable from '$lib/components/ProjectsTable.svelte';
+	import BlogTable from '$lib/components/BlogTable.svelte';
+	import SocialTable from '$lib/components/SocialTable.svelte';
+	import CareerTable from '$lib/components/CareerTable.svelte';
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+	import type { TabType } from '$lib/types.js';
+	import { years } from '$lib/data/projects.js';
+	import { blogPosts } from '$lib/data/blog.js';
+	import { socialLinks } from '$lib/data/social.js';
+	import { careerEntries } from '$lib/data/career.js';
 
-	let page = 'projects';
+	let page: TabType = 'projects';
+	let searchTerm = '';
+
+	// Handle URL state
+	onMount(() => {
+		const urlParams = new URLSearchParams(window.location.search);
+		const activeTab = urlParams.get('tab') || 'projects';
+		page = activeTab as TabType;
+	});
+
+	function navigateToTab(tab: TabType) {
+		page = tab;
+		goto(`?tab=${tab}`, { replaceState: true });
+	}
 </script>
 
 <svelte:head>
@@ -13,165 +38,44 @@
 </svelte:head>
 
 <Header />
+<main class="container">
+	<h1>Andrew van der Westhuizen</h1>
 
-<h1>Andrew van der Westhuizen</h1>
+	<h2>Getting things done and enjoying life</h2>
 
-<h2>Getting things done and enjoying life</h2>
+	<p>
+		Welcome to my digital space! I share my tech passions and projects here. Let's connect and
+		explore together.
+	</p>
 
-<p>
-	Welcome to my digital space! I share my tech passions and projects here. Let’s connect and explore
-	together.
-</p>
+	<TabNavigation currentTab={page} onTabChange={navigateToTab}>
+		<input
+			type="search"
+			name="search"
+			placeholder="Search {page === 'projects' ? 'projects' : page === 'blog' ? 'posts' : page === 'career' ? 'career' : 'social'}"
+			aria-label="Search {page === 'projects' ? 'projects' : page === 'blog' ? 'posts' : page === 'career' ? 'career' : 'social'}"
+			bind:value={searchTerm}
+		/>
+	</TabNavigation>
 
-<div>
-<h3><a class:selected={page==='projects'} href="?projects" on:click={() => (page = 'projects')}>Sandbox</a></h3>
-<h3><a class:selected={page==='blog'} href="?blog" on:click={() => (page = 'blog')}>Stream</a></h3>
-<h3><a class:selected={page==='career'} href="?career" on:click={() => (page = 'career')}>Stack</a></h3>
-<h3><a class:selected={page==='social'} href="?social" on:click={() => (page = 'social')}>Handshake</a></h3>
-</div>
+	{#if page === 'projects'}
+		<ProjectsTable {years} {searchTerm} />
+	{:else if page === 'blog'}
+		<BlogTable {blogPosts} {searchTerm} />
+	{:else if page === 'social'}
+		<SocialTable {socialLinks} {searchTerm} />
+	{:else if page === 'career'}
+		<CareerTable {careerEntries} {searchTerm} />
+	{/if}
 
-{#if page === 'projects'}
-	<table>
-		<tr>
-			<td rowspan="4" class="year">2025</td>
-			<td><a href="https://avanderw.co.za/weighted-sort">Weighted Sort</a></td>
-			<td>A flexible web application for sorting items by weighted criteria.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/avanderw/redate">Redate</a></td>
-			<td>A tool to rename files by prefixing them with their last modified date.</td>
-		</tr>
-		<tr>
-			<td><a href="https://avanderw.co.za/point-distribution">Point Distribution</a></td>
-			<td>A visualization tool comparing 2D point distribution algorithms with real-time analysis.</td>
-		</tr>
-		<tr>
-			<td><a href="https://avanderw.co.za/diamond-square">Diamond Square</a></td>
-			<td>Procedural generation of terrain using the Diamond Square algorithm.</td>
-		</tr>
-		<tr>
-			<td rowspan="3" class="year">2024</td>
-			<td><a href="https://avanderw.co.za/rgb-shift-fx">2D RGB Shift</a></td>
-			<td>An image distortion technique often seen in glitch art and modern digital design.</td>
-		</tr>
-		<tr>
-			<td><a href="https://avanderw.co.za/image-flood-fill">2D Flood Fill</a></td>
-			<td>Old retro image loading effect which flood fills an image from bottom to top.</td>
-		</tr>
-		<tr>
-			<td><a href="https://avanderw.co.za/sudoku">Sudoku</a></td>
-			<td>Exploring solving, generating and grading sudoku puzzles.</td>
-		</tr>
-		<tr>
-			<td rowspan="4" class="year">2023</td>
-			<td><a href="https://avanderw.co.za/spyfall">Spyfall</a></td>
-			<td>I built a Spyfall web app to enhance group fun. It's ad-free and easy to use.</td>
-		</tr>
-		<tr>
-			<td><a href="https://avanderw.co.za/todo-txt">Todo.txt Editor</a></td>
-			<td>Securely manage your todo list offline with this web tool.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/avanderw/bitburner-ts">Bitburner</a></td>
-			<td>Automate Bitburner with my modular scripts.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/avanderw/autohotkey">AutoHotkey</a></td>
-			<td>Automate your tasks with my AutoHotkey scripts.</td>
-		</tr>
-		<tr>
-			<td class="year">2022</td>
-			<td><a href="https://avanderw.co.za/joke">Jokes</a></td>
-			<td>Need a laugh? This PWA serves up dad jokes on demand.</td>
-		</tr>
-		<tr>
-			<td class="year">2020</td>
-			<td><a href="https://avanderw.co.za/bookmarks">Bookmarks</a></td>
-			<td>Local bookmark manager, a LinkDing alternative.</td>
-		</tr>
-		<tr>
-			<td class="year">2019</td>
-			<td><a href="https://github.com/avanderw/git-templates">Git Templates</a></td>
-			<td>Streamline your Git workflow with these aliases and hooks.</td>
-		</tr>
-		<tr>
-			<td class="year">2018</td>
-			<td><a href="https://avanderw.co.za/advent-of-code">Advent of Code</a></td>
-			<td>Annual Advent of Code participant. Love coding challenges!</td>
-		</tr>
-		<tr>
-			<td class="year">2016</td>
-			<td><a href="https://avanderw.co.za/icebreaker">Icebreaker</a></td>
-			<td>A web app for team-building activities.</td>
-		</tr>
-	</table>
-{/if}
+	<p>
+		I've built a diverse career spanning consulting, academia, and finance. My tech expertise and
+		leadership skills grew across these roles. I'm passionate about tech and education, eager for
+		new challenges.
+	</p>
+</main>
 
-{#if page === 'blog'}
-	<table>
-		<tr>
-			<td class="year">2025</td>
-			<td><a href="https://avanderw.co.za/laws-of-software">Laws of Software</a></td>
-			<td>A collection of software development principles and best practices.</td>
-		</tr>
-	</table>
-{/if}
-
-{#if page === 'social'}
-	<table>
-		<tr>
-			<td class="year">2010</td>
-			<td><a href="https://www.linkedin.com/in/avanderw/">LinkedIn</a></td>
-			<td>1 billion members | Manage your professional identity.</td>
-		</tr>
-		<tr>
-			<td class="year">2005</td>
-			<td>
-				<a href="https://www.codingame.com/profile/161aabfa51e53989d7f4fd4d5bcfb712259018">
-					CodinGame
-				</a>
-			</td>
-			<td>Codingame: Level up your coding skills through fun challenges.</td>
-		</tr>
-	</table>
-{/if}
-
-{#if page === 'career'} 
-<table>
-	<tr>
-		<td class="year">2014 -</td>
-		<td>Product Head<br/>Development Manager<br/>Scrum Master<br/>Senior Developer</td>
-		<td><a href="https://www.capitecbank.co.za/">Capitec Bank</a></td>
-		<td>Cape Town</td>
-	</tr>
-	<tr>
-		<td class="year">2010 - 2014</td>
-		<td>Senior Developer</td>
-		<td><a href="https://www.sun.ac.za/">University of Stellenbosch</a></td>
-		<td>Cape Town</td>
-	</tr>
-	<tr>
-		<td class="year">2007 - 2010</td>
-		<td>Developer</td>
-		<td><a href="?#" title="Site no longer exists">eSight</a></td>
-		<td>Cape Town</td>
-	</tr>
-	<tr>
-		<td class="year">2003 - 2004</td>
-		<td>Tutor</td>
-		<td><a href="https://www.mastermaths.co.za/">Master Maths</a></td>
-		<td>Cape Town</td>
-	</tr>
-</table>
-{/if}
-
-<p>
-	I've built a diverse career spanning consulting, academia, and finance. My tech expertise and
-	leadership skills grew across these roles. I'm passionate about tech and education, eager for new
-	challenges.
-</p>
-
-<div>
+<footer>
 	<a
 		aria-label="Chat on WhatsApp"
 		href="https://wa.me/27763347342"
@@ -185,46 +89,9 @@
 	<a href="mailto:avanderw@gmail.com" title="Will respond within 48 hours">
 		<svg><use href="feather-sprite.svg#at-sign" /></svg>avanderw@gmail.com
 	</a>
-</div>
+</footer>
 
 <style>
-	h3 {
-		display: inline-block;
-		padding: 0.5rem 1.5rem;
-		margin: 0;
-		border-right: var(--neutral-4) 1px dashed;
-	}
-	h3:last-child {
-		border-right: none;
-	}
-	div {
-		font-size: smaller;
-		display: flex;
-	}
-	div h3 {
-		font-size: x-large;
-	}
-	svg {
-		width: 1rem;
-		height: 1rem;
-		margin: 0rem 0.5rem;
-	}
-	.year {
-		color: var(--neutral-4);
-		padding: 0.5rem 1rem;
-		vertical-align: top;
-		font-size: xx-large;
-		border-bottom: none;
-	}
-	.selected {
-		color: var(--secondary-3);
-	}
-	td {
-		border-bottom: 1px dashed var(--neutral-4);
-	}
-	a {
-		display: inline-block;
-		padding: 0.25rem 0.5rem;
-		text-decoration: none;
-	}
+	/* Component-specific styles are now in individual components */
+	/* This page only contains layout-specific styles */
 </style>

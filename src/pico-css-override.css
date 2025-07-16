@@ -1,0 +1,25 @@
+/* Pico CSS overrides for consistent theming */
+:where(a:not([role=button])):is([aria-current]:not([aria-current=false]),:hover,:active,:focus), 
+[role=link]:is([aria-current]:not([aria-current=false]),:hover,:active,:focus) {
+    --pico-color: var(--pico-color-green-400);
+    --pico-underline: var(--pico-color-green-400);
+}
+
+/* Dark theme overrides */
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    :where(a:not([role=button])):is([aria-current]:not([aria-current=false]),:hover,:active,:focus), 
+    [role=link]:is([aria-current]:not([aria-current=false]),:hover,:active,:focus) {
+      --pico-color: var(--pico-color-green-350);
+      --pico-underline: var(--pico-color-green-350);
+    }
+  }
+}
+
+[data-theme="dark"] {
+  :where(a:not([role=button])):is([aria-current]:not([aria-current=false]),:hover,:active,:focus), 
+  [role=link]:is([aria-current]:not([aria-current=false]),:hover,:active,:focus) {
+    --pico-color: var(--pico-color-green-350);
+    --pico-underline: var(--pico-color-green-350);
+  }
+}
