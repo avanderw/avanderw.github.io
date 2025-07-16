@@ -14,9 +14,6 @@
 
 <nav>
 	<ul>
-		<li><strong>Navigation</strong></li>
-	</ul>
-	<ul>
 		{#each tabs as tab}
 			<li>
 				<a 

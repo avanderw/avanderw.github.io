@@ -4,13 +4,19 @@ export const socialLinks: SocialLink[] = [
 	{
 		platform: 'LinkedIn',
 		url: 'https://www.linkedin.com/in/avanderw/',
-		description: '1 billion members | Manage your professional identity.',
+		description: 'Professional networking and career updates.',
+		year: 2010
+	},
+	{
+		platform: 'GitHub',
+		url: 'https://github.com/avanderw',
+		description: 'Open source projects and code repositories.',
 		year: 2010
 	},
 	{
 		platform: 'CodinGame',
 		url: 'https://www.codingame.com/profile/161aabfa51e53989d7f4fd4d5bcfb712259018',
-		description: 'Codingame: Level up your coding skills through fun challenges.',
+		description: 'Coding challenges and competitive programming.',
 		year: 2005
 	}
 ];

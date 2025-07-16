@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Header from './Header.svelte';
 	import TabNavigation from '$lib/components/TabNavigation.svelte';
 	import ProjectsTable from '$lib/components/ProjectsTable.svelte';
 	import BlogTable from '$lib/components/BlogTable.svelte';
@@ -27,6 +26,15 @@
 		page = tab;
 		goto(`?tab=${tab}`, { replaceState: true });
 	}
+
+	import {
+		HomeIcon,
+		Github,
+		ChartNoAxesCombinedIcon,
+		Phone,
+		PhoneCallIcon,
+		AtSignIcon
+	} from 'lucide-svelte';
 </script>
 
 <svelte:head>
@@ -37,11 +45,36 @@
 	/>
 </svelte:head>
 
-<Header />
 <main class="container">
-	<h1>Andrew van der Westhuizen</h1>
+	<nav>
+		<ul>
+			<li>
+				<a href="https://avanderw.co.za"><HomeIcon /></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a
+					href="https://github.com/avanderw"
+					data-tooltip="View source on GitHub"
+					data-placement="bottom"><Github /></a
+				>
+			</li>
+			<li>
+				<a
+					href="https://tracking.avanderw.co.za/avanderw.co.za"
+					data-tooltip="View analytics"
+					data-placement="bottom"><ChartNoAxesCombinedIcon /></a
+				>
+			</li>
+		</ul>
+	</nav>
 
-	<h2>Getting things done and enjoying life</h2>
+	<hgroup>
+		<h2>Andrew van der Westhuizen</h2>
+
+		<p>Getting things done and enjoying life</p>
+	</hgroup>
 
 	<p>
 		Welcome to my digital space! I share my tech passions and projects here. Let's connect and
@@ -52,8 +85,20 @@
 		<input
 			type="search"
 			name="search"
-			placeholder="Search {page === 'projects' ? 'projects' : page === 'blog' ? 'posts' : page === 'career' ? 'career' : 'social'}"
-			aria-label="Search {page === 'projects' ? 'projects' : page === 'blog' ? 'posts' : page === 'career' ? 'career' : 'social'}"
+			placeholder="Search {page === 'projects'
+				? 'projects'
+				: page === 'blog'
+					? 'posts'
+					: page === 'career'
+						? 'career'
+						: 'social'}"
+			aria-label="Search {page === 'projects'
+				? 'projects'
+				: page === 'blog'
+					? 'posts'
+					: page === 'career'
+						? 'career'
+						: 'social'}"
 			bind:value={searchTerm}
 		/>
 	</TabNavigation>
@@ -73,22 +118,40 @@
 		leadership skills grew across these roles. I'm passionate about tech and education, eager for
 		new challenges.
 	</p>
+
+	<p>
+		Whether you have a project idea, want to discuss tech, or just say hello - I'd love to hear from
+		you. I'm always open to interesting conversations and new opportunities.
+	</p>
 </main>
 
-<footer>
-	<a
-		aria-label="Chat on WhatsApp"
-		href="https://wa.me/27763347342"
-		title="Please don't just say hello in chat"
-	>
-		<svg><use href="feather-sprite.svg#phone" /></svg> WhatsApp
-	</a>
-	<a href="tel:+27763347342" title="I prefer WhatsApp">
-		<svg><use href="feather-sprite.svg#phone-call" /></svg>+27&nbsp;(0)76&nbsp;334&nbsp;7342
-	</a>
-	<a href="mailto:avanderw@gmail.com" title="Will respond within 48 hours">
-		<svg><use href="feather-sprite.svg#at-sign" /></svg>avanderw@gmail.com
-	</a>
+<footer class="container">
+	<nav>
+		<ul>
+			<li><strong>Let's Connect</strong></li>
+		</ul>
+		<ul>
+			<li>
+				<a
+					aria-label="Chat on WhatsApp"
+					href="https://wa.me/27763347342"
+					title="Please don't just say hello in chat"
+				>
+					<Phone /> WhatsApp
+				</a>
+			</li>
+			<li>
+				<a href="tel:+27763347342" title="I prefer WhatsApp">
+					<PhoneCallIcon /> +27&nbsp;(0)76&nbsp;334&nbsp;7342
+				</a>
+			</li>
+			<li>
+				<a href="mailto:avanderw@gmail.com" title="Will respond within 48 hours">
+					<AtSignIcon /> avanderw@gmail.com
+				</a>
+			</li>
+		</ul>
+	</nav>
 </footer>
 
 <style>
