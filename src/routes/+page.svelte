@@ -11,6 +11,7 @@
 	import { blogPosts } from '$lib/data/blog.js';
 	import { socialLinks } from '$lib/data/social.js';
 	import { careerEntries } from '$lib/data/career.js';
+	import { setHeaderContent, setNavLinks } from '$lib/stores/layout';
 
 	let page: TabType = 'projects';
 	let searchTerm = '';
@@ -20,6 +21,12 @@
 		const urlParams = new URLSearchParams(window.location.search);
 		const activeTab = urlParams.get('tab') || 'projects';
 		page = activeTab as TabType;
+
+		// Clear navigation links for the home page
+		setNavLinks([]);
+		
+		// Set header content for this page
+		setHeaderContent({});
 	});
 
 	function navigateToTab(tab: TabType) {
@@ -28,9 +35,6 @@
 	}
 
 	import {
-		HomeIcon,
-		Github,
-		ChartNoAxesCombinedIcon,
 		Phone,
 		PhoneCallIcon,
 		AtSignIcon
@@ -44,32 +48,6 @@
 		content="Discover a diverse collection of projects, tools, and code crafted by Andrew van der Westhuizen on his personal website. Explore a wide range of topics, from software development and design to innovative solutions, all in one place. Dive into Andrew van der Westhuizen's creative work and expertise today."
 	/>
 </svelte:head>
-
-<header class="container">
-	<nav>
-		<ul>
-			<li>
-				<a href="https://avanderw.co.za"><HomeIcon /></a>
-			</li>
-		</ul>
-		<ul>
-			<li>
-				<a
-					href="https://github.com/avanderw"
-					data-tooltip="View source on GitHub"
-					data-placement="bottom"><Github /></a
-				>
-			</li>
-			<li>
-				<a
-					href="https://tracking.avanderw.co.za/avanderw.co.za"
-					data-tooltip="View analytics"
-					data-placement="bottom"><ChartNoAxesCombinedIcon /></a
-				>
-			</li>
-		</ul>
-	</nav>
-</header>
 
 <main class="container">
 	<hgroup>

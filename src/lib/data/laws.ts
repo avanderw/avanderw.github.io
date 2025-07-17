@@ -41,7 +41,7 @@ export const laws: Law[] = [
 		author: "Melvin Conway",
 		year: 1968,
 		sourceUrl: "https://www.melconway.com/Home/Conways_Law.html",
-		detailUrl: "conway/index.html"
+		detailUrl: "laws-of-software/conway"
 	},
 	{
 		id: 'cunningham',

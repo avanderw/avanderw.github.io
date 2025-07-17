@@ -20,6 +20,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"lucide-svelte": "^0.525.0"
+		"lucide-svelte": "^0.525.0",
+		"showdown": "^2.1.0"
 	}
 }

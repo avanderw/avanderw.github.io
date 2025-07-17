@@ -9,17 +9,17 @@ export const careerEntries: CareerEntry[] = [
 		location: 'Cape Town'
 	},
 	{
-		period: '2010 - 2014',
-		roles: ['Senior Software Developer'],
-		company: 'University of Stellenbosch',
-		companyUrl: 'https://www.sun.ac.za/',
-		location: 'Cape Town'
-	},
-	{
 		period: '2011 - 2012',
 		roles: [ 'Master of Business Administration (MBA)'],
 		company: 'University of Cape Town',
 		companyUrl: 'https://www.gsb.uct.ac.za/',
+		location: 'Cape Town'
+	},
+	{
+		period: '2010 - 2014',
+		roles: ['Senior Software Developer'],
+		company: 'University of Stellenbosch',
+		companyUrl: 'https://www.sun.ac.za/',
 		location: 'Cape Town'
 	},
 	{

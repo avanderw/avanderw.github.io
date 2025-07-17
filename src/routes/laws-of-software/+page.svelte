@@ -1,38 +1,21 @@
 <script>
 	import { laws } from '$lib/data/laws';
-	import { HomeIcon, Github, ChartNoAxesCombinedIcon, ScaleIcon } from 'lucide-svelte';
+	import { ScaleIcon } from 'lucide-svelte';
+	import { setNavLinks, setHeaderContent } from '$lib/stores/layout';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		// Clear navigation links for this page
+		setNavLinks([]);
+		
+		// Set header content for this page
+		setHeaderContent({
+			title: 'Laws of Software Engineering',
+			description: 'Collection of laws, principles, and aphorisms that are widely recognized in the software engineering community.'
+		});
+	});
 </script>
 
-<header class="container">
-	<nav>
-		<ul>
-			<li>
-				<a href="https://avanderw.co.za"><HomeIcon /></a>
-			</li>
-		</ul>
-		<ul>
-			<li>
-				<a
-					href="https://github.com/avanderw"
-					data-tooltip="View source on GitHub"
-					data-placement="bottom"><Github /></a
-				>
-			</li>
-			<li>
-				<a
-					href="https://tracking.avanderw.co.za/avanderw.co.za"
-					data-tooltip="View analytics"
-					data-placement="bottom"><ChartNoAxesCombinedIcon /></a
-				>
-			</li>
-		</ul>
-	</nav>
-	<h1>Laws of Software Engineering</h1>
-	<p>
-		Collection of laws, principles, and aphorisms that are widely recognized in the software
-		engineering community.
-	</p>
-</header>
 <main class="container">
 	{#each laws as law}
 		<article>
@@ -48,7 +31,11 @@
 				{law.quote}
 				<footer>
 					<cite>
-						-- <a href={law.sourceUrl} data-tooltip="Visit the origin material" data-placement="bottom">{law.author}{law.year ? `, ${law.year}` : ''}</a>
+						-- <a
+							href={law.sourceUrl}
+							data-tooltip="Visit the origin material"
+							data-placement="bottom">{law.author}{law.year ? `, ${law.year}` : ''}</a
+						>
 					</cite>
 				</footer>
 			</blockquote>
