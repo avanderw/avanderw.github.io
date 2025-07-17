@@ -45,7 +45,7 @@
 	/>
 </svelte:head>
 
-<main class="container">
+<header class="container">
 	<nav>
 		<ul>
 			<li>
@@ -69,7 +69,9 @@
 			</li>
 		</ul>
 	</nav>
+</header>
 
+<main class="container">
 	<hgroup>
 		<h2>Andrew van der Westhuizen</h2>
 
