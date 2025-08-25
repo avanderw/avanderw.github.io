@@ -16,7 +16,6 @@ export const laws: Law[] = [
 		author: "Jeff Atwood",
 		year: 2009,
 		sourceUrl: "https://blog.codinghorror.com/all-programming-is-web-programming/",
-		detailUrl: "atwood/index.html"
 	},
 	{
 		id: 'brooks',
