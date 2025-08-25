@@ -5,6 +5,11 @@ export const years: Year[] = [
 		number: 2025,
 		projects: [
 			{
+				name: 'Minimum Spanning Tree',
+				url: 'https://avanderw.co.za/minimum-spanning-tree',
+				description: 'Minimum Spanning Tree visualization and implementation.'
+			},
+			{
 				name: 'Weighted Sort',
 				url: 'https://avanderw.co.za/weighted-sort',
 				description: 'A flexible web application for sorting items by weighted criteria.'
