@@ -1,7 +1,4 @@
 <script lang="ts">
-	// This can be false if you're using a fallback (i.e. SPA mode)
-	export const prerender = true;
-
 	import '../pico-css-override.css';
 	import { HomeIcon, Github, ChartNoAxesCombinedIcon } from 'lucide-svelte';
 	import { navLinks, headerContent } from '$lib/stores/layout';
