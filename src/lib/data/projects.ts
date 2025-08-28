@@ -5,6 +5,11 @@ export const years: Year[] = [
 		number: 2025,
 		projects: [
 			{
+				name: "Hanabi (Fireworks)",
+				url: "https://avanderw.co.za/hanabi",
+				description: "Interactive fireworks particle effect converted from Flash ActionScript to HTML5",
+			},
+			{
 				name: 'Minimum Spanning Tree',
 				url: 'https://avanderw.co.za/minimum-spanning-tree',
 				description: 'Minimum Spanning Tree visualization and implementation.'
