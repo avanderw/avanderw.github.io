@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Laws of Software',
+		url: '/blog/laws-of-software',
+		slug: 'laws-of-software',
+		htmlComponent: 'LawsOfSoftware',
+		description: 'Collection of laws, principles, and aphorisms that are widely recognized.',
+		year: 2025
+	},
+	{
 		title: 'The Hook Model',
 		url: '/blog/hook-model',
 		slug: 'hook-model',

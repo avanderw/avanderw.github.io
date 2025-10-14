@@ -1,5 +1,6 @@
 <script lang="ts">
 	import MarkdownViewer from '$lib/components/MarkdownViewer.svelte';
+	import LawsOfSoftware from '$lib/components/LawsOfSoftware.svelte';
 	import { setNavLinks, setHeaderContent } from '$lib/stores/layout';
 	import { onMount } from 'svelte';
 	import { blogPosts } from '$lib/data/blog';
@@ -120,9 +121,15 @@
 			</button>
 		</nav>
 
-		<!-- Markdown Content -->
+		<!-- Content: Either Markdown or HTML Component -->
 		<article>
-			<MarkdownViewer src={markdownPath} />
+			{#if currentPost.htmlComponent === 'LawsOfSoftware'}
+				<LawsOfSoftware />
+			{:else if currentPost.markdownPath}
+				<MarkdownViewer src={markdownPath} />
+			{:else}
+				<p>Content not available.</p>
+			{/if}
 		</article>
 
 		<!-- Bottom Navigation -->
