@@ -4,10 +4,32 @@
 	export let blogPosts: BlogPost[];
 	export let searchTerm: string = '';
 	
-	$: filteredBlogPosts = blogPosts.filter(post =>
-		post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-		post.description.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	interface BlogYear {
+		number: number;
+		posts: BlogPost[];
+	}
+	
+	$: filteredBlogYears = (() => {
+		// First filter the posts
+		const filtered = blogPosts.filter(post =>
+			post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			post.description.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+		
+		// Group by year
+		const yearMap = new Map<number, BlogPost[]>();
+		filtered.forEach(post => {
+			if (!yearMap.has(post.year)) {
+				yearMap.set(post.year, []);
+			}
+			yearMap.get(post.year)!.push(post);
+		});
+		
+		// Convert to array and sort by year (descending)
+		return Array.from(yearMap.entries())
+			.map(([number, posts]) => ({ number, posts }))
+			.sort((a, b) => b.number - a.number);
+	})();
 </script>
 
 <section aria-labelledby="blog-heading">
@@ -22,17 +44,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each filteredBlogPosts as post}
-				<tr>
-					<td class="year">{post.year}</td>
-					<td><a href={post.url}>{post.title}</a></td>
-					<td>{post.description}</td>
-				</tr>
+			{#each filteredBlogYears as year}
+				{#each year.posts as post, i}
+					<tr>
+						{#if i === 0}
+							<td rowspan={year.posts.length} class="year">{year.number}</td>
+						{/if}
+						<td><a href={post.url}>{post.title}</a></td>
+						<td>{post.description}</td>
+					</tr>
+				{/each}
 			{/each}
 		</tbody>
 	</table>
 
-	{#if searchTerm && filteredBlogPosts.length === 0}
+	{#if searchTerm && filteredBlogYears.length === 0}
 		<p class="no-results">No blog posts found matching "{searchTerm}"</p>
 	{/if}
 </section>

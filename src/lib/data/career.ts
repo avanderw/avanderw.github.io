@@ -2,7 +2,7 @@ import type { CareerEntry } from '../types.js';
 
 export const careerEntries: CareerEntry[] = [
 	{
-		period: '2014 -',
+		period: '2013 -',
 		roles: ['Product Head', 'Development Manager', 'Scrum Master', 'Senior Software Developer'],
 		company: 'Capitec Bank',
 		companyUrl: 'https://www.capitecbank.co.za/',
@@ -16,7 +16,7 @@ export const careerEntries: CareerEntry[] = [
 		location: 'Cape Town'
 	},
 	{
-		period: '2010 - 2014',
+		period: '2010 - 2013',
 		roles: ['Senior Software Developer'],
 		company: 'University of Stellenbosch',
 		companyUrl: 'https://www.sun.ac.za/',

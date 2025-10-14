@@ -12,6 +12,8 @@ export interface Year {
 export interface BlogPost {
 	title: string;
 	url: string;
+	slug: string;
+	markdownPath: string;
 	description: string;
 	year: number;
 }
