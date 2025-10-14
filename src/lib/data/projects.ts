@@ -5,7 +5,7 @@ export const years: Year[] = [
 		number: 2025,
 		projects: [
 			{
-				name: "Hanabi (Fireworks)",
+				name: "Hanabi",
 				url: "https://avanderw.co.za/hanabi",
 				description: "Interactive fireworks particle effect converted from Flash ActionScript to HTML5",
 			},

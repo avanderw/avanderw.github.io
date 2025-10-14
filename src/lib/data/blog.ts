@@ -2,14 +2,6 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
-		title: 'Laws of Software',
-		url: '/blog/laws-of-software',
-		slug: 'laws-of-software',
-		htmlComponent: 'LawsOfSoftware',
-		description: 'Collection of laws, principles, and aphorisms that are widely recognized.',
-		year: 2025
-	},
-	{
 		title: 'The Hook Model',
 		url: '/blog/hook-model',
 		slug: 'hook-model',
@@ -48,5 +40,13 @@ export const blogPosts: BlogPost[] = [
 		markdownPath: '/blog/20250917T155029_the-amazon-6-pager-working-backwards-narrative-a-complete-guide_c573ddf6.md',
 		description: 'Understanding Amazon\'s six-page narrative memo process for effective communication.',
 		year: 2025
-	}
+	},
+	{
+		title: 'Laws of Software',
+		url: '/blog/laws-of-software',
+		slug: 'laws-of-software',
+		htmlComponent: 'LawsOfSoftware',
+		description: 'Collection of laws, principles, and aphorisms that are widely recognized.',
+		year: 2025
+	},
 ];

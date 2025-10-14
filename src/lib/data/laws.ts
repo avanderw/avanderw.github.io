@@ -219,3 +219,25 @@ export const laws: Law[] = [
 		sourceUrl: "https://www.jwz.org/hacks/"
 	}
 ];
+
+/**
+ * Get all laws that have detail pages
+ */
+export function getLawsWithDetails(): Law[] {
+	return laws.filter(law => law.detailUrl);
+}
+
+/**
+ * Get a law by its detail URL
+ */
+export function getLawByDetailUrl(url: string): Law | undefined {
+	return laws.find(law => law.detailUrl === url);
+}
+
+/**
+ * Get the index of a law in the list of laws with detail pages
+ */
+export function getLawDetailIndex(url: string): number {
+	const lawsWithDetails = getLawsWithDetails();
+	return lawsWithDetails.findIndex(law => law.detailUrl === url);
+}
