@@ -5,6 +5,11 @@ export const years: Year[] = [
 		number: 2025,
 		projects: [
 			{
+				name: "Elevator Saga",
+				url: "https://avanderw.co.za/elevator-saga",
+				description: "Programming challenge to efficiently schedule elevators."
+			},
+			{
 				name: "Hanabi",
 				url: "https://avanderw.co.za/hanabi",
 				description: "Interactive fireworks particle effect converted from Flash ActionScript to HTML5",
