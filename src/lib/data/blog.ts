@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: "The XY Problem",
+		url: "/blog/xy-problem",
+		slug: "xy-problem",
+		markdownPath: '/blog/20251017T095616_the-xy-problem-a-critical-analysis-of-its-relevance-to-business-delivery_cc8df569.md',
+		description: "A critical analysis of the XY Problem and its relevance to business delivery.",
+		year: 2025
+	},
+	{
 		title: 'The Hook Model',
 		url: '/blog/hook-model',
 		slug: 'hook-model',
