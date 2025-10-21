@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'The Story of Money',
+		url: '/blog/story-of-money',
+		slug: 'story-of-money',
+		markdownPath: '/blog/20251021T160138_story-of-money-claude_f84f77f3.md',
+		description: 'An exploration of the history and evolution of money.',
+		year: 2025,
+	},
+	{
 		title: "The XY Problem",
 		url: "/blog/xy-problem",
 		slug: "xy-problem",
