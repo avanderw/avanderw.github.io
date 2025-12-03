@@ -1,14 +1,12 @@
 # Understanding Wardley Mapping
 
-## I. Executive Summary: The Necessity of Strategic Situational Awareness
-
 Wardley Mapping (WM) is a foundational concept in strategic visualization, designed to construct a dynamic, topographical representation of a business and its competitive environment. Unlike static planning documents, a Wardley Map charts the competitive landscape by positioning organizational components based on their contribution to user needs (the value chain) and their stage of maturity (evolution). This technique, developed by Simon Wardley after synthesizing business strategy with military thinking inspired by Sun Tzu's *The Art of War*, fundamentally reorients strategic leadership.
 
 The strategic imperative behind adopting Wardley Mapping is the transition from relying on luck to depending on maps. WM reveals the inherent logic of industry flow�identifying where value is currently realized, where stagnation occurs, and where future value is likely to emerge. This visualization process enables leaders to anticipate and act upon inevitable future states, particularly the continuous drive toward commoditization, thereby providing foresight rather than mere description. By mapping the environment, organizations gain the ability to manipulate the competitive landscape to their advantage, rather than simply reacting to market forces.   
 
 The primary benefits of implementing this framework include achieving better cross-team alignment, significantly reducing redundant work and systemic duplication, clarifying complex investment decisions, and establishing a shared understanding of the strategic landscape. For strategy executives and technology leaders, Wardley Mapping provides the concrete evidence necessary to defend long-term decisions and guides continuous organizational adaptation in dynamic environments. It moves strategic analysis beyond abstract concepts into a verifiable, contextual visualization.   
 
-## II. The Foundational Framework: Defining Wardley Mapping (The "What")
+## I. The Foundational Framework: Defining Wardley Mapping (The "What")
 
 ### A. Origins and Philosophical Underpinnings
 Wardley Mapping originated in 2005 when Simon Wardley, frustrated by inadequate business strategy practices, created the technique while at Fotango, further developing it within Canonical UK between 2008 and 2010. The foundational philosophy is anchored in the realization that business strategy shares core principles with actual war strategy. Just as a military general requires detailed topographical maps to understand the battlefield before deciding on maneuvers, a business leader requires situational awareness of the commercial landscape.   
@@ -60,7 +58,7 @@ The creation and analysis of the map rely on clearly defined elements:
 | Evolution Axis | The movement of components from Genesis to Commodity/Utility. | Defines the horizontal structure (X-Axis); dictates strategy. |
 | Dependencies | Links showing which components rely on others. | Establishes hierarchical relationships within the value chain. |
 
-## III. Deconstructing Evolution: Predicting Technology and Market Maturity
+## II. Deconstructing Evolution: Predicting Technology and Market Maturity
 The horizontal evolution axis is the mechanism through which strategic change is anticipated. This movement is understood to be inevitable, driven by the forces of supply and demand competition. Strategy is not about preventing this change, but about managing the rate of change and manipulating the environment to exploit it. The progression is often non-linear, manifesting through multiple waves of diffusion and punctuated equilibrium, rather than a smooth, straight line.   
 
 ### A. The Four Stages of Component Evolution
@@ -102,7 +100,7 @@ This trap represents a severe organizational flaw because maintaining a custom c
 
 Furthermore, leaders recognize that the goal is to aggressively move certain components rightward�a process often referred to as industrialization�before competitors can achieve the same efficiency. If a component upon which competitors rely heavily can be rapidly commoditized by the leader, the competitor is forced to bear the high cost and complexity of custom solutions while the leader benefits from the cheap, standardized utility. This competitive maneuver is a primary objective of strategic gameplay.   
 
-## IV. Strategic Rationale: Why Wardley Mapping Is Essential (The "Why")
+## III. Strategic Rationale: Why Wardley Mapping Is Essential (The "Why")
 
 The utility of Wardley Mapping extends far beyond simple diagramming; it is a fundamental tool for achieving strategic situational awareness and ensuring organizational coherence in dynamic environments.
 
@@ -129,7 +127,7 @@ Strategic success requires continuous adaptation, not adherence to a rigid, mult
 
 The technique incorporates the climatic reality that the environment is constantly shifting. Therefore, the maps must be living documents, kept current and updated regularly as components mature and competitive dynamics evolve. This operational requirement enforces organizational agility and ensures that strategic planning remains grounded in the present context.
 
-## V. Mapping Methodology: Step-by-Step Construction and Analysis (The "How")
+## IV. Mapping Methodology: Step-by-Step Construction and Analysis (The "How")
 
 Creating a robust Wardley Map involves a four-phase process, progressing from identifying the driving force to analyzing strategic movement.
 
@@ -169,7 +167,7 @@ The final phase transforms the static diagram into a predictive strategic tool.
 
 - **Iterate and Update**: The map is used to curb bias, enhance communication, and continuously compare internal performance against competitive environments. Continuous practice is necessary for the technique to improve and remain relevant.   
 
-## VI. Doctrine and Climate: Advanced Strategic Overlays
+## V. Doctrine and Climate: Advanced Strategic Overlays
 
 A Wardley Map's effectiveness is unlocked only when the Landscape is analyzed in conjunction with the Doctrine and the Climate. These components provide the strategic rules and the environmental context necessary for successful execution.
 
@@ -207,7 +205,7 @@ Climatic Patterns are unavoidable external forces that manipulate the business e
 
 - **Prediction and Conflict**: Climatic patterns offer predictive signals. A 'war' causes organizations to evolve. The term 'war' often refers to a point of major industrialization where intense competition forces rapid component maturity. Anticipating this "war" allows for timely investment or defensive strategic plays. Furthermore, the analyst must accept that *Future value is inversely proportional to the certainty we have over it*. This critical observation reinforces the need to proactively invest in Genesis components, as the highest rewards are found in the highest uncertainty.   
 
-## VII. Strategic Gameplay: Turning Maps into Actionable Moves
+## VI. Strategic Gameplay: Turning Maps into Actionable Moves
 
 Once the landscape is mapped and understood in the context of Climate and Doctrine, the process moves to Gameplay—the strategic moves an organization makes to manipulate the environment to its benefit.
 
@@ -241,7 +239,7 @@ Strategic gameplay involves more than just optimizing the current landscape; it 
 
 - **Reducing Capital Investment**: Maps can guide investment decisions toward platforms built upon existing, reliable utility infrastructure. By identifying platform needs (often Custom-Built or Product stage) that can be supported by utility computing resources (Commodity stage), organizations can significantly reduce initial capital investment while maintaining profitability, as demonstrated by early strategies in private cloud infrastructure development.   
 
-## VIII. Case Studies and Application (The "When")
+## VII. Case Studies and Application (The "When")
 
 Wardley Mapping has been applied successfully across diverse sectors, proving its utility in complex strategic decision-making environments.
 
@@ -261,7 +259,7 @@ In a case involving a large pharmaceutical company, Wardley Mapping was utilized
 
 Wardley Maps have been leveraged by large commercial organizations to determine the optimal delivery model for complex functions, such as Security Operations Centers (SOCs). By mapping the security value chain and the maturity of components like threat intelligence, monitoring, and analysis, the organization gains clarity on the build-vs.-outsource decision. If a security component (e.g., standardized log collection) is determined to be a Commodity, the decision mandates outsourcing or consumption as a utility. Conversely, if a component provides unique competitive advantage or is still in the Custom-Built stage (e.g., proprietary threat analysis algorithms), the decision favors internal development and ownership.   
 
-## IX. Conclusion and Recommendations
+## VIII. Conclusion and Recommendations
 
 Wardley Mapping is not a derivative of existing strategic planning models; it represents a paradigm shift toward visually informed, adaptable strategy. It provides the essential strategic visualization necessary to navigate the dynamic competitive environment by understanding the unavoidable forces of evolution (Climate) and applying consistent rules of engagement (Doctrine). The efficacy of the map lies in its ability to anchor strategic dialogue in objective reality—the value chain and the stage of component maturity—thereby eliminating biases and forging enterprise-wide consensus on the facts of the landscape.
 
