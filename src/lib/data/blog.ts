@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'The Wardley Doctrine',
+		url: '/blog/wardley-doctrine',
+		slug: 'wardley-doctrine',
+		markdownPath: '/blog/20251203T141812_the-wardley-doctrine_5b62a2ff.md',
+		description: 'An in-depth look at the principles and applications of the Wardley Doctrine.',
+		year: 2025,
+	},
+	{
 		title: 'Wardley Mapping',
 		url: '/blog/wardley-mapping',
 		slug: 'wardley-mapping',
