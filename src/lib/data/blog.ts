@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Wardley Mapping',
+		url: '/blog/wardley-mapping',
+		slug: 'wardley-mapping',
+		markdownPath: '/blog/20251203T134726_understanding-wardley-mapping_9b296090.md',
+		description: 'Understanding Wardley Mapping and its applications in strategic planning.',
+		year: 2025,
+	},
+	{
 		title: 'The Story of Money',
 		url: '/blog/story-of-money',
 		slug: 'story-of-money',
