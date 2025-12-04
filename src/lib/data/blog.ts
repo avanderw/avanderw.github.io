@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Hexagonal Architecture',
+		url: '/blog/hexagonal-architecture',
+		slug: 'hexagonal-architecture',
+		markdownPath: '/blog/20251204T091429_hexagonal-architecture_d3083256.md',
+		description: 'An exploration of Hexagonal Architecture and its benefits in software design.',
+		year: 2025,
+	},
+	{
 		title: 'The Wardley Doctrine',
 		url: '/blog/wardley-doctrine',
 		slug: 'wardley-doctrine',
