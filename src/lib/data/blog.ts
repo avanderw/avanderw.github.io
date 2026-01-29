@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Contract-First Development',
+		url: '/blog/contract-first',
+		slug: 'contract-first',
+		markdownPath: '/blog/20260129T124315_code-contract-first.md',
+		description: 'A comprehensive analysis of Contract-First versus Code-First paradigms in AI-driven software architecture.',
+		year: 2026,
+	},
+	{
 		title: 'Hexagonal Architecture',
 		url: '/blog/hexagonal-architecture',
 		slug: 'hexagonal-architecture',
