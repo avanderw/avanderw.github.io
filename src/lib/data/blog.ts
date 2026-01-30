@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Distributed Rate Limits',
+		url: '/blog/distributed-rate-limits',
+		slug: 'distributed-rate-limits',
+		markdownPath: '/blog/20260130T145647_distrubuted-rate-limits.md',
+		description: 'Strategies for managing rate limits across distributed architectures, including centralized token buckets, egress queues, and Kafka-based solutions.',
+		year: 2026,
+	},
+	{
 		title: 'Contract-First Development',
 		url: '/blog/contract-first',
 		slug: 'contract-first',
