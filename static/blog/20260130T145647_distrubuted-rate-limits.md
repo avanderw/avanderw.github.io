@@ -59,8 +59,6 @@ Regardless of the architecture you choose, ensure your outgoing proxy is program
 
 > **Note:** If you use a load balancer (like Nginx or HAProxy) as your outgoing gateway, many have built-in modules to handle global rate limiting, though they often require a shared memory zone or a stick-table.
 
-Would you like me to provide a **Python/Redis** code example for a distributed token bucket, or should we look at an **Architectural Diagram** for an Egress Queue setup?
-
 ## Running a pull model vs. push
 
 Having a **Kafka egress topic** already in place is a massive advantage. You have effectively moved from a "Push" model (where services try to force traffic out) to a **"Pull" model** (where you control the flow).
@@ -126,5 +124,3 @@ If the external service rate limits you **per user** or **per API key** (rather 
 Since Kafka acts as a buffer, if you get a massive spike of traffic, the "lag" in your egress topic might grow. By the time a consumer pulls a request, it might be 10 minutes old and no longer relevant to the end-user.
 
 > **Tip:** Implement a **TTL (Time to Live)** or **Timestamp check** inside your consumer. If `CurrentTime - RecordTimestamp > MaxAllowedDelay`, discard the message or move it to a Dead Letter Queue (DLQ) instead of wasting your precious rate-limit quota on a stale request.
-
-Would you like me to show you a **pseudo-code implementation** for a Kafka consumer that uses the **Pause/Resume** logic based on 429 headers?
