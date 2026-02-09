@@ -2,6 +2,16 @@ import type { Year } from '../types.js';
 
 export const years: Year[] = [
 	{
+		number: 2026,
+		projects: [
+			{
+				name: 'Proximity Playground',
+				url: 'https://avanderw.co.za/proximity-playground',
+				description: 'An Interactive Guide to Geometric Graphs.'
+			}
+		]
+	},
+	{
 		number: 2025,
 		projects: [
 			{
@@ -41,8 +51,8 @@ export const years: Year[] = [
 			}
 		]
 	},
-	{ 
-		number: 2024, 
+	{
+		number: 2024,
 		projects: [
 			{
 				name: '2D RGB Shift',
@@ -61,8 +71,8 @@ export const years: Year[] = [
 			}
 		]
 	},
-	{ 
-		number: 2023, 
+	{
+		number: 2023,
 		projects: [
 			{
 				name: 'Spyfall',
@@ -86,8 +96,8 @@ export const years: Year[] = [
 			}
 		]
 	},
-	{ 
-		number: 2022, 
+	{
+		number: 2022,
 		projects: [
 			{
 				name: 'Jokes',
@@ -96,8 +106,8 @@ export const years: Year[] = [
 			}
 		]
 	},
-	{ 
-		number: 2020, 
+	{
+		number: 2020,
 		projects: [
 			{
 				name: 'Bookmarks',
@@ -106,8 +116,8 @@ export const years: Year[] = [
 			}
 		]
 	},
-	{ 
-		number: 2019, 
+	{
+		number: 2019,
 		projects: [
 			{
 				name: 'Git Templates',
@@ -116,8 +126,8 @@ export const years: Year[] = [
 			}
 		]
 	},
-	{ 
-		number: 2018, 
+	{
+		number: 2018,
 		projects: [
 			{
 				name: 'Advent of Code',
@@ -126,8 +136,8 @@ export const years: Year[] = [
 			}
 		]
 	},
-	{ 
-		number: 2016, 
+	{
+		number: 2016,
 		projects: [
 			{
 				name: 'Icebreaker',
