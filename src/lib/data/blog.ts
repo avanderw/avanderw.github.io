@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'AI Doom Narrative - Profit or Precaution?',
+		url: '/blog/ai-doom-narrative',
+		slug: 'ai-doom-narrative',
+		markdownPath: '/blog/20260313T155648_AI-Doom-Narrative_Profit-or-Precaution.md',
+		description: 'An exploration of the AI doom narrative, examining the balance between profit-driven motives and precautionary measures in AI development.',
+		year: 2026,
+	},
+	{
 		title: 'The Global AI Race',
 		url: '/blog/global-ai-race',
 		slug: 'global-ai-race',
