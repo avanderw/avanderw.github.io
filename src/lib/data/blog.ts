@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'The Global AI Race',
+		url: '/blog/global-ai-race',
+		slug: 'global-ai-race',
+		markdownPath: '/blog/20260313T132326_ai-race_ game-theory.md',
+		description: 'An in-depth analysis of the global AI race, exploring the competitive landscape, technological advancements, and strategic implications.',
+		year: 2026,
+	},
+	{
 		title: 'Distributed Rate Limits',
 		url: '/blog/distributed-rate-limits',
 		slug: 'distributed-rate-limits',
