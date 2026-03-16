@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Leadership Paradox of Agency',
+		url: '/blog/leadership-paradox-of-agency',
+		slug: 'leadership-paradox-of-agency',
+		markdownPath: '/blog/20260316T094038_Leadership-Paradox_Hiring-Autonomy-Suppressing-Talent.md',
+		description: 'An exploration of the leadership paradox of agency, examining the balance between individual initiative and organizational control.',
+		year: 2026,
+	},
+	{
 		title: 'AI Doom Narrative - Profit or Precaution?',
 		url: '/blog/ai-doom-narrative',
 		slug: 'ai-doom-narrative',
