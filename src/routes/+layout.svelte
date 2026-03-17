@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../pico-css-override.css';
-	import { HomeIcon, Github, ChartNoAxesCombinedIcon, Sun, Moon } from 'lucide-svelte';
+	import { HomeIcon, Github, ChartNoAxesCombinedIcon, Sun, Moon, Rss } from 'lucide-svelte';
 	import { navLinks, headerContent } from '$lib/stores/layout';
 	import { onMount } from 'svelte';
 	
@@ -88,6 +88,13 @@
 							<Moon />
 						{/if}
 					</a>
+				</li>
+				<li>
+					<a
+						href="/rss.xml"
+						data-tooltip="RSS Feed"
+						data-placement="bottom"><Rss /></a
+					>
 				</li>
 				<li>
 					<a
