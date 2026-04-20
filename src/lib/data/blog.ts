@@ -2,6 +2,22 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'The Algorithmic Arbitrage',
+		url: '/blog/algorithmic-arbitrage',
+		slug: 'algorithmic-arbitrage',
+		description: 'An exploration of algorithmic arbitrage, examining the structural shift in global software development.',
+		year: 2026,
+		markdownPath: '/blog/20260420T134900_AI-Rent-Seeking-IT-Costs.md'
+	},
+	{
+		title: 'Corporate Project Naming',
+		url: '/blog/corporate-project-naming',
+		slug: 'corporate-project-naming',
+		description: 'An exploration of the art and science of corporate project naming, examining the impact of names on project success and organizational culture.',
+		year: 2026,
+		markdownPath: "/blog/20260420T134300_Corporate-Project-Naming.md",
+	},
+	{
 		title: 'Leadership Paradox of Agency',
 		url: '/blog/leadership-paradox-of-agency',
 		slug: 'leadership-paradox-of-agency',
