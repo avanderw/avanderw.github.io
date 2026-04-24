@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Automation vs Human Intervention Analysis',
+		url: '/blog/automation-vs-human-intervention-analysis',
+		slug: 'automation-vs-human-intervention-analysis',
+		description: 'An analysis of the balance between automation and human intervention in various domains.',
+		year: 2026,
+		markdownPath: '/blog/20260424T102912_automation-vs-human-intervention-analysis.md',
+	},
+	{
 		title: 'The Algorithmic Arbitrage',
 		url: '/blog/algorithmic-arbitrage',
 		slug: 'algorithmic-arbitrage',
