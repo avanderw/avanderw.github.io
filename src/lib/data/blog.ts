@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: "Parse Don't Validate",
+		url: '/blog/parse-dont-validate',
+		slug: 'parse-dont-validate',
+		description: 'An exploration of the "Parse Don\'t Validate" principle in software development, examining its benefits and applications.',
+		year: 2026,
+		markdownPath: '/blog/20260512T104049_parse-dont-validate.md',
+	},
+	{
 		title: 'Automation vs Human Intervention Analysis',
 		url: '/blog/automation-vs-human-intervention-analysis',
 		slug: 'automation-vs-human-intervention-analysis',
