@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Virtual pet evolution',
+		url: '/blog/virtual-pet-evolution',
+		slug: 'virtual-pet-evolution',
+		description: 'An exploration of the evolution of virtual pets, from early digital companions to modern AI-driven entities.',
+		year: 2026,
+		markdownPath: '/blog/20260514T152200_virtual-pet-evolution.md',
+	},
+	{
 		title: "Parse Don't Validate",
 		url: '/blog/parse-dont-validate',
 		slug: 'parse-dont-validate',
