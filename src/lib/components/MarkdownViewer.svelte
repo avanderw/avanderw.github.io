@@ -1,5 +1,8 @@
 <script lang="ts">
     import showdown from 'showdown';
+    import { afterUpdate } from 'svelte';
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/github-dark.css';
     
     export let src = '';
     export let options = { tables: true };
@@ -125,6 +128,12 @@
             loading = false;
         }
     }
+
+    afterUpdate(() => {
+        document.querySelectorAll('.markdown-content pre code').forEach((block) => {
+            hljs.highlightElement(block as HTMLElement);
+        });
+    });
 </script>
 
 {#if loading}
@@ -146,6 +155,7 @@
 {/if}
 
 <style>
+
     .loading, .error {
         padding: 1rem;
         text-align: center;
