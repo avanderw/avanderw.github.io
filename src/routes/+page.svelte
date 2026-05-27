@@ -34,11 +34,7 @@
 		goto(`?tab=${tab}`, { replaceState: true });
 	}
 
-	import {
-		Phone,
-		PhoneCallIcon,
-		AtSignIcon
-	} from 'lucide-svelte';
+
 </script>
 
 <svelte:head>
@@ -105,34 +101,7 @@
 	</p>
 </main>
 
-<footer class="container">
-	<nav>
-		<ul>
-			<li><strong>Let's Connect</strong></li>
-		</ul>
-		<ul>
-			<li>
-				<a
-					aria-label="Chat on WhatsApp"
-					href="https://wa.me/27763347342"
-					title="Please don't just say hello in chat"
-				>
-					<Phone /> WhatsApp
-				</a>
-			</li>
-			<li>
-				<a href="tel:+27763347342" title="I prefer WhatsApp">
-					<PhoneCallIcon /> +27&nbsp;(0)76&nbsp;334&nbsp;7342
-				</a>
-			</li>
-			<li>
-				<a href="mailto:avanderw@gmail.com" title="Will respond within 48 hours">
-					<AtSignIcon /> avanderw@gmail.com
-				</a>
-			</li>
-		</ul>
-	</nav>
-</footer>
+
 
 <style>
 	/* Component-specific styles are now in individual components */
