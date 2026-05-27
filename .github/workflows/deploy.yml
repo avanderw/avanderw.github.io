@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: npm
@@ -26,7 +26,7 @@ jobs:
           touch build/.nojekyll
 
       - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           # this should match the `pages` option in your adapter-static options
           path: 'build/'
@@ -43,10 +43,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-    
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
