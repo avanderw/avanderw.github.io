@@ -2,6 +2,54 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Git Branching Strategies',
+		url: '/blog/git-branching-strategies',
+		slug: 'git-branching-strategies',
+		description: 'An exploration of various Git branching strategies, including their advantages and disadvantages.',
+		year: 2026,
+		markdownPath: '/blog/20260527T112010_git-branching.md',
+	},
+	{
+		title: 'Virtual pet evolution',
+		url: '/blog/virtual-pet-evolution',
+		slug: 'virtual-pet-evolution',
+		description: 'An exploration of the evolution of virtual pets, from early digital companions to modern AI-driven entities.',
+		year: 2026,
+		markdownPath: '/blog/20260514T152200_virtual-pet-evolution.md',
+	},
+	{
+		title: "Parse Don't Validate",
+		url: '/blog/parse-dont-validate',
+		slug: 'parse-dont-validate',
+		description: 'An exploration of the "Parse Don\'t Validate" principle in software development, examining its benefits and applications.',
+		year: 2026,
+		markdownPath: '/blog/20260512T104049_parse-dont-validate.md',
+	},
+	{
+		title: 'Automation vs Human Intervention Analysis',
+		url: '/blog/automation-vs-human-intervention-analysis',
+		slug: 'automation-vs-human-intervention-analysis',
+		description: 'An analysis of the balance between automation and human intervention in various domains.',
+		year: 2026,
+		markdownPath: '/blog/20260424T102912_automation-vs-human-intervention-analysis.md',
+	},
+	{
+		title: 'The Algorithmic Arbitrage',
+		url: '/blog/algorithmic-arbitrage',
+		slug: 'algorithmic-arbitrage',
+		description: 'An exploration of algorithmic arbitrage, examining the structural shift in global software development.',
+		year: 2026,
+		markdownPath: '/blog/20260420T134900_AI-Rent-Seeking-IT-Costs.md'
+	},
+	{
+		title: 'Corporate Project Naming',
+		url: '/blog/corporate-project-naming',
+		slug: 'corporate-project-naming',
+		description: 'An exploration of the art and science of corporate project naming, examining the impact of names on project success and organizational culture.',
+		year: 2026,
+		markdownPath: "/blog/20260420T134300_Corporate-Project-Naming.md",
+	},
+	{
 		title: 'Leadership Paradox of Agency',
 		url: '/blog/leadership-paradox-of-agency',
 		slug: 'leadership-paradox-of-agency',
