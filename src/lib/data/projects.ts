@@ -7,7 +7,8 @@ export const years: Year[] = [
 			{
 				name: 'Proximity Playground',
 				url: 'https://avanderw.co.za/proximity-playground',
-				description: 'An Interactive Guide to Geometric Graphs.'
+				description: 'An Interactive Guide to Geometric Graphs.',
+				highlighted: true
 			}
 		]
 	},
@@ -17,17 +18,19 @@ export const years: Year[] = [
 			{
 				name: "Elevator Saga",
 				url: "https://avanderw.co.za/elevator-saga",
-				description: "Programming challenge to efficiently schedule elevators."
+				description: "Programming challenge to efficiently schedule elevators.",
 			},
 			{
 				name: "Hanabi",
 				url: "https://avanderw.co.za/hanabi",
 				description: "Interactive fireworks particle effect converted from Flash ActionScript to HTML5",
+				highlighted: true
 			},
 			{
 				name: 'Minimum Spanning Tree',
 				url: 'https://avanderw.co.za/minimum-spanning-tree',
-				description: 'Minimum Spanning Tree visualization and implementation.'
+				description: 'Minimum Spanning Tree visualization and implementation.',
+				highlighted: true
 			},
 			{
 				name: 'Weighted Sort',
@@ -47,7 +50,8 @@ export const years: Year[] = [
 			{
 				name: 'Diamond Square',
 				url: 'https://avanderw.co.za/diamond-square',
-				description: 'Procedural generation of terrain using the Diamond Square algorithm.'
+				description: 'Procedural generation of terrain using the Diamond Square algorithm.',
+				highlighted: true
 			}
 		]
 	},
@@ -57,12 +61,14 @@ export const years: Year[] = [
 			{
 				name: '2D RGB Shift',
 				url: 'https://avanderw.co.za/rgb-shift-fx',
-				description: 'An image distortion technique often seen in glitch art and modern digital design.'
+				description: 'An image distortion technique often seen in glitch art and modern digital design.',
+				highlighted: true
 			},
 			{
 				name: '2D Flood Fill',
 				url: 'https://avanderw.co.za/image-flood-fill',
-				description: 'Old retro image loading effect which flood fills an image from bottom to top.'
+				description: 'Old retro image loading effect which flood fills an image from bottom to top.',
+				highlighted: true
 			},
 			{
 				name: 'Sudoku',
@@ -77,12 +83,12 @@ export const years: Year[] = [
 			{
 				name: 'Spyfall',
 				url: 'https://avanderw.co.za/spyfall',
-				description: 'I built a Spyfall web app to enhance group fun. It\'s ad-free and easy to use.'
+				description: 'I built a Spyfall web app to enhance group fun. It\'s ad-free and easy to use.',
 			},
 			{
 				name: 'Todo.txt Editor',
 				url: 'https://avanderw.co.za/todo-txt',
-				description: 'Securely manage your todo list offline with this web tool.'
+				description: 'Securely manage your todo list offline with this web tool.',
 			},
 			{
 				name: 'Bitburner',

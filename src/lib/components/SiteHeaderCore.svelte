@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { HomeIcon, Sun, Moon, Rss } from 'lucide-svelte';
 
-	export interface NavLink {
+	interface NavLink {
 		href: string;
 		text: string;
 		tooltip?: string;
@@ -35,18 +35,24 @@
 					<HomeIcon />
 				</a>
 			</li>
-			{#each navLinks as link}
+			{#each navLinks as link, index}
 				<li>
-					<a
-						href={link.href}
-						data-tooltip={link.tooltip ?? link.text}
-						data-placement="bottom"
-						title={link.tooltip ?? link.text}
-					>
-						{link.text}
-					</a>
+					{#if index === navLinks.length - 1}
+						<span aria-current="page">{link.text}</span>
+					{:else}
+						<a href={link.href} title={link.tooltip ?? link.text}>
+							{link.text}
+						</a>
+					{/if}
 				</li>
 			{/each}
+		</ul>
+	</nav>
+
+	<nav aria-label="Site navigation">
+		<ul>
+			<li><a href="/stream" data-tooltip="Writing" data-placement="bottom" title="Writing">Stream</a></li>
+			<li><a href="/sandbox" data-tooltip="Projects" data-placement="bottom" title="Projects">Sandbox</a></li>
 		</ul>
 	</nav>
 
@@ -54,8 +60,8 @@
 		<ul>
 			<li>
 				<a
-					href="#"
-					on:click={handleThemeToggle}
+					href={home}
+					on:click|preventDefault={handleThemeToggle}
 					data-tooltip={tooltipText}
 					data-placement="bottom"
 					title={tooltipText}

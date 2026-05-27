@@ -7,8 +7,7 @@
 	const tabs = [
 		{ id: 'projects', label: 'Sandbox', description: 'Projects' },
 		{ id: 'blog', label: 'Stream', description: 'Blog' },
-		{ id: 'career', label: 'Stack', description: 'Experience' },
-		{ id: 'social', label: 'Handshake', description: 'Contact' }
+		{ id: 'career', label: 'Stack', description: 'Experience' }
 	] as const;
 </script>
 

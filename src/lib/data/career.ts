@@ -11,7 +11,7 @@ export const careerEntries: CareerEntry[] = [
 	{
 		period: '2011 - 2012',
 		roles: [ 'Master of Business Administration (MBA)'],
-		company: 'University of Cape Town',
+		company: 'Graduate School of Business',
 		companyUrl: 'https://www.gsb.uct.ac.za/',
 		location: 'Cape Town'
 	},

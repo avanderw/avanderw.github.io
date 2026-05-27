@@ -2,6 +2,7 @@ export interface Project {
 	name: string;
 	url: string;
 	description: string;
+	highlighted?: boolean;
 }
 
 export interface Year {
@@ -34,4 +35,4 @@ export interface CareerEntry {
 	location: string;
 }
 
-export type TabType = 'projects' | 'blog' | 'career' | 'social';
+export type TabType = 'projects' | 'blog' | 'career';
