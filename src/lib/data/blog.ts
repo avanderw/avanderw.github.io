@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Git Branching Strategies',
+		url: '/blog/git-branching-strategies',
+		slug: 'git-branching-strategies',
+		description: 'An exploration of various Git branching strategies, including their advantages and disadvantages.',
+		year: 2026,
+		markdownPath: '/blog/20260527T112010_git-branching.md',
+	},
+	{
 		title: 'Virtual pet evolution',
 		url: '/blog/virtual-pet-evolution',
 		slug: 'virtual-pet-evolution',

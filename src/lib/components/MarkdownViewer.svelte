@@ -1,7 +1,8 @@
 <script lang="ts">
     import showdown from 'showdown';
-    import { afterUpdate } from 'svelte';
+    import { afterUpdate, onDestroy, onMount } from 'svelte';
     import hljs from 'highlight.js';
+    import mermaid from 'mermaid';
     import 'highlight.js/styles/github-dark.css';
     
     export let src = '';
@@ -13,6 +14,9 @@
     let error: string | null = null;
     let tocItems: { level: number; text: string; id: string }[] = [];
     let tocOpen = false;
+    let mermaidInitialized = false;
+    let mermaidTheme: 'dark' | 'default' = 'default';
+    let themeObserver: MutationObserver | null = null;
 
     interface TocNode {
         text: string;
@@ -120,7 +124,7 @@
             tocItems = result.headings;
             tocTree = buildTocTree(tocItems);
         } catch (err) {
-            error = err.message;
+            error = err instanceof Error ? err.message : String(err);
             htmlContent = '';
             tocItems = [];
             tocTree = [];
@@ -129,8 +133,102 @@
         }
     }
 
+    function renderMermaidBlocks() {
+        const mermaidCodeBlocks = document.querySelectorAll('.markdown-content pre code.language-mermaid');
+
+        mermaidCodeBlocks.forEach((block) => {
+            const pre = block.parentElement;
+            if (!pre) {
+                return;
+            }
+
+            const mermaidSource = block.textContent ?? '';
+            const container = document.createElement('div');
+            container.className = 'mermaid';
+            container.setAttribute('data-mermaid-source', mermaidSource);
+            container.textContent = mermaidSource;
+
+            pre.replaceWith(container);
+        });
+
+        if (!mermaidInitialized) {
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: mermaidTheme
+            });
+            mermaidInitialized = true;
+        }
+
+        mermaid.run({ querySelector: '.markdown-content .mermaid' });
+    }
+
+    function getPreferredMermaidTheme(): 'dark' | 'default' {
+        if (typeof document === 'undefined') {
+            return 'default';
+        }
+
+        const htmlTheme = document.documentElement.getAttribute('data-theme');
+        if (htmlTheme === 'dark') {
+            return 'dark';
+        }
+
+        if (htmlTheme === 'light') {
+            return 'default';
+        }
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+    }
+
+    function rerenderMermaidForTheme() {
+        const nextTheme = getPreferredMermaidTheme();
+        if (nextTheme === mermaidTheme) {
+            return;
+        }
+
+        mermaidTheme = nextTheme;
+        mermaid.initialize({
+            startOnLoad: false,
+            securityLevel: 'loose',
+            theme: mermaidTheme
+        });
+        mermaidInitialized = true;
+
+        document.querySelectorAll('.markdown-content .mermaid').forEach((diagram) => {
+            const source = diagram.getAttribute('data-mermaid-source');
+            if (!source) {
+                return;
+            }
+
+            diagram.removeAttribute('data-processed');
+            diagram.innerHTML = '';
+            diagram.textContent = source;
+        });
+
+        mermaid.run({ querySelector: '.markdown-content .mermaid' });
+    }
+
+    onMount(() => {
+        mermaidTheme = getPreferredMermaidTheme();
+
+        themeObserver = new MutationObserver(() => {
+            rerenderMermaidForTheme();
+        });
+
+        themeObserver.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+    });
+
+    onDestroy(() => {
+        themeObserver?.disconnect();
+        themeObserver = null;
+    });
+
     afterUpdate(() => {
-        document.querySelectorAll('.markdown-content pre code').forEach((block) => {
+        renderMermaidBlocks();
+        document.querySelectorAll('.markdown-content pre code:not(.language-mermaid)').forEach((block) => {
             hljs.highlightElement(block as HTMLElement);
         });
     });
