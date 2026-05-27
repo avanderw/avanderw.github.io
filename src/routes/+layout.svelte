@@ -32,9 +32,7 @@
 <header class="container">
 	<SiteHeaderCore
 		home="/"
-		github="https://github.com/avanderw"
 		rss="/rss.xml"
-		analytics="https://tracking.avanderw.co.za/avanderw.co.za"
 		navLinks={$navLinks}
 		{isDarkMode}
 		on:themeToggle={toggleTheme}

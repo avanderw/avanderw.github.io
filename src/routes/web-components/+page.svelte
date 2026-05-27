@@ -25,9 +25,7 @@
 
 	const headerFull = `<site-header
   home="/"
-  github="https://github.com/avanderw"
   rss="/rss.xml"
-  analytics="https://tracking.avanderw.co.za/my-project"
   links='[{"href":"/docs","text":"Docs"},{"href":"/api","text":"API"}]'
 ></site-header>`;
 
@@ -78,7 +76,6 @@
 			home="/"
 			github="https://github.com/avanderw"
 			rss="/rss.xml"
-			analytics="https://tracking.avanderw.co.za/avanderw.co.za"
 			navLinks={[{ href: '/web-components', text: 'Web Components' }]}
 			isDarkMode={false}
 		/>
@@ -101,19 +98,9 @@
 					<td>URL for the home icon link.</td>
 				</tr>
 				<tr>
-					<td><code>github</code></td>
-					<td><code>"https://github.com/avanderw"</code></td>
-					<td>GitHub profile or repo URL. Omit or leave empty to hide the icon.</td>
-				</tr>
-				<tr>
 					<td><code>rss</code></td>
 					<td><em>empty</em></td>
 					<td>RSS feed URL. Omit or leave empty to hide the icon.</td>
-				</tr>
-				<tr>
-					<td><code>analytics</code></td>
-					<td><em>empty</em></td>
-					<td>Analytics dashboard URL. Omit or leave empty to hide the icon.</td>
 				</tr>
 				<tr>
 					<td><code>links</code></td>

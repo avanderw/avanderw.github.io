@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { HomeIcon, Sun, Moon, Rss, Github, ChartNoAxesCombinedIcon } from 'lucide-svelte';
+	import { HomeIcon, Sun, Moon, Rss } from 'lucide-svelte';
 
 	export interface NavLink {
 		href: string;
@@ -9,9 +9,7 @@
 	}
 
 	export let home: string = '/';
-	export let github: string = '';
 	export let rss: string = '';
-	export let analytics: string = '';
 	export let navLinks: NavLink[] = [];
 	export let isDarkMode: boolean = false;
 
@@ -74,30 +72,6 @@
 				<li>
 					<a href={rss} data-tooltip="RSS Feed" data-placement="bottom" title="RSS Feed">
 						<Rss />
-					</a>
-				</li>
-			{/if}
-			{#if github}
-				<li>
-					<a
-						href={github}
-						data-tooltip="View source on GitHub"
-						data-placement="bottom"
-						title="View source on GitHub"
-					>
-						<Github />
-					</a>
-				</li>
-			{/if}
-			{#if analytics}
-				<li>
-					<a
-						href={analytics}
-						data-tooltip="View analytics"
-						data-placement="bottom"
-						title="View analytics"
-					>
-						<ChartNoAxesCombinedIcon />
 					</a>
 				</li>
 			{/if}

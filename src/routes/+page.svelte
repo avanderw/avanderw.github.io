@@ -49,7 +49,7 @@
 	<hgroup>
 		<h2>Andrew van der Westhuizen</h2>
 
-		<p>Getting things done and enjoying life</p>
+		<p>Leading with the why. Getting things done!</p>
 	</hgroup>
 
 	<p>

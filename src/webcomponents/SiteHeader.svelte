@@ -7,9 +7,7 @@
 	import SiteHeaderCore from '$lib/components/SiteHeaderCore.svelte';
 
 	export let home: string = '/';
-	export let github: string = 'https://github.com/avanderw';
 	export let rss: string = '';
-	export let analytics: string = '';
 	export let links: string = '[]';
 
 	let isDarkMode = false;
@@ -40,9 +38,7 @@
 	<div class="header-inner">
 		<SiteHeaderCore
 			{home}
-			{github}
 			{rss}
-			{analytics}
 			navLinks={navLinks}
 			{isDarkMode}
 			on:themeToggle={toggleTheme}
