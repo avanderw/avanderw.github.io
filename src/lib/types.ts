@@ -35,4 +35,29 @@ export interface CareerEntry {
 	location: string;
 }
 
+export type BookStatus = 'read' | 'reading';
+
+export interface ReadBook {
+	title: string;
+	author: string;
+	status: 'read';
+	comment: string;
+	rating: number;
+	yearRead?: number;
+	seriesName?: string;
+	seriesOrder?: number;
+	seriesTotal?: number;
+}
+
+export interface ReadingBook {
+	title: string;
+	author: string;
+	status: 'reading';
+	seriesName?: string;
+	seriesOrder?: number;
+	seriesTotal?: number;
+}
+
+export type Book = ReadBook | ReadingBook;
+
 export type TabType = 'projects' | 'blog' | 'career';

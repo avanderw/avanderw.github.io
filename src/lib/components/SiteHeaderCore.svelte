@@ -53,6 +53,7 @@
 		<ul>
 			<li><a href="/stream" data-tooltip="Writing" data-placement="bottom" title="Writing">Stream</a></li>
 			<li><a href="/sandbox" data-tooltip="Projects" data-placement="bottom" title="Projects">Sandbox</a></li>
+			<li><a href="/books" data-tooltip="Reading list" data-placement="bottom" title="Reading list">Books</a></li>
 		</ul>
 	</nav>
 
