@@ -110,6 +110,7 @@
 				{/each}
 			</tbody>
 		</table>
+		<p class="section-footer"><a href="/Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume (PDF)</a></p>
 	</section>
 
 </main>
