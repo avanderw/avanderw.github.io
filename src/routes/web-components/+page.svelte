@@ -74,7 +74,6 @@
 	<div class="demo-box">
 		<SiteHeaderCore
 			home="/"
-			github="https://github.com/avanderw"
 			rss="/rss.xml"
 			navLinks={[{ href: '/web-components', text: 'Web Components' }]}
 			isDarkMode={false}

@@ -6,6 +6,12 @@
 	import { onMount } from 'svelte';
 	import SiteHeaderCore from '$lib/components/SiteHeaderCore.svelte';
 
+	interface NavLink {
+		href: string;
+		text: string;
+		tooltip?: string;
+	}
+
 	export let home: string = '/';
 	export let rss: string = '';
 	export let links: string = '[]';
@@ -14,7 +20,7 @@
 
 	$: navLinks = (() => {
 		try {
-			return JSON.parse(links) as import('$lib/components/SiteHeaderCore.svelte').NavLink[];
+			return JSON.parse(links) as NavLink[];
 		} catch {
 			return [];
 		}
