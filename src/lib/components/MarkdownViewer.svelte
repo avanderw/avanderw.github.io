@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { browser } from '$app/environment';
     import showdown from 'showdown';
     import { afterUpdate, onDestroy, onMount } from 'svelte';
     import hljs from 'highlight.js';
@@ -17,6 +18,9 @@
     let mermaidInitialized = false;
     let mermaidTheme: 'dark' | 'default' = 'default';
     let themeObserver: MutationObserver | null = null;
+    let mounted = false;
+    let fetchController: AbortController | null = null;
+    let activeRequestId = 0;
 
     interface TocNode {
         text: string;
@@ -71,8 +75,15 @@
         customizedHeaderId: true
     });
     
-    $: if (src) {
-        loadMarkdown(src);
+    $: if (browser && mounted && src) {
+        void loadMarkdown(src);
+    }
+
+    $: if (browser && mounted && !src) {
+        htmlContent = '';
+        error = null;
+        tocItems = [];
+        tocTree = [];
     }
 
     function slugify(text: string): string {
@@ -108,28 +119,44 @@
     
     async function loadMarkdown(filePath:string) {
         if (!filePath) return;
+
+        fetchController?.abort();
+        const requestId = ++activeRequestId;
+        const controller = new AbortController();
+        fetchController = controller;
         
         loading = true;
         error = null;
         
         try {
-            const response = await fetch(filePath);
+            const response = await fetch(filePath, { signal: controller.signal });
             if (!response.ok) {
                 throw new Error(`Failed to load ${filePath}: ${response.status}`);
             }
             const markdown = await response.text();
+            if (requestId !== activeRequestId) {
+                return;
+            }
             const rawHtml = converter.makeHtml(markdown);
             const result = extractAndInjectHeadings(rawHtml);
             htmlContent = result.html;
             tocItems = result.headings;
             tocTree = buildTocTree(tocItems);
         } catch (err) {
+            if (controller.signal.aborted || requestId !== activeRequestId) {
+                return;
+            }
             error = err instanceof Error ? err.message : String(err);
             htmlContent = '';
             tocItems = [];
             tocTree = [];
         } finally {
-            loading = false;
+            if (requestId === activeRequestId) {
+                loading = false;
+                if (fetchController === controller) {
+                    fetchController = null;
+                }
+            }
         }
     }
 
@@ -209,6 +236,10 @@
     }
 
     onMount(() => {
+        mounted = true;
+        if (src) {
+            void loadMarkdown(src);
+        }
         mermaidTheme = getPreferredMermaidTheme();
 
         themeObserver = new MutationObserver(() => {
@@ -222,6 +253,8 @@
     });
 
     onDestroy(() => {
+        fetchController?.abort();
+        fetchController = null;
         themeObserver?.disconnect();
         themeObserver = null;
     });
