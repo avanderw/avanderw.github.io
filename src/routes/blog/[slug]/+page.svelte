@@ -9,7 +9,8 @@
 		ChevronFirst, 
 		ChevronLast, 
 		ChevronLeft, 
-		ChevronRight
+		ChevronRight,
+		Share2
 	} from 'lucide-svelte';
 
 	export let data;
@@ -17,6 +18,8 @@
 	let currentPost: BlogPost;
 	let currentIndex: number = -1;
 	let markdownPath: string = '';
+	let shareLabel: string = 'Share';
+	let resetShareLabelTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	$: {
 		// Get the post from the loaded data
@@ -55,8 +58,57 @@
 		}
 	}
 
+	function setShareLabelTemporarily(label: string) {
+		shareLabel = label;
+
+		if (resetShareLabelTimeout) {
+			clearTimeout(resetShareLabelTimeout);
+		}
+
+		resetShareLabelTimeout = setTimeout(() => {
+			shareLabel = 'Share';
+			resetShareLabelTimeout = null;
+		}, 2500);
+	}
+
+	async function sharePost() {
+		if (!currentPost || typeof window === 'undefined') {
+			return;
+		}
+
+		const postUrl = window.location.href;
+		const shareData = {
+			title: currentPost.title,
+			text: currentPost.description,
+			url: postUrl
+		};
+
+		try {
+			if (navigator.share) {
+				await navigator.share(shareData);
+				setShareLabelTemporarily('Shared');
+				return;
+			}
+
+			if (navigator.clipboard?.writeText) {
+				await navigator.clipboard.writeText(postUrl);
+				setShareLabelTemporarily('Link copied');
+				return;
+			}
+
+			setShareLabelTemporarily('Unable to share');
+		} catch {
+			setShareLabelTemporarily('Share cancelled');
+		}
+	}
+
 	onMount(() => {
 		// Cleanup is handled by layout
+		return () => {
+			if (resetShareLabelTimeout) {
+				clearTimeout(resetShareLabelTimeout);
+			}
+		};
 	});
 </script>
 
@@ -77,6 +129,16 @@
 	{:else}
 		<!-- Navigation Controls -->
 		<nav class="blog-navigation" aria-label="Blog post navigation">
+			<button
+				on:click={sharePost}
+				class="share-button"
+				data-tooltip="Share this post"
+				data-placement="bottom"
+				aria-label="Share this post"
+			>
+				<Share2 />
+				<span>{shareLabel}</span>
+			</button>
 			<button
 				on:click={goToFirst}
 				disabled={currentIndex === 0}
@@ -131,6 +193,16 @@
 
 		<!-- Bottom Navigation -->
 		<nav class="blog-navigation bottom" aria-label="Blog post navigation">
+			<button
+				on:click={sharePost}
+				class="share-button"
+				data-tooltip="Share this post"
+				data-placement="top"
+				aria-label="Share this post"
+			>
+				<Share2 />
+				<span>{shareLabel}</span>
+			</button>
 			<button
 				on:click={goToFirst}
 				disabled={currentIndex === 0}
@@ -210,6 +282,18 @@
 		border-radius: var(--pico-border-radius);
 	}
 
+	.blog-navigation .share-button {
+		padding: 0.5rem 0.75rem;
+		min-width: auto;
+		gap: 0.4rem;
+	}
+
+	.blog-navigation .share-button span {
+		font-size: 0.75rem;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
 	.blog-navigation button:hover:not(:disabled) {
 		background: var(--pico-primary-background);
 		border-color: var(--pico-primary);
@@ -241,6 +325,14 @@
 			min-width: 2rem;
 			height: 2rem;
 			padding: 0.25rem;
+		}
+
+		.blog-navigation .share-button {
+			padding: 0.25rem 0.5rem;
+		}
+
+		.blog-navigation .share-button span {
+			font-size: 0.6875rem;
 		}
 
 		.post-counter {

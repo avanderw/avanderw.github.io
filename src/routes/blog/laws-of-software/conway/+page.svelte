@@ -1,18 +1,25 @@
-<script>
+<script lang="ts">
 	import MarkdownViewer from '$lib/components/MarkdownViewer.svelte';
 	import { setNavLinks, setHeaderContent } from '$lib/stores/layout';
 	import { onMount } from 'svelte';
-	import { getLawsWithDetails, getLawDetailIndex } from '$lib/data/laws';
+	import { getLawsWithDetails, type Law } from '$lib/data/laws';
 	import { 
 		ChevronFirst, 
 		ChevronLast, 
 		ChevronLeft, 
-		ChevronRight
+		ChevronRight,
+		Share2
 	} from 'lucide-svelte';
 
 	const currentUrl = '/blog/laws-of-software/conway';
-	const lawsWithDetails = getLawsWithDetails();
-	const currentIndex = getLawDetailIndex(currentUrl);
+	const lawsWithDetails = getLawsWithDetails().filter(
+		(law): law is Law & { detailUrl: string } => typeof law.detailUrl === 'string'
+	);
+	const currentIndex = lawsWithDetails.findIndex((law) => law.detailUrl === currentUrl);
+	const shareTitle = "Conway's Law";
+	const shareDescription = "Conway's Law: Any organization that designs a system will produce a design whose structure is a copy of the organization's communication structure.";
+	let shareLabel = 'Share';
+	let resetShareLabelTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	// Navigation functions
 	function goToFirst() {
@@ -40,6 +47,50 @@
 		}
 	}
 
+	function setShareLabelTemporarily(label: string) {
+		shareLabel = label;
+
+		if (resetShareLabelTimeout) {
+			clearTimeout(resetShareLabelTimeout);
+		}
+
+		resetShareLabelTimeout = setTimeout(() => {
+			shareLabel = 'Share';
+			resetShareLabelTimeout = null;
+		}, 2500);
+	}
+
+	async function sharePost() {
+		if (typeof window === 'undefined') {
+			return;
+		}
+
+		const postUrl = window.location.href;
+		const shareData = {
+			title: shareTitle,
+			text: shareDescription,
+			url: postUrl
+		};
+
+		try {
+			if (navigator.share) {
+				await navigator.share(shareData);
+				setShareLabelTemporarily('Shared');
+				return;
+			}
+
+			if (navigator.clipboard?.writeText) {
+				await navigator.clipboard.writeText(postUrl);
+				setShareLabelTemporarily('Link copied');
+				return;
+			}
+
+			setShareLabelTemporarily('Unable to share');
+		} catch {
+			setShareLabelTemporarily('Share cancelled');
+		}
+	}
+
 	onMount(() => {
 		// Set navigation links for this page
 		setNavLinks([
@@ -49,6 +100,12 @@
 
 		// Set header content for this page
 		setHeaderContent({});
+
+		return () => {
+			if (resetShareLabelTimeout) {
+				clearTimeout(resetShareLabelTimeout);
+			}
+		};
 	});
 </script>
 
@@ -60,6 +117,16 @@
 <main class="container">
 	<!-- Navigation Controls -->
 	<nav class="law-navigation" aria-label="Law detail navigation">
+		<button
+			on:click={sharePost}
+			class="share-button"
+			data-tooltip="Share this post"
+			data-placement="bottom"
+			aria-label="Share this post"
+		>
+			<Share2 />
+			<span>{shareLabel}</span>
+		</button>
 		<button
 			on:click={goToFirst}
 			disabled={currentIndex === 0}
@@ -105,6 +172,16 @@
 
 	<!-- Bottom Navigation -->
 	<nav class="law-navigation bottom" aria-label="Law detail navigation">
+		<button
+			on:click={sharePost}
+			class="share-button"
+			data-tooltip="Share this post"
+			data-placement="top"
+			aria-label="Share this post"
+		>
+			<Share2 />
+			<span>{shareLabel}</span>
+		</button>
 		<button
 			on:click={goToFirst}
 			disabled={currentIndex === 0}
@@ -181,6 +258,18 @@
 		border-radius: var(--pico-border-radius);
 	}
 
+	.law-navigation .share-button {
+		padding: 0.5rem 0.75rem;
+		min-width: auto;
+		gap: 0.4rem;
+	}
+
+	.law-navigation .share-button span {
+		font-size: 0.75rem;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
 	.law-navigation button:hover:not(:disabled) {
 		background: var(--pico-primary-background);
 		border-color: var(--pico-primary);
@@ -208,6 +297,14 @@
 			min-width: 2rem;
 			height: 2rem;
 			padding: 0.25rem;
+		}
+
+		.law-navigation .share-button {
+			padding: 0.25rem 0.5rem;
+		}
+
+		.law-navigation .share-button span {
+			font-size: 0.6875rem;
 		}
 
 		.law-counter {
