@@ -2,6 +2,30 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Vertical Slices vs Layered Architecture',
+		url: '/blog/vertical-slices-vs-horizontal-layers',
+		slug: 'vertical-slices-vs-horizontal-layers',
+		description: 'A practical comparison of vertical slice and layered architectures, including trade-offs in coupling, delivery speed, and long-term maintainability.',
+		year: 2026,
+		markdownPath: '/blog/20260601T104324_vertical-slices-vs-horizontal-layers.md',
+	},
+	{
+		title: 'Push vs. Pull Deployment Models',
+		url: '/blog/push-vs-pull-deployment-models',
+		slug: 'push-vs-pull-deployment-models',
+		description: 'An analysis of push-based and pull-based deployment models, with a focus on security boundaries, reconciliation, and operational scaling.',
+		year: 2026,
+		markdownPath: '/blog/20260601T102731_push-vs-pull-deployment-models.md',
+	},
+	{
+		title: 'Compile-Time First for Agentic Engineering',
+		url: '/blog/compile-time-errors-with-ai',
+		slug: 'compile-time-errors-with-ai',
+		description: 'Why compile-time guarantees should be the primary quality control for agent-generated code, with runtime checks handling residual risk.',
+		year: 2026,
+		markdownPath: '/blog/20260601T101623_compile-time-errors-with-ai.md',
+	},
+	{
 		title: 'Git Branching Strategies',
 		url: '/blog/git-branching-strategies',
 		slug: 'git-branching-strategies',
