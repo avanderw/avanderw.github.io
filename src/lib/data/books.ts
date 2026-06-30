@@ -42,12 +42,21 @@ export const books: Book[] = [
     },
 	{
 		title: 'Dungeon Crawler Carl',
-		author: ' Matt Dinniman',
-		status: 'reading',
+		author: 'Matt Dinniman',
+		status: 'read',
+        rating: 5,
+        comment: 'My first read of litRPG and I loved it, the humour and absurdity of the story was a great escape from reality.',
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 1,
         seriesTotal: 8
 	},
+    {
+        title: 'Carl\'s Doomsday Scenario',
+        author: 'Matt Dinniman',
+        status: 'reading',
+        seriesName: 'Dungeon Crawler Carl',
+        seriesOrder: 2,
+    },
     {
         title: 'Mistborn: The Final Empire',
         author: 'Brandon Sanderson',
