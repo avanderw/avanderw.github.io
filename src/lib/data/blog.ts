@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Confidence, Competence, and Calibration in AI and Human Systems',
+		url: '/blog/confidence-in-ai-and-humans',
+		slug: 'confidence-in-ai-and-humans',
+		description: 'A comparative analysis of confidence calibration in AI models and human corporate hierarchies, exploring how unearned certainty drives systemic failure in both.',
+		year: 2026,
+		markdownPath: '/blog/20260630T131532_confidence-in-AI-and-humans.md',
+	},
+	{
 		title: 'Vertical Slices vs Layered Architecture',
 		url: '/blog/vertical-slices-vs-horizontal-layers',
 		slug: 'vertical-slices-vs-horizontal-layers',
