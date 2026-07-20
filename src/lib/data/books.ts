@@ -9,6 +9,14 @@ export const books: Book[] = [
 		rating: 3,
 		yearRead: 2025
 	},
+    {
+        title: 'Peopleware: Productive Projects and Teams',
+        author: 'Tom DeMarco and Timothy Lister',
+        status: 'read',
+        comment: 'It was a great read when starting people management, which I intend to reread now with years of experience.',
+        rating: 5,
+        yearRead: 2016
+    },
 	{
 		title: 'Discipline Equals Freedom',
 		author: 'Jocko Willink',
@@ -40,6 +48,30 @@ export const books: Book[] = [
         rating: 5,
         yearRead:2024,
     },
+    {
+        title: 'Multipliers: How the best Leaders Make Everyone Smarter',
+        author: 'Liz Wiseman',
+        status: 'read',
+        comment: 'Great point, but heavily belaboured and I found myself skimming through the book.',
+        rating: 3,
+        yearRead: 2018,
+    },
+    {
+        title: 'The Pragmatic Programmer',
+        author: 'Andrew Hunt and David Thomas',
+        status: 'read',
+        comment: 'A classic book on software development best practices.',
+        rating: 5,
+        yearRead: 2017,
+    },
+    {
+        title: 'Behind Closed Doors: Secrets of Great Management',
+        author: 'Johanna Rothman',
+        status: 'read',
+        comment: 'Good book, practical with a story narrative that makes it easy to read.',
+        rating: 3,
+        yearRead: 2017,
+    },
 	{
 		title: 'Dungeon Crawler Carl',
 		author: 'Matt Dinniman',
@@ -53,9 +85,18 @@ export const books: Book[] = [
     {
         title: 'Carl\'s Doomsday Scenario',
         author: 'Matt Dinniman',
-        status: 'reading',
+        status: 'read',
+        rating: 5,
+        comment: 'New achievement! First real quest completed with absurd results.',
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 2,
+    },
+    {
+        title: 'The Dungeon Anarchist\'s Cookbook',
+        author: 'Matt Dinniman',
+        status: 'reading',
+        seriesName: 'Dungeon Crawler Carl',
+        seriesOrder: 3,
     },
     {
         title: 'Mistborn: The Final Empire',
