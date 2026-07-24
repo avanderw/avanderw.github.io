@@ -32,9 +32,9 @@ As an execution loop progresses, the model must continually append tool executio
 
 Attention mechanisms process information located near the start and end of a context window with high accuracy, but struggle to retain information located in the center—even when the window is only half full. In multi-step pipelines, context reliability degrades by approximately two percent per step. After five iterations, less than sixty percent of the original system prompt context remains reliably accessible. This decay can be modeled as a non-linear loss of instruction density over time:
 
-I(t) \= I\_0 e^{-\\alpha t}
+$$I(t) = I_0 \, e^{-\alpha t}$$
 
-where I\_t represents the effective instruction retention at step t, I\_0 represents the initial system prompt constraint, and \\alpha is a context dilution coefficient dictated by the volume and noise of intermediate data additions.
+where $I_t$ represents the effective instruction retention at step $t$, $I_0$ represents the initial system prompt constraint, and $\alpha$ is a context dilution coefficient dictated by the volume and noise of intermediate data additions.
 
 Without an explicit memory architecture that categorizes working, episodic, semantic, and procedural memory, the model's initial rules fade, causing it to drift from its original behavioral directives.
 
@@ -141,9 +141,9 @@ This shrinks the agent's required toolset to a small number of core file-system 
 
 This paradigm is formally modeled through the Agentic File System (AFS) within the AIGNE framework. AFS treats diverse resources—including semantic memory files, code execution sandboxes, and external schemas—as uniform nodes within a path-based, governed namespace.
 
-N \= F \\cup D
+$$N = F \cup D$$
 
-where N represents all nodes in the workspace, F represents individual context files, and D represents directories containing nested paths to database actions, tools, and human review steps.
+where $N$ represents all nodes in the workspace, $F$ represents individual context files, and $D$ represents directories containing nested paths to database actions, tools, and human review steps.
 
 | AFS Pipeline Phase | Kernel-Level Abstraction | Role in Context Governance | Runtime Action |
 | :---- | :---- | :---- | :---- |

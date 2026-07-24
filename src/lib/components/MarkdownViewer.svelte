@@ -4,6 +4,8 @@
     import { afterUpdate, onDestroy, onMount } from 'svelte';
     import hljs from 'highlight.js';
     import mermaid from 'mermaid';
+    import katex from 'katex';
+    import 'katex/dist/katex.min.css';
     import 'highlight.js/styles/github-dark.css';
     
     export let src = '';
@@ -137,8 +139,10 @@
             if (requestId !== activeRequestId) {
                 return;
             }
-            const rawHtml = converter.makeHtml(markdown);
-            const result = extractAndInjectHeadings(rawHtml);
+            const mathProcessed = preprocessMath(markdown);
+            const rawHtml = converter.makeHtml(mathProcessed);
+            const mathRestored = restoreMath(rawHtml);
+            const result = extractAndInjectHeadings(mathRestored);
             htmlContent = result.html;
             tocItems = result.headings;
             tocTree = buildTocTree(tocItems);
@@ -158,6 +162,49 @@
                 }
             }
         }
+    }
+
+    /**
+     * Extract math from raw markdown, render with KaTeX, and insert safe
+     * placeholders so Showdown cannot mangle the output. Call restoreMath()
+     * on the final HTML to swap placeholders back.
+     */
+    let mathStore: Map<string, string> = new Map();
+
+    function preprocessMath(md: string): string {
+        mathStore = new Map();
+        let idx = 0;
+
+        // Block math: $$...$$
+        md = md.replace(/\$\$([\s\S]*?)\$\$/g, (_match, tex) => {
+            const key = `KATEXBLK${idx++}XETAK`;
+            try {
+                mathStore.set(key, katex.renderToString(tex.trim(), { displayMode: true, throwOnError: false }));
+            } catch {
+                mathStore.set(key, _match);
+            }
+            return key;
+        });
+
+        // Inline math: $...$  (single line, not greedy, avoid $$)
+        md = md.replace(/(?<!\$)\$([^\$\n]+?)\$(?!\$)/g, (_match, tex) => {
+            const key = `KATEXINL${idx++}XETAK`;
+            try {
+                mathStore.set(key, katex.renderToString(tex.trim(), { displayMode: false, throwOnError: false }));
+            } catch {
+                mathStore.set(key, _match);
+            }
+            return key;
+        });
+
+        return md;
+    }
+
+    function restoreMath(html: string): string {
+        for (const [key, rendered] of mathStore) {
+            html = html.replace(key, rendered);
+        }
+        return html;
     }
 
     function renderMermaidBlocks() {
