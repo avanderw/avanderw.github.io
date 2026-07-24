@@ -2,6 +2,22 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'From "Everything Is a File" to "Files Are All You Need"',
+		url: '/blog/files-are-all-you-need',
+		slug: 'files-are-all-you-need',
+		description: 'How Unix design principles can improve reliability, governance, and scalability in long-running LLM workflows.',
+		year: 2026,
+		markdownPath: '/blog/20260724T135123_file-Based-LLM-pipeline-research.md',
+	},
+	{
+		title: "Cell C's Spectrum and Litigation: What's True and What's Not",
+		url: '/blog/cell-c-spectrum-and-litigation',
+		slug: 'cell-c-spectrum-and-litigation',
+		description: 'An analysis of Cell C\'s spectrum ownership, virtualized network model, and active litigation in South Africa\'s telecom sector.',
+		year: 2026,
+		markdownPath: '/blog/20260724T104959_cellc-spectrum-claim-analysis.md',
+	},
+	{
 		title: 'Confidence, Competence, and Calibration in AI and Human Systems',
 		url: '/blog/confidence-in-ai-and-humans',
 		slug: 'confidence-in-ai-and-humans',
