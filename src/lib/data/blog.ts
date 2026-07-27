@@ -2,6 +2,14 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'AI Writing, Authorship, and What We Should Value Now',
+		url: '/blog/ai-writing-authorship-and-what-we-should-value-now',
+		slug: 'ai-writing-authorship-and-what-we-should-value-now',
+		description: 'A practical critique of AI-assisted writing, focused on how visibility incentives are driving content proliferation and why verification now matters more than fluency.',
+		year: 2026,
+		markdownPath: '/blog/20260727T154216_ai-authorship-ande-epistemology.md',
+	},
+	{
 		title: 'From "Everything Is a File" to "Files Are All You Need"',
 		url: '/blog/files-are-all-you-need',
 		slug: 'files-are-all-you-need',
