@@ -16,8 +16,15 @@ export interface BlogPost {
 	slug: string;
 	markdownPath?: string; // Optional for HTML-based posts
 	htmlComponent?: string; // Optional component name for curated HTML posts
+	summary: BlogSummary;
 	description: string;
 	year: number;
+}
+
+export interface BlogSummary {
+	whatIsDiscussed: string;
+	whyItMatters: string;
+	keyTakeaway: string;
 }
 
 export interface SocialLink {

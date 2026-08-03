@@ -180,6 +180,24 @@
 			</button>
 		</nav>
 
+		<section class="article-summary" aria-labelledby="article-summary-heading">
+			<h2 id="article-summary-heading">Article Summary</h2>
+			<div class="summary-grid">
+				<div class="summary-item">
+					<h3>What is discussed</h3>
+					<p>{currentPost.summary.whatIsDiscussed}</p>
+				</div>
+				<div class="summary-item">
+					<h3>Why it matters</h3>
+					<p>{currentPost.summary.whyItMatters}</p>
+				</div>
+				<div class="summary-item">
+					<h3>Key takeaway</h3>
+					<p>{currentPost.summary.keyTakeaway}</p>
+				</div>
+			</div>
+		</section>
+
 		<!-- Content: Either Markdown or HTML Component -->
 		<article>
 			{#if currentPost.htmlComponent === 'LawsOfSoftware'}
@@ -316,9 +334,41 @@
 		margin: 2rem 0;
 	}
 
+	.article-summary {
+		margin: 1.5rem 0 2rem;
+		padding: 1.25rem;
+		border: 1px solid var(--pico-muted-border-color);
+		border-radius: var(--pico-border-radius);
+		background: var(--pico-card-background-color);
+	}
+
+	.article-summary h2 {
+		margin-bottom: 1rem;
+	}
+
+	.summary-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.summary-item h3 {
+		margin-bottom: 0.5rem;
+		font-size: 1rem;
+	}
+
+	.summary-item p {
+		margin: 0;
+		color: var(--pico-muted-color);
+	}
+
 	@media (max-width: 576px) {
 		.blog-navigation {
 			gap: 0.25rem;
+		}
+
+		.summary-grid {
+			grid-template-columns: 1fr;
 		}
 
 		.blog-navigation button {

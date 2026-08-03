@@ -1,6 +1,13 @@
 import type { BlogPost } from '../types.js';
+import { blogSummaries } from './blog-summaries.js';
 
-export const blogPosts: BlogPost[] = [
+const defaultSummary = {
+	whatIsDiscussed: 'TODO: review post content',
+	whyItMatters: 'TODO: review post content',
+	keyTakeaway: 'TODO: review post content'
+};
+
+const baseBlogPosts = [
 	{
 		title: 'AI Writing, Authorship, and What We Should Value Now',
 		url: '/blog/ai-writing-authorship-and-what-we-should-value-now',
@@ -234,3 +241,8 @@ export const blogPosts: BlogPost[] = [
 		year: 2025
 	},
 ];
+
+export const blogPosts: BlogPost[] = baseBlogPosts.map((post) => ({
+	...post,
+	summary: blogSummaries[post.slug] ?? defaultSummary
+}));
