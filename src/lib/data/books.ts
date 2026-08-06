@@ -94,9 +94,18 @@ export const books: Book[] = [
     {
         title: 'The Dungeon Anarchist\'s Cookbook',
         author: 'Matt Dinniman',
-        status: 'reading',
+        status: 'read',
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 3,
+        rating: 4,
+        comment: 'I love the opportunity the anarchists cookbook gives to explore, but the train arc was not for me.',
+    },
+    {
+        title: 'The Gate of the Feral Gods',
+        author: 'Matt Dinniman',
+        status: 'reading',
+        seriesName: 'Dungeon Crawler Carl',
+        seriesOrder: 4,
     },
     {
         title: 'Mistborn: The Final Empire',
