@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { HomeIcon, Sun, Moon, Rss } from 'lucide-svelte';
+	import { HomeIcon, Sun, Moon, Rss, MailPlus } from 'lucide-svelte';
 
 	interface NavLink {
 		href: string;
@@ -10,6 +10,10 @@
 
 	export let home: string = '/';
 	export let rss: string = '';
+	export let subscribe: string = '';
+	export let subscribeToggleId: string = '8695011e49';
+	export let subscribeLabel: string = 'Subscribe';
+	export let subscribeTooltip: string = 'Subscribe';
 	export let navLinks: NavLink[] = [];
 	export let isDarkMode: boolean = false;
 
@@ -82,6 +86,21 @@
 					</a>
 				</li>
 			{/if}
+			{#if subscribe}
+				<li>
+					<a
+						href={subscribe}
+						data-formkit-toggle={subscribeToggleId}
+						data-tooltip={subscribeTooltip}
+						data-placement="bottom"
+						title={subscribeTooltip}
+						aria-label={subscribeTooltip}
+					>
+						<MailPlus />
+						<span class="action-label">{subscribeLabel}</span>
+					</a>
+				</li>
+			{/if}
 		</ul>
 	</nav>
 </div>
@@ -91,6 +110,10 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+
+	.action-label {
+		margin-left: 0.35rem;
 	}
 
 

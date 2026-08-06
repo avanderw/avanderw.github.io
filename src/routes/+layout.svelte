@@ -29,10 +29,18 @@
 	});
 </script>
 
+<svelte:head>
+	<script async data-uid="8695011e49" src="https://andrew-van-der-westhuizen.kit.com/8695011e49/index.js"></script>
+</svelte:head>
+
 <header class="container">
 	<SiteHeaderCore
 		home="/"
 		rss="/rss.xml"
+		subscribe="https://andrew-van-der-westhuizen.kit.com/8695011e49"
+		subscribeToggleId="8695011e49"
+		subscribeLabel="Subscribe"
+		subscribeTooltip="Subscribe"
 		navLinks={$navLinks}
 		{isDarkMode}
 		on:themeToggle={toggleTheme}

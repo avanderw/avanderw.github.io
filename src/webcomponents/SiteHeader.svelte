@@ -14,6 +14,10 @@
 
 	export let home: string = '/';
 	export let rss: string = '';
+	export let subscribe: string = '';
+	export let subscribeToggleId: string = '8695011e49';
+	export let subscribeLabel: string = 'Subscribe';
+	export let subscribeTooltip: string = 'Subscribe';
 	export let links: string = '[]';
 
 	let isDarkMode = false;
@@ -45,6 +49,10 @@
 		<SiteHeaderCore
 			{home}
 			{rss}
+			{subscribe}
+			{subscribeToggleId}
+			{subscribeLabel}
+			{subscribeTooltip}
 			navLinks={navLinks}
 			{isDarkMode}
 			on:themeToggle={toggleTheme}
