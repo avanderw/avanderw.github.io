@@ -5,6 +5,18 @@
 	import { careerEntries } from '$lib/data/career.js';
 	import { setHeaderContent, setNavLinks } from '$lib/stores/layout';
 
+	const monthNames = [
+		'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+		'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
+	];
+
+	function formatDate(dateStr: string): string {
+		const [y, m, d] = dateStr.split('-');
+		const month = monthNames[parseInt(m, 10) - 1];
+		const day = parseInt(d, 10);
+		return `${month} ${day}, ${y}`;
+	}
+
 	const recentPosts = blogPosts.slice(0, 5);
 	const highlightedProjects = years.flatMap((y) => y.projects).filter((p) => p.highlighted);
 	const totalPosts = blogPosts.length;
@@ -43,6 +55,7 @@
 		<table>
 			<thead class="sr-only">
 				<tr>
+					<th>Date</th>
 					<th>Title</th>
 					<th>Description</th>
 				</tr>
@@ -50,6 +63,7 @@
 			<tbody>
 				{#each recentPosts as post}
 					<tr>
+						<td class="date">{formatDate(post.date)}</td>
 						<td><a href={post.url}>{post.title}</a></td>
 						<td>{post.description}</td>
 					</tr>
@@ -126,6 +140,14 @@
 		clip: rect(0, 0, 0, 0);
 		white-space: nowrap;
 		border: 0;
+	}
+
+	.date {
+		color: var(--pico-muted-color);
+		white-space: nowrap;
+		vertical-align: top;
+		padding-right: 1rem;
+		font-size: 0.9rem;
 	}
 
 	.landing-section {

@@ -19,6 +19,7 @@ export interface BlogPost {
 	summary: BlogSummary;
 	description: string;
 	year: number;
+	date: string; // ISO date YYYY-MM-DD
 }
 
 export interface BlogSummary {

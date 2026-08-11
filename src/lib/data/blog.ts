@@ -14,6 +14,7 @@ const baseBlogPosts = [
 		slug: 'ai-writing-authorship-and-what-we-should-value-now',
 		description: 'A practical critique of AI-assisted writing, focused on how visibility incentives are driving content proliferation and why verification now matters more than fluency.',
 		year: 2026,
+		date: '2026-07-27',
 		markdownPath: '/blog/20260727T154216_ai-authorship-ande-epistemology.md',
 	},
 	{
@@ -22,6 +23,7 @@ const baseBlogPosts = [
 		slug: 'files-are-all-you-need',
 		description: 'How Unix design principles can improve reliability, governance, and scalability in long-running LLM workflows.',
 		year: 2026,
+		date: '2026-07-24',
 		markdownPath: '/blog/20260724T135123_file-Based-LLM-pipeline-research.md',
 	},
 	{
@@ -30,6 +32,7 @@ const baseBlogPosts = [
 		slug: 'cell-c-spectrum-and-litigation',
 		description: 'An analysis of Cell C\'s spectrum ownership, virtualized network model, and active litigation in South Africa\'s telecom sector.',
 		year: 2026,
+		date: '2026-07-24',
 		markdownPath: '/blog/20260724T104959_cellc-spectrum-claim-analysis.md',
 	},
 	{
@@ -38,6 +41,7 @@ const baseBlogPosts = [
 		slug: 'confidence-in-ai-and-humans',
 		description: 'A comparative analysis of confidence calibration in AI models and human corporate hierarchies, exploring how unearned certainty drives systemic failure in both.',
 		year: 2026,
+		date: '2026-06-30',
 		markdownPath: '/blog/20260630T131532_confidence-in-AI-and-humans.md',
 	},
 	{
@@ -46,6 +50,7 @@ const baseBlogPosts = [
 		slug: 'vertical-slices-vs-horizontal-layers',
 		description: 'A practical comparison of vertical slice and layered architectures, including trade-offs in coupling, delivery speed, and long-term maintainability.',
 		year: 2026,
+		date: '2026-06-01',
 		markdownPath: '/blog/20260601T104324_vertical-slices-vs-horizontal-layers.md',
 	},
 	{
@@ -54,6 +59,7 @@ const baseBlogPosts = [
 		slug: 'push-vs-pull-deployment-models',
 		description: 'An analysis of push-based and pull-based deployment models, with a focus on security boundaries, reconciliation, and operational scaling.',
 		year: 2026,
+		date: '2026-06-01',
 		markdownPath: '/blog/20260601T102731_push-vs-pull-deployment-models.md',
 	},
 	{
@@ -62,6 +68,7 @@ const baseBlogPosts = [
 		slug: 'compile-time-errors-with-ai',
 		description: 'Why compile-time guarantees should be the primary quality control for agent-generated code, with runtime checks handling residual risk.',
 		year: 2026,
+		date: '2026-06-01',
 		markdownPath: '/blog/20260601T101623_compile-time-errors-with-ai.md',
 	},
 	{
@@ -70,6 +77,7 @@ const baseBlogPosts = [
 		slug: 'git-branching-strategies',
 		description: 'An exploration of various Git branching strategies, including their advantages and disadvantages.',
 		year: 2026,
+		date: '2026-05-27',
 		markdownPath: '/blog/20260527T112010_git-branching.md',
 	},
 	{
@@ -78,6 +86,7 @@ const baseBlogPosts = [
 		slug: 'virtual-pet-evolution',
 		description: 'An exploration of the evolution of virtual pets, from early digital companions to modern AI-driven entities.',
 		year: 2026,
+		date: '2026-05-14',
 		markdownPath: '/blog/20260514T152200_virtual-pet-evolution.md',
 	},
 	{
@@ -86,6 +95,7 @@ const baseBlogPosts = [
 		slug: 'parse-dont-validate',
 		description: 'An exploration of the "Parse Don\'t Validate" principle in software development, examining its benefits and applications.',
 		year: 2026,
+		date: '2026-05-12',
 		markdownPath: '/blog/20260512T104049_parse-dont-validate.md',
 	},
 	{
@@ -94,6 +104,7 @@ const baseBlogPosts = [
 		slug: 'automation-vs-human-intervention-analysis',
 		description: 'An analysis of the balance between automation and human intervention in various domains.',
 		year: 2026,
+		date: '2026-04-24',
 		markdownPath: '/blog/20260424T102912_automation-vs-human-intervention-analysis.md',
 	},
 	{
@@ -102,6 +113,7 @@ const baseBlogPosts = [
 		slug: 'algorithmic-arbitrage',
 		description: 'An exploration of algorithmic arbitrage, examining the structural shift in global software development.',
 		year: 2026,
+		date: '2026-04-20',
 		markdownPath: '/blog/20260420T134900_AI-Rent-Seeking-IT-Costs.md'
 	},
 	{
@@ -110,6 +122,7 @@ const baseBlogPosts = [
 		slug: 'corporate-project-naming',
 		description: 'An exploration of the art and science of corporate project naming, examining the impact of names on project success and organizational culture.',
 		year: 2026,
+		date: '2026-04-20',
 		markdownPath: "/blog/20260420T134300_Corporate-Project-Naming.md",
 	},
 	{
@@ -119,6 +132,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20260316T094038_Leadership-Paradox_Hiring-Autonomy-Suppressing-Talent.md',
 		description: 'An exploration of the leadership paradox of agency, examining the balance between individual initiative and organizational control.',
 		year: 2026,
+		date: '2026-03-16',
 	},
 	{
 		title: 'AI Doom Narrative - Profit or Precaution?',
@@ -127,6 +141,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20260313T155648_AI-Doom-Narrative_Profit-or-Precaution.md',
 		description: 'An exploration of the AI doom narrative, examining the balance between profit-driven motives and precautionary measures in AI development.',
 		year: 2026,
+		date: '2026-03-13',
 	},
 	{
 		title: 'The Global AI Race',
@@ -135,6 +150,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20260313T132326_ai-race_ game-theory.md',
 		description: 'An in-depth analysis of the global AI race, exploring the competitive landscape, technological advancements, and strategic implications.',
 		year: 2026,
+		date: '2026-03-13',
 	},
 	{
 		title: 'Distributed Rate Limits',
@@ -143,6 +159,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20260130T145647_distrubuted-rate-limits.md',
 		description: 'Strategies for managing rate limits across distributed architectures, including centralized token buckets, egress queues, and Kafka-based solutions.',
 		year: 2026,
+		date: '2026-01-30',
 	},
 	{
 		title: 'Contract-First Development',
@@ -151,6 +168,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20260129T124315_code-contract-first.md',
 		description: 'A comprehensive analysis of Contract-First versus Code-First paradigms in AI-driven software architecture.',
 		year: 2026,
+		date: '2026-01-29',
 	},
 	{
 		title: 'Hexagonal Architecture',
@@ -159,6 +177,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20251204T091429_hexagonal-architecture_d3083256.md',
 		description: 'An exploration of Hexagonal Architecture and its benefits in software design.',
 		year: 2025,
+		date: '2025-12-04',
 	},
 	{
 		title: 'The Wardley Doctrine',
@@ -167,6 +186,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20251203T141812_the-wardley-doctrine_5b62a2ff.md',
 		description: 'An in-depth look at the principles and applications of the Wardley Doctrine.',
 		year: 2025,
+		date: '2025-12-03',
 	},
 	{
 		title: 'Wardley Mapping',
@@ -175,6 +195,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20251203T134726_understanding-wardley-mapping_9b296090.md',
 		description: 'Understanding Wardley Mapping and its applications in strategic planning.',
 		year: 2025,
+		date: '2025-12-03',
 	},
 	{
 		title: 'The Story of Money',
@@ -183,6 +204,7 @@ const baseBlogPosts = [
 		markdownPath: '/blog/20251021T160138_story-of-money-claude_f84f77f3.md',
 		description: 'An exploration of the history and evolution of money.',
 		year: 2025,
+		date: '2025-10-21',
 	},
 	{
 		title: "The XY Problem",
@@ -190,7 +212,8 @@ const baseBlogPosts = [
 		slug: "xy-problem",
 		markdownPath: '/blog/20251017T095616_the-xy-problem-a-critical-analysis-of-its-relevance-to-business-delivery_cc8df569.md',
 		description: "A critical analysis of the XY Problem and its relevance to business delivery.",
-		year: 2025
+		year: 2025,
+		date: '2025-10-17',
 	},
 	{
 		title: 'The Hook Model',
@@ -198,7 +221,8 @@ const baseBlogPosts = [
 		slug: 'hook-model',
 		markdownPath: '/blog/20250918T100917_the-hook-model-a-strategic-framework-for-building-habit-forming-products-and-client-engagement_b967f5c2.md',
 		description: 'A strategic framework for building habit-forming products and client engagement.',
-		year: 2025
+		year: 2025,
+		date: '2025-09-18',
 	},
 	{
 		title: 'The Toulmin Model',
@@ -206,7 +230,8 @@ const baseBlogPosts = [
 		slug: 'toulmin-model',
 		markdownPath: '/blog/20250918T100326_the-toulmin-model-a-framework-for-robust-argumentation-and-decision-making_13f85676.md',
 		description: 'A framework for robust argumentation and decision-making in strategic discussions.',
-		year: 2025
+		year: 2025,
+		date: '2025-09-18',
 	},
 	{
 		title: 'Empathy Maps',
@@ -214,7 +239,8 @@ const baseBlogPosts = [
 		slug: 'empathy-maps',
 		markdownPath: '/blog/20250917T160713_empathy-maps-understanding-your-customer-through-their-eyes_cb46b520.md',
 		description: 'Understanding your customer through their eyes with structured empathy mapping.',
-		year: 2025
+		year: 2025,
+		date: '2025-09-17',
 	},
 	{
 		title: 'Strategy on a Page',
@@ -222,7 +248,8 @@ const baseBlogPosts = [
 		slug: 'strategy-on-a-page',
 		markdownPath: '/blog/20250917T155759_strategy-on-a-page-a-working-backwards-approach-to-strategic-clarity_432d80ed.md',
 		description: 'A working backwards approach to strategic clarity and organizational alignment.',
-		year: 2025
+		year: 2025,
+		date: '2025-09-17',
 	},
 	{
 		title: 'Amazon Six Pager',
@@ -230,7 +257,8 @@ const baseBlogPosts = [
 		slug: 'amazon-six-pager',
 		markdownPath: '/blog/20250917T155029_the-amazon-6-pager-working-backwards-narrative-a-complete-guide_c573ddf6.md',
 		description: 'Understanding Amazon\'s six-page narrative memo process for effective communication.',
-		year: 2025
+		year: 2025,
+		date: '2025-09-17',
 	},
 	{
 		title: 'Laws of Software',
@@ -238,7 +266,8 @@ const baseBlogPosts = [
 		slug: 'laws-of-software',
 		htmlComponent: 'LawsOfSoftware',
 		description: 'Collection of laws, principles, and aphorisms that are widely recognized.',
-		year: 2025
+		year: 2025,
+		date: '2025-09-17',
 	},
 ];
 

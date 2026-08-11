@@ -3,33 +3,23 @@
 	
 	export let blogPosts: BlogPost[];
 	export let searchTerm: string = '';
-	
-	interface BlogYear {
-		number: number;
-		posts: BlogPost[];
+
+	const monthNames = [
+		'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+		'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
+	];
+
+	function formatDate(dateStr: string): string {
+		const [y, m, d] = dateStr.split('-');
+		const month = monthNames[parseInt(m, 10) - 1];
+		const day = parseInt(d, 10);
+		return `${month} ${day}, ${y}`;
 	}
-	
-	$: filteredBlogYears = (() => {
-		// First filter the posts
-		const filtered = blogPosts.filter(post =>
-			post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			post.description.toLowerCase().includes(searchTerm.toLowerCase())
-		);
-		
-		// Group by year
-		const yearMap = new Map<number, BlogPost[]>();
-		filtered.forEach(post => {
-			if (!yearMap.has(post.year)) {
-				yearMap.set(post.year, []);
-			}
-			yearMap.get(post.year)!.push(post);
-		});
-		
-		// Convert to array and sort by year (descending)
-		return Array.from(yearMap.entries())
-			.map(([number, posts]) => ({ number, posts }))
-			.sort((a, b) => b.number - a.number);
-	})();
+
+	$: filteredPosts = blogPosts.filter(post =>
+		post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+		post.description.toLowerCase().includes(searchTerm.toLowerCase())
+	);
 </script>
 
 <section aria-labelledby="blog-heading">
@@ -38,35 +28,46 @@
 	<table>
 		<thead class="sr-only">
 			<tr>
-				<th>Year</th>
+				<th>Date</th>
 				<th>Title</th>
 				<th>Description</th>
 			</tr>
 		</thead>
 		<tbody>
-			{#each filteredBlogYears as year}
-				{#each year.posts as post, i}
-					<tr>
-						{#if i === 0}
-							<td rowspan={year.posts.length} class="year">{year.number}</td>
-						{/if}
-						<td><a href={post.url}>{post.title}</a></td>
-						<td>{post.description}</td>
-					</tr>
-				{/each}
+			{#each filteredPosts as post}
+				<tr>
+					<td class="date">{formatDate(post.date)}</td>
+					<td>
+						<a href={post.url} class="title">{post.title}</a>
+						<div class="desc">{post.description}</div>
+					</td>
+				</tr>
 			{/each}
 		</tbody>
 	</table>
 
-	{#if searchTerm && filteredBlogYears.length === 0}
+	{#if searchTerm && filteredPosts.length === 0}
 		<p class="no-results">No blog posts found matching "{searchTerm}"</p>
 	{/if}
 </section>
 
 <style>
-	.year {
+	.date {
 		color: var(--pico-muted-color);
-		font-size: 2rem;
+		white-space: nowrap;
+		vertical-align: top;
+		padding-right: 1rem;
+		font-size: 0.9rem;
+	}
+
+	.title {
+		font-weight: 600;
+	}
+
+	.desc {
+		color: var(--pico-muted-color);
+		font-size: 0.875rem;
+		margin-top: 0.15rem;
 	}
 
 	.no-results {
@@ -89,8 +90,8 @@
 	}
 
 	@media (max-width: 768px) {
-		.year {
-			font-size: 1.5rem;
+		.date {
+			font-size: 0.8rem;
 		}
 	}
 </style>
