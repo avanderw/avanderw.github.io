@@ -57,15 +57,16 @@
 				<tr>
 					<th>Date</th>
 					<th>Title</th>
-					<th>Description</th>
 				</tr>
 			</thead>
 			<tbody>
 				{#each recentPosts as post}
 					<tr>
 						<td class="date">{formatDate(post.date)}</td>
-						<td><a href={post.url}>{post.title}</a></td>
-						<td>{post.description}</td>
+						<td>
+							<a href={post.url}>{post.title}</a>
+							<div class="desc">{post.description}</div>
+						</td>
 					</tr>
 				{/each}
 			</tbody>
@@ -148,6 +149,12 @@
 		vertical-align: top;
 		padding-right: 1rem;
 		font-size: 0.9rem;
+	}
+
+	.desc {
+		color: var(--pico-muted-color);
+		font-size: 0.875rem;
+		margin-top: 0.15rem;
 	}
 
 	.landing-section {
