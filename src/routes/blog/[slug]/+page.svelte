@@ -182,6 +182,7 @@
 
 		<section class="article-summary" aria-labelledby="article-summary-heading">
 			<h2 id="article-summary-heading">Article Summary</h2>
+			<p class="post-meta">{currentPost.readingMinutes} min read</p>
 			<div class="summary-grid">
 				<div class="summary-item">
 					<h3>What is discussed</h3>
@@ -343,7 +344,13 @@
 	}
 
 	.article-summary h2 {
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.post-meta {
+		color: var(--pico-muted-color);
+		font-size: 0.875rem;
+		margin: 0 0 1rem;
 	}
 
 	.summary-grid {

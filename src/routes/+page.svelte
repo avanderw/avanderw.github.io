@@ -62,7 +62,9 @@
 			<tbody>
 				{#each recentPosts as post}
 					<tr>
-						<td class="date">{formatDate(post.date)}</td>
+						<td class="date">{formatDate(post.date)}
+						<div class="read-time">{post.readingMinutes} min read</div>
+						</td>
 						<td>
 							<a href={post.url}>{post.title}</a>
 							<div class="desc">{post.description}</div>
@@ -149,6 +151,12 @@
 		vertical-align: top;
 		padding-right: 1rem;
 		font-size: 0.9rem;
+	}
+
+	.read-time {
+		font-size: 0.75rem;
+		margin-top: 0.15rem;
+		white-space: nowrap;
 	}
 
 	.desc {
