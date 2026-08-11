@@ -5,13 +5,25 @@
 	import { onMount } from 'svelte';
 	import { blogPosts } from '$lib/data/blog';
 	import type { BlogPost } from '$lib/types';
-	import { 
-		ChevronFirst, 
-		ChevronLast, 
-		ChevronLeft, 
-		ChevronRight,
-		Share2
-	} from 'lucide-svelte';
+		import { 
+			ChevronFirst, 
+			ChevronLast, 
+			ChevronLeft, 
+			ChevronRight,
+			Share2
+		} from 'lucide-svelte';
+
+		const monthNames = [
+			'January', 'February', 'March', 'April', 'May', 'June',
+			'July', 'August', 'September', 'October', 'November', 'December'
+		];
+
+		function formatDate(dateStr: string): string {
+			const [y, m, d] = dateStr.split('-');
+			const month = monthNames[parseInt(m, 10) - 1];
+			const day = parseInt(d, 10);
+			return `${month} ${day}, ${y}`;
+		}
 
 	export let data;
 
@@ -182,7 +194,7 @@
 
 		<section class="article-summary" aria-labelledby="article-summary-heading">
 			<h2 id="article-summary-heading">Article Summary</h2>
-			<p class="post-meta">{currentPost.readingMinutes} min read</p>
+			<p class="post-meta">{formatDate(currentPost.date)} · {currentPost.readingMinutes} min read</p>
 			<div class="summary-grid">
 				<div class="summary-item">
 					<h3>What is discussed</h3>
