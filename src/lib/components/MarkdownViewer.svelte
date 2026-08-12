@@ -32,17 +32,40 @@
 
     let tocTree: TocNode[] = [];
 
+    function escapeHtml(value: string): string {
+        return value
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
     function buildTocHtml(nodes: TocNode[]): string {
         if (nodes.length === 0) return '';
-        let html = '<ul>';
-        for (const node of nodes) {
-            html += `<li><a href="#${node.id}">${node.text}</a>`;
-            if (node.children.length > 0) {
-                html += buildTocHtml(node.children);
+
+        const title = nodes[0];
+        const sections = title.children.length > 0 ? title.children : nodes.slice(1);
+        let html = `<div class="toc-title"><a href="#${title.id}">${escapeHtml(title.text)}</a></div>`;
+
+        if (sections.length === 0) return html;
+
+        html += '<div class="toc-sections">';
+        sections.forEach((section, index) => {
+            html += `<section class="toc-section"><div class="toc-section-number">${String(index + 1).padStart(2, '0')}</div>`;
+            html += `<div class="toc-section-body"><a class="toc-section-heading" href="#${section.id}">${escapeHtml(section.text)}</a>`;
+
+            if (section.children.length > 0) {
+                html += '<ul class="toc-subheadings">';
+                for (const subheading of section.children) {
+                    html += `<li><a href="#${subheading.id}">${escapeHtml(subheading.text)}</a></li>`;
+                }
+                html += '</ul>';
             }
-            html += '</li>';
-        }
-        html += '</ul>';
+
+            html += '</div></section>';
+        });
+        html += '</div>';
         return html;
     }
 
@@ -344,43 +367,112 @@
     }
 
     .toc {
-        margin-bottom: 2rem;
-        padding: 1rem 1.5rem;
+        margin-bottom: 2.5rem;
         border: 1px solid var(--pico-muted-border-color);
-        border-radius: var(--pico-border-radius);
+        border-radius: 0;
+        overflow: hidden;
         background: var(--pico-card-background-color, var(--pico-background-color));
+        box-shadow: 0 0.35rem 1.25rem color-mix(in srgb, var(--pico-color) 8%, transparent);
     }
 
     .toc summary {
+        padding: 0.8rem 1.5rem;
         cursor: pointer;
-        font-weight: 600;
-        font-size: 1.1rem;
-        color: var(--pico-color);
+        background: var(--pico-color);
+        color: var(--pico-background-color);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
         user-select: none;
     }
 
+    .toc summary::marker {
+        color: var(--pico-background-color);
+    }
+
     .toc-content {
+        padding: 1.5rem 1.75rem 1.75rem;
         text-align: left;
     }
 
-    .toc-content :global(ul) {
-        margin: 0.25rem 0 0 0;
-        padding-left: 1.5rem;
+    :global(.toc-title) {
+        padding-bottom: 1.15rem;
+        border-bottom: 1px solid var(--pico-muted-border-color);
+        font-size: clamp(1.15rem, 2vw, 1.45rem);
+        font-weight: 600;
+        line-height: 1.25;
     }
 
-    .toc-content :global(li) {
-        display: list-item;
-        margin: 0;
-        padding: 0;
-        line-height: 1.4;
-    }
-
-    .toc-content :global(a) {
+    :global(.toc-title a),
+    :global(.toc-section-heading),
+    :global(.toc-subheadings a) {
+        color: var(--pico-color);
         text-decoration: none;
+    }
+
+    :global(.toc-title a:hover),
+    :global(.toc-section-heading:hover),
+    :global(.toc-subheadings a:hover) {
         color: var(--pico-primary);
     }
 
-    .toc-content :global(a:hover) {
-        text-decoration: underline;
+    :global(.toc-sections) {
+        border-left: 1px solid var(--pico-muted-color);
+    }
+
+    :global(.toc-section) {
+        display: grid;
+        grid-template-columns: 2.5rem minmax(0, 1fr);
+        gap: 0.85rem;
+        padding: 1.15rem 0 0.15rem 0.85rem;
+    }
+
+    :global(.toc-section-number) {
+        padding-top: 0.1rem;
+        color: var(--pico-muted-color);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.85rem;
+        font-variant-numeric: tabular-nums;
+    }
+
+    :global(.toc-section-heading) {
+        display: block;
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    :global(.toc-subheadings) {
+        display: grid;
+        gap: 0.2rem;
+        margin: 0.45rem 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    :global(.toc-subheadings li) {
+        margin: 0;
+        padding: 0;
+        line-height: 1.35;
+    }
+
+    :global(.toc-subheadings a) {
+        color: var(--pico-muted-color);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.74rem;
+    }
+
+    @media (max-width: 600px) {
+        .toc-content {
+            padding: 1.25rem 1rem 1.35rem;
+        }
+
+        :global(.toc-section) {
+            grid-template-columns: 2rem minmax(0, 1fr);
+            gap: 0.65rem;
+            padding-left: 0.65rem;
+        }
     }
 </style>
