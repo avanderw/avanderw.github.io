@@ -157,7 +157,7 @@
 
 <style>
 	.books-section {
-		border-top: 1px solid var(--pico-muted-border-color);
+		border-top: 1px solid var(--color-border);
 		padding-top: 1rem;
 		margin-top: 1.5rem;
 	}
@@ -169,7 +169,7 @@
 
 	.series-subtitle {
 		margin-top: -0.5rem;
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-size: 0.875rem;
 	}
 </style>

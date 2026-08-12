@@ -167,7 +167,7 @@
 
 <style>
 	.demo-box {
-		border: 1px solid var(--pico-muted-border-color, #ddd);
+		border: 1px solid var(--color-border);
 		border-radius: 0.25rem;
 		padding: 0.5rem 1rem;
 		margin-bottom: 1rem;

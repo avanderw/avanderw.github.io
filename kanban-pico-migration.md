@@ -19,14 +19,14 @@ Current state (audited): Pico **v2** loads from CDN in `src/app.html` (`pico.min
 
 | Board | Task |
 |---|---|
-| `[~]` | **G1-01** — Token inventory: build the source-of-truth spreadsheet |
-| `[ ]` | **G1-02** — Reset & base layer |
-| `[ ]` | **G1-03** — Type tokens (serif stack, sizes) |
-| `[ ]` | **G1-04** — Colour & surface tokens (+ dark) |
-| `[ ]` | **G1-05** — Component-class shim (Pico classes → own CSS) |
-| `[ ]` | **G1-06** — Audit & sweep `data-*` attributes |
-| `[ ]` | **G1-07** — Delete the CDN links |
-| `[ ]` | **G1-08** — Visual regression & cleanup |
+| `[x]` | **G1-01** — Token inventory: build the source-of-truth spreadsheet |
+| `[x]` | **G1-02** — Reset & base layer |
+| `[x]` | **G1-03** — Type tokens (serif stack, sizes) |
+| `[x]` | **G1-04** — Colour & surface tokens (+ dark) |
+| `[x]` | **G1-05** — Component-class shim (Pico classes → own CSS) |
+| `[x]` | **G1-06** — Audit & sweep `data-*` attributes |
+| `[x]` | **G1-07** — Delete the CDN links |
+| `[x]` | **G1-08** — Visual regression & cleanup |
 
 ---
 

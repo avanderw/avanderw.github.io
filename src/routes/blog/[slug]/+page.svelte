@@ -136,7 +136,7 @@
 		<article>
 			<h2>Blog Post Not Found</h2>
 			<p>The blog post you're looking for doesn't exist.</p>
-			<a href="/?tab=blog" role="button">Back to Blog</a>
+			<a href="/?tab=blog" role="button" class="btn">Back to Blog</a>
 		</article>
 	{:else}
 		<!-- Navigation Controls -->
@@ -287,22 +287,22 @@
 		gap: 0.5rem;
 		margin: 2rem 0;
 		padding: 1rem 0;
-		border-top: 1px solid var(--pico-muted-border-color);
-		border-bottom: 1px solid var(--pico-muted-border-color);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.blog-navigation.bottom {
 		margin-top: 3rem;
-		border-top: 1px solid var(--pico-muted-border-color);
+		border-top: 1px solid var(--color-border);
 		border-bottom: none;
 	}
 
 	.blog-navigation button {
 		padding: 0.5rem;
 		margin: 0;
-		border: 1px solid var(--pico-muted-border-color);
-		background: var(--pico-background-color);
-		color: var(--pico-color);
+		border: 1px solid var(--color-border);
+		background: var(--color-bg);
+		color: var(--color-text);
 		cursor: pointer;
 		transition: all 0.2s ease;
 		display: flex;
@@ -310,7 +310,7 @@
 		justify-content: center;
 		min-width: 2.5rem;
 		height: 2.5rem;
-		border-radius: var(--pico-border-radius);
+		border-radius: var(--radius-sm);
 	}
 
 	.blog-navigation .share-button {
@@ -326,9 +326,9 @@
 	}
 
 	.blog-navigation button:hover:not(:disabled) {
-		background: var(--pico-primary-background);
-		border-color: var(--pico-primary);
-		color: var(--pico-primary-inverse);
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--color-accent-contrast);
 	}
 
 	.blog-navigation button:disabled {
@@ -339,7 +339,7 @@
 	.post-counter {
 		padding: 0 1rem;
 		font-size: 0.875rem;
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		white-space: nowrap;
 	}
 
@@ -347,12 +347,16 @@
 		margin: 2rem 0;
 	}
 
+	article a[role='button'] {
+		margin-top: var(--space-4);
+	}
+
 	.article-summary {
 		margin: 1.5rem 0 2rem;
 		padding: 1.25rem;
-		border: 1px solid var(--pico-muted-border-color);
-		border-radius: var(--pico-border-radius);
-		background: var(--pico-card-background-color);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm);
+		background: var(--color-surface);
 	}
 
 	.article-summary h2 {
@@ -360,7 +364,7 @@
 	}
 
 	.post-meta {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-size: 0.875rem;
 		margin: 0 0 1rem;
 	}
@@ -378,7 +382,7 @@
 
 	.summary-item p {
 		margin: 0;
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 	}
 
 	@media (max-width: 576px) {

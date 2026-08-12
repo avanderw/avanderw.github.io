@@ -50,7 +50,7 @@
 	.laws-footer {
 		margin-top: 2rem;
 		padding-top: 1rem;
-		border-top: 1px solid var(--pico-muted-border-color);
+		border-top: 1px solid var(--color-border);
 	}
 
 	/* Responsive adjustments */

@@ -16,7 +16,7 @@
 <nav>
 	<ul>
 		<li>
-			<a href="tel:+27763347342" data-tooltip="I prefer WhatsApp" data-placement="top" title="I prefer WhatsApp">
+			<a href="tel:+277****7342" data-tooltip="I prefer WhatsApp" data-placement="top" title="I prefer WhatsApp">
 				<PhoneCallIcon /> +27 76 334 7342
 			</a>
 		</li>
@@ -59,7 +59,7 @@
 	.footer-sep {
 		display: flex;
 		justify-content: center;
-		color: var(--pico-muted-border-color);
+		color: var(--color-border);
 		margin: 1.5rem 0 1rem;
 	}
 

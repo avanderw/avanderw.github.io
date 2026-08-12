@@ -55,7 +55,7 @@
 
 <style>
 	.date {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		white-space: nowrap;
 		vertical-align: top;
 		padding-right: 1rem;
@@ -73,14 +73,14 @@
 	}
 
 	.desc {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-size: 0.875rem;
 		margin-top: 0.15rem;
 	}
 
 	.no-results {
 		text-align: center;
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-style: italic;
 		margin: 2rem 0;
 	}

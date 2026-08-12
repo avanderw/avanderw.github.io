@@ -46,13 +46,13 @@
 
 <style>
 	.year {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-size: 2rem;
 	}
 
 	.no-results {
 		text-align: center;
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-style: italic;
 		margin: 2rem 0;
 	}

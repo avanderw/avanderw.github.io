@@ -146,7 +146,7 @@
 	}
 
 	.date {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		white-space: nowrap;
 		vertical-align: top;
 		padding-right: 1rem;
@@ -160,19 +160,19 @@
 	}
 
 	.desc {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-size: 0.875rem;
 		margin-top: 0.15rem;
 	}
 
 	.landing-section {
-		border-top: 1px solid var(--pico-muted-border-color);
+		border-top: 1px solid var(--color-border);
 		padding-top: 1.5rem;
 		margin-top: 1.5rem;
 	}
 
 	.landing-section :global(tbody tr) {
-		border-bottom: 1px dotted var(--pico-muted-border-color);
+		border-bottom: 1px dotted var(--color-border);
 	}
 
 	.landing-section :global(tbody tr:last-child),
@@ -181,13 +181,13 @@
 	}
 
 	.section-footer {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		font-size: 0.875rem;
 		text-align: right;
 	}
 
 	.period {
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		white-space: nowrap;
 	}
 </style>

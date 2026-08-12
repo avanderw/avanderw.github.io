@@ -232,22 +232,22 @@
 		gap: 0.5rem;
 		margin: 2rem 0;
 		padding: 1rem 0;
-		border-top: 1px solid var(--pico-muted-border-color);
-		border-bottom: 1px solid var(--pico-muted-border-color);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.law-navigation.bottom {
 		margin-top: 3rem;
-		border-top: 1px solid var(--pico-muted-border-color);
+		border-top: 1px solid var(--color-border);
 		border-bottom: none;
 	}
 
 	.law-navigation button {
 		padding: 0.5rem;
 		margin: 0;
-		border: 1px solid var(--pico-muted-border-color);
-		background: var(--pico-background-color);
-		color: var(--pico-color);
+		border: 1px solid var(--color-border);
+		background: var(--color-bg);
+		color: var(--color-text);
 		cursor: pointer;
 		transition: all 0.2s ease;
 		display: flex;
@@ -255,7 +255,7 @@
 		justify-content: center;
 		min-width: 2.5rem;
 		height: 2.5rem;
-		border-radius: var(--pico-border-radius);
+		border-radius: var(--radius-sm);
 	}
 
 	.law-navigation .share-button {
@@ -271,9 +271,9 @@
 	}
 
 	.law-navigation button:hover:not(:disabled) {
-		background: var(--pico-primary-background);
-		border-color: var(--pico-primary);
-		color: var(--pico-primary-inverse);
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--color-accent-contrast);
 	}
 
 	.law-navigation button:disabled {
@@ -284,7 +284,7 @@
 	.law-counter {
 		padding: 0 1rem;
 		font-size: 0.875rem;
-		color: var(--pico-muted-color);
+		color: var(--color-muted);
 		white-space: nowrap;
 	}
 

@@ -363,23 +363,23 @@
     }
     
     .error {
-        color: var(--pico-color-red-500, #dc2626);
+        color: #dc2626;
     }
 
     .toc {
         margin-bottom: 2.5rem;
-        border: 1px solid var(--pico-muted-border-color);
+        border: 1px solid var(--color-border);
         border-radius: 0;
         overflow: hidden;
-        background: var(--pico-card-background-color, var(--pico-background-color));
-        box-shadow: 0 0.35rem 1.25rem color-mix(in srgb, var(--pico-color) 8%, transparent);
+        background: var(--color-bg);
+        box-shadow: 0 0.35rem 1.25rem color-mix(in srgb, var(--color-text) 8%, transparent);
     }
 
     .toc summary {
         padding: 0.8rem 1.5rem;
         cursor: pointer;
-        background: var(--pico-color);
-        color: var(--pico-background-color);
+        background: var(--color-text);
+        color: var(--color-bg);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-size: 0.78rem;
         font-weight: 700;
@@ -389,7 +389,7 @@
     }
 
     .toc summary::marker {
-        color: var(--pico-background-color);
+        color: var(--color-bg);
     }
 
     .toc-content {
@@ -399,7 +399,7 @@
 
     :global(.toc-title) {
         padding-bottom: 1.15rem;
-        border-bottom: 1px solid var(--pico-muted-border-color);
+        border-bottom: 1px solid var(--color-border);
         font-size: clamp(1.15rem, 2vw, 1.45rem);
         font-weight: 600;
         line-height: 1.25;
@@ -408,18 +408,18 @@
     :global(.toc-title a),
     :global(.toc-section-heading),
     :global(.toc-subheadings a) {
-        color: var(--pico-color);
+        color: var(--color-text);
         text-decoration: none;
     }
 
     :global(.toc-title a:hover),
     :global(.toc-section-heading:hover),
     :global(.toc-subheadings a:hover) {
-        color: var(--pico-primary);
+        color: var(--color-accent);
     }
 
     :global(.toc-sections) {
-        border-left: 1px solid var(--pico-muted-color);
+        border-left: 1px solid var(--color-muted);
     }
 
     :global(.toc-section) {
@@ -431,7 +431,7 @@
 
     :global(.toc-section-number) {
         padding-top: 0.1rem;
-        color: var(--pico-muted-color);
+        color: var(--color-muted);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-size: 0.85rem;
         font-variant-numeric: tabular-nums;
@@ -459,7 +459,7 @@
     }
 
     :global(.toc-subheadings a) {
-        color: var(--pico-muted-color);
+        color: var(--color-muted);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-size: 0.74rem;
     }

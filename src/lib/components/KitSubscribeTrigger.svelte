@@ -20,8 +20,8 @@
 		justify-content: center;
 		padding: 0.75rem 1rem;
 		border-radius: 999px;
-		background: var(--pico-primary);
-		color: var(--pico-primary-inverse);
+		background: var(--color-accent);
+		color: var(--color-accent-contrast);
 		font-weight: 700;
 		text-decoration: none;
 		border: 1px solid transparent;

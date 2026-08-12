@@ -52,7 +52,7 @@
 	}
 
 	.tab-item + .tab-item {
-		border-left: 1px solid var(--pico-muted-border-color);
+		border-left: 1px solid var(--color-border);
 	}
 
 	.tab-link {

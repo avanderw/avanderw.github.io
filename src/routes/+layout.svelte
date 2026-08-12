@@ -1,5 +1,7 @@
 <script lang="ts">
-	import '../pico-css-override.css';
+	import '$lib/styles/reset.css';
+	import '$lib/styles/tokens.css';
+	import '$lib/styles/index.css';
 	import SiteHeaderCore from '$lib/components/SiteHeaderCore.svelte';
 	import SiteFooterCore from '$lib/components/SiteFooterCore.svelte';
 	import { navLinks, headerContent } from '$lib/stores/layout';
