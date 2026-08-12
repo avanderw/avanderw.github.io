@@ -21,8 +21,8 @@
 			</a>
 		</li>
 		<li>
-			<a href="mailto:avanderw@gmail.com" data-tooltip="Will respond within 48 hours" data-placement="top" title="Will respond within 48 hours">
-				<AtSignIcon /> avanderw@gmail.com
+			<a href="mailto:website@avanderw.co.za" data-tooltip="Will respond within 48 hours" data-placement="top" title="Will respond within 48 hours">
+				<AtSignIcon /> website@avanderw.co.za
 			</a>
 		</li>
 	</ul>
