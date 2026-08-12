@@ -6,6 +6,8 @@
 /* ---- Base typography ---- */
 html {
 	font-size: var(--font-body-size);
+	/* Native form controls, scrollbars & UA widgets follow the theme */
+	color-scheme: inherit;
 }
 
 body {

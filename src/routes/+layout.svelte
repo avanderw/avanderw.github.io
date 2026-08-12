@@ -5,22 +5,8 @@
 	import SiteHeaderCore from '$lib/components/SiteHeaderCore.svelte';
 	import SiteFooterCore from '$lib/components/SiteFooterCore.svelte';
 	import { navLinks, headerContent } from '$lib/stores/layout';
+	import { isDark, initializeTheme, toggleTheme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
-
-	let isDarkMode = false;
-
-	function toggleTheme() {
-		isDarkMode = !isDarkMode;
-		document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-		localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-	}
-
-	function initializeTheme() {
-		const savedTheme = localStorage.getItem('theme');
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		isDarkMode = savedTheme === 'dark' || (!savedTheme && prefersDark);
-		document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-	}
 
 	onMount(() => {
 		initializeTheme();
@@ -44,7 +30,7 @@
 		subscribeLabel="Subscribe"
 		subscribeTooltip="Subscribe"
 		navLinks={$navLinks}
-		{isDarkMode}
+		isDarkMode={$isDark}
 		on:themeToggle={toggleTheme}
 	/>
 	{#if $headerContent}

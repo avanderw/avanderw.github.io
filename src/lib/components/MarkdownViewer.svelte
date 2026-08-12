@@ -6,7 +6,8 @@
     import mermaid from 'mermaid';
     import katex from 'katex';
     import 'katex/dist/katex.min.css';
-    import 'highlight.js/styles/github-dark.css';
+        import 'highlight.js/styles/github.css'; /* light baseline; dark overridden in hljs-theme.css */
+        import '$lib/styles/hljs-theme.css';
     
     export let src = '';
     export let options = { tables: true };

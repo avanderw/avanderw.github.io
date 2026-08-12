@@ -2,6 +2,9 @@
    tokens.css — Design tokens for avanderw.co.za
    Replaces Pico CSS v2 (removed in Goal 1). Single source of
    truth for typography, colour, spacing, radius and shadows.
+   Modern theming: the root toggles `color-scheme`; every colour
+   is declared ONCE via light-dark() (Goal 3). The theme toggle
+   sets data-theme="light|dark" (default = follow OS).
    ============================================================ */
 
 :root {
@@ -11,6 +14,8 @@
 	--font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 	--font-body-size: 14pt;
 	--line-height-base: 1.5;
+	--line-height-tight: 1.25;
+	--line-height-relaxed: 1.625;
 	--font-heading-weight: 400;
 	--font-heading-style: normal; /* h2 { font-style: italic } is a deliberate site quirk */
 
@@ -29,40 +34,36 @@
 	--shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
 	--shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 
-	/* ---- Colour tokens (light defaults; dark overrides below) ---- */
-	--color-bg: #ffffff;
-	--color-surface: #ffffff; /* cards, article panels */
-	--color-text: #1e1e1e;
-	--color-muted: #6a6a6a;
-	--color-border: #e0e0e0;
-	--color-accent: #2d8a6e; /* sea green */
-	--color-accent-hover: #23705a;
-	--color-accent-contrast: #ffffff; /* text on accent-filled elements */
-	--color-link-hover: var(--color-accent-hover);
-
-	/* ---- Code blocks (used by MarkdownViewer / web-components page) ---- */
-	--code-bg: #f6f8fa;
-	--code-border: var(--color-border);
-
 	/* ---- Motion ---- */
 	--transition-fast: 0.15s ease;
+
+	/* ============================================================
+	   Theme. `color-scheme` is set on :root by default (system)
+	   and overridden per data-theme below. All colour tokens are
+	   declared once with light-dark(<light>, <dark>).
+	   ============================================================ */
+	color-scheme: light dark;
+
+	--color-bg: light-dark(#ffffff, #1b1f1f);
+	--color-surface: light-dark(#ffffff, #232829); /* cards, article panels */
+	--color-text: light-dark(#1e1e1e, #e6e8e7);
+	--color-muted: light-dark(#6a6a6a, #9aa3a1);
+	--color-border: light-dark(#e0e0e0, #3a4140);
+	--color-accent: light-dark(#2a7f66, #5cbda0); /* sea green — #2a7f66 = 4.85:1 (AA small) */
+	--color-accent-hover: light-dark(#236b55, #6fcbb0);
+	--color-accent-contrast: light-dark(#ffffff, #0f1412); /* text on accent-filled elements */
+	--color-link-hover: var(--color-accent-hover);
+
+	/* Code blocks (MarkdownViewer / web-components page) */
+	--code-bg: light-dark(#f4f6f4, #151918);
+	--code-border: var(--color-border);
 }
 
 /* ---- Dark theme (mirrors Pico's [data-theme="dark"]) ---- */
 [data-theme='dark'] {
-	--color-bg: #1b1f1f;
-	--color-surface: #232829;
-	--color-text: #e6e8e7;
-	--color-muted: #9aa3a1;
-	--color-border: #3a4140;
-	--color-accent: #5cbda0;
-	--color-accent-hover: #6fcbb0;
-	--color-accent-contrast: #0f1412;
-	--color-link-hover: var(--color-accent-hover);
+	color-scheme: dark;
+}
 
-	--code-bg: #1b1f1f;
-	--code-border: var(--color-border);
-
-	--shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4);
-	--shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+[data-theme='light'] {
+	color-scheme: light;
 }

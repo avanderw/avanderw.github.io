@@ -400,11 +400,11 @@ Current state (audited): themes toggle via `data-theme="dark|light"` on `<html>`
 
 | Board | Task |
 |---|---|
-| `[ ]` | **G3-01** — Contrast audit of current light/dark palettes |
-| `[ ]` | **G3-02** — Rebuild tokens with `color-scheme` + `light-dark()` |
-| `[ ]` | **G3-03** — Fix highlight.js / KaTeX / Mermaid theming |
-| `[ ]` | **G3-04** — Theme toggle UX polish |
-| `[ ]` | **G3-05** — Verify & tune (contrast, both modes, browser fallbacks) |
+| `[x]` | **G3-01** — Contrast audit of current light/dark palettes |
+| `[x]` | **G3-02** — Rebuild tokens with `color-scheme` + `light-dark()` |
+| `[x]` | **G3-03** — Fix highlight.js / KaTeX / Mermaid theming |
+| `[x]` | **G3-04** — Theme toggle UX polish |
+| `[~]` | **G3-05** — Verify & tune (auto-verify ✅; **manual visual pass pending**) |
 
 ---
 
