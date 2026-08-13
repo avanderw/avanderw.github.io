@@ -22,6 +22,52 @@
 	$: tooltipText = isDarkMode ? 'Switch to light mode' : 'Switch to dark mode';
 
 	let sheetOpen = false;
+	let hamburgerRef: HTMLButtonElement;
+	let sheetPanelRef: HTMLDivElement;
+
+	function openSheet() {
+		sheetOpen = true;
+		// Move focus into the sheet once it is rendered.
+		setTimeout(() => {
+			const first = sheetPanelRef?.querySelector<HTMLElement>('a[href], button');
+			if (first) first.focus();
+			else sheetPanelRef?.focus();
+		}, 0);
+	}
+
+	function closeSheet() {
+		sheetOpen = false;
+		// Restore focus to the trigger after close.
+		requestAnimationFrame(() => {
+			hamburgerRef?.focus();
+		});
+	}
+
+	function onSheetKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			closeSheet();
+			return;
+		}
+
+		// Trap Tab focus inside the sheet while it is open.
+		if (!sheetOpen || event.key !== 'Tab') return;
+
+		const focusables = sheetPanelRef?.querySelectorAll<HTMLElement>(
+			'a[href], button, [tabindex]:not([tabindex="-1"])'
+		);
+		if (!focusables || focusables.length === 0) return;
+
+		const first = focusables[0];
+		const last = focusables[focusables.length - 1];
+
+		if (event.shiftKey && document.activeElement === first) {
+			event.preventDefault();
+			last.focus();
+		} else if (!event.shiftKey && document.activeElement === last) {
+			event.preventDefault();
+			first.focus();
+		}
+	}
 
 	function handleThemeToggle(event: MouseEvent) {
 		event.preventDefault();
@@ -30,20 +76,6 @@
 		const btn = event.currentTarget as HTMLElement;
 		btn.blur();
 		btn.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
-	}
-
-	function openSheet() {
-		sheetOpen = true;
-	}
-
-	function closeSheet() {
-		sheetOpen = false;
-	}
-
-	function onSheetKeydown(event: KeyboardEvent) {
-		if (event.key === 'Escape') {
-			closeSheet();
-		}
 	}
 </script>
 
@@ -161,6 +193,7 @@
 		{/if}
 		<button
 			class="icon-btn hamburger"
+			bind:this={hamburgerRef}
 			on:click={openSheet}
 			aria-label="Open navigation"
 			aria-expanded={sheetOpen}
@@ -168,7 +201,7 @@
 		>
 			<Menu />
 		</button>
-	</div>
+		</div>
 </div>
 
 <!-- Mobile slide-in navigation sheet -->
@@ -187,7 +220,7 @@
 			tabindex="-1"
 			on:click={closeSheet}
 		></button>
-	<div class="sheet-panel" role="document" tabindex="-1">
+	<div class="sheet-panel" bind:this={sheetPanelRef} role="document" tabindex="-1">
 		<div class="sheet-header">
 			<span class="sheet-title">Menu</span>
 			<button class="icon-btn" on:click={closeSheet} aria-label="Close navigation" title="Close navigation">

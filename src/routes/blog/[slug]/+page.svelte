@@ -204,13 +204,13 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--space-4);
-		margin-bottom: 2.5rem;
+		margin-bottom: var(--space-10);
 	}
 
 	.back-link {
 		color: var(--color-muted);
 		text-decoration: none;
-		font-size: 0.9rem;
+		font-size: var(--font-size-sm);
 		text-transform: uppercase;
 		letter-spacing: 0.03em;
 	}
@@ -223,14 +223,14 @@
 	.share-button.icon-btn {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.4rem;
-		padding: 0.4rem 0.75rem;
+		gap: var(--space-2);
+		padding: var(--space-2) var(--space-3);
 		border: 1px solid var(--color-border);
 		background: var(--color-surface);
 		color: var(--color-text);
 	}
 	.share-button span {
-		font-size: 0.85rem;
+		font-size: var(--font-size-sm);
 		font-weight: 600;
 	}
 	.share-button:hover {
@@ -248,35 +248,35 @@
 
 	.post-meta {
 		color: var(--color-muted);
-		font-size: 0.9rem;
-		margin: 0 0 1.25rem;
+		font-size: var(--font-size-sm);
+		margin: 0 0 var(--space-6);
 	}
 
 	.deck {
 		color: var(--color-muted);
 		font-size: 1.05rem;
 		line-height: var(--line-height-base);
-		margin: 0 0 2rem;
+		margin: 0 0 var(--space-8);
 		max-width: var(--measure-prose);
 	}
 
 	.article-summary {
 		margin: 0 0 2.5rem;
-		padding: 1.25rem;
+		padding: var(--space-card-inset);
 		border: 1px solid var(--color-border);
 		border-left: 3px solid var(--color-accent);
 		border-radius: var(--radius-sm);
 		background: var(--color-surface);
 	}
 	.article-summary h2 {
-		margin: 0 0 1rem;
+		margin: 0 0 var(--space-4);
 		font-size: 1.1rem;
 	}
 
 	.summary-grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1rem;
+		gap: var(--space-4);
 	}
 	.summary-item h3 {
 		margin: 0 0 0.4rem;
@@ -291,16 +291,16 @@
 	.article-pager {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
-		margin-top: 3rem;
-		padding-top: 1.5rem;
+		gap: var(--space-4);
+		margin-top: var(--space-12);
+		padding-top: var(--space-6);
 		border-top: 1px solid var(--color-border);
 	}
 	.pager-link {
 		display: flex;
 		flex-direction: column;
-		gap: 0.3rem;
-		padding: 0.9rem 1rem;
+		gap: var(--space-1);
+		padding: var(--space-4) var(--space-4);
 		border-radius: var(--radius-sm);
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);

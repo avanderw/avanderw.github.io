@@ -455,7 +455,7 @@
 <style>
 	.loading,
 	.error {
-		padding: 1rem;
+		padding: var(--space-4);
 		text-align: center;
 	}
 
@@ -487,7 +487,7 @@
 
 	.layout.with-toc > .toc-rail {
 		position: sticky;
-		top: 1.5rem;
+		top: var(--space-6);
 	}
 
 	/* On narrow screens hide the rail and use the disclosure instead. */
@@ -521,7 +521,7 @@
 		border-left: 1px solid var(--color-border);
 		padding-left: 0.9rem;
 		display: grid;
-		gap: 0.55rem;
+		gap: var(--space-2);
 	}
 
 	.toc-rail :global(.rail-item) {
@@ -570,11 +570,11 @@
 	}
 
 	.toc summary {
-		padding: 0.8rem 1.5rem;
+		padding: var(--space-3) var(--space-6);
 		cursor: pointer;
 		background: var(--color-text);
 		color: var(--color-bg);
-		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+		font-family: var(--font-mono);
 		font-size: 0.78rem;
 		font-weight: 700;
 		letter-spacing: 0.2em;
@@ -587,7 +587,7 @@
 	}
 
 	.toc-content {
-		padding: 1.5rem 1.75rem 1.75rem;
+		padding: var(--space-6) var(--space-8) var(--space-8);
 		text-align: left;
 	}
 
@@ -650,7 +650,7 @@
 
 	@media (max-width: 600px) {
 		.toc-content {
-			padding: 1.25rem 1rem 1.35rem;
+			padding: var(--space-6) var(--space-4) var(--space-6);
 		}
 
 		:global(.toc-section) {

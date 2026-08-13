@@ -163,11 +163,11 @@ The page shell is **72rem / 1152px wide**, while the actual prose is capped at *
 
 | Board | Task |
 |---|---|
-| `[ ]` | **S1** — Separate list/table layouts from prose defaults |
-| `[ ]` | **S2** — Establish page-level vertical rhythm |
-| `[ ]` | **S3** — Improve stream scanning and search feedback |
-| `[ ]` | **S4** — Audit responsive header and mobile menu focus behaviour |
-| `[ ]` | **S5** — Consolidate component-local spacing and type values into tokens |
+| `[x]` | **S1** — Separate list/table layouts from prose defaults |
+| `[x]` | **S2** — Establish page-level vertical rhythm |
+| `[x]` | **S3** — Improve stream scanning and search feedback |
+| `[x]` | **S4** — Audit responsive header and mobile menu focus behaviour |
+| `[x]` | **S5** — Consolidate component-local spacing and type values into tokens |
 
 ## S1 — Separate list/table layouts from prose defaults
 

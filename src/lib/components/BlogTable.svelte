@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { BlogPost } from '$lib/types.js';
-	
+
 	export let blogPosts: BlogPost[];
 	export let searchTerm: string = '';
 
@@ -24,29 +24,41 @@
 
 <section aria-labelledby="blog-heading">
 	<h2 id="blog-heading" class="sr-only">Blog Posts</h2>
-	
-	<table>
-		<thead class="sr-only">
-			<tr>
-				<th>Date</th>
-				<th>Title</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each filteredPosts as post}
+
+	<div class="table-scroll">
+		<table>
+			<thead class="sr-only">
 				<tr>
-					<td class="date">{formatDate(post.date)}
-						<div class="read-time">{post.readingMinutes} min read</div>
-						</td>
-					<td>
-						<a href={post.url} class="title">{post.title}</a>
-						<div class="desc">{post.description}</div>
-					</td>
+					<th>Date</th>
+					<th>Title</th>
+					<th>Description</th>
 				</tr>
-			{/each}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{#each filteredPosts as post}
+					<tr>
+						<td class="date">
+							{formatDate(post.date)}
+							<div class="read-time">{post.readingMinutes} min read</div>
+						</td>
+						<td>
+							<a href={post.url} class="title">{post.title}</a>
+							<div class="desc">{post.description}</div>
+						</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
+
+	{#if searchTerm}
+		<p class="results-count" aria-live="polite">
+			{filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
+			{#if filteredPosts.length > 0}
+				· <a href="/stream">Clear</a>
+			{/if}
+		</p>
+	{/if}
 
 	{#if searchTerm && filteredPosts.length === 0}
 		<p class="no-results">No blog posts found matching "{searchTerm}"</p>
@@ -60,22 +72,33 @@
 		vertical-align: top;
 		padding-right: 1rem;
 		font-size: 0.9rem;
+		line-height: 1.5;
 	}
 
 	.read-time {
-		font-size: 0.75rem;
-		margin-top: 0.15rem;
+		font-size: 0.8rem;
+		margin-top: var(--space-meta);
 		white-space: nowrap;
 	}
 
 	.title {
 		font-weight: 600;
+		font-size: 1.05rem;
+		line-height: 1.35;
 	}
 
 	.desc {
 		color: var(--color-muted);
+		font-size: 0.9rem;
+		margin-top: 0.3rem;
+		line-height: 1.5;
+		max-width: var(--measure-list-copy);
+	}
+
+	.results-count {
+		color: var(--color-muted);
 		font-size: 0.875rem;
-		margin-top: 0.15rem;
+		margin: var(--space-4) 0 0;
 	}
 
 	.no-results {
@@ -99,7 +122,11 @@
 
 	@media (max-width: 768px) {
 		.date {
-			font-size: 0.8rem;
+			font-size: 0.85rem;
+		}
+
+		.title {
+			font-size: 1rem;
 		}
 	}
 </style>
