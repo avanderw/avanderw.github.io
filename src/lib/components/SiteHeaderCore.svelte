@@ -84,32 +84,38 @@
 <div class="header-row">
 	<!-- Desktop navs (hidden on mobile) -->
 	<div class="desktop-navs">
-		<nav aria-label="breadcrumb">
+		<nav class="location-trail" aria-label="Current location">
 			<ul>
 				<li>
-					<a href={home} data-tooltip="Home" data-placement="bottom" title="Home">
-						<HomeIcon />
-					</a>
+					{#if navLinks.length === 0}
+						<span class="current-location home-location" aria-current="page">
+							<HomeIcon aria-hidden="true" />
+							<span>Home</span>
+						</span>
+					{:else}
+						<a href={home} title="Home">
+							<HomeIcon aria-hidden="true" />
+							<span>Home</span>
+						</a>
+					{/if}
 				</li>
 				{#each navLinks as link, index}
 					<li>
-						{#if index === navLinks.length - 1}
-							<span aria-current="page">{link.text}</span>
-						{:else}
-							<a href={link.href} title={link.tooltip ?? link.text}>
-								{link.text}
-							</a>
-						{/if}
-					</li>
-				{/each}
+					{#if index === navLinks.length - 1}
+						<span class="current-location" aria-current="page">{link.text}</span>
+					{:else}
+						<a href={link.href} title={link.tooltip ?? link.text}>{link.text}</a>
+					{/if}
+				</li>
+			{/each}
 			</ul>
 		</nav>
 
-		<nav aria-label="Site navigation">
+		<nav class="primary-navigation" aria-label="Explore the site">
 			<ul>
-				<li><a href="/stream" data-tooltip="Writing" data-placement="bottom" title="Writing">Stream</a></li>
-				<li><a href="/sandbox" data-tooltip="Projects" data-placement="bottom" title="Projects">Sandbox</a></li>
-				<li><a href="/books" data-tooltip="Reading list" data-placement="bottom" title="Reading list">Books</a></li>
+				<li><a href="/stream" title="Writing and notes">Stream</a></li>
+				<li><a href="/sandbox" title="Projects and experiments">Sandbox</a></li>
+				<li><a href="/books" title="Reading list">Books</a></li>
 			</ul>
 		</nav>
 
@@ -161,9 +167,17 @@
 
 	<!-- Mobile: essentials bar (hidden on desktop) -->
 	<div class="mobile-bar">
-		<a href={home} class="icon-link" data-tooltip="Home" data-placement="bottom" title="Home" aria-label="Home">
-			<HomeIcon />
-		</a>
+		{#if navLinks.length === 0}
+			<span class="mobile-current-location" aria-current="page">
+				<HomeIcon aria-hidden="true" />
+				<span>Home</span>
+			</span>
+		{:else}
+			<a href={home} class="icon-link" data-tooltip="Home" data-placement="bottom" title="Home" aria-label="Home">
+				<HomeIcon />
+			</a>
+			<span class="mobile-current-location" aria-current="page">{navLinks[navLinks.length - 1].text}</span>
+		{/if}
 		<button
 			class="icon-btn"
 			on:click={handleThemeToggle}
@@ -280,22 +294,76 @@
 		width: 100%;
 	}
 
-	/* Consistent header link colour — all header nav links share the accent */
-	.header-row a {
-		color: var(--color-accent);
-		text-decoration: none;
+	/* Location trail: show hierarchy without pretending every page has a deep
+	   breadcrumb. The current location is text; ancestors remain links. */
+	.location-trail ul {
+		gap: 0;
 	}
 
-	.header-row a:hover,
-	.header-row a:focus-visible {
+	.location-trail li {
+		display: flex;
+		align-items: center;
+	}
+
+	.location-trail li + li::before {
+		content: '>';
+		margin: 0 var(--space-2);
+		color: var(--color-muted);
+		font-size: var(--font-size-lg);
+		line-height: 1;
+	}
+
+	.location-trail a,
+	.location-trail .home-location {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		min-height: 2.5rem;
+		padding: 0.5rem;
+		color: var(--color-accent);
+		text-decoration: none;
+		border-radius: var(--radius-sm);
+	}
+
+	.location-trail .home-location {
+		color: var(--color-text);
+	}
+
+	.location-trail a:hover,
+	.location-trail a:focus-visible {
 		color: var(--color-link-hover);
 		text-decoration: underline;
 		text-underline-offset: 0.15em;
 	}
 
-	.header-row [aria-current='page'] {
+	.current-location {
 		color: var(--color-text);
 		font-weight: 600;
+	}
+
+	/* Primary destinations are consistently underlined, so they are clearly
+	   recognisable as links even before hover. */
+	.primary-navigation a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.5rem;
+		padding: 0.5rem;
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
+		border-radius: var(--radius-sm);
+	}
+
+	.primary-navigation a:hover,
+	.primary-navigation a:focus-visible {
+		color: var(--color-link-hover);
+		text-decoration-thickness: 2px;
+	}
+
+	.header-row a:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
 	}
 
 	.action-label {
@@ -349,6 +417,19 @@
 		gap: var(--space-2);
 		width: 100%;
 	}
+
+	.mobile-current-location {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		overflow: hidden;
+		max-width: 12ch;
+		color: var(--color-text);
+		font-weight: 600;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 
 	/* Mobile-only styles */
 	@media (max-width: 768px) {

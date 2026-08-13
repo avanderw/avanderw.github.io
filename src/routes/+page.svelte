@@ -49,7 +49,7 @@
 
 	<section class="landing-section" aria-labelledby="stream-heading">
 		<hgroup>
-			<h3 id="stream-heading">Stream</h3>
+			<h2 id="stream-heading">Stream</h2>
 			<p>Thinking out loud — long-form writing on software, strategy, and the craft of building things.</p>
 		</hgroup>
 		<table>
@@ -66,7 +66,7 @@
 						<div class="read-time">{post.readingMinutes} min read</div>
 						</td>
 						<td>
-							<a href={post.url}>{post.title}</a>
+							<a href={post.url} class="title">{post.title}</a>
 							<div class="desc">{post.description}</div>
 						</td>
 					</tr>
@@ -78,7 +78,7 @@
 
 	<section class="landing-section" aria-labelledby="sandbox-heading">
 		<hgroup>
-			<h3 id="sandbox-heading">Sandbox</h3>
+			<h2 id="sandbox-heading">Sandbox</h2>
 			<p>Experiments, tools, and interactive ideas — things built to learn, explore, or just have fun with.</p>
 		</hgroup>
 		<table>
@@ -91,8 +91,10 @@
 			<tbody>
 				{#each highlightedProjects as project}
 					<tr>
-						<td><a href={project.url}>{project.name}</a></td>
-						<td>{project.description}</td>
+						<td>
+							<a href={project.url} class="title">{project.name}</a>
+							<div class="desc">{project.description}</div>
+						</td>
 					</tr>
 				{/each}
 			</tbody>
@@ -102,7 +104,7 @@
 
 	<section class="landing-section" aria-labelledby="stack-heading">
 		<hgroup>
-			<h3 id="stack-heading">Stack</h3>
+			<h2 id="stack-heading">Stack</h2>
 			<p>A career built across consulting, academia, banking and telecoms — driven by a passion for software and people.</p>
 		</hgroup>
 		<table>
@@ -122,7 +124,7 @@
 								{role}{#if i < entry.roles.length - 1}<br />{/if}
 							{/each}
 						</td>
-						<td><a href={entry.companyUrl}>{entry.company}</a></td>
+						<td><a href={entry.companyUrl} class="title">{entry.company}</a></td>
 					</tr>
 				{/each}
 			</tbody>
@@ -159,10 +161,18 @@
 		white-space: nowrap;
 	}
 
+	.title {
+		font-weight: 600;
+		font-size: 1.05rem;
+		line-height: 1.35;
+	}
+
 	.desc {
 		color: var(--color-muted);
-		font-size: 0.875rem;
-		margin-top: 0.15rem;
+		font-size: 0.9rem;
+		margin-top: 0.3rem;
+		line-height: 1.5;
+		max-width: var(--measure-list-copy);
 	}
 
 	.landing-section {

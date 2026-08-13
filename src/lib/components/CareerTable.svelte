@@ -33,7 +33,7 @@
 						{/each}
 					</td>
 					<td>
-						<a href={entry.companyUrl} title={entry.company === 'eSight' ? 'Site no longer exists' : ''}>
+						<a href={entry.companyUrl} class="title" title={entry.company === 'eSight' ? 'Site no longer exists' : ''}>
 							{entry.company}
 						</a>
 					</td>
@@ -52,6 +52,12 @@
 	.year {
 		color: var(--color-muted);
 		font-size: 2rem;
+	}
+
+	.title {
+		font-weight: 600;
+		font-size: 1.05rem;
+		line-height: 1.35;
 	}
 
 	.no-results {
