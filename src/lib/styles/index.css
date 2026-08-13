@@ -34,6 +34,37 @@ li {
 	max-width: 65ch;
 }
 
+/* ---- Article prose (Board A: R1/R2) ---- */
+/* Long-form markdown copy gets a relaxed rhythm and a clear measure.
+   Scoped to .markdown-content so list/table/UI text is unaffected. */
+.markdown-content {
+	line-height: var(--line-height-prose);
+}
+
+.markdown-content p,
+.markdown-content li {
+	max-width: var(--measure-prose);
+}
+
+.markdown-content p {
+	margin: var(--space-prose) 0;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+	line-height: 1.3;
+}
+
+.markdown-content h2 {
+	margin-top: var(--space-8);
+}
+
+.markdown-content h3 {
+	margin: var(--space-6) 0 var(--space-3);
+}
+
 h1,
 h2,
 h3,

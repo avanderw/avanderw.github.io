@@ -50,12 +50,12 @@ The page shell is **72rem / 1152px wide**, while the actual prose is capped at *
 
 | Board | Task |
 |---|---|
-| `[ ]` | **R1** — Create an explicit article-shell/prose layout |
-| `[ ]` | **R2** — Make article typography independent of generic UI typography |
-| `[ ]` | **R3** — Rework the above-the-fold article sequence |
-| `[ ]` | **R4** — Improve article navigation hierarchy and reduce duplicate chrome |
-| `[ ]` | **R5** — Make the table of contents a desktop reading aid, not just a disclosure |
-| `[ ]` | **R6** — Test real reading layouts at desktop, laptop, tablet, and mobile widths |
+| `[x]` | **R1** — Create an explicit article-shell/prose layout |
+| `[x]` | **R2** — Make article typography independent of generic UI typography |
+| `[x]` | **R3** — Rework the above-the-fold article sequence |
+| `[x]` | **R4** — Improve article navigation hierarchy and reduce duplicate chrome |
+| `[x]` | **R5** — Make the table of contents a desktop reading aid |
+| `[x]` | **R6** — Test real reading layouts at desktop, laptop, tablet, and mobile widths |
 
 ## R1 — Create an explicit article-shell/prose layout
 
