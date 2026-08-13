@@ -1,5 +1,12 @@
 <script lang="ts">
-	import { PhoneCallIcon, AtSignIcon, Github, ChartNoAxesCombinedIcon, Component, Linkedin, Gamepad2 } from 'lucide-svelte';
+	import {
+			AtSignIcon,
+			Github,
+			ChartNoAxesCombinedIcon,
+			Component,
+			Linkedin,
+			Gamepad2
+		} from 'lucide-svelte';
 </script>
 
 
@@ -13,46 +20,25 @@
 	Whether you have a project idea, want to discuss tech, or just say hello - I'd love to hear from
 	you. I'm always open to interesting conversations and new opportunities.
 </p>
-<nav>
-	<ul>
-		<li>
-			<a href="tel:+277****7342" data-tooltip="I prefer WhatsApp" data-placement="top" title="I prefer WhatsApp">
-				<PhoneCallIcon /> +27 76 334 7342
-			</a>
-		</li>
-		<li>
-			<a href="mailto:website@avanderw.co.za" data-tooltip="Will respond within 48 hours" data-placement="top" title="Will respond within 48 hours">
-				<AtSignIcon /> website@avanderw.co.za
-			</a>
-		</li>
-	</ul>
-	<ul>
-		<li>
-			<a href="https://www.linkedin.com/in/avanderw/" data-tooltip="LinkedIn" data-placement="top" title="LinkedIn">
-				<Linkedin />
-			</a>
-		</li>
-		<li>
-			<a href="https://github.com/avanderw" data-tooltip="GitHub" data-placement="top" title="GitHub">
-				<Github />
-			</a>
-		</li>
-		<li>
-			<a href="https://www.codingame.com/profile/161aabfa51e53989d7f4fd4d5bcfb712259018" data-tooltip="CodinGame" data-placement="top" title="CodinGame">
-				<Gamepad2 />
-			</a>
-		</li>
-		<li>
-			<a href="https://tracking.avanderw.co.za/avanderw.co.za" data-tooltip="View analytics" data-placement="top" title="View analytics">
-				<ChartNoAxesCombinedIcon />
-			</a>
-		</li>
-		<li>
-			<a href="/web-components" data-tooltip="Web component docs" data-placement="top" title="Web component docs">
-				<Component />
-			</a>
-		</li>
-	</ul>
+<nav class="footer-links" aria-label="Contact and social links">
+	<a href="mailto:website@avanderw.co.za" data-tooltip="Will respond within 48 hours" data-placement="top" title="Will respond within 48 hours">
+		<AtSignIcon /> website@avanderw.co.za
+	</a>
+	<a href="https://www.linkedin.com/in/avanderw/" data-tooltip="LinkedIn" data-placement="top" title="LinkedIn" aria-label="LinkedIn">
+		<Linkedin />
+	</a>
+	<a href="https://github.com/avanderw" data-tooltip="GitHub" data-placement="top" title="GitHub" aria-label="GitHub">
+		<Github />
+	</a>
+	<a href="https://www.codingame.com/profile/161aabfa51e53989d7f4fd4d5bcfb712259018" data-tooltip="CodinGame" data-placement="top" title="CodinGame" aria-label="CodinGame">
+		<Gamepad2 />
+	</a>
+	<a href="https://tracking.avanderw.co.za/avanderw.co.za" data-tooltip="View analytics" data-placement="top" title="View analytics" aria-label="View analytics">
+		<ChartNoAxesCombinedIcon />
+	</a>
+	<a href="/web-components" data-tooltip="Web component docs" data-placement="top" title="Web component docs" aria-label="Web component docs">
+		<Component />
+	</a>
 </nav>
 
 <style>
@@ -63,7 +49,31 @@
 		margin: 1.5rem 0 1rem;
 	}
 
-	nav {
+	/* One-line flex row; wraps gracefully on mobile without stacking vertically */
+	.footer-links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: var(--space-1) var(--space-2);
 		padding-bottom: 2.5rem;
+	}
+
+	.footer-links a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		min-height: 2.5rem; /* ≥24px touch target */
+		padding: 0.5rem 0.6rem;
+		color: var(--color-muted);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.footer-links a:hover,
+	.footer-links a:focus-visible {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
 	}
 </style>

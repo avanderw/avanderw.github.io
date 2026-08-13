@@ -11,17 +11,27 @@ html {
 }
 
 body {
-	width: 60%;
+	width: auto;
 	margin: var(--space-4) auto;
 	font-family: var(--font-serif);
 	background: var(--color-bg);
 	color: var(--color-text);
 }
 
-@media (orientation: portrait) {
-	body {
-		width: 90%;
-	}
+/* Content width: single container drives the layout; prose keeps a
+   readable measure. (G2-05 / width review) */
+.container {
+	width: 100%;
+	max-width: 72rem; /* ~1152px — better use of wide screens */
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 var(--space-4);
+}
+
+/* Readable line length for paragraphs & long-form content */
+p,
+li {
+	max-width: 65ch;
 }
 
 h1,
@@ -152,13 +162,6 @@ button:focus-visible,
 }
 
 /* ---- Containers & layout ---- */
-.container {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 60rem; /* matches body 60% feel on desktop */
-}
-
 hgroup {
 	margin: var(--space-6) 0 var(--space-4);
 }

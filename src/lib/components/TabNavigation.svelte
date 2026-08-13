@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { TabType } from '$lib/types.js';
-	
+
 	export let currentTab: TabType;
 	export let onTabChange: (tab: TabType) => void;
-	
+
 	const tabs = [
 		{ id: 'projects', label: 'Sandbox', description: 'Projects' },
 		{ id: 'blog', label: 'Stream', description: 'Blog' },
@@ -15,14 +15,14 @@
 	<ul class="tab-list" role="tablist">
 		{#each tabs as tab}
 			<li class="tab-item">
-				<a 
+				<a
 					class="tab-link"
 					href="?tab={tab.id}"
 					role="tab"
 					data-tooltip={tab.description}
 					data-placement="bottom"
 					aria-label="{tab.label}: {tab.description}"
-					aria-current={currentTab === tab.id} 
+					aria-current={currentTab === tab.id}
 					on:click|preventDefault={() => onTabChange(tab.id)}
 				>
 					{#if currentTab === tab.id}
@@ -58,8 +58,9 @@
 	.tab-link {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.35rem;
-		padding: 0.45rem 0.9rem;
+		justify-content: center;
+		min-height: 2.5rem; /* ≥24px touch target */
+		padding: 0.5rem 0.9rem;
 		text-decoration: none;
 		cursor: pointer;
 	}

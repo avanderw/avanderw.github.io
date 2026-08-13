@@ -1,18 +1,21 @@
 /* Global styles - tokens-driven, replacing hard-coded values */
 body {
-	width: 60%;
+	width: auto;
 	margin: 1rem auto;
+	overflow-x: hidden;
 	font-family: var(--font-serif);
 }
 
 @media (orientation: portrait) {
 	body {
-		width: 90%;
+		width: auto;
 	}
 }
 
+/* Fluid body type: cap at 1.4rem so tablet/phone feels less oversized.
+   The token's 14pt remains the desktop floor. */
 html {
-	font-size: var(--font-body-size);
+	font-size: clamp(1rem, 1.05rem + 0.5vw, var(--font-body-size));
 }
 
 /* Typography overrides */
@@ -36,4 +39,10 @@ svg {
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	fill: none;
+}
+
+@media (max-width: 768px) {
+	body {
+		width: auto;
+	}
 }

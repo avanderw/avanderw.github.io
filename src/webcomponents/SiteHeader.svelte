@@ -130,12 +130,12 @@
 		outline: none;
 	}
 
-	/* Breadcrumb separator */
-	:global(nav[aria-label="breadcrumb"] li + li::before) {
-		content: '/';
-		color: var(--color-border);
-		margin-right: 0.25rem;
-	}
+	/* Breadcrumb separator (exclude the mobile sheet list) */
+		:global(nav[aria-label="breadcrumb"] ul:not(.sheet-list) li + li::before) {
+			content: '/';
+			color: var(--color-border);
+			margin-right: 0.25rem;
+		}
 
 	/* ---- Icons ---- */
 	:global(svg) {

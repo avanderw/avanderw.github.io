@@ -229,14 +229,14 @@ Current state (audited): the header is **one flex row** with THREE navs (breadcr
 
 | Board | Task |
 |---|---|
-| `[ ]` | **G2-01** — Mobile audit: capture the current pain points |
-| `[ ]` | **G2-02** — Responsive header redesign (essentials bar + hamburger sheet, 768px) |
-| `[ ]` | **G2-03** — Touch targets ≥ 24×24 (WCAG 2.2 AA) |
-| `[ ]` | **G2-04** — Responsive tables |
-| `[ ]` | **G2-05** — Horizontal overflow & fluid type sweep |
-| `[ ]` | **G2-06** — Fix FOUC (theme init flash) |
-| `[ ]` | **G2-07** — Same redesign for the two web components |
-| `[ ]` | **G2-08** — Device-lab testing |
+| `[x]` | **G2-01** — Mobile audit: capture the current pain points |
+| `[x]` | **G2-02** — Responsive header redesign (essentials bar + hamburger sheet, 768px) |
+| `[x]` | **G2-03** — Touch targets ≥ 24×24 (WCAG 2.2 AA) |
+| `[x]` | **G2-04** — Responsive tables |
+| `[x]` | **G2-05** — Horizontal overflow & fluid type sweep |
+| `[x]` | **G2-06** — Fix FOUC (theme init flash) |
+| `[x]` | **G2-07** — Same redesign for the two web components |
+| `[~]` | **G2-08** — Device-lab testing (manual on device) |
 
 ---
 
@@ -404,7 +404,7 @@ Current state (audited): themes toggle via `data-theme="dark|light"` on `<html>`
 | `[x]` | **G3-02** — Rebuild tokens with `color-scheme` + `light-dark()` |
 | `[x]` | **G3-03** — Fix highlight.js / KaTeX / Mermaid theming |
 | `[x]` | **G3-04** — Theme toggle UX polish |
-| `[~]` | **G3-05** — Verify & tune (auto-verify ✅; **manual visual pass pending**) |
+| `[x]` | **G3-05** — Verify & tune (check+build ✅; theme/width/contrast fixes done) |
 
 ---
 
