@@ -253,10 +253,10 @@ The page shell is **72rem / 1152px wide**, while the actual prose is capped at *
 
 | Board | Task |
 |---|---|
-| `[ ]` | **Q1** — Run automated accessibility and contrast checks |
-| `[ ]` | **Q2** — Verify typography loading and fallback quality |
-| `[ ]` | **Q3** — Add visual-regression review for core pages |
-| `[ ]` | **Q4** — Resolve code-quality drift discovered in the review |
+| `[x]` | **Q1** — Run automated accessibility and contrast checks |
+| `[x]` | **Q2** — Verify typography loading and fallback quality |
+| `[x]` | **Q3** — Add visual-regression review for core pages |
+| `[x]` | **Q4** — Resolve code-quality drift discovered in the review |
 
 ## Q1 — Run automated accessibility and contrast checks
 

@@ -281,7 +281,8 @@
 			mermaid.initialize({
 				startOnLoad: false,
 				securityLevel: 'loose',
-				theme: mermaidTheme
+				theme: mermaidTheme,
+				themeVariables: mermaidTheme === 'dark' ? { edgeLabelBackground: '#232829', edgeLabelColor: '#e6e8e7' } : {}
 			});
 			mermaidInitialized = true;
 		}
@@ -316,7 +317,8 @@
 		mermaid.initialize({
 			startOnLoad: false,
 			securityLevel: 'loose',
-			theme: mermaidTheme
+			theme: mermaidTheme,
+			themeVariables: mermaidTheme === 'dark' ? { edgeLabelBackground: '#232829', edgeLabelColor: '#e6e8e7' } : {}
 		});
 		mermaidInitialized = true;
 

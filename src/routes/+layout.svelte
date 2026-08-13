@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '$lib/styles/reset.css';
+	import '$lib/styles/fonts.css';
 	import '$lib/styles/tokens.css';
 	import '$lib/styles/index.css';
 	import SiteHeaderCore from '$lib/components/SiteHeaderCore.svelte';
