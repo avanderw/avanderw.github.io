@@ -28,10 +28,20 @@ body {
 	padding: 0 var(--space-4);
 }
 
-/* Readable line length for paragraphs & long-form content */
-p,
-li {
+/* Readable line length for paragraphs & long-form content.
+   Scoped to prose containers so short UI text (footer blurb, header
+   tagline, nav items) can use the full container width. */
+.prose p,
+.prose li {
 	max-width: 65ch;
+}
+
+/* The footer contact blurb is short, standalone prose — keep it
+   readable but centred to match the footer's centred layout. */
+.footer-blurb {
+	max-width: 60ch;
+	margin-inline: auto;
+	text-align: center;
 }
 
 /* ---- Page-level vertical rhythm (Board B S2) ---- */

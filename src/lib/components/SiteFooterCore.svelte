@@ -16,7 +16,7 @@
 		<path d="M0,10 C20,0 20,20 40,10 C60,0 60,20 80,10 C100,0 100,20 120,10 C140,0 140,20 160,10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 	</svg>
 </div>
-<p>
+<p class="footer-blurb">
 	Whether you have a project idea, want to discuss tech, or just say hello - I'd love to hear from
 	you. I'm always open to interesting conversations and new opportunities.
 </p>

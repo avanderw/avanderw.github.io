@@ -5,6 +5,7 @@
 	import '$lib/styles/index.css';
 	import SiteHeaderCore from '$lib/components/SiteHeaderCore.svelte';
 	import SiteFooterCore from '$lib/components/SiteFooterCore.svelte';
+	import BackToTop from '$lib/components/BackToTop.svelte';
 	import { navLinks, headerContent } from '$lib/stores/layout';
 	import { isDark, initializeTheme, toggleTheme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
@@ -48,6 +49,8 @@
 </header>
 
 <slot />
+
+<BackToTop />
 
 <footer class="container">
 	<SiteFooterCore />

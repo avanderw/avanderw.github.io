@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ProjectsTable from '$lib/components/ProjectsTable.svelte';
+	import SearchBox from '$lib/components/SearchBox.svelte';
 	import { onMount } from 'svelte';
 	import { years } from '$lib/data/projects.js';
 	import { setHeaderContent, setNavLinks } from '$lib/stores/layout';
@@ -23,13 +24,7 @@
 		<p>Projects, experiments, and interactive tools.</p>
 	</hgroup>
 
-	<input
-		type="search"
-		name="search"
-		placeholder="Search projects"
-		aria-label="Search projects"
-		bind:value={searchTerm}
-	/>
+	<SearchBox bind:value={searchTerm} placeholder="Search projects" ariaLabel="Search projects" />
 
 	<ProjectsTable {years} {searchTerm} />
 </main>
