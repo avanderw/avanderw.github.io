@@ -152,7 +152,7 @@ For a large corporation to operate at the speed of the modern market, it must ad
 
 By adopting these standards, large corporations can reduce the "lexical tax" on their employees, lower the barriers to internal mobility, and ensure that their linguistic infrastructure is as robust and scalable as their technology stack. The goal is an organization where a new hire can navigate the vast landscape of projects and services with the same ease as a twenty-year veteran—a state where the language of the enterprise becomes an invisible engine for innovation.1
 
-#### **Works cited**
+## References
 
 1. Treat your brand name like infrastructure \- Fast Company, accessed on April 20, 2026, [https://www.fastcompany.com/91514767/treat-your-brand-name-like-infrastructure](https://www.fastcompany.com/91514767/treat-your-brand-name-like-infrastructure)  
 2. Names should be descriptive, not cute \- geekmonkey, accessed on April 20, 2026, [https://geekmonkey.org/names-should-be-descriptive-not-cute/](https://geekmonkey.org/names-should-be-descriptive-not-cute/)  

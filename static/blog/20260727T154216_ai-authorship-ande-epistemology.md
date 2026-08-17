@@ -92,7 +92,7 @@ My observation is that much of today's content surge is driven by people trying 
 
 That does not make AI writing worthless. It does mean we need a stricter standard for intellectual value. The strongest signal is no longer how quickly text appears. The strongest signal is whether the writer can verify, contextualize, and stand behind what is being said.
 
-### Works Cited
+## References
 
 1. [The Philosophy of AI Truth: What Counts as Knowledge? - Education Research](https://eduresearch.com/the-philosophy-of-ai-truth-what-counts-as-knowledge)
 2. [The Epistemic Impact of Large Language Models on Policymaking - ResearchGate](https://www.researchgate.net/publication/399615634_The_Epistemic_Impact_of_Large_Language_Models_on_Policymaking)

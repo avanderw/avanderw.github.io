@@ -140,45 +140,45 @@ Second, the statement that Cell C is under active litigation is accurate. The op
 
 Cell C now resembles a virtualized telecom operator archetype: legally spectrum-owning, operationally infrastructure-light, and strategically exposed to ongoing regulatory and court outcomes.
 
-## Works Cited
+## References
 
-1. ICASA Hearing Transfer of Control Cell C Spectrum Licences, https://www.icasa.org.za/uploads/files/Vodacoms-presentation-slides-19.09.2024.pdf
-2. Secrecy surrounds Cell C license control transfer - Daily Investor, https://dailyinvestor.com/telecommunications/41003/secrecy-surrounds-cell-c-license-control-transfer/
-3. Reasons Document Cell C Transfer of control applications for ECS ECNS and RFS licences - Independent Communications Authority of South Africa, https://www.icasa.org.za/uploads/files/Reasons-Document-Cell-C-Transfer-of-control-applications-for-ECS-ECNS-and-RFS-licences.pdf
-4. ownership and control of service licences - Ellipsis, https://www.ellipsis.co.za/ownership-and-control-of-service-licences/
-5. Final hurdle for Cell C to transfer control of its spectrum and network licences, https://mybroadband.co.za/news/cellular/583277-final-hurdle-for-cell-c-to-transfer-control-of-its-spectrum-and-network-licences.html
-6. Cell C takeover (almost) complete after ICASA approval - Developing Telecoms, https://developingtelecoms.com/telecom-business/operator-news/17903-cell-c-takeover-almost-complete-after-icasa-approval.html
-7. licensing - Ellipsis, https://www.ellipsis.co.za/category/resources/licensing/
-8. Cell C gives back radio frequency spectrum - MyBroadband, https://mybroadband.co.za/news/cellular/585693-cell-c-gives-back-radio-frequency-spectrum.html
-9. Vodacom NON-CONFIDENTIAL submission - Independent Communications Authority of South Africa, https://www.icasa.org.za/uploads/files/Vodacoms-NON-CONFIDENTIAL-submission-Cell-Cs-transfer-of-control-applications-22.01.24.pdf
-10. Continuing spectrum allocation delays frustrate operators - South Africa 2014, https://oxfordbusinessgroup.com/reports/south-africa/2014-report/economy/continuing-spectrum-allocation-delays-frustrate-operators
-11. Vodacom drops nuclear bomb in cellular cold war - MyBroadband, https://mybroadband.co.za/news/cellular/538775-vodacom-drops-nuclear-bomb-in-cellular-cold-war.html
-12. South Africa, August 2024, Mobile Network Experience Report | Opensignal, https://insights.opensignal.com/reports/2024/08/southafrica/mobile-network-experience
-13. Cell C surrenders spectrum licences to Icasa - TechCentral, https://techcentral.co.za/cell-c-surrenders-spectrum-licences-icasa/260161/
-14. End of an era for South Africa's 24-year-old mobile giant - BusinessTech, https://businesstech.co.za/news/business/844745/end-of-an-era-for-south-africas-24-year-old-mobile-giant/
-15. Cell C loses spectrum after failing to pay R288 million - MyBroadband, https://mybroadband.co.za/news/cellular/538407-cell-c-loses-spectrum-after-failing-to-pay-r288-million.html
-16. high-demand radio frequency spectrum - Ellipsis, https://www.ellipsis.co.za/high-demand-spectrum/
-17. Court makes ruling with significant consequences for South African networks, https://mybroadband.co.za/news/technology/585569-court-makes-ruling-with-significant-consequences-for-south-african-networks.html
-18. IN THE HIGH COURT OF SOUTH AFRICA GAUTENG DIVISION, PRETORIA CASE NO: 054724/2024 In the application of: VODACOM (PTY) LIMITED - Ellipsis, https://www.ellipsis.co.za/wp-content/uploads/2024/07/Vodacom-Pty-Ltd-v-ICASA-and-Others-Judgment-19.2.25-1.pdf
-19. Setback for Vodacom in spectrum battle with rivals - TechCentral, https://techcentral.co.za/setback-for-vodacom-spectrum-battle/260170/
-20. High court battle over 'secret' spectrum deals begins - TechCentral, https://techcentral.co.za/high-court-battle-secret-spectrum-deals/259181/
-21. Vodacom Notice of Motion & Founding Affidavit - Ellipsis, https://www.ellipsis.co.za/wp-content/uploads/2024/06/01-Vodacom-vs-ICASA-and-6-others-NOM-FA-and-annexures-1.pdf
-22. Big day for Vodacom and MTN battle - MyBroadband, https://mybroadband.co.za/news/business-telecoms/594086-big-day-for-vodacom-and-mtn-battle.html
-23. Cell C listing to proceed as planned despite opposition - ITWeb, https://www.itweb.co.za/article/cell-c-listing-to-proceed-as-planned-despite-opposition/WnxpEv4Y8eP7V8XL
-24. BEE partner seeks Cell C liquidation - ITWeb, https://www.itweb.co.za/article/bee-partner-seeks-cell-c-liquidation/WPmxVEMK8aAqQY85
-25. Audited Results for the year ended 31 May 2023 | Investments in and loans to associates and joint ventures - Blue Label Telecoms, https://www.bluelabeltelecoms.co.za/online_results/annual-results-2023/investments-in-and-loans.php
-26. BLU LABEL UNLIMITED GROUP LIMITED CIRCULAR TO SHAREHOLDERS, https://bluelabeltelecoms-online.co.za/pdf/corporate-documents/circular/circular-to-shareholders/blu-label-unlimited-circular.pdf
-27. Major South African company still technically insolvent - BusinessTech, https://businesstech.co.za/news/telecommunications/836079/major-south-african-company-still-technically-insolvent/
-28. Cell C moves forward on JSE listing - Engineering News, https://www.engineeringnews.co.za/article/cell-c-moves-forward-on-jse-listing-2025-11-05
-29. High Court: 2025–2023 | South African Revenue Service, https://www.sars.gov.za/legal-counsel/dispute-resolution-judgments/high-court/hc-2025-2023/
-30. High Court: 2022-2020 | South African Revenue Service, https://www.sars.gov.za/legal-counsel/dispute-resolution-judgments/high-court/hc-2022-2020/
-31. in the high court of south africa - SARS, https://www.sars.gov.za/wp-content/uploads/Legal/Judgments/HC/LAPD-DRJ-HC-2022-02-Cell-C-Pty-Ltd-v-CSARS-30959-2019-2022-ZAGPPHC-152-11-March-2022.pdf
-32. Monthly Compliance and Legislation Update - April - SA Accounting Academy, https://accountingacademy.co.za/events/monthly-compliance-and-legislation-update-april-2025
-33. Can a determination be reviewed? - Shepstone & Wylie, https://www.wylie.co.za/Articles/Read/1350/Can-a-determination-be-reviewed%3F-
-34. CONSTITUTIONAL COURT OF SOUTH AFRICA Case CCT 104/23 In the matter between - SARS, https://www.sars.gov.za/wp-content/uploads/Legal/Judgments/CC/Legal-DRJ-CC-2025-02-CSARS-and-Another-v-Richards-Bay-Coal-Terminal-Pty-Ltd-CCT-10423-2025-ZACC-3-31-March-2025.pdf
-35. Five well-known South African companies technically insolvent - BusinessTech, https://businesstech.co.za/news/business/807408/five-well-known-south-african-companies-technically-insolvent/
-36. JSE Welcomes South African Mobile and Data Services Provider, Cell C, to the Main Board, https://www.jse.co.za/news/news/jse-welcomes-south-african-mobile-and-data-services-provider-cell-c-main-board
-37. One company pumping billions into Cell C - MyBroadband, https://mybroadband.co.za/news/cellular/624069-one-company-pumping-billions-into-cell-c.html
-38. Blu Label reports hefty loss after Cell C listing but remains upbeat - Connecting Africa, https://www.connectingafrica.com/investment/blu-label-reports-hefty-loss-after-cell-c-listing-but-remains-upbeat
-39. Cell C listing triggers R5.2bn hit on Blu Label | ITWeb, https://www.itweb.co.za/article/cell-c-listing-triggers-r52bn-hit-on-blu-label/4r1ly7R9Ymjvpmda
-40. JSE listings: Signs of life - Denker Capital - Discovering Opportunities. Building Wealth., https://www.denkercapital.com/jse-listings-signs-of-life/
+1. ICASA Hearing Transfer of Control Cell C Spectrum Licences, <https://www.icasa.org.za/uploads/files/Vodacoms-presentation-slides-19.09.2024.pdf>
+2. Secrecy surrounds Cell C license control transfer - Daily Investor, <https://dailyinvestor.com/telecommunications/41003/secrecy-surrounds-cell-c-license-control-transfer/>
+3. Reasons Document Cell C Transfer of control applications for ECS ECNS and RFS licences - Independent Communications Authority of South Africa, <https://www.icasa.org.za/uploads/files/Reasons-Document-Cell-C-Transfer-of-control-applications-for-ECS-ECNS-and-RFS-licences.pdf>
+4. ownership and control of service licences - Ellipsis, <https://www.ellipsis.co.za/ownership-and-control-of-service-licences/>
+5. Final hurdle for Cell C to transfer control of its spectrum and network licences, <https://mybroadband.co.za/news/cellular/583277-final-hurdle-for-cell-c-to-transfer-control-of-its-spectrum-and-network-licences.html>
+6. Cell C takeover (almost) complete after ICASA approval - Developing Telecoms, <https://developingtelecoms.com/telecom-business/operator-news/17903-cell-c-takeover-almost-complete-after-icasa-approval.html>
+7. licensing - Ellipsis, <https://www.ellipsis.co.za/category/resources/licensing/>
+8. Cell C gives back radio frequency spectrum - MyBroadband, <https://mybroadband.co.za/news/cellular/585693-cell-c-gives-back-radio-frequency-spectrum.html>
+9. Vodacom NON-CONFIDENTIAL submission - Independent Communications Authority of South Africa, <https://www.icasa.org.za/uploads/files/Vodacoms-NON-CONFIDENTIAL-submission-Cell-Cs-transfer-of-control-applications-22.01.24.pdf>
+10. Continuing spectrum allocation delays frustrate operators - South Africa 2014, <https://oxfordbusinessgroup.com/reports/south-africa/2014-report/economy/continuing-spectrum-allocation-delays-frustrate-operators>
+11. Vodacom drops nuclear bomb in cellular cold war - MyBroadband, <https://mybroadband.co.za/news/cellular/538775-vodacom-drops-nuclear-bomb-in-cellular-cold-war.html>
+12. South Africa, August 2024, Mobile Network Experience Report | Opensignal, <https://insights.opensignal.com/reports/2024/08/southafrica/mobile-network-experience>
+13. Cell C surrenders spectrum licences to Icasa - TechCentral, <https://techcentral.co.za/cell-c-surrenders-spectrum-licences-icasa/260161/>
+14. End of an era for South Africa's 24-year-old mobile giant - BusinessTech, <https://businesstech.co.za/news/business/844745/end-of-an-era-for-south-africas-24-year-old-mobile-giant/>
+15. Cell C loses spectrum after failing to pay R288 million - MyBroadband, <https://mybroadband.co.za/news/cellular/538407-cell-c-loses-spectrum-after-failing-to-pay-r288-million.html>
+16. high-demand radio frequency spectrum - Ellipsis, <https://www.ellipsis.co.za/high-demand-spectrum/>
+17. Court makes ruling with significant consequences for South African networks, <https://mybroadband.co.za/news/technology/585569-court-makes-ruling-with-significant-consequences-for-south-african-networks.html>
+18. IN THE HIGH COURT OF SOUTH AFRICA GAUTENG DIVISION, PRETORIA CASE NO: 054724/2024 In the application of: VODACOM (PTY) LIMITED - Ellipsis, <https://www.ellipsis.co.za/wp-content/uploads/2024/07/Vodacom-Pty-Ltd-v-ICASA-and-Others-Judgment-19.2.25-1.pdf>
+19. Setback for Vodacom in spectrum battle with rivals - TechCentral, <https://techcentral.co.za/setback-for-vodacom-spectrum-battle/260170/>
+20. High court battle over 'secret' spectrum deals begins - TechCentral, <https://techcentral.co.za/high-court-battle-secret-spectrum-deals/259181/>
+21. Vodacom Notice of Motion & Founding Affidavit - Ellipsis, <https://www.ellipsis.co.za/wp-content/uploads/2024/06/01-Vodacom-vs-ICASA-and-6-others-NOM-FA-and-annexures-1.pdf>
+22. Big day for Vodacom and MTN battle - MyBroadband, <https://mybroadband.co.za/news/business-telecoms/594086-big-day-for-vodacom-and-mtn-battle.html>
+23. Cell C listing to proceed as planned despite opposition - ITWeb, <https://www.itweb.co.za/article/cell-c-listing-to-proceed-as-planned-despite-opposition/WnxpEv4Y8eP7V8XL>
+24. BEE partner seeks Cell C liquidation - ITWeb, <https://www.itweb.co.za/article/bee-partner-seeks-cell-c-liquidation/WPmxVEMK8aAqQY85>
+25. Audited Results for the year ended 31 May 2023 | Investments in and loans to associates and joint ventures - Blue Label Telecoms, <https://www.bluelabeltelecoms.co.za/online_results/annual-results-2023/investments-in-and-loans.php>
+26. BLU LABEL UNLIMITED GROUP LIMITED CIRCULAR TO SHAREHOLDERS, <https://bluelabeltelecoms-online.co.za/pdf/corporate-documents/circular/circular-to-shareholders/blu-label-unlimited-circular.pdf>
+27. Major South African company still technically insolvent - BusinessTech, <https://businesstech.co.za/news/telecommunications/836079/major-south-african-company-still-technically-insolvent/>
+28. Cell C moves forward on JSE listing - Engineering News, <https://www.engineeringnews.co.za/article/cell-c-moves-forward-on-jse-listing-2025-11-05>
+29. High Court: 2025–2023 | South African Revenue Service, <https://www.sars.gov.za/legal-counsel/dispute-resolution-judgments/high-court/hc-2025-2023/>
+30. High Court: 2022-2020 | South African Revenue Service, <https://www.sars.gov.za/legal-counsel/dispute-resolution-judgments/high-court/hc-2022-2020/>
+31. in the high court of south africa - SARS, <https://www.sars.gov.za/wp-content/uploads/Legal/Judgments/HC/LAPD-DRJ-HC-2022-02-Cell-C-Pty-Ltd-v-CSARS-30959-2019-2022-ZAGPPHC-152-11-March-2022.pdf>
+32. Monthly Compliance and Legislation Update - April - SA Accounting Academy, <https://accountingacademy.co.za/events/monthly-compliance-and-legislation-update-april-2025>
+33. Can a determination be reviewed? - Shepstone & Wylie, <https://www.wylie.co.za/Articles/Read/1350/Can-a-determination-be-reviewed%3F->
+34. CONSTITUTIONAL COURT OF SOUTH AFRICA Case CCT 104/23 In the matter between - SARS, <https://www.sars.gov.za/wp-content/uploads/Legal/Judgments/CC/Legal-DRJ-CC-2025-02-CSARS-and-Another-v-Richards-Bay-Coal-Terminal-Pty-Ltd-CCT-10423-2025-ZACC-3-31-March-2025.pdf>
+35. Five well-known South African companies technically insolvent - BusinessTech, <https://businesstech.co.za/news/business/807408/five-well-known-south-african-companies-technically-insolvent/>
+36. JSE Welcomes South African Mobile and Data Services Provider, Cell C, to the Main Board, <https://www.jse.co.za/news/news/jse-welcomes-south-african-mobile-and-data-services-provider-cell-c-main-board>
+37. One company pumping billions into Cell C - MyBroadband, <https://mybroadband.co.za/news/cellular/624069-one-company-pumping-billions-into-cell-c.html>
+38. Blu Label reports hefty loss after Cell C listing but remains upbeat - Connecting Africa, <https://www.connectingafrica.com/investment/blu-label-reports-hefty-loss-after-cell-c-listing-but-remains-upbeat>
+39. Cell C listing triggers R5.2bn hit on Blu Label | ITWeb, <https://www.itweb.co.za/article/cell-c-listing-triggers-r52bn-hit-on-blu-label/4r1ly7R9Ymjvpmda>
+40. JSE listings: Signs of life - Denker Capital - Discovering Opportunities. Building Wealth., <https://www.denkercapital.com/jse-listings-signs-of-life/>

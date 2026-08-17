@@ -1,4 +1,4 @@
-﻿# Automation vs Human Intervention
+# Automation vs Human Intervention
 
 ## The Human-Machine Boundary
 
@@ -162,7 +162,7 @@ The following comparison serves as a guide for organizational roadmapping, contr
 
 Organizations that ignore the "Ironies of Automation" do so at their own peril, risking the creation of systems that are efficient in peace but catastrophic in war, or perfect in theory but hollow in value. The path forward requires a shift from "Safety-I" (compliance and constraints) to "Safety-II" (resilience and adaptation), where the human is viewed not as a liability to be removed, but as the essential architect of success under varying conditions.
 
-## Works Cited
+## References
 
 1. Automation vs Manual Processes: The Complete Guide - VegamAI, <https://www.vegam.ai/business-process-automation/automation-vs-manual>
 2. Digital Process Automation vs Manual - Rossum, <https://rossum.ai/blog/digital-process-automation-vs-manual/>

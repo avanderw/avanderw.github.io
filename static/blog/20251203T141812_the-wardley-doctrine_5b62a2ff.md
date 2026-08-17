@@ -2,19 +2,19 @@
 
 The Wardley Doctrine represents a codified set of universally applicable principles essential for organizational competitiveness and strategic success. This framework transcends abstract strategy formulation to focus explicitly on the fundamental behaviors and structural designs required to operate effectively in dynamic environments. The doctrine serves as the non-negotiable foundation upon which all context-specific strategic moves, known as Gameplay, must rest. Without rigorous adherence to these core tenets, an organization's strategic initiatives are inherently undermined by internal friction, systemic flaws, and a chronic inability to execute efficiently.
 
-## I.A. Defining Doctrine: The Foundation of Strategic Success
+## Defining Doctrine: The Foundation of Strategic Success
 
 The Wardley Doctrine is defined as a comprehensive collection of approximately 40 universal principles designed to guide successful strategic behavior. These principles are considered universally applicable, meaning they should be adopted by every organization regardless of its industry, size, or market position. The fundamental veracity of these principles is so high that they are regarded as non-arguable requirements for competitive health, encompassing mandates such as the necessity to "Know your users" and the need to "Challenge assumptions".   
 
 The central focus of the doctrine is the systemic improvement of situational awareness, ensuring the alignment of organizational capabilities with genuine user needs, and fostering adaptability in the face of continuous environmental changes. Furthermore, the principles mandate a structural focus on efficiency, transparency, and the active elimination of internal bias and organizational waste.   
 
-## I.B. Doctrine vs. Strategy: The Distinction between Universal and Contextual
+## Doctrine vs. Strategy: The Distinction between Universal and Contextual
 
 It is critical to distinguish the Doctrine, which is universal, from context-dependent strategic actions, or Gameplay, which are situational. Doctrine defines the *how*—the organization's standardized, baseline operating procedures and common behaviors. Conversely, Strategy or Gameplay defines the *what* and the *where*—the specific, repeatable actions deployed to influence a particular competitive landscape, derived directly from situational analysis (mapping).
 
 Doctrine provides the essential organizational capabilities—such as speed, common understanding, and structural integrity—required to successfully execute these context-specific strategic moves. While Gameplays leverage insights derived from mapping the competitive landscape to reduce friction, evolve components, or shape markets, they can only be implemented effectively when supported by a robust doctrinal foundation. A failure in doctrine, such as a lack of common language or high internal duplication, renders sophisticated Gameplay ineffective. Doctrine provides the reinforcement for the strategic actions required in competitive environments.   
 
-## I.C. The Sequential Maturation Model: Four Phases of Implementation
+## The Sequential Maturation Model: Four Phases of Implementation
 
 The implementation of the 40 principles is structured not as a simultaneous overhaul but as a deliberate, sequential roadmap for organizational evolution and maturity. The doctrine is organized into four consecutive phases that build capability systematically:
 
@@ -26,15 +26,15 @@ The implementation of the 40 principles is structured not as a simultaneous over
 
 - **Phase IV: Continuously Evolve**: Ensures long-term resilience by embedding structural mechanisms for constant adaptation and future sensing.   
 
-## I.D. Doctrine as Cultural and Structural Transformation
+## Doctrine as Cultural and Structural Transformation
 
 The deliberate sequencing of the four phases underscores that the Wardley Doctrine functions as a structured program for fundamental cultural and organizational transformation. The framework establishes a clear hierarchy of needs, demanding that organizations first resolve critical internal cultural flaws (Phase I) before attempting to build sophisticated systemic capabilities (Phase II). For example, if an organization attempts to adopt high-speed practices, such as "Move fast" (a Phase II principle), without first eliminating foundational principles like the failure to "Challenge assumptions" or "Remove bias and duplication" (Phase I), the increased speed will merely accelerate the organization's existing internal dysfunction and systemic waste. The required sequential application of the Doctrine ensures that capability acquired in later phases is dependent on the stability and clarity established in earlier phases, which is essential for sustainable competitive success.
 
-## II. The Architecture of Doctrine: Structure and Operational Domains
+## The Architecture of Doctrine: Structure and Operational Domains
 
 The 40 universal principles are classified across two dimensions: the sequential phases of organizational maturity and six functional organizational domains. This architecture ensures holistic coverage and provides a systematic mechanism for assessment and implementation across the entire enterprise.
 
-### II.A. The Six Operational Domains
+### The Six Operational Domains
 
 To guarantee the doctrine's application addresses all facets of organizational performance, the principles are grouped into six functional categories:
 
@@ -50,11 +50,11 @@ To guarantee the doctrine's application addresses all facets of organizational p
 
 - **Structure**: Addresses organizational design, the size and nature of working groups, the distribution of authority, and the management of internal culture.
 
-### II.B. The Doctrine as an Organizational Meta-Model
+### The Doctrine as an Organizational Meta-Model
 
 A rigorous analysis of the principles' distribution reveals a significant concentration of high-leverage requirements within the Structure domain, including mandates for small teams, distributed power, focusing on intrinsic motivation (purpose, mastery, autonomy), and designing for constant evolution. This structural concentration indicates that the Wardley Doctrine is fundamentally an organizational design prescription. While traditional strategy often focuses on external market positioning, the doctrine's explicit mandates for specific internal structures and communication frameworks—such as the insistence on using a common visual language like a map—implies that internal organizational friction, misalignment, and scaling limits are viewed as greater strategic liabilities than external competition. By systematically reforming the organization's structure and operating model to prioritize delegated authority and alignment via mapping, leadership can create an enterprise capable of safely overcoming internal obstacles and executing the dynamic, context-specific strategic moves necessary for competitive advantage.
 
-### II.C. Table 1: Complete Index of the 40 Universal Principles
+### Table 1: Complete Index of the 40 Universal Principles
 
 The following table provides the exhaustive enumeration of the 40 principles, organized according to their functional category and prescribed phase of implementation, synthesizing data from various sources.
 
@@ -103,11 +103,11 @@ The following table provides the exhaustive enumeration of the 40 principles, or
 | IV. Continuously Evolve | Structure | 39. Design for constant evolution | Build the organization to be inherently adaptive. |
 | IV. Continuously Evolve | Structure | 40. There is no one culture | Acknowledge and manage different cultural archetypes (Pioneers, Settlers, Town Planners). |
 
-## III. Phase I: Stopping Self-Destructive Behavior (The Foundation of Awareness)
+## Phase I: Stopping Self-Destructive Behavior (The Foundation of Awareness)
 
 Phase I is the mandatory starting point for doctrinal adherence, concentrating on the elimination of internal organizational dysfunctions that create systemic waste, confusion, and paralysis. By addressing these foundational flaws, the organization minimizes internal systemic friction, thereby maximizing the energy available for productive work and strategic action.
 
-### III.A. Communication Principles: Establishing Shared Reality
+### Communication Principles: Establishing Shared Reality
 
 Effective strategy requires a unified understanding of the environment and the organization's components.
 
@@ -117,7 +117,7 @@ Effective strategy requires a unified understanding of the environment and the o
 
 **Principle 3: Focus on high situational awareness**. Before any decision or development effort begins, the organization must possess a clear understanding of the value chain, the components involved, and their state of evolution. This prerequisite awareness prevents the misapplication of resources and methods.
 
-### III.B. Development Principles: Aligning Effort with Value
+### Development Principles: Aligning Effort with Value
 
 Development efforts must be optimized for value delivery, efficiency, and methodological appropriateness.
 
@@ -127,7 +127,7 @@ Development efforts must be optimized for value delivery, efficiency, and method
 
 **Principle 7: Use appropriate methods**. The toxic impact of a "one-size-fits-all" approach to methodology is countered by mandating that the method selected (e.g., Agile, Lean, Six Sigma) must align with the component's evolutionary state (e.g., Lean for a commodity, Agile for a novel concept).
 
-### III.C. Learning and Operations: Initial Detail and Data
+### Learning and Operations: Initial Detail and Data
 
 Phase I mandates foundational mechanisms for objective knowledge acquisition and granular operational understanding.
 
@@ -135,15 +135,15 @@ Phase I mandates foundational mechanisms for objective knowledge acquisition and
 
 **Principle 9: Think small (as in know the details)**. Leaders must maintain granular awareness of the components and dependencies, actively countering the common strategic failure of abstracting away operational minutiae. Knowing the details is essential for accurate strategic assessment and intervention.
 
-### III.D. Phase I as Maximum Friction Reduction
+### Phase I as Maximum Friction Reduction
 
 The nine principles of Phase I collectively serve the strategic function of minimizing internal systemic friction. This friction, generated by factors like confusion from a common language failure or waste from duplication, acts as a primary limiter of strategic velocity. Critically, every unit of energy consumed resolving internal conflict or waste is energy not available for external competition. By rigorously establishing clarity (situational awareness, common language) and efficiency (removing duplication), the organization dramatically lowers its internal operational latency. This necessary reduction in friction elevates the maximum feasible velocity ceiling for the organization, making the fast, iterative, and distributed practices of Phase II structurally achievable and safe to pursue.
 
-## IV. Phase II: Becoming More Context Aware (Speed and Capability Building)
+## Phase II: Becoming More Context Aware (Speed and Capability Building)
 
 Phase II focuses on translating foundational clarity (Phase I) into operational velocity and structural resilience. This phase introduces 15 principles aimed at building the mechanisms necessary for rapid adaptation and the safe distribution of authority.   
 
-### IV.A. Leading Principles: Embracing Velocity and Fighting Stasis
+### Leading Principles: Embracing Velocity and Fighting Stasis
 
 Leadership must shift from a rigid planning mentality to one that prizes execution and rapid iteration.
 
@@ -153,7 +153,7 @@ Leadership must shift from a rigid planning mentality to one that prizes executi
 
 **Principle 18: Manage inertia**. Strategic effectiveness requires actively identifying and countering internal resistance. This inertia frequently manifests as political capital, legacy investments, or established practices, making the battle against stasis a high-level strategic action.   
 
-### IV.B. Development Principles: Pragmatic, Frugal, and Tool-Driven
+### Development Principles: Pragmatic, Frugal, and Tool-Driven
 
 Development processes are optimized for speed, resource efficiency, and contextual relevance.
 
@@ -165,7 +165,7 @@ Development processes are optimized for speed, resource efficiency, and contextu
 
 **Principles 11 & 12: Focus on the outcome not a contract and Be pragmatic**. These twin principles mandate a shift away from bureaucratic process (contracts, dogma) towards demonstrable, value-added results (outcomes) and practical success. Pragmatism dictates that results matter more than ideological adherence.   
 
-### IV.C. Operations, Learning, and Communication
+### Operations, Learning, and Communication
 
 Operational focus shifts to systemic resilience and efficiency based on effectiveness.
 
@@ -177,7 +177,7 @@ Operational focus shifts to systemic resilience and efficiency based on effectiv
 
 **Principle 10: Be transparent (a bias towards open)**. Ensuring that relevant information, particularly situational awareness, flows freely to all relevant parties enables autonomous, aligned decision-making.   
 
-### IV.D. Structure Principles: Empowering Distributed Teams
+### Structure Principles: Empowering Distributed Teams
 
 Phase II introduces the foundational structural changes required to scale velocity beyond centralized control.
 
@@ -187,15 +187,15 @@ Phase II introduces the foundational structural changes required to scale veloci
 
 **Principle 22: Think aptitude and attitude**. Team composition must prioritize inherent capability and cultural mindset over formal job titles or resumes when forming these autonomous teams.   
 
-### IV.E. The Speed/Safety Nexus
+### The Speed/Safety Nexus
 
 The successful implementation of Phase II principles establishes the necessary balance between organizational speed and systemic control. The ability to mandate "Move fast" (Principle 16) is only strategically sound if it is supported by structural mechanisms that contain the associated risks. For example, distributing power (Principle 24) introduces risk of fragmentation. To mitigate this, the organization must simultaneously mandate transparency (Principle 10), use a common objective understanding tool (mapping established in Phase I), and design explicitly for failure (Principle 20). This integrated structural approach ensures that decentralized teams remain strategically aligned through shared doctrine while operating at maximum local speed, transforming the organization into a highly agile and resilient system.   
 
-## V. Phase III: Better for Less (Optimization and Excellence)
+## Phase III: Better for Less (Optimization and Excellence)
 
 Phase III is dedicated to achieving economic excellence by converting the velocity and structural integrity achieved in Phase II into superior efficiency. This stage focuses on rigorous operational optimization, cultivating strong leadership, and introducing high standards of performance and talent management.   
 
-### V.A. Leading Principles: Inspirational Ownership and Adaptive Commitment
+### Leading Principles: Inspirational Ownership and Adaptive Commitment
 
 Leadership must transition into an accountable, inspiring, and adaptive role.
 
@@ -207,7 +207,7 @@ Leadership must transition into an accountable, inspiring, and adaptive role.
 
 **Principle 27 & 29: Strategy is complex and Be humble**. Effective leaders must explicitly recognize the inherent uncertainty and non-linearity of strategic environments. Humility requires the leader to listen, be selfless, and maintain the fortitude required to navigate complexity without resorting to panic or over-centralization.   
 
-### V.B. Operations Principles: Maximizing Flow and Quality
+### Operations Principles: Maximizing Flow and Quality
 
 Operational mandates center on removing bottlenecks to optimize value delivery and establish high benchmarks.
 
@@ -217,7 +217,7 @@ Operational mandates center on removing bottlenecks to optimize value delivery a
 
 **Principle 33: Set exceptional standards**. The culture must demand excellence, operating under the assumption that "great is just not good enough." This high bar drives superior outcomes and competitive differentiation.   
 
-### V.C. Structure and Learning Principles: Talent and Intrinsic Motivation
+### Structure and Learning Principles: Talent and Intrinsic Motivation
 
 Structural design principles focus on maximizing the output and retention of high-caliber talent.
 
@@ -227,15 +227,15 @@ Structural design principles focus on maximizing the output and retention of hig
 
 **Principle 30: A bias towards the new**. Cultivating curiosity and a willingness to take calculated risks on emerging patterns and technologies is essential for competitive evolution and avoiding strategic complacency.   
 
-### V.D. Flow Optimization as the Economic Conversion Mechanism
+### Flow Optimization as the Economic Conversion Mechanism
 
 The directive to "Optimise flow" functions as the central economic conversion mechanism of the Wardley Doctrine. This step represents the crucial point where organizational agility and speed (Phase II) are converted into measurable efficiency and competitive cost advantage, achieving the phase goal of "Better for Less." Optimization of flow is structurally dependent upon the prior minimization of systemic friction (Phase I) and organizational inertia (Phase II). Once flow is optimized, the organization achieves significantly faster cycle times, reducing work-in-progress (WIP) and accelerating feedback loops. This faster, cheaper flow allows the organization to achieve high standards ("Set exceptional standards") economically, making the organization capable of out-competing rivals on both speed and cost simultaneously.
 
-## VI. Phase IV: Continuously Evolve (Adaptability and Resilience)
+## Phase IV: Continuously Evolve (Adaptability and Resilience)
 
 Phase IV represents the final maturation stage, focusing on the structural and cultural embedding of constant adaptation to safeguard the organization against strategic stagnation and the relentless forces of commoditization. This phase ensures long-term viability.   
 
-### VI.A. Structure Principles: Designing for Strategic Resilience
+### Structure Principles: Designing for Strategic Resilience
 
 The ultimate design goal is a self-adapting organization that manages internal cultural needs appropriately.
 
@@ -243,7 +243,7 @@ The ultimate design goal is a self-adapting organization that manages internal c
 
 **Principle 40: There is no one culture**. Successful strategic execution across the entire evolutionary spectrum requires distinct cultural profiles. The doctrine mandates the acknowledgement and management of three distinct cultural archetypes: Pioneers (exploring novelty), Settlers (scaling and productizing), and Town Planners (industrializing and optimizing utility). The organizational structure must manage the necessary tension between these groups to ensure effective strategy across all stages of the value chain.   
 
-### VI.B. Leading and Learning Principles: Future Sensing and Transient Advantage
+### Leading and Learning Principles: Future Sensing and Transient Advantage
 
 Leadership must accept transience and prioritize mechanisms for anticipating future shifts.
 
@@ -253,23 +253,23 @@ Leadership must accept transience and prioritize mechanisms for anticipating fut
 
 **Principle 38: Listen to your ecosystems (Learning)**. External interactions—with partners, communities, and open-source movements—must be formalized and treated as essential "future sensing engines" to provide early warning signals of technological or market shifts.   
 
-### VI.C. The Structural Mandate Against Stagnation
+### The Structural Mandate Against Stagnation
 
 Phase IV principles provide the structural defense against organizational senescence. If an organization focuses exclusively on optimization (Phase III), it faces the danger of achieving a high level of efficiency in delivering an obsolete product or service (local optima). Phase IV structurally mitigates this risk by requiring the organization to accept that "There is no core" and to "Design for constant evolution." This dual mandate compels the enterprise to continuously look outward ("Listen to your ecosystems") and inward (managing the Pioneer, Settler, Town Planner model) to ensure resources are constantly redirected from mature components toward new, novel domains. This systemic approach secures long-term strategic resilience by internalizing the constant forces of evolution.
 
-## VII. Integration and Strategic Application
+## Integration and Strategic Application
 
 The Wardley Doctrine is a systemic framework designed to integrate operational excellence with strategic awareness and action. Its ultimate utility lies in its role as the stable, optimized platform for execution within a dynamic competitive environment.
 
-### VII.A. The Doctrinal Support for Contextual Gameplay
+### The Doctrinal Support for Contextual Gameplay
 
 Doctrine functions as the necessary precondition for successful, high-risk strategic action. Strategic Gameplays, such as componentizing services or leveraging open-source components, are tactical moves chosen based on the precise contextual insights provided by Wardley Maps. However, these strategic moves only succeed if the underlying Doctrine is robust. For example, an organization cannot successfully "Exploit the landscape" (Phase IV) if it has not yet mastered "Use a common language" or "Remove duplication" (Phase I). Doctrine ensures that the organizational how—characterized by speed, transparency, and elimination of bias—is structurally capable of supporting the strategic what.   
 
-### VII.B. Organizational Culture Management and the Doctrine
+### Organizational Culture Management and the Doctrine
 
 The principle of "There is no one culture"  directly integrates organizational psychology into strategic structure. By mandating the recognition and management of distinct cultures (Pioneers, Settlers, Town Planners), the Doctrine provides the common framework (shared purpose and language) that prevents the inevitable tension between these groups—each necessary for managing value chain components at different evolutionary stages—from fragmenting the organization. This internal structural integrity is essential for achieving a holistic strategy that manages innovation, scale, and cost efficiency simultaneously.   
 
-### VII.C. Implementation and Strategic Evaluation
+### Implementation and Strategic Evaluation
 
 The Doctrine provides a framework for self-assessment and guided maturation. Organizations are required to implement the principles sequentially, beginning strictly with the fundamentals of Phase I to correct foundational flaws. The systematic evaluation of doctrinal adherence serves not only to identify specific organizational gaps but also to increase awareness and create organizational alignment around the strategic intent of the Doctrine. This commitment to continuous, structured improvement, built incrementally from phase to phase, ensures the successful evolution of organizational capability.   
 

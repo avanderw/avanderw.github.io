@@ -2,7 +2,7 @@
 
 The pursuit of Artificial General Intelligence (AGI) has fundamentally transcended the boundaries of technological innovation to become the central organizing principle of global geopolitics and industrial strategy in the mid-2020s. By 2025, the "AI race" is no longer a rhetorical device used by Silicon Valley enthusiasts but a high-stakes "existential gamble" involving the total mobilization of national resources, the weaponization of semiconductor supply chains, and the fundamental restructuring of the global software economy. This report provides an exhaustive analysis of these dynamics, utilizing game theory to model the likely outcomes of the current competitive environment while synthesizing the impact of contemporary conflicts, capital reallocation trends, and the quest for compute dominance.
 
-## I. Defining the AI Race
+## Defining the AI Race
 
 The AI race in 2025 is defined by a frantic contest between corporate titans and nation-states to achieve a "one-time" technological threshold: the creation of a system that surpasses human cognitive power across all economically and strategically valuable domains. This race is characterized by two distinct paradigms of success, primarily championed by the United States and the People's Republic of China, which prioritize different end-states for artificial intelligence.
 
@@ -28,7 +28,7 @@ The classification of progress in this race has been formalized by researchers a
 
 This hierarchy clarifies that the AI race is not a singular event but a continuous cycle of improvement and refinement. However, the strategic perception remains that the actor who first achieves Level 5—Superhuman AGI—will possess an unassailable advantage in cyberwarfare, scientific discovery, and economic planning.
 
-## II. Game Theory and Escalation
+## Game Theory and Escalation
 
 Game theory provides the most robust framework for predicting the outcomes of the AI race, as it formalizes the strategic interactions between agents whose outcomes depend on the choices of others. The current race is widely modeled as a "Prisoner’s Dilemma" (PD), although elements of the "Stag Hunt" and the "Game of Chicken" are increasingly visible in the 2025 landscape.
 
@@ -55,7 +55,7 @@ In the AI race, "hunting the stag" represents global cooperation on safety stand
 
 As the race nears the AGI threshold, the dynamic begins to resemble the "Game of Chicken" (or Hawk-Dove). In this model, two actors drive toward each other; the one who "swerves" (slows down for safety) loses face, but if neither swerves, both perish in a catastrophic collision. By 2025, the proliferation of autonomous weapons and AI-enabled cyberwarfare has introduced "flash war" risks, where automated retaliation could escalate minor accidents into global conflicts before human intervention is possible. The refusal of the US and UK to sign the 2025 Paris Summit statement on sustainable AI highlights a "no-swerve" posture, as leaders fear that any unilateral slowdown will be exploited by adversaries.
 
-## III. The SaaS Apocalypse
+## The SaaS Apocalypse
 
 The AI race has triggered a fundamental restructuring of the technology sector, particularly within the Software-as-a-Service (SaaS) ecosystem. By 2025, the traditional SaaS model, which relied on "per-seat" pricing and human-centered workflows, has encountered what analysts call the "AI Funding Apocalypse".
 
@@ -87,7 +87,7 @@ Other notable 2025 divestments and acquisitions include:
 
 The 2025 market has been particularly brutal for startups building "thin AI wrappers" on existing models. As AI agents become capable of executing tasks directly, the value of tools designed solely for human coordination has plummeted. Technological advancements like Anthropic’s Model Context Protocol (MCP) have further simplified connections between AI models and external data, turning what were once valuable integration "moats" into basic utilities. Consequently, investors now prioritize "proprietary data moats" and companies that demonstrate clear "workflow ownership".
 
-## IV. Geopolitical Crucible
+## Geopolitical Crucible
 
 The AI race is inextricably linked to the active conflicts in Ukraine and the Middle East, which have become the primary "test ranges" for next-generation autonomous systems. These wars are not just humanitarian crises but kinetic milestones where AI models are trained on real-time combat data, accelerating the development of lethal autonomous weapons (LAWS).
 
@@ -118,7 +118,7 @@ South Korean chipmakers warned in early 2026 that conflict in the Middle East co
 
 Semiconductors have become the "new weapon of geopolitics". The US "Small Yard, High Fence" strategy has effectively weaponized the semiconductor technology stack, restricting China's access to the most advanced GPUs (like the Nvidia H20 and Blackwell chips) required for AGI training. In retaliation, China has consolidated control over the "inputs" of the future—critical minerals like gallium, germanium, graphite, and tungsten—which are essential for the next generation of American chips. This "weaponized interdependence" creates a feedback loop where each actor’s attempt to secure their supply chain further destabilizes the other’s, reinforcing the Prisoner’s Dilemma equilibrium.
 
-## V. The Compute War
+## The Compute War
 
 The AI race is fundamentally a "race for compute". In 2025, compute dominance is viewed as the primary indicator of national power, with 60–95% of recent AI performance gains attributed to scaling compute and data rather than algorithmic breakthroughs.
 
@@ -145,7 +145,7 @@ While the US leads in high-end silicon, China possesses a significant advantage 
 
 The International Energy Agency forecasts that US data center electricity demand will more than double by 2030\. Unlike the US, where energy projects are often delayed by regulatory "patchworks," China's historically rapid pace of energy expansion ensures that energy supply is unlikely to be a constraint for their AI ambitions. David Victor of Brookings notes that while the US controls the "chips of today," China’s control over renewable energy and raw materials makes it harder for the US to build the "chips of tomorrow".
 
-## VI. International Governance
+## International Governance
 
 The rapid advancement of AI has prompted a series of global summits aimed at establishing "red lines" for unacceptable risks, such as AI-enabled bioterrorism or unauthorized nuclear escalation. However, by 2026, these efforts are increasingly seen as "summitology as a dying art".
 
@@ -169,7 +169,7 @@ Despite these proposals, the 2025 Paris Summit failed to produce substantial com
 
 A "patchwork" of conflicting regulations is emerging. The European Union’s AI Act remains the most comprehensive regulatory framework, focusing on managed risk ex-ante. Meanwhile, the US has favored a "light-touch" approach of voluntary commitments and executive orders (e.g., EO 14179\) to avoid stifling innovation. China combines rapid deployment with "strong political oversight," mandating that AI systems align with state priorities. This "diverging governance pathway" reinforces the game-theoretic perception that the AI race is a zero-sum contest where "regulatory drag" is a strategic liability.
 
-## VII. Conclusion
+## Conclusion
 
 The convergence of game theoretic pressures, SaaS divestments, and real-world military testing suggests that the AI race is entering its most volatile and decisive phase. Based on the analysis of current trends and the underlying strategic logic, several likely outcomes emerge for the 2026–2030 period.
 
@@ -188,7 +188,7 @@ The convergence of game theoretic pressures, SaaS divestments, and real-world mi
 
 The AI race of 2025 is a "continuous cycle of improvement" that challenges our ethics and redefines what it means to be human. While the risks are existential, the potential for AGI to solve the most pressing challenges of humanity—from curing diseases to accelerating the green transition—remains the primary driver of this frantic global contest. The ultimate outcome will be determined not just by who has the most chips, but by who can most effectively manage the strategic dilemmas of speed versus caution and competition versus collusion.
 
-#### **Works cited**
+## References
 
 1. China, the United States, and the AI Race | Council on Foreign ..., accessed on March 11, 2026, [https://www.cfr.org/articles/china-united-states-and-ai-race](https://www.cfr.org/articles/china-united-states-and-ai-race)  
 2. The Race for AGI: Why 2025 Might Be the Year Everything Changes | by Max Möllenbeck, accessed on March 11, 2026, [https://medium.com/@maxmoellenbeck/the-race-for-agi-why-2025-might-be-the-year-everything-changes-c674bd326926](https://medium.com/@maxmoellenbeck/the-race-for-agi-why-2025-might-be-the-year-everything-changes-c674bd326926)  

@@ -95,7 +95,7 @@ The cycle repeated, each loan becoming someone's income, which became a new depo
 
 Within months, the island's economy had exploded. Elena reviewed her ledger one evening, marveling at what she saw:
 
-#### Deposits (What people think they have):
+### Deposits (What people think they have):
 - Rodriguez: 50,000 Kakos
 - Thomas: 1,200 Kakos
 - Yuki: 1,800 Kakos  
@@ -103,10 +103,10 @@ Within months, the island's economy had exploded. Elena reviewed her ledger one 
 - Various others: 8,000 Kakos
 - **Total: 61,900 Kakos**
 
-#### Reserves (What's actually in the vault):
+### Reserves (What's actually in the vault):
 - 12,380 Kakos (20% of total deposits)
 
-#### Loans Outstanding (Where the rest went):
+### Loans Outstanding (Where the rest went):
 - 49,520 Kakos (80% of deposits, lent to productive ventures)
 
 The total deposits showed over 60,000 Kakos, but Rodriguez had only brought in 50,000. The rest had multiplied through lending—created, in a sense, from trust and productive activity. This was the **money multiplier** at work: one deposit, lent and re-deposited over and over, spawning economic activity far beyond its original value.
@@ -179,7 +179,7 @@ The islanders had learned the oldest lesson of banking: trust is currency, credi
 
 ---
 
-# Part Two: The Network
+## Part Two: The Network
 
 ## Chapter Eleven: The Trade Winds
 

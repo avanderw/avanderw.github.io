@@ -6,7 +6,7 @@ To solve this, you need to shift from **local rate limiting** to **centralized s
 
 ---
 
-## 1. Centralized Token Bucket (The Redis Approach)
+## Centralized Token Bucket (The Redis Approach)
 
 Instead of each container keeping its own counter, use a central fast-access data store like **Redis**. Each service must "check out" a permit before making the external call.
 
@@ -17,7 +17,7 @@ Instead of each container keeping its own counter, use a central fast-access dat
 - **Cons:** Adds a few milliseconds of latency for the Redis round-trip.
     
 
-## 2. The Distributed Governor (Aggregator Pattern)
+## The Distributed Governor (Aggregator Pattern)
 
 If you want to avoid hitting Redis for every single request, you can use a **Governor** or **Sidecar** pattern.
 
@@ -28,7 +28,7 @@ If you want to avoid hitting Redis for every single request, you can use a **Gov
 - **Pros:** Reduces network overhead to the central coordinator.
     
 
-## 3. Centralized Egress Queue (The Buffer Pattern)
+## Centralized Egress Queue (The Buffer Pattern)
 
 Instead of your services calling the external API directly, they push the "intent" (the request data) onto a **Message Queue** (RabbitMQ, SQS, or Kafka).
 
@@ -71,7 +71,7 @@ Since the data is already in Kafka, the solution becomes an **Egress Worker Clus
 
 In this setup, your various services and containers act as **Producers**, dumping requests into the Kafka topic. The magic happens at the **Consumer** level.
 
-### 1. Fixed-Rate Consumer Group
+### Fixed-Rate Consumer Group
 
 Instead of every container sending requests, you create a dedicated "Egress Consumer" service.
 
@@ -80,7 +80,7 @@ Instead of every container sending requests, you create a dedicated "Egress Cons
 - **Throttling logic:** Inside each consumer's `poll()` loop, you implement a local rate limiter (like Guava's `RateLimiter` in Java or `ratelimit` in Python). Because the number of consumers is known, you simply divide the total allowed rate by the number of consumers.
     
 
-### 2. The "Pause and Resume" Strategy
+### The "Pause and Resume" Strategy
 
 Kafka provides a unique ability to **pause** and **resume** consumption. This is the most "polite" way to handle external rate limits.
 

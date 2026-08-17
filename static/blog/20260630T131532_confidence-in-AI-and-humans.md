@@ -1,4 +1,4 @@
-﻿# Confidence, Competence, and Calibration in AI and Human Systems
+# Confidence, Competence, and Calibration in AI and Human Systems
 
 ## AI Systems: Intelligence, Experience, and Calibration
 
@@ -150,51 +150,51 @@ To dismantle the confidence-competence gap, promotion and compensation framework
 
 Furthermore, organizations must establish formalized, independent avenues of escalation and exception authority. When a human analyst or a diagnostic system flags an operational error, the organization must possess a structured, audited feedback loop with a named owner obligated to verify and correct the root cause. Without these structured, calibrated guardrails, both human and machine systems will inevitably succumb to the gravity of their own unearned confidence, sacrificing long-term systemic survival for the temporary, comfortable illusion of absolute certainty.
 
-## Works Cited
+## References
 
-1. Mapping LLM Capability Frontiers via Formalized and Calibrated Probes - arXiv, https://arxiv.org/html/2603.05290
-2. Local AI vs Cloud AI in 2026: When to Run Models on Your Own Hardware - MindStudio, https://www.mindstudio.ai/blog/local-ai-vs-cloud-ai-2026
-3. Anthropic researchers on alignment faking - Reddit r/ClaudeAI, https://www.reddit.com/r/ClaudeAI/comments/1ifxr3t/anthropic\_researchers\_our\_recent\_paper\_found/
-4. AI Hallucinations Might Be More Human Than We'd Like to Admit - Reddit r/artificial, https://www.reddit.com/r/artificial/comments/1sruvbn/ai\_hallucinations\_might\_be\_more\_human\_than\_wed/
-5. A Comparison of Reinforcement Learning (RL) and RLHF - IntuitionLabs, https://intuitionlabs.ai/articles/reinforcement-learning-vs-rlhf
-6. Balancing Classification and Calibration Performance in Decision-Making LLMs via Calibration Aware Reinforcement Learning - arXiv, https://arxiv.org/html/2601.13284v1
-7. Process Supervision of Confidence Margin for Calibrated LLM Reasoning - arXiv, https://arxiv.org/html/2604.23333v1
-8. When AI builds itself - Anthropic, https://www.anthropic.com/institute/recursive-self-improvement
-9. Frontier vs. Local LLMs: I Tested 8 Models on a 340-Page Book - Medium, https://medium.com/@scmstorz/frontier-vs-local-llms-i-tested-8-models-on-a-340-page-book-8b09ba1da92e
-10. Confidence Calibration in Large Language Models - arXiv, https://arxiv.org/html/2605.23909v1
-11. Making LLMs tell you how confident they really are through probe-targeted fine tuning - Reddit r/MachineLearning, https://www.reddit.com/r/MachineLearning/comments/1tqrtkn/making\_llms\_tell\_you\_how\_confident\_they\_really/
-12. Why Java Developers Over-Trust AI-Generated Code - Foojay.io, https://foojay.io/today/why-java-developers-over-trust-ai-dependency-suggestions/
-13. The Confidence Trap - Psychology Today, https://www.psychologytoday.com/us/blog/decisions-decisions/202606/the-confidence-trap
-14. Heuristic (psychology) - Wikipedia, https://en.wikipedia.org/wiki/Heuristic\_(psychology)
-15. Effectively Responding to Structural Engineering Failure: Expertise and Cognitive Entrenchment - ASCE Library, https://ascelibrary.org/doi/10.1061/%28ASCE%29CF.1943-5509.0000458
-16. Reconsidering the trade-off between expertise and flexibility: A cognitive entrenchment perspective - ResearchGate, https://www.researchgate.net/publication/275714278\_Reconsidering\_the\_trade-off\_between\_expertise\_and\_flexibility\_A\_cognitive\_entrenchment\_perspective
-17. Why Bad Leaders Keep Getting Promoted (And How to Stop It) - Medium, https://medium.com/@TheInfluenceJournal/why-bad-leaders-keep-getting-promoted-and-how-to-stop-it-9a0a55a02c78
-18. Entrepreneurial overconfidence and SME financing decisions - Taylor & Francis, https://www.tandfonline.com/doi/full/10.1080/00472778.2025.2610272
-19. The Persuasive Power of Knowledge: Testing the Confidence Heuristic - PMC, https://pmc.ncbi.nlm.nih.gov/articles/PMC6166527/
-20. The trust crisis in artificial intelligence: AI hallucinations and human-AI collaboration, https://ideas.repec.org/a/eee/teinso/v86y2026ics0160791x26000758.html
-21. Why Authenticity Is Overrated — and What Great Leaders Do Instead (with Tomas Chamorro-Premuzic) - myHRfuture, https://www.myhrfuture.com/digital-hr-leaders-podcast/why-authenticity-is-overrated-and-what-great-leaders-do-instead
-22. Automation bias - Wikipedia, https://en.wikipedia.org/wiki/Automation\_bias
-23. Automation bias - Grokipedia, https://grokipedia.com/page/Automation\_bias
-24. Five Strategies Against the AI Complacency Trap - The Pathologist, https://www.thepathologist.com/issues/2026/articles/april/five-strategies-against-the-ai-complacency-trap/
-25. The Ghost in the Machine: What AI Hallucinations Reveal About Intelligence - Medium, https://jakubjirak.medium.com/the-ghost-in-the-machine-what-ai-hallucinations-reveal-about-intelligence-77cf5621176e
-26. What is Automation Bias in AI Security - EIMT, https://www.eimt.edu.eu/what-is-automation-bias-in-ai-security
-27. What is Human in Judgment? Comparing Automation Bias and Algorithm Aversion - arXiv, https://arxiv.org/html/2604.04333v2
-28. Automation Bias - The Decision Lab, https://thedecisionlab.com/biases/automation-bias
-29. Automation Bias in Intelligent Time Critical Decision Support Systems, https://maritimesafetyinnovationlab.org/wp-content/uploads/2023/02/Automation-Bias-in-Intelligent-Time-Critical-Decision-Support-Systems.pdf
-30. Automation Bias in Large Language Model Assisted Diagnostic Reasoning Among AI-Trained Physicians - medRxiv, https://www.medrxiv.org/content/10.1101/2025.08.23.25334280v1.full-text
-31. Charting ethical shadows: institutional dynamics for sycophancy as a strategy in public universities - Taylor & Francis, https://www.tandfonline.com/doi/full/10.1080/09585192.2026.2643716
-32. Semantic Reward Collapse and the Preservation of Epistemic Integrity in Adaptive AI Systems - arXiv, https://arxiv.org/pdf/2605.12406
-33. Why 'human in the loop' alone is not a governance strategy - IBM, https://www.ibm.com/think/insights/liability-laundering-problem-human-in-the-loop-not-governance-strategy
-34. Learning from feedback - Chapter 6 - AI Safety Atlas, https://ai-safety-atlas.com/chapters/v1/specification-gaming/learning-from-feedback/
-35. Reward hacking - Wikipedia, https://en.wikipedia.org/wiki/Reward\_hacking
-36. Algorithmic sycophancy: A new source of systematic distortion in AI-driven biomedical research - PMC, https://pmc.ncbi.nlm.nih.gov/articles/PMC13105447/
-37. Sycophancy Claims About Language Models: The Missing Human-in-the-Loop - OpenReview, https://openreview.net/pdf?id=v5Akllkc8i
-38. How RLHF Amplifies Sycophancy - arXiv, https://arxiv.org/html/2602.01002v1
-39. Linear Probe Penalties Reduce LLM Sycophancy - NeurIPS 2026, https://neurips.cc/virtual/2024/103347
-40. Semantic Reward Collapse and the Preservation of Epistemic Integrity in Adaptive AI Systems - ResearchGate, https://www.researchgate.net/publication/404797683\_Semantic\_Reward\_Collapse\_and\_the\_Preservation\_of\_Epistemic\_Integrity\_in\_Adaptive\_AI\_Systems
-41. Specification gaming, Goodhart's law, and the metrics - explainx.ai, https://explainx.ai/blog/specification-gaming-goodharts-law-ai-metrics
-42. Charting ethical shadows: institutional dynamics for sycophancy (PDF) - Taylor & Francis, https://www.tandfonline.com/doi/pdf/10.1080/09585192.2026.2643716
-43. Why Companies Favor Sycophants: An In-Depth Analysis - Medium, https://fahreza77.medium.com/why-companies-favor-sycophants-an-in-depth-analysis-109529645505
-44. Auditing language models for hidden objectives - Anthropic, https://www.anthropic.com/research/auditing-hidden-objectives
-45. The Laws of Incentives: From Munger to AI Systems - Medium, https://medium.com/the-investors-handbook/the-laws-of-incentives-from-munger-to-ai-systems-why-every-framework-eventually-gets-gamed-52bcc3f1d65b
-46. Ending the Toxicity of Corporate Culture - Medium, https://medium.com/indian-thoughts/ending-the-toxicity-of-corporate-culture-84eb22c08e13
+1. Mapping LLM Capability Frontiers via Formalized and Calibrated Probes - arXiv, <https://arxiv.org/html/2603.05290>
+2. Local AI vs Cloud AI in 2026: When to Run Models on Your Own Hardware - MindStudio, <https://www.mindstudio.ai/blog/local-ai-vs-cloud-ai-2026>
+3. Anthropic researchers on alignment faking - Reddit r/ClaudeAI, <https://www.reddit.com/r/ClaudeAI/comments/1ifxr3t/anthropic\_researchers\_our\_recent\_paper\_found/>
+4. AI Hallucinations Might Be More Human Than We'd Like to Admit - Reddit r/artificial, <https://www.reddit.com/r/artificial/comments/1sruvbn/ai\_hallucinations\_might\_be\_more\_human\_than\_wed/>
+5. A Comparison of Reinforcement Learning (RL) and RLHF - IntuitionLabs, <https://intuitionlabs.ai/articles/reinforcement-learning-vs-rlhf>
+6. Balancing Classification and Calibration Performance in Decision-Making LLMs via Calibration Aware Reinforcement Learning - arXiv, <https://arxiv.org/html/2601.13284v1>
+7. Process Supervision of Confidence Margin for Calibrated LLM Reasoning - arXiv, <https://arxiv.org/html/2604.23333v1>
+8. When AI builds itself - Anthropic, <https://www.anthropic.com/institute/recursive-self-improvement>
+9. Frontier vs. Local LLMs: I Tested 8 Models on a 340-Page Book - Medium, <https://medium.com/@scmstorz/frontier-vs-local-llms-i-tested-8-models-on-a-340-page-book-8b09ba1da92e>
+10. Confidence Calibration in Large Language Models - arXiv, <https://arxiv.org/html/2605.23909v1>
+11. Making LLMs tell you how confident they really are through probe-targeted fine tuning - Reddit r/MachineLearning, <https://www.reddit.com/r/MachineLearning/comments/1tqrtkn/making\_llms\_tell\_you\_how\_confident\_they\_really/>
+12. Why Java Developers Over-Trust AI-Generated Code - Foojay.io, <https://foojay.io/today/why-java-developers-over-trust-ai-dependency-suggestions/>
+13. The Confidence Trap - Psychology Today, <https://www.psychologytoday.com/us/blog/decisions-decisions/202606/the-confidence-trap>
+14. Heuristic (psychology) - Wikipedia, <https://en.wikipedia.org/wiki/Heuristic\_(psychology)>
+15. Effectively Responding to Structural Engineering Failure: Expertise and Cognitive Entrenchment - ASCE Library, <https://ascelibrary.org/doi/10.1061/%28ASCE%29CF.1943-5509.0000458>
+16. Reconsidering the trade-off between expertise and flexibility: A cognitive entrenchment perspective - ResearchGate, <https://www.researchgate.net/publication/275714278\_Reconsidering\_the\_trade-off\_between\_expertise\_and\_flexibility\_A\_cognitive\_entrenchment\_perspective>
+17. Why Bad Leaders Keep Getting Promoted (And How to Stop It) - Medium, <https://medium.com/@TheInfluenceJournal/why-bad-leaders-keep-getting-promoted-and-how-to-stop-it-9a0a55a02c78>
+18. Entrepreneurial overconfidence and SME financing decisions - Taylor & Francis, <https://www.tandfonline.com/doi/full/10.1080/00472778.2025.2610272>
+19. The Persuasive Power of Knowledge: Testing the Confidence Heuristic - PMC, <https://pmc.ncbi.nlm.nih.gov/articles/PMC6166527/>
+20. The trust crisis in artificial intelligence: AI hallucinations and human-AI collaboration, <https://ideas.repec.org/a/eee/teinso/v86y2026ics0160791x26000758.html>
+21. Why Authenticity Is Overrated — and What Great Leaders Do Instead (with Tomas Chamorro-Premuzic) - myHRfuture, <https://www.myhrfuture.com/digital-hr-leaders-podcast/why-authenticity-is-overrated-and-what-great-leaders-do-instead>
+22. Automation bias - Wikipedia, <https://en.wikipedia.org/wiki/Automation\_bias>
+23. Automation bias - Grokipedia, <https://grokipedia.com/page/Automation\_bias>
+24. Five Strategies Against the AI Complacency Trap - The Pathologist, <https://www.thepathologist.com/issues/2026/articles/april/five-strategies-against-the-ai-complacency-trap/>
+25. The Ghost in the Machine: What AI Hallucinations Reveal About Intelligence - Medium, <https://jakubjirak.medium.com/the-ghost-in-the-machine-what-ai-hallucinations-reveal-about-intelligence-77cf5621176e>
+26. What is Automation Bias in AI Security - EIMT, <https://www.eimt.edu.eu/what-is-automation-bias-in-ai-security>
+27. What is Human in Judgment? Comparing Automation Bias and Algorithm Aversion - arXiv, <https://arxiv.org/html/2604.04333v2>
+28. Automation Bias - The Decision Lab, <https://thedecisionlab.com/biases/automation-bias>
+29. Automation Bias in Intelligent Time Critical Decision Support Systems, <https://maritimesafetyinnovationlab.org/wp-content/uploads/2023/02/Automation-Bias-in-Intelligent-Time-Critical-Decision-Support-Systems.pdf>
+30. Automation Bias in Large Language Model Assisted Diagnostic Reasoning Among AI-Trained Physicians - medRxiv, <https://www.medrxiv.org/content/10.1101/2025.08.23.25334280v1.full-text>
+31. Charting ethical shadows: institutional dynamics for sycophancy as a strategy in public universities - Taylor & Francis, <https://www.tandfonline.com/doi/full/10.1080/09585192.2026.2643716>
+32. Semantic Reward Collapse and the Preservation of Epistemic Integrity in Adaptive AI Systems - arXiv, <https://arxiv.org/pdf/2605.12406>
+33. Why 'human in the loop' alone is not a governance strategy - IBM, <https://www.ibm.com/think/insights/liability-laundering-problem-human-in-the-loop-not-governance-strategy>
+34. Learning from feedback - Chapter 6 - AI Safety Atlas, <https://ai-safety-atlas.com/chapters/v1/specification-gaming/learning-from-feedback/>
+35. Reward hacking - Wikipedia, <https://en.wikipedia.org/wiki/Reward\_hacking>
+36. Algorithmic sycophancy: A new source of systematic distortion in AI-driven biomedical research - PMC, <https://pmc.ncbi.nlm.nih.gov/articles/PMC13105447/>
+37. Sycophancy Claims About Language Models: The Missing Human-in-the-Loop - OpenReview, <https://openreview.net/pdf?id=v5Akllkc8i>
+38. How RLHF Amplifies Sycophancy - arXiv, <https://arxiv.org/html/2602.01002v1>
+39. Linear Probe Penalties Reduce LLM Sycophancy - NeurIPS 2026, <https://neurips.cc/virtual/2024/103347>
+40. Semantic Reward Collapse and the Preservation of Epistemic Integrity in Adaptive AI Systems - ResearchGate, <https://www.researchgate.net/publication/404797683\_Semantic\_Reward\_Collapse\_and\_the\_Preservation\_of\_Epistemic\_Integrity\_in\_Adaptive\_AI\_Systems>
+41. Specification gaming, Goodhart's law, and the metrics - explainx.ai, <https://explainx.ai/blog/specification-gaming-goodharts-law-ai-metrics>
+42. Charting ethical shadows: institutional dynamics for sycophancy (PDF) - Taylor & Francis, <https://www.tandfonline.com/doi/pdf/10.1080/09585192.2026.2643716>
+43. Why Companies Favor Sycophants: An In-Depth Analysis - Medium, <https://fahreza77.medium.com/why-companies-favor-sycophants-an-in-depth-analysis-109529645505>
+44. Auditing language models for hidden objectives - Anthropic, <https://www.anthropic.com/research/auditing-hidden-objectives>
+45. The Laws of Incentives: From Munger to AI Systems - Medium, <https://medium.com/the-investors-handbook/the-laws-of-incentives-from-munger-to-ai-systems-why-every-framework-eventually-gets-gamed-52bcc3f1d65b>
+46. Ending the Toxicity of Corporate Culture - Medium, <https://medium.com/indian-thoughts/ending-the-toxicity-of-corporate-culture-84eb22c08e13>

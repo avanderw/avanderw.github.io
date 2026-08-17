@@ -177,7 +177,7 @@ The convergence of AI, rent-seeking architectures, and the evolution of IT leads
 
 The majority of software development will continue to lie within large enterprise environments, increasingly leveraging AI-augmented developers and a vast foundation of open-source code to bypass traditional SaaS "tolls." While rent-seeking business models will persist through infrastructure control and specialized APIs, the transparency and accessibility of AI tools will likely lead to a more fragmented and competitive landscape, where value is captured through the radical transformation of business processes rather than the mere provision of access.
 
-#### **Works cited**
+## References
 
 1. The SaaSpocalypse: AI Agents, Vibe Coding, and the Changing ..., accessed on April 20, 2026, [https://www.thesaascfo.com/the-saaspocalypse-ai-agents-vibe-coding-and-the-changing-economics-of-saas/](https://www.thesaascfo.com/the-saaspocalypse-ai-agents-vibe-coding-and-the-changing-economics-of-saas/)  
 2. 2026's Real SaaS Threat Isn't AI. It's Business Model Debt. \- Chargebee, accessed on April 20, 2026, [https://www.chargebee.com/blog/saas-business-model-ai-monetization/](https://www.chargebee.com/blog/saas-business-model-ai-monetization/)  

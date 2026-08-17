@@ -1,10 +1,10 @@
-# **Parse, Don't Validate as a Strong Default for Payment Eligibility**
+# Parse, Don't Validate as a Strong Default for Payment Eligibility
 
 For technical teams building business-critical systems, Parse, Don't Validate is a strong default: parse untrusted input once at the boundary, then operate on domain types that encode business guarantees. The result is fewer repeated checks, clearer APIs, and safer refactoring.
 
 This document uses one end-to-end narrative in all examples: deciding whether an account is eligible for payment.
 
-## **Why This Matters**
+## Why This Matters
 
 Traditional validation usually answers a boolean question and then continues with the same broad type. That loses information the type system could carry forward.
 
@@ -18,7 +18,7 @@ Parsing instead transforms input into a narrower domain type. In payment logic, 
 | **Refactoring Burden** | Manual audit of boolean checks | Compiler surfaces type mismatches |
 | **Logic Location** | Scattered across predicates | Centralized at trust boundaries |
 
-## **End-to-End Narrative: Account -> PayableAccount -> Transfer**
+## End-to-End Narrative: Account -> PayableAccount -> Transfer
 
 The same flow applies across languages:
 
@@ -27,7 +27,7 @@ The same flow applies across languages:
 3. Return either `PayableAccount` or a typed failure.
 4. Allow transfer code to accept only `PayableAccount`.
 
-### **Go: Opaque Construction at Package Boundaries**
+### Go: Opaque Construction at Package Boundaries
 
 In Go, package visibility enforces parser ownership.
 
@@ -63,7 +63,7 @@ func Transfer(acc PayableAccount, amount int) error {
 
 `Transfer` does not need to re-check status and funds at every call site.
 
-### **TypeScript: Discriminated Unions for State Modeling**
+### TypeScript: Discriminated Unions for State Modeling
 
 TypeScript models account states as mutually exclusive variants. Parsing narrows to the payable variant.
 
@@ -88,7 +88,7 @@ function transfer(acc: PayableAccount, amount: number) {
 
 Non-payable states are blocked before payment execution.
 
-### **Java: Sealed States and Exhaustive Switching**
+### Java: Sealed States and Exhaustive Switching
 
 Java sealed hierarchies model a closed state machine and force explicit handling.
 
@@ -119,7 +119,7 @@ public final class PaymentProcessor {
 
 If a new account state is added, switch expressions become non-exhaustive until updated.
 
-## **Refactoring Dynamics**
+## Refactoring Dynamics
 
 The strongest benefit appears during change: business rules evolve, and types expose where updates are needed.
 
@@ -133,7 +133,7 @@ In validation-heavy systems, the same change usually requires broad text search 
 | **Adding a new account state** | Search and patch branch logic | Exhaustiveness errors guide updates |
 | **Moving rule ownership** | Hidden coupling across layers | Boundary parser remains single authority |
 
-## **Trade-Offs and Scope**
+## Trade-Offs and Scope
 
 Parse-first is a strong default, not a universal rule. Use it where incorrect states are expensive or risky.
 
@@ -142,26 +142,26 @@ Parse-first is a strong default, not a universal rule. Use it where incorrect st
 - Use primitives for short-lived local values with low domain risk.
 - Prefer result types for multi-failure workflows; exceptions can be acceptable for simple boundary rejection if translated consistently.
 
-## **Conclusion**
+## Conclusion
 
 For payment eligibility logic, Parse, Don't Validate is a strong default because it converts business checks into durable type information. Parse once at the boundary, move forward with `PayableAccount`, and let signatures make illegal flows harder to express.
 
 Across Go, TypeScript, and Java, syntax differs but architecture is the same: centralized parser rules, narrower internal types, and refactoring supported by compiler feedback.
 
-## **Evidence Sources (Standardized)**
+## References
 
 Primary concept source:
 
-- Alexis King, Parse, don't validate (2019): https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/
+- Alexis King, Parse, don't validate (2019): <https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/>
 
 Language mechanism references:
 
-- Java sealed classes and pattern matching overview: https://www.javacodegeeks.com/2025/12/modern-java-language-features-records-sealed-classes-pattern-matching.html
-- TypeScript and Zod practical boundaries: https://blog.logrocket.com/when-use-zod-typescript-both-developers-guide/
-- TypeScript branded types discussion: https://blog.logrocket.com/leveraging-typescript-branded-types-stronger-type-checks/
-- Go value object patterns: https://dev.to/gabrielanhaia/value-objects-in-go-4-patterns-that-kill-invalid-state-27ea
+- Java sealed classes and pattern matching overview: <https://www.javacodegeeks.com/2025/12/modern-java-language-features-records-sealed-classes-pattern-matching.html>
+- TypeScript and Zod practical boundaries: <https://blog.logrocket.com/when-use-zod-typescript-both-developers-guide/>
+- TypeScript branded types discussion: <https://blog.logrocket.com/leveraging-typescript-branded-types-stronger-type-checks/>
+- Go value object patterns: <https://dev.to/gabrielanhaia/value-objects-in-go-4-patterns-that-kill-invalid-state-27ea>
 
 Supporting practice notes:
 
-- Parse-first in TypeScript practice: https://cekrem.github.io/posts/parse-dont-validate-typescript/
-- Illegal states unrepresentable discussion: https://functional-architecture.org/make_illegal_states_unrepresentable/
+- Parse-first in TypeScript practice: <https://cekrem.github.io/posts/parse-dont-validate-typescript/>
+- Illegal states unrepresentable discussion: <https://functional-architecture.org/make_illegal_states_unrepresentable/>

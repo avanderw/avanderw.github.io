@@ -141,10 +141,10 @@ Both are valid. But they're not the same thing.
 
 ---
 
-#### **Sources & References**
+## References
 
-- Tamagotchi Official History: https://tamagotchi-official.com
+- Tamagotchi Official History: <https://tamagotchi-official.com>
 - r/tamagotchi community discussions on classic vs. modern preferences
-- Tamagotchi Fandom Wiki: https://tamagotchi.fandom.com
+- Tamagotchi Fandom Wiki: <https://tamagotchi.fandom.com>
 - Battery efficiency data from official product specifications
 - Gameplay mechanics analysis from user reviews and game design documentation

@@ -1,12 +1,12 @@
-# **AI Doomerism: Profit, Power, and Precaution**
+# AI Doomerism: Profit, Power, and Precaution
 
 The contemporary discourse surrounding artificial intelligence is characterized by a paradoxical alignment of interests: the primary developers of the most advanced computational models are also the most prominent voices warning of the technology’s potential to cause human extinction. This phenomenon, colloquially termed "AI doomerism," has moved from the fringes of esoteric philosophy into the center of global policy-making, driving legislative efforts in the United States, the European Union, and beyond. While these warnings are often presented as high-minded ethical stewardship, an analysis of the underlying economic incentives suggests a more complex reality. The case for strategic doomerism posits that existential risk narratives are being deployed as a sophisticated tool for regulatory capture, designed to secure market dominance for a small cohort of incumbent firms by raising the costs of competition to insurmountable levels.
 
-## **The Profit-Driven Case**
+## The Profit-Driven Case
 
 The theoretical foundation for understanding the "doom narrative" as a profit-seeking strategy is found in the "Baptists and Bootleggers" framework of regulatory economics. In this model, regulations are successfully enacted when they are supported by a coalition of sincere moral advocates (the Baptists) and self-interested commercial actors (the Bootleggers) who benefit from the resulting market constraints. In the context of artificial intelligence, the "Baptists" are represented by alignment researchers and philosophers who genuinely fear a loss of human control over superintelligent systems. The "Bootleggers," according to this case, are the CEOs of frontier AI labs—OpenAI, Anthropic, and Google DeepMind—who leverage this existential anxiety to lobby for a "cartel of government-blessed vendors".
 
-### **Regulatory Moats**
+### Regulatory Moats
 
 The most tangible evidence of profit-driven doomerism lies in the specific regulatory proposals championed by industry leaders during high-profile legislative testimonies. Sam Altman of OpenAI and Brad Smith of Microsoft have consistently advocated for the creation of a federal agency tasked with licensing AI development effort that exceeds a certain "scale of capabilities". By proposing a licensing regime, these leaders are advocating for a legal framework that would effectively criminalize the development of advanced AI by anyone without a government-granted permit.
 
@@ -19,29 +19,29 @@ A critical component of this strategy is the focus on "compute thresholds" as a 
 | Elon Musk (xAI/Tesla) | AI is "potentially more dangerous than nukes". | National and international regulatory oversight. | Positions his own firms as the "safe" alternative while attacking rivals for being "woke" or "untruthful". |
 | Demis Hassabis (DeepMind) | AI poses "misalignment" risks to humanity. | Frontier Safety Frameworks and voluntary industry commitments. | Establishes industry-controlled standards that become the de facto legal requirement. |
 
-### **Open-Source Threat**
+### Open-Source Threat
 
 The existential risk narrative also serves as a potent weapon against the "open-source" movement in artificial intelligence. Open-source models, such as Meta’s Llama series or China’s DeepSeek, threaten the "closed-API" business model of firms like OpenAI by providing high-quality intelligence at the marginal cost of compute. When intelligence becomes a commodity, the premium pricing models and massive valuations of proprietary labs are placed at risk.
 
 To counter this, AI leaders have deployed "Fear, Uncertainty, and Doubt" (FUD) tactics, framing the release of model weights as an inherently dangerous act that enables "bad actors" to create biological weapons or conduct large-scale cyberattacks. This strategy mirrors the infamous "Halloween Documents" used by Microsoft in the late 1990s to undermine Linux and other open-source software by characterizing them as unreliable and insecure. By linking open-source availability to existential "rogue AI" scenarios, incumbents hope to pressure regulators into banning or severely restricting the distribution of model weights, thereby preserving artificial scarcity in the intelligence market.
 
-### **Valuation and Capital**
+### Valuation and Capital
 
 The drive for a doom narrative is also inextricably linked to the unprecedented capital requirements of the current AI scaling paradigm. Leaders like Sam Altman have reportedly sought investments as high as $7 trillion to overhaul global chip manufacturing and energy infrastructure. To justify such staggering sums for technology that is currently often unprofitable, companies must maintain a narrative of "world-altering" importance.
 
 If AI is merely a productivity tool for writing emails or generating images, it cannot sustain a $500 billion valuation for OpenAI or a $380 billion valuation for Anthropic. However, if the technology is a nascent "superintelligence" capable of both curing cancer and ending civilization, it becomes a "mission-critical" national asset. This narrative encourages a "feedback loop" where investors pour money into a sector they fear missing out on (FOMO), further entrenching the power of the incumbents who control the most compute.
 
-## **Credibility and Capture**
+## Credibility and Capture
 
 The credibility of the case that AI leaders are driving a doom narrative for profit is supported by the visible "Amoral Drift" within the industry's leading organizations. Amoral drift refers to the tendency of public and private companies to shed their "prosocial" or safety-oriented commitments over time as market pressures and the need to maximize shareholder (or "superstakeholder") value take precedence.
 
-### **Governance Failure**
+### Governance Failure
 
 OpenAI and Anthropic were both founded with unique governance structures designed to insulate their missions from the profit motive. OpenAI utilized a "capped-profit" model overseen by a non-profit board, while Anthropic granted its board outsized discretion to ignore shareholder profit in favor of stakeholder welfare. Despite these innovations, both firms have experienced significant drift.
 
 The "superstakeholder" problem—where essential constituencies like elite talent and massive technology suppliers (e.g., Microsoft, Amazon) exert unconstrained power—has effectively neutralized these governance guardrails. In November 2023, the successful reinstatement of Sam Altman at OpenAI after he was fired by the non-profit board demonstrated that the firm’s labor force and primary investor (Microsoft) prioritizes profit and growth over the board's safety-related decisions. This event serves as a definitive data point indicating that the "mission" of these companies is increasingly subservient to the "market".
 
-### **Public vs. Private Stance**
+### Public vs. Private Stance
 
 Further skepticism about the sincerity of AI leaders is fueled by the disconnect between their public calls for regulation and their private lobbying efforts. Sam Altman has testified before Congress on the need for licensing and testing requirements, yet he later threatened to cease operations in Europe if the EU AI Act imposed "details" of compliance that were too burdensome. Similarly, while advocating for "responsible scaling," firms have simultaneously lobbied to weaken California’s SB 1047, a bill that sought to hold developers legally liable for "catastrophic harms" caused by their models.
 
@@ -52,51 +52,51 @@ Further skepticism about the sincerity of AI leaders is fueled by the disconnect
 | NY RAISE Act | Endorsed general safety principles. | Multi-million dollar campaign successfully stripped prohibitions on releasing unsafe models. |
 | Biden Executive Order 14110 | Participated in voluntary White House safety commitments. | Shifted focus to industry-controlled "voluntary standards" rather than mandatory legal requirements. |
 
-### **Internal Critiques**
+### Internal Critiques
 
 The "doom narrative" has also faced significant criticism from other leading figures in the field of artificial intelligence. Yann LeCun, Meta’s chief AI scientist and a Turing Award winner, has been vocal in his dismissal of existential risks, calling them "over-optimistic" and "hysterical". LeCun argues that current large language models (LLMs) lack the basic characteristics of intelligence found in animals or humans, such as world modeling, persistent memory, reasoning, and planning. He posits that those advocating for "existential risk" regulation are effectively seeking regulatory capture under the guise of safety.
 
 LeCun’s critique highlights a critical information asymmetry: the public and policymakers are being asked to regulate hypothetical risks ("Skynet") for systems that struggle to perform basic physical reasoning. This asymmetry allows technocratic elites to frame the discourse as being "too complex" for ordinary democratic participation, thereby ensuring that only the developers of these systems are seen as credible stewards of their safety.
 
-## **Why the Narrative Persists**
+## Why the Narrative Persists
 
 The likelihood that the "doom narrative" is a strategic profit-driver is high, but the mechanism is more nuanced than a simple conspiracy. It is a product of a "Capture Cycle" driven by three primary factors: information asymmetry, the revolving door between tech and government, and the "Moral Concern" alignment.
 
-### **Information Asymmetry**
+### Information Asymmetry
 
 In highly technical fields like AI, regulators are forced to rely on the industry itself for the information necessary to create standards. When companies like OpenAI or Anthropic release "Responsible Scaling Policies" (RSPs) that model AI safety levels after "biosafety levels" (ASL), they are providing a framework that regulators are likely to adopt because no credible alternative exists. This "cognitive capture" occurs when the regulator adopts the industry's own worldview, assuming that the risks the industry identifies (existential doom) are the only ones that matter.
 
-### **Revolving Door**
+### Revolving Door
 
 The case for profit-driven doomerism is also strengthened by the increasing integration of AI labs into the national security apparatus. By framing AI as a "national security" asset and warning of "DeepSeek" or Chinese state-subsidized competition, labs ensure that their interests are seen as identical to the interests of the United States government. This alignment makes it easier for them to secure government grants (e.g., via the CHIPS Act) and protectionist trade policies that hinder foreign competitors.
 
-### **The Baptist Shield**
+### The Baptist Shield
 
 Finally, the presence of genuine ethical concern—the "Baptists"—makes the strategy nearly impossible to definitively debunk. There are researchers at these labs who sincerely believe in the possibility of "rogue AI" or "deceptive alignment". Their peer-reviewed papers provide a veneer of scientific legitimacy to the broader PR efforts of their CEOs. The industry thus operates with a "Prima Facie" regulatory capture, where a shift in policy away from the public interest (toward the special interest of the firm) is obscured by a "defeasible account" of safety and the public good.
 
-## **The Strategic Hegemony View**
+## The Strategic Hegemony View
 
 While the "profit-motive" case is robust, a highly probable alternative explanation is that the "doom narrative" is a byproduct of the transition of artificial intelligence from a commercial technology into "Sovereign Infrastructure". In this view, the narrative is not driven solely for profit, but as part of a "Dual-Use Stability" framework intended to manage the geopolitical and macroeconomic disruption caused by the technology.
 
-### **State Control**
+### State Control
 
 In the "Strategic Hegemony" model, AI leaders recognize that the technology they are building is so powerful—impacting everything from the global labor market to the nuclear command-and-control stack—that state regulation is an historical inevitability. Rather than fighting regulation, these leaders are attempting to "front-run" it, ensuring that the inevitable government oversight is directed by those who understand the technology best.
 
 Under this framework, the "doom narrative" is not a cynical lie, but a way of communicating the high stakes to a political class that often lacks technical depth. By framing the risk as "extinction," leaders are able to secure the "Manhattan Project-level" resources necessary to ensure that the "correct" side (the West) wins the race for Artificial General Intelligence (AGI). The goal is not just "profit," but "hegemony"—ensuring that the foundational layer of the future global economy remains under the control of a few trusted, regulated, and state-aligned entities.
 
-### **Economic Risk vs. Existential Risk**
+### Economic Risk vs. Existential Risk
 
 A key piece of evidence for this alternative is the disconnect between the "existential" warnings and the "economic" warnings issued by the same leaders. At events like the World Economic Forum in Davos, Dario Amodei has warned that AI could lift global GDP by 10% while simultaneously driving unemployment to 10%. This "booming corporate profits paired with empty shops" scenario is a far more immediate and probable risk than "Skynet".
 
 In the Strategic Hegemony alternative, the "doom narrative" serves as a "Pressure Valve" for this economic tension. By focusing the public’s attention on a remote, abstract, and "existential" threat, leaders can distract from the more immediate and politically volatile questions of labor displacement, wealth concentration, and the "hollowing out" of the global workforce. It is a strategic pivot away from "antitrust" and "labor rights" toward "safety" and "security".
 
-### **Market Trap**
+### Market Trap
 
 Furthermore, this alternative suggests that AI leaders are caught in a "Market Trap." They believe that if they do not build the technology as fast as possible, an actor with *even fewer* ethical guardrails (such as a foreign adversary or a "move-fast-and-break-things" domestic rival) will do so. This "race to the bottom" is a classic prisoner's dilemma.
 
 The "doom narrative" is an attempt to break this dilemma by inviting the state to act as a "referee". They are pleading for regulation—even regulation that limits their own short-term profit—because they believe the technology is genuinely too dangerous to be left to the "wild west" of the open market. In this view, the "regulatory moat" is not a goal, but an unavoidable consequence of the scale required to ensure safety.
 
-## **Synthesis**
+## Synthesis
 
 The reality likely sits at the intersection of these two perspectives. The "doom narrative" is a "Triple-Use Narrative" that serves three distinct goals simultaneously:
 
@@ -106,7 +106,7 @@ The reality likely sits at the intersection of these two perspectives. The "doom
 
 The "Strategic Hegemony" alternative is highly probable because it accounts for the scale of capital involved. No company can raise $100 billion for a project without state alignment. The doomerism narrative is the "price of admission" for this state-industry partnership, providing the moral and security justification for the massive concentration of power and capital that AGI development requires.
 
-### **Narrative Comparison**
+### Narrative Comparison
 
 | Aspect | The Profit-Driven Case (Cynical) | The Strategic Hegemony Case (Structural) |
 | :---- | :---- | :---- |
@@ -115,19 +115,19 @@ The "Strategic Hegemony" alternative is highly probable because it accounts for 
 | **Role of Regulation** | A "moat" designed to exclude others. | A "referee" necessary to prevent a global race to the bottom. |
 | **Existential Warnings** | A PR strategy to inflate importance and distract from current harms. | A sincere attempt to communicate the stakes of "superintelligence". |
 
-### **Agentic AI Shift**
+### Agentic AI Shift
 
 As we move toward 2026 and 2027, the narrative is evolving away from "LLM hallucinations" toward the risks of "Agentic Autonomy". This shift supports the Strategic Hegemony alternative. If AI agents begin removing all "friction" from the economy—managing databases, booking travel, and transacting in crypto—the "doom" they cause is not extinction, but the total destruction of existing business models like Visa, Mastercard, and DoorDash.
 
 Leaders are aware that this "feedback loop with no natural brake" could lead to massive social instability. By framing the risk as "existential," they position themselves as the only actors disciplined enough to "brake" the technology when necessary. The "doom narrative" thus becomes the mechanism by which the state grants these companies a "monopoly on the use of artificial force," much as the state holds a monopoly on the legal use of physical force.
 
-## **Conclusion**
+## Conclusion
 
 The analysis confirms that AI leaders are indeed leveraging a "doom narrative" to achieve strategic market objectives, though this effort is likely a mixture of sincere concern and cynical opportunism. The "moats" created by compute thresholds and licensing are real, and they primarily benefit the largest incumbents. However, the alternative "Strategic Hegemony" view suggests that this centralization is a structural outcome of the technology’s dual-use nature, rather than a mere conspiracy.
 
 For stakeholders—policymakers, investors, and the public—the challenge is to decouple "existential" hype from "practical" oversight. Regulation must address the demonstrable harms of today—labor displacement, privacy violations, and market concentration—while remaining skeptical of "one-size-fits-all" licensing regimes that favor a handful of "superstakeholders" at the expense of the broader innovation ecosystem. The future of AI governance will likely be a struggle between those seeking a "democratic AI ecosystem" of open-source innovation and those seeking a "technocratic authority" of closed, state-sanctioned models. In this struggle, the "doom narrative" will continue to be the primary rhetorical weapon.
 
-#### **Works cited**
+## References
 
 1. Is the AI Doomsday Narrative the Product of a Big Tech Conspiracy? — EA Forum, accessed on March 11, 2026, [https://forum.effectivealtruism.org/posts/y8iRzZPbkkFFwQ8Tn/is-the-ai-doomsday-narrative-the-product-of-a-big-tech-1](https://forum.effectivealtruism.org/posts/y8iRzZPbkkFFwQ8Tn/is-the-ai-doomsday-narrative-the-product-of-a-big-tech-1)  
 2. (PDF) DOOMERISM AND CHATGPT: DEVELOPERS BECOME DOOMERS FOR THE NEXT DISASTER \- ResearchGate, accessed on March 11, 2026, [https://www.researchgate.net/publication/400569648\_DOOMERISM\_AND\_CHATGPT\_DEVELOPERS\_BECOME\_DOOMERS\_FOR\_THE\_NEXT\_DISASTER](https://www.researchgate.net/publication/400569648_DOOMERISM_AND_CHATGPT_DEVELOPERS_BECOME_DOOMERS_FOR_THE_NEXT_DISASTER)  
