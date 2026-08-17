@@ -1,24 +1,24 @@
 # Cell C's Spectrum and Litigation: What's True and What's Not
 
-The South African telecommunications sector has undergone rapid consolidation and operational virtualization over the past decade. At the center of this structural transformation is Cell C, the nation’s historically third-largest mobile network operator. In recent years, a public narrative has emerged suggesting that Cell C "owns no spectrum" and is "under litigation."
+South Africa's telecom industry has consolidated significantly over the past decade. Cell C, once the third-largest mobile network operator, is now at the center of a major transformation. In recent years, people have claimed that Cell C "owns no spectrum" and is "constantly in court."
 
-The evidence shows a more nuanced reality. The claim that Cell C owns no spectrum is legally incorrect but operationally understandable: the company has shifted to a virtualized, capex-light model, surrendered redundant backhaul frequencies, and forfeited expansion spectrum due to capital constraints. The claim that Cell C is under litigation is correct, with active high-court disputes on spectrum pooling, control approvals, and tax tariff matters.
+The truth is more complicated. The claim that Cell C owns no spectrum is technically false but understandable: the company stopped building its own physical network, sold off frequencies it no longer needed, and couldn't afford to keep new 5G spectrum it bought. The claim that Cell C is in litigation is accurate—there are real ongoing court battles about shared spectrum, ownership control, and tax disputes.
 
-In short: Cell C still holds core access spectrum licences, but it no longer runs a traditional physical network.
+The bottom line: Cell C legally owns key radio frequencies (spectrum), but it doesn't operate the physical towers and antennas anymore.
 
-## Spectrum Ownership: Legal Rights vs Operational Reality
+## Spectrum Ownership: What Cell C Legally Owns vs What It Actually Uses
 
-To evaluate the integrity of the assertion that Cell C owns no spectrum, a clear distinction must be made between legal spectrum licensing and physical spectrum deployment. Under South African law, the Independent Communications Authority of South Africa (ICASA) issues radio frequency spectrum licenses which grant operators the exclusive right to transmit signals over designated bands. Legal ownership of these licenses remains with the designated licensee unless a formal transfer of ownership is approved and gazetted by the regulator.
+To understand whether Cell C owns spectrum, we need to separate two different things: legal ownership (who the paperwork says owns the right to use radio frequencies) and physical operation (who actually runs the towers and sends signals).
 
-The regulatory framework is anchored in the Electronic Communications Act 36 of 2005 (ECA). Under Section 31(1) of the ECA, no person may transmit any signal by radio except under and in accordance with a radio frequency spectrum license granted by ICASA. Section 31(2A) further stipulates that control of a spectrum license may not be assigned, ceded, or transferred to another person without the prior written permission of the regulator.
+In South Africa, the telecom regulator (ICASA) issues licenses to use radio frequencies. Once a company gets a license, they legally own that license and can use it to transmit signals. They can't sell or give away that license without the regulator's permission.
 
-A critical legal precedent was established in the 2020 High Court judgment of *Lesedi Africa Productions CC v ICASA and Others*, in which Fabricius J clarified that Section 13(1) of the ECA, which governs changes in the ownership of a licensee, also applies to indirect changes of control within parent entities. Because the ECA did not historically define the term "control," ICASA published its *Memorandum Regarding Control* on March 31, 2021\. Under this framework, the regulator adopted the definition found in South Africa's Competition Act, which identifies "control" as a party acquiring more than 50% of the voting shares of an entity.
+The law is clear: you need a license to operate any mobile network. Cell C has these licenses. The licenses are still registered in Cell C's name and on Cell C's financial records.
 
-The distinction between license ownership and license control was brought to the forefront when Blue Label Telecoms, through its wholly owned subsidiary The Prepaid Company (TPC), applied to increase its economic interest in Cell C to 53.57%. This corporate transaction triggered a mandatory regulatory application to ICASA for the transfer of control of Cell C's individual electronic communications service (I-ECS) license, individual electronic communications network service (I-ECNS) license, and radio frequency spectrum licenses.
+In a 2020 court case, a judge clarified an important legal rule: when one company takes over another mobile operator, that counts as a change in who controls the spectrum license, even if the original company stays on the paperwork. When this happens, the regulator must approve the change. In 2021, the telecom regulator (ICASA) published a rule that explains this: whoever owns more than 50% of the company controls it.
 
-Following public hearings held on September 19, 2024, ICASA approved the transfer of control in November 2024, communicating its decision in December 2024 and publishing its formal reasons in April 2025\. Legal experts have highlighted that this regulatory transaction did not represent a transfer of license ownership. Cell C remains the sole legal holder of its primary mobile access spectrum licenses, and these multi-billion-rand assets continue to sit directly on Cell C's balance sheet rather than those of TPC or Blue Label.
+This rule became important when Blue Label Telecoms (a bigger company) increased its stake in Cell C to over 50%. Because of the rule, Blue Label had to ask the regulator for permission to take control. After public hearings in September 2024, the regulator approved this in November 2024. However—and this is crucial—the approval only meant that Blue Label could control Cell C. It did NOT mean that Cell C's spectrum licenses were transferred to Blue Label. Cell C still legally owns those radio frequencies. They're still on Cell C's balance sheet (financial records).
 
-The specific spectrum coordinates legally licensed to Cell C span the 900 MHz, 1800 MHz, and 2100 MHz bands. These coordinates represent the critical sub-1 GHz and mid-band frequencies necessary for mobile voice and high-speed data transmission.
+Cell C owns radio frequency licenses in three bands: 900 MHz, 1800 MHz, and 2100 MHz. These are the essential frequencies used for voice calls and data on mobile networks.
 
 | Spectrum Band | Frequency Block Type | Up-link Frequencies (MHz) | Down-link Frequencies (MHz) | Legal License Holder |
 | :---- | :---- | :---- | :---- | :---- |
@@ -27,42 +27,44 @@ The specific spectrum coordinates legally licensed to Cell C span the 900 MHz, 1
 | **1800 MHz** | Contiguous Block | 1748.0 – 1759.8 | 1843.0 – 1854.8 | Cell C |
 | **2100 MHz** | Contiguous Block | 1960.0 – 1965.0 | 2150.0 – 2155.0 | Cell C |
 
-## Why the "No Spectrum" Narrative Persisted
+## Why People Think Cell C Has No Spectrum (But It Does)
 
-The misconception that Cell C owns no spectrum stems directly from its radical operational pivot away from traditional infrastructure ownership. Facing severe capital expenditure constraints and unable to match the annual network investments of over R10 billion each by incumbents Vodacom and MTN, Cell C decommissioned its entire physical Radio Access Network (RAN) by June 2023\.
+The misunderstanding comes from what Cell C actually did: it stopped building and maintaining its own physical network. Vodacom and MTN each spend over R10 billion per year on their own towers and equipment. Cell C couldn't afford this, so in June 2023, it shut down its entire physical network.
 
-Under its current "capex-light" model, Cell C operates as a highly virtualized network operator. Cell C's prepaid and mobile virtual network operator (MVNO) customer bases are hosted on a "virtual RAN" constructed and operated physically by MTN. Under this Multi-Operator Core Network (MOCN) arrangement, MTN utilizes Cell C’s licensed 900 MHz, 1800 MHz, and 2100 MHz spectrum, pools it with MTN’s own spectrum, and physically transmits signals across MTN-owned tower infrastructure. Meanwhile, Cell C's postpaid contract base was migrated to roam directly on Vodacom’s physical network under a traditional national roaming agreement.
+Now Cell C operates in a low-cost way: it doesn't own or run the physical network anymore. Cell C's prepaid customers use MTN's towers and equipment, but under a special arrangement where Cell C's radio frequencies are combined ("pooled") with MTN's frequencies. This lets MTN handle all the physical network work while Cell C keeps its spectrum licenses. Cell C's contract (postpaid) customers use Vodacom's network through a traditional roaming agreement—it's like when you travel and your phone uses another operator's network.
 
-Because Cell C no longer operates physical base stations or transmits radio signals through its own hardware, a casual market observer might conclude that the company has no spectrum. In reality, Cell C still legally owns the spectrum but has commercially leased or pooled its transmission rights to MTN to enable the virtual RAN that services its subscribers.
+Since Cell C doesn't operate towers anymore, people naturally think it has no spectrum. But that's wrong: Cell C legally owns its radio frequencies, but it lets MTN use them and handle the transmission work.
 
-The "no spectrum" narrative has been further fueled by two verified regulatory events: the voluntary surrender of point-to-point microwave spectrum in late 2024, and the forfeiture of high-demand 5G spectrum in mid-2024.
+Two things made the "no spectrum" story feel more true:
 
-In December 2024, ICASA approved an application by Cell C to voluntarily surrender several high-frequency radio spectrum assignments, including the 7 GHz, 8 GHz, 10 GHz, 15 GHz, and 38 GHz bands, alongside its E-band spectrum (70 GHz to 80 GHz). These high-frequency bands were historically used for point-to-point microwave backhaul links to connect Cell C’s physical base stations to its core network. Once Cell C decommissioned its physical RAN and transitioned to MTN and Vodacom's infrastructure, these backhaul links became entirely redundant. To eliminate unnecessary regulatory licensing fees under ICASA’s Administrative Incentive Pricing (AIP) framework, Cell C returned these idle assets to the regulator, saving millions in operating overheads.
+**1. Cell C gave back some radio frequencies in late 2024.** These were high-frequency bands (7 GHz, 8 GHz, 10 GHz, 15 GHz, 38 GHz, and 70-80 GHz) that Cell C used for backhaul links—the cables and signals that used to connect Cell C's towers to the rest of its network. Once Cell C shut down its towers, these frequencies were worthless (Cell C didn't need them anymore). Since the regulator charges licensing fees for unused spectrum, Cell C returned them to save money. This is like returning a tool you no longer need to avoid paying storage fees.
 
-Cell C also officially forfeited a highly prized 10 MHz block of spectrum in the IMT3500 (3.5 GHz) band, which is crucial for nationwide 5G deployment. Although Cell C successfully bid R288.2 million for this lot during ICASA's historic March 2022 high-demand spectrum auction, the company’s severe liquidity crisis prevented it from settling the debt. After multiple failed payment extensions, Cell C declined to make the final payment, prompting ICASA to revoke the license and earmark the 10 MHz lot for a future competitive assignment process.
+**2. Cell C couldn't pay for 5G spectrum it had bought.** In March 2022, Cell C bid R288 million for a valuable 5G radio frequency license (IMT3500 band). However, Cell C ran out of money and couldn't pay the bill. After the regulator gave Cell C several extensions, Cell C finally said it couldn't pay. The regulator took back the license and will sell it to someone else. When news of this hit the media, people saw headlines like "Cell C loses spectrum" and thought it had lost all its frequencies.
 
-## Active Litigation: The Spectrum Pooling Case
+## Cell C Is Actually in Court (Multiple Times)
 
-The assertion that Cell C is under active litigation is highly accurate. The operator is currently a key party in several high-stakes legal disputes spanning competitor challenges, shareholder revolts, and tax-related court applications.
+Cell C is involved in several real court battles right now. These aren't minor legal quibbles—they're serious disputes.
 
-The most significant active litigation involving Cell C is a high-court battle initiated by its primary competitor, Vodacom. In May 2024, Vodacom launched a two-part application in the Pretoria High Court against ICASA, MTN, Cell C, and Liquid Intelligent Technologies. Vodacom's lawsuit challenges the legality of spectrum pooling agreements that ICASA approved in June 2022\. These agreements allowed MTN to pool its radio frequency spectrum with that of Cell C and Liquid, creating a massive, contiguous block of highly efficient bandwidth. Vodacom argues that ICASA's approval process was procedurally flawed and unlawful because it bypassed mandatory public consultation and legislative requirements.
+**The Main Battle: Vodacom vs. the Spectrum Pooling Deal**
+
+Vodacom (Cell C's biggest competitor) filed a major lawsuit in May 2024 against the regulator, MTN, Cell C, and another company. Vodacom's complaint: the regulator approved MTN and Cell C's spectrum pooling deal in June 2022, but did so illegally. By pooling their radio frequencies together, MTN and Cell C created one huge, efficient frequency block. Vodacom says this never should have been allowed because the regulator didn't do public consultations first, which the law requires.
 
 This litigation is structured in two distinct phases:
 
-> * **Part A (Interim Interdict):** Vodacom sought an urgent interim court order to force MTN, Cell C, and Liquid to immediately dismantle their spectrum pooling arrangements and cease transmitting on the pooled frequencies pending the final review of the case. On February 21, 2025, High Court Judge Etienne Labuschagne dismissed Vodacom's application for an interim interdict. Crucially, while the judge agreed with Vodacom that ICASA’s approval process was unlawful and violated the principle of public participation, he declined to grant the interdict due to the "OUTA principle" (respecting the separation of powers of independent regulators) and the severe prejudice that immediate dismantling would cause to millions of MTN and Cell C subscribers.
-> * **Part B (Merits Review):** This represents the active core of the litigation. Vodacom is seeking a final order to review, set aside, and permanently revoke ICASA's 2022 approval of the spectrum pooling arrangements. In May 2025, the respondents—including ICASA, MTN, and Cell C—filed their answering affidavits, formally moving the case toward a full trial on the merits. If Vodacom succeeds in Part B, Cell C's virtual RAN arrangement with MTN could be legally compromised, severely threatening the network quality of Cell C’s entire prepaid subscriber base.
+> * **Part A (The Urgent Request):** Vodacom asked the court to force MTN and Cell C to immediately stop using the pooled spectrum while the case was being decided. In February 2025, the judge dismissed this request. The judge agreed with Vodacom that the regulator's approval process was unlawful, but he didn't want to immediately shut down the network because it would harm millions of customers.
+> * **Part B (The Main Trial):** Vodacom is seeking a permanent court order to cancel the pooling approval. In May 2025, MTN and Cell C filed their formal responses. If Vodacom wins, it could destroy Cell C's entire arrangement with MTN.
 
-Tethered to the Vodacom pooling litigation are serious technical and financial disputes. Under normal network configurations, operators must maintain "guard bands"—narrow, unused buffer frequencies—to prevent signal interference between adjacent spectrum assignments. Because the pooling agreement allowed MTN and Cell C to merge their spectrum into a single continuous block, MTN was able to eliminate these guard bands and use them to carry live subscriber traffic.
+**The Technical Dispute: Guard Bands**
 
-Vodacom and Telkom (which joined the suit in support of Vodacom) contend that MTN and Cell C are utilizing this extra guard band spectrum for free, as they are not licensed for these specific buffer frequencies and do not pay ICASA spectrum fees for them. Furthermore, Telkom argues that the pooling arrangement allowed MTN to effectively bypass and override the strict spectrum caps imposed during the 2022 auction, distorting market competition to the detriment of smaller operators.
+Normally, mobile networks must leave empty space ("guard bands") between radio frequencies to prevent interference. When MTN and Cell C pooled their spectrum, they combined it into one continuous block and eliminated the guard bands—turning that unused space into usable spectrum. Vodacom and Telkom (another competitor who joined the case) say this is unfair: MTN and Cell C are using this extra spectrum without a license and without paying fees for it. They argue that MTN and Cell C got more spectrum than the rules allow, which gives them an unfair competitive advantage.
 
-The competitive implications are underscored by empirical testing. On April 22, 2024, Vodacom conducted independent network performance tests in Gauteng on the pooled 2100 MHz carrier (EARFCN 348). These tests revealed a stark divergence in network quality between the two pooling partners, with MTN customers receiving an average download throughput of 139.4 Mbps, while Cell C customers achieved only 41.82 Mbps on the exact same carrier block.
+**The Evidence: Speed Tests Show Unfair Treatment**
 
-Based on this technical data, Vodacom argues that the sharing arrangement is asymmetrical and has not been implemented in accordance with ICASA’s original approval conditions, which mandated that the sharing must remain balanced and symmetric. This empirical divergence supports the claim that MTN has assumed actual operational control of Cell C's licensed spectrum, allocating traffic in a manner that favors its own network performance and creates an unfair competitive advantage in the retail market.
+Vodacom tested network speeds in Gauteng in April 2024 on the shared spectrum. The results were shocking: MTN customers got 139.4 Mbps download speeds, while Cell C customers on the exact same spectrum got only 41.82 Mbps. Vodacom argues this proves the pooling deal isn't working as promised. The agreement says the spectrum sharing should be fair and balanced, but the speed test shows MTN is getting most of the benefit and Cell C customers are suffering. This supports the argument that MTN is actually running Cell C's spectrum for its own benefit.
 
-## Shareholder Challenge to the Restructuring
+## Another Lawsuit: The BEE Partner Gets Cut Out
 
-Cell C’s long-standing Black Economic Empowerment (BEE) partner, CellSAf, has mounted a parallel legal challenge against the company’s restructuring. CellSAf historically held a 25% stake in 3C Telecommunications (which previously owned 100% of Cell C) but saw its equity severely diluted to single digits through successive debt recapitalizations in 2017 and 2022\.
+CellSAf is a Black Economic Empowerment partner that used to own 25% of the company that owned Cell C. But through a series of financial restructurings in 2017 and 2022, CellSAf's ownership stake was diluted down to nearly nothing.
 
 | Historical Corporate Restructuring Stage | Participant Entities | Funding & Asset Restructuring Actions | Final Equity & Governance Impact |
 | :---- | :---- | :---- | :---- |
@@ -70,31 +72,25 @@ Cell C’s long-standing Black Economic Empowerment (BEE) partner, CellSAf, has 
 | **2022 Recapitalization** | Blue Label, TPC, SPV4, SPV5 | Debt restructured; TPC injected R5.5 billion and secured a 63.19% economic interest, but voting rights remained capped below 50%. | Solidified Blue Label as the dominant economic beneficiary, preparing the company for transition to a capex-light operational model. |
 | **2025 Pre-Listing Restructuring** | Blue Label, TPC, Nedbank, Lesaka Technologies, CEC | Internalized postpaid enabler CEC. Acquired Nedbank and Lesaka minority shares, diluting other historical holdouts. | Cleared balance sheet of R7.3 billion historical debt. TPC secured a 53.57% controlling voting interest, triggering JSE listing. |
 
-As part of the corporate turnaround, Cell C embarked on a complex strategy to manage its postpaid customer base. In November 2020, Cell C entered into a five-year management agreement with Comm Equipment Company (CEC), a wholly owned subsidiary of Blue Label Telecoms. This agreement facilitated the operation of Cell C's postpaid mobile business, placing billing, collections, and credit management under CEC's oversight.
+As part of the corporate turnaround, in November 2020, Cell C signed an agreement with a company (CEC) owned by Blue Label to manage Cell C's contract customers. This company handled customer billing and payments.
 
-To streamline its corporate structure ahead of listing, Cell C entered into an agreement in late 2025 to acquire 100% of CEC from TPC in exchange for additional shares in Cell C. This internalization was classified as a Category 1 disposal for Blue Label and required formal shareholder approval under Section 115 of the Companies Act, as it represented a disposal of the greater part of TPC’s assets. The merger was approved by the Competition Tribunal, allowing Cell C to assume full commercial and supply chain responsibility for its postpaid customer base.
+To organize its business before listing on the stock exchange, Cell C worked out a deal in late 2025 to take full ownership of the company (CEC) that manages its contract customers. This deal had to be approved by shareholders and a competition regulator. Once approved, Cell C took over all the work of managing customer billing, collections, and payments that had previously been done by another company.
 
-However, the regulatory approvals that enabled this transition have faced severe legal backlash. In late 2025, CellSAf filed a review application in the High Court seeking to overturn ICASA’s approval of the transfer of license control to TPC. Nomonde Mabuya, CellSAf’s director and company secretary, voiced concerns that Blue Label was stripping other shareholders of Cell C's key strategic assets, including its spectrum licenses, without adequate consultation.
+In late 2025, CellSAf went to court to stop the regulator's approval of the control transfer to Blue Label. CellSAf argued that Blue Label was taking Cell C's spectrum licenses and other valuable assets away from other shareholders without proper discussion. CellSAf also argued that the ownership structure doesn't meet South Africa's Black Economic Empowerment rules, which require at least 30% of a company to be owned by Black South Africans. Although Blue Label says CellSAf's case is weak and the case didn't stop Cell C from listing on the stock exchange, it remains a live legal threat to Blue Label's control of Cell C.
 
-CellSAf’s presentation to ICASA argued that the ownership scheme was not broad-based and failed to meet the mandatory 30% historically disadvantaged groups (HDG) equity threshold. Although Blue Label’s legal advisers have dismissed the challenge as lacking merit, and the litigation did not halt Cell C's JSE listing, the review application remains an active legal threat to the regulatory legitimacy of TPC’s majority control over Cell C's operating and spectrum licenses.
+## A Third Lawsuit: Cell C vs. The Tax Authority
 
-## Tax Litigation: Cell C vs SARS
+Cell C is also fighting with South Africa's tax agency (SARS) over imported telecom equipment. This case has been going on for years, with major court decisions in March 2022 and March 2025.
 
-In addition to competitor and shareholder disputes, Cell C is engaged in a highly technical tax litigation battle with the South African Revenue Service (SARS). This dispute, registered under High Court case number 30959/2019, has persisted for several years, with significant judgments handed down in March 2022 and March 2025\.
+Cell C is disputing how much tax it should pay on imported telecom equipment. Cell C asked to see all the documents and reasoning behind the tax authority's decision. The tax authority (SARS) said no—because the law gives Cell C the right to have a full new hearing in front of a judge where they can bring new evidence, there's no need to show all the internal documents.
 
-The core of the dispute involves an appeal by Cell C against a tariff determination made by the Commissioner of SARS regarding imported telecommunications equipment under the Customs and Excise Act (CEA). Cell C sought to review and set aside the determination retrospectively. To bolster its case, Cell C launched an interlocutory application under Rule 30A of the Uniform Rules of Court to compel SARS to dispatch a full administrative record of its decision-making process under Rule 53\.
+In March 2022, the judge agreed with the tax authority. The court said that when the law gives you the right to a full new hearing (with new evidence), there's no point in forcing the tax authority to hand over its internal reasoning. The judge dismissed Cell C's request.
 
-SARS opposed the motion, arguing that because the CEA provides a "wide appeal" remedy under section 47(9)(e)—which allows for a complete, de novo hearing where both parties can introduce new evidence—judicial review under Rule 53 is legally incompetent, making the production of an administrative record redundant.
+The tax dispute is still ongoing. In March 2025, the courts confirmed that this multi-million-rand dispute is still unsettled.
 
-In the March 11, 2022 judgment, Tolmay J analyzed whether a taxpayer challenging a tariff determination under Section 47(9)(e) of the CEA is confined to the wide appeal remedy. The court agreed with SARS, establishing that a wide appeal differs fundamentally from a strict appeal or review because the court is not confined to the record and sits in the same position as the first-instance decision-maker.
+## How Cell C Went From Nearly Bankrupt to Stock Market Listing
 
-Because a wide appeal operates as a trial de novo where both sides can lead new evidence, the administrative record and reasons have very little value. Tolmay J concluded that when a wide appeal is available, review proceedings under Rule 53 are not competent, and the court dismissed Cell C's Rule 30A application.
-
-This legal battle has continued to progress through the courts. On March 17, 2025, the Pretoria High Court issued a subsequent decision under case \[2025\] ZAGPPHC 265 in the matter of *Cell C (Pty) Ltd v CSARS*, confirming that this multi-million-rand tariff dispute remains active and unresolved.
-
-## JSE Listing and Capital Position
-
-To fully understand the integrity of the claims, one must examine Cell C’s financial trajectory leading into its public listing in late 2025\. For years, Cell C was technically insolvent, with liabilities significantly exceeding assets. As of May 2024, the company was burdened with a negative equity of R3.179 billion. However, the transition to the capex-light model and the internalization of the postpaid customer base rapidly improved its financial performance, helping Cell C narrow its negative equity to R1.043 billion by May 2025\.
+To understand the full picture, we need to look at Cell C's money situation leading up to its stock market listing in late 2025. For years, Cell C was technically bankrupt—it owed more money than it had in assets. In May 2024, the company had negative equity (debt) of R3.179 billion. But by shifting to a low-cost model and reorganizing how it manages customers, Cell C improved quickly. By May 2025, its debt was down to R1.043 billion.
 
 | Financial Accounting Metric (R'000) | Nov 30, 2023 | May 31, 2024 | Nov 30, 2024 | May 31, 2025 |
 | :---- | :---- | :---- | :---- | :---- |
@@ -116,29 +112,27 @@ The listing was further supported by broader regulatory reforms initiated by the
 
 ## Final Assessment
 
-The statement that Cell C owns no spectrum and is under litigation did not emerge in a vacuum. It reflects narrative compression: several separate corporate and regulatory developments were collapsed into one simplified public claim.
+The claims that Cell C owns no spectrum and is constantly in court didn't come out of nowhere. They're based on several real corporate and regulatory events that got compressed into one story.
 
-The primary driver of the "owns no spectrum" rumor is the visual and operational reality of Cell C's network shutdown. When Cell C turned off its physical towers and migrated its entire subscriber base to MTN and Vodacom's networks, it ceased to exist as a traditional, infrastructure-heavy mobile operator. To the average consumer or casual market analyst, a mobile network operator that does not operate a physical network appears to have no spectrum of its own.
+**Why people think Cell C has no spectrum:** Cell C shut down its physical network. When a mobile operator stops operating towers and moves its customers to other operators' networks, it looks like that company disappeared. To the average person or investor, a mobile network without towers seems like it has no spectrum.
 
-This visual absence of infrastructure was quickly reinforced by sensationalized media headlines. When Cell C voluntarily returned its redundant point-to-point microwave backhaul licenses to ICASA in December 2024, the news was widely reported under headings such as *"Cell C gives back radio frequency spectrum"*. To an unnuanced reader, this was interpreted as Cell C relinquishing its core cellular frequencies.
+This misconception was reinforced by media headlines. When Cell C gave back its old microwave spectrum in December 2024 (which it no longer needed), headlines said "Cell C gives back spectrum." To someone just scanning headlines, this sounded like Cell C had lost all its spectrum.
 
-This misunderstanding was compounded shortly after when reports emerged that Cell C had forfeited its newly won 5G spectrum in the IMT3500 band due to its inability to settle its R288 million auction bill. By linking these two distinct events—the necessary surrender of obsolete backhaul links and the painful forfeiture of future 5G expansion spectrum—the market synthesized a false belief that Cell C had been stripped of all its spectrum assets.
+The story got worse when Cell C couldn't pay for 5G spectrum it had bought earlier. After Cell C forfeited the 5G license due to cash shortage, people linked these two events together and thought Cell C had lost all its spectrum. That's not accurate, but it's understandable how the story spread.
 
-Similarly, the "under litigation" narrative reflects a consolidation of multiple high-profile legal battles. Over the past decade, Cell C’s technical insolvency, complex recapitalizations, and debt burden of over R7.3 billion created recurring legal friction around each restructuring attempt. CellSAf’s high-profile, unsuccessful attempt to liquidate Cell C’s holding company (3C Telecommunications) in 2016 reinforced the perception that Cell C was permanently in court.
+**Why people think Cell C is always in court:** Over the years, Cell C's financial troubles and multiple ownership restructurings created frequent legal battles. The current major court case over spectrum pooling has been heavily covered by media, keeping Cell C associated with high-stakes litigation. When combined with the former partner's legal challenge and ongoing tax disputes, the public perception that Cell C is constantly fighting in court is understandable.
 
-The current legal landscape reinforces this narrative. The massive, multi-operator battle in the Pretoria High Court over spectrum pooling (Vodacom v ICASA, MTN, & Cell C) has been heavily covered by the media, keeping Cell C’s name synonymous with high-stakes litigation. When coupled with the active CellSAf review application against the licensing transfer and the technical SARS tariff case, the public perception that Cell C is under constant, existential litigation is entirely understandable and legally accurate.
+Based on the evidence, here's the clear verdict:
 
-A rigorous synthesis of the legal and regulatory evidence supports a clear verdict.
+**Cell C owns spectrum—this is TRUE.** Cell C legally owns radio frequencies in the 900 MHz, 1800 MHz, and 2100 MHz bands. These are on Cell C's financial records. The regulator approved this ownership in early 2025. However, Cell C doesn't operate its own towers anymore—it lets MTN and Vodacom do that. When Cell C returned old microwave spectrum it no longer needed in late 2024 and couldn't pay for 5G spectrum in mid-2024, the media headlines made it sound like Cell C had lost all its spectrum. That's the confusion.
 
-First, the statement that Cell C owns no spectrum is legally and factually false. Cell C remains the legal holder of core access spectrum licences in the 900 MHz, 1800 MHz, and 2100 MHz bands. These assets remain on Cell C’s balance sheet and were preserved through a formal transfer-of-control process approved by ICASA in early 2025. However, Cell C no longer transmits on those frequencies through its own physical network. Its surrender of redundant backhaul spectrum in late 2024 and forfeiture of the IMT3500 block due to liquidity pressure amplified a misleading impression of total spectrum loss.
+**Cell C is in court—this is TRUE.** Cell C is involved in three major legal battles:
 
-Second, the statement that Cell C is under active litigation is accurate. The operator is currently involved in multiple high-stakes proceedings:
+> * **Competitor Litigation:** Cell C is a central respondent in Vodacom's lawsuit, which seeks to set aside the 2022 spectrum pooling arrangements that underpin Cell C's network.
+> * **Shareholder Litigation:** A former Black Economic Empowerment partner has mounted a challenge seeking to overturn the regulator's approval of Blue Label's control.
+> * **Tax Litigation:** Cell C is locked in ongoing disputes with the tax authority regarding customs determinations on imported equipment.
 
-> * **Competitor Litigation:** Cell C is a central respondent in Vodacom’s active Part B High Court review application, which seeks to set aside the 2022 spectrum pooling arrangements that underpin Cell C's network quality and virtual RAN structure.
-> * **Shareholder Litigation:** Former BEE partner CellSAf has mounted an active High Court challenge seeking to review and set aside ICASA's approval of the transfer of licence control to TPC.
-> * **Tax Litigation:** Cell C is locked in ongoing tariff litigation with SARS (Case 30959/2019) regarding customs determinations, which saw active judicial proceedings in the High Court in March 2025\.
-
-Cell C now resembles a virtualized telecom operator archetype: legally spectrum-owning, operationally infrastructure-light, and strategically exposed to ongoing regulatory and court outcomes.
+Cell C is a modern telecom operator: it legally owns spectrum but doesn't operate its own physical network. It's financially improving but facing multiple court battles that could threaten its business.
 
 ## References
 
