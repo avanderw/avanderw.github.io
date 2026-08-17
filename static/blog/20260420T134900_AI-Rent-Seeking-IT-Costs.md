@@ -1,118 +1,129 @@
 # AI Rent-Seeking and IT Costs
 
-The global economic landscape is currently navigating a fundamental reconfiguration of value capture, driven by the maturation of artificial intelligence and the evolution of software distribution models. This transition is characterized by a tension between established rent-seeking business architectures, such as Software-as-a-Service (SaaS), and the emerging necessity to treat information technology (IT) not as an auxiliary cost but as a primary revenue engine. As generative AI commoditizes generic intelligence, the traditional moats of software companies are being challenged, leading to what some analysts describe as a "SaaSpocalypse" where seat-based pricing models are structurally exposed.1 Simultaneously, the center of gravity for software development continues to reside within a massive, under-recognized foundation of open-source software (OSS), which now constitutes up to 90% of modern codebases.3 This analysis evaluates the trajectory of these business models, the bifurcation of AI adoption strategies between cost optimization and radical innovation, and the historical evolution of IT from a back-office expense to a strategic profit center.
+Artificial intelligence is changing how software is built, sold, and paid for. It is also changing what companies expect from their IT teams.
+
+For years, software companies grew by charging recurring subscriptions. This worked well for vendors, but it also meant customers kept paying for tools they never owned. Now AI is putting pressure on that model. If one person with an AI assistant can do the work of several people, companies may need fewer software seats. Some analysts call this the "SaaSpocalypse."
+
+At the same time, most software is built on open-source code. Open source may make up 70% to 90% of a modern codebase. That shared foundation makes software cheaper to build and gives companies more alternatives to proprietary products.
+
+This post looks at three related changes: how software companies capture value, how businesses use AI, and how IT is moving from a support function to a source of revenue.
 
 ## Digital Rent-Seeking
 
-In economic theory, rent-seeking involves obtaining economic gain from others without a reciprocal contribution to productivity, often by manipulating the social or political environment rather than creating new wealth. In the digital context, this has evolved into a model of "digital tolls" or subscription-based access to essential infrastructure.5 The transition from perpetual licensing to SaaS represents the first major phase of this shift, where the user relinquishes ownership for the convenience of continuous delivery.
+Rent-seeking means making money mainly by controlling access to something people need, rather than by creating a proportionate amount of new value. In software, this often looks like a digital toll: pay a subscription to keep using an important tool.
+
+The move from buying software once to renting it through SaaS was the first major version of this model. Customers gained convenient updates and support, but gave up ownership of the software.
 
 ### The SaaS Paradigm
 
-The SaaS business model delivers software over the internet on a subscription basis, hosting applications in the cloud and charging recurring fees for continued access.7 This model replaces the one-time capital expenditure of perpetual licenses with an ongoing operational expense. The economics of this model are governed by specific metrics that prioritize retention and expansion over initial acquisition. The vendor handles hosting, updates, security, and support, while the customer signs in via a browser or application.7 Unlike traditional software, there is typically only one version of the application, and all customers share the same multi-tenant architecture, which delivers economies of scale and allows for rapid scaling.7
+SaaS delivers software over the internet and charges customers regularly for access. Instead of buying a license once, the customer pays an ongoing operating expense. The vendor hosts the software, provides updates, and handles security and support.
+
+Most SaaS products run one shared version for all customers. This shared, or multi-tenant, design helps vendors scale quickly and spread their costs across many users. Vendors therefore care deeply about keeping customers and expanding their subscriptions.
 
 | Metric | Definition | Strategic Significance |
 | :---- | :---- | :---- |
-| Monthly Recurring Revenue (MRR) | Predictable income generated from subscriptions every month. | Provides the foundation for valuation and growth forecasting. 7 |
-| Net Revenue Retention (NRR) | Revenue retained from existing customers after churn and downgrades. | Indicates the long-term health and expansion potential of the user base. 7 |
-| Lifetime Value (LTV) | The total revenue a customer is expected to generate over their tenure. | Determines the sustainable limit for customer acquisition costs (CAC). 8 |
-| Churn Rate | The percentage of subscribers who cancel their service in a given period. | The primary threat to the compounding effect of SaaS revenue. 8 |
+| Monthly Recurring Revenue (MRR) | Predictable income generated from subscriptions every month. | Provides the foundation for valuation and growth forecasting. |
+| Net Revenue Retention (NRR) | Revenue retained from existing customers after churn and downgrades. | Indicates the long-term health and expansion potential of the user base. |
+| Lifetime Value (LTV) | The total revenue a customer is expected to generate over their tenure. | Determines the sustainable limit for customer acquisition costs (CAC). |
+| Churn Rate | The percentage of subscribers who cancel their service in a given period. | The primary threat to the compounding effect of SaaS revenue. |
 
-The formula for LTV illustrates the sensitivity of this model to margin and churn:
+The LTV formula shows why profit margins and customer cancellations matter so much.
 
-![][image1]  
-8
+SaaS has real benefits: updates are automatic and the initial cost is usually lower. But customers never own the tools they depend on. Moving data and rebuilding integrations can be expensive, which creates lock-in. That lock-in helped SaaS companies build predictable revenue and high valuations. AI now threatens the same model these companies are trying to add to their products.
 
-While SaaS provides benefits like seamless updates and lower entry barriers for customers, it also creates a rent-seeking dynamic where users never own the tools they rely on. This "lock-in" effect is amplified by the high switching costs associated with data migration and workflow integration.1 This creates a predictable revenue machine that has historically attracted high valuations, but the sustainability of this model is being challenged by the very technology it seeks to integrate: artificial intelligence.
+### AI Adds Another Toll
 
-### AI as Rent-Seeking Frontier
+Generative AI adds another layer of paid access. Many companies use an API and pay for every token or request. Closed model providers control the infrastructure and charge the toll. The models may be powerful, but access is still restricted by commercial APIs, prices, and legal terms.
 
-The emergence of Generative AI has introduced a second layer of rent-seeking through API licensing and "AI-as-a-Service" (AIaaS).10 Closed-source model providers act as the new digital infrastructure layer, charging "tolls" per token or per API call.6 This model is fundamentally constrained by its inherently high excludability, as access is restricted via APIs and commercialized through paywalls, limiting the nature of these models as public goods.6
-
-Evidence suggests a significant cost disparity in this layer. Closed models account for roughly 80% of usage and 96% of revenue, even though they cost, on average, six times more than competing open models that offer comparable performance.12 This dominance is often attributed to brand trust, perceived safety, and the friction of switching established workflows rather than purely technical superiority. Open models routinely achieve 90% or more of the performance of closed models on widely used benchmarks, and the catch-up cycle is accelerating.12
+There is a large price difference. Closed models account for about 80% of usage and 96% of revenue, even though they cost about six times more than open models with similar performance. Their advantage often comes from trust, perceived safety, and the difficulty of changing an established workflow. Open models now reach 90% or more of the performance of closed models on common benchmarks, and the gap is narrowing.
 
 | Model Type | Revenue Structure | Economic Property |
 | :---- | :---- | :---- |
-| Closed-Source (e.g., GPT-4) | API usage fees (per token), Subscriptions | High excludability, proprietary moats. 6 |
-| Open-Weight (e.g., Llama, Qwen) | Free access to weights, monetized via hosting or support | Low excludability, high public good value. 6 |
-| Hybrid / Open Core | Free base model, paid enterprise features/APIs | Balances community adoption with monetization. 14 |
+| Closed-Source (e.g., GPT-4) | API usage fees (per token), Subscriptions | High excludability, proprietary moats. |
+| Open-Weight (e.g., Llama, Qwen) | Free access to weights, monetized via hosting or support | Low excludability, high public good value. |
+| Hybrid / Open Core | Free base model, paid enterprise features/APIs | Balances community adoption with monetization. |
 
-This new rent-seeking is characterized by information manipulation and algorithmic interference, where the controller of the foundation model can influence the output of downstream applications, creating a form of "mixed public good" that remains highly excludable through technical and legal barriers.5 The estimated annual unrealized value—the savings that could be captured if organizations chose open models based solely on price and performance—is approximately $24.8 billion.12
+The important point is control. A model provider can change prices, restrict access, or influence the answers produced by applications built on its model. Open models reduce that dependence. The estimated annual savings available to organizations that choose open models on price and performance alone is about $24.8 billion.
 
-## IT from Cost Center to Profit Engine
+## IT: From Cost Center to Profit Engine
 
-Historically, IT departments were categorized as cost centers—units that incur expenses but do not directly generate revenue. This classification mandated a focus on budget adherence, cost minimization, and "uptime" as the primary performance indicator.15 However, the AI era is forcing a transition toward treating IT as a profit engine or even an "internal venture capital" unit.17
+IT departments were traditionally treated as cost centers. They spent money but were not expected to generate revenue. Their success was measured by staying within budget, reducing costs, and keeping systems running.
+
+AI is changing that expectation. IT can now create products, improve sales, use company data in new ways, and automate expensive work. Some CIOs are beginning to manage technology investments like an internal venture capital portfolio: fund experiments, measure results, and invest more in the ideas that work.
 
 ### IT Governance History
 
-The evolution of IT governance reflects broader shifts in computing architecture and corporate strategy. From the centralized powerhouses of the 1970s to the adaptive, distributed ecosystems of today, the transformation of the data center has mirrored the transformation of business logic itself.18
+The history of IT shows this change in stages. Each shift in computing architecture also changed how companies thought about technology.
 
-1. **The Mainframe Era (1950s-1980s):** IT was a centralized, monolithic, and power-hungry "sunk cost." Mainframes like the IBM System/360 introduced standardized computing platforms but were islands of power with no network connectivity.19 Computing was a privilege of large institutions, and IT's role was strictly operational—processing paper records through the night for branch banks to open in the morning.18  
-2. **The Microprocessor and Client-Server Era (1990s):** Computing became decentralized. Microprocessors made IT "nimble," allowing for rapid application deployment on relatively inexpensive hardware. Delay and bureaucracy gave way to in-house data centers, but IT remained largely a support function for other business units.19  
-3. **The Cloud and Virtualization Era (2000s-2010s):** Virtualization allowed for massive efficiency gains, reducing hardware footprints by up to 80%.20 IT began to move from capital expenditure (CapEx) to operational expenditure (OpEx), but the "cost center" mindset persisted through strict vendor management and the rise of colocation providers like Equinix.19  
-4. **The Agentic and AI Era (2020s-Present):** AI agents and autonomous systems are transforming IT into a direct revenue driver. Modern CIOs co-own the digital P\&L and manage IT investments like a portfolio of high-growth assets, focusing on conversion rates rather than system pings.17
+1. **Mainframes (1950s-1980s):** Computing was centralized and expensive. Mainframes processed records for large institutions, while IT focused on reliable operations.
+2. **Microprocessors and client-server systems (1990s):** Computing spread across businesses. Companies could deploy applications on cheaper hardware, but IT was still mainly a support function.
+3. **Cloud and virtualization (2000s-2010s):** Virtualization reduced hardware footprints by up to 80%. Spending moved from capital purchases to operating costs, but most companies still managed IT as a cost center.
+4. **Agents and AI (2020s-present):** AI systems can automate work and create new products. Technology leaders are increasingly judged by revenue and conversion rates, not just uptime.
 
 ### The Five Pillars
 
-To move from a defensive cost center to a proactive profit engine, organizations are adopting five strategic pillars. This shift is driven by the realization that "uptime" is no longer enough; IT architecture effectively becomes the business model.17
+To make IT a source of growth, organizations are focusing on five practical areas. Keeping systems online still matters, but it is no longer enough. Technology decisions increasingly shape the business itself.
 
-* **Monetizing Data Silos:** CIOs are transforming "telemetry"—the massive trail of behavioral and operational data generated by daily transactions—into revenue streams. Instead of storing information solely for compliance, leaders refine it to build external-facing products, such as industry benchmarks or proprietary AI models for partners.17  
-* **The Platform Mindset:** Building modular, flexible architectures that allow external partners, vendors, or customers to integrate with core services via APIs. This allows for network-effect growth, scaling revenue without a proportional increase in headcount.17  
-* **Customer-Centric Architecture:** Using AI to remove friction from the customer journey. When IT initiatives reduce checkout friction or shorten the sales cycle by 20%, the CIO's value is measured in revenue impact, not just maintenance.17  
-* **Agile Capital Allocation:** Adopting an "internal VC" mindset with tranche-based funding for high-velocity experiments. Successful pilots, like an AI-driven churn predictor, receive "Series B" internal funding immediately rather than waiting for the next fiscal year.17  
-* **The CIO as Co-founder:** Partnering with CMOs and CFOs to co-own digital revenue streams. In this model, the CIO is as deeply invested in the "sell" as they are in the "build," ensuring every technical sprint maps to a revenue milestone.17
+* **Use data as a product:** Turn operational data into useful benchmarks, partner products, or proprietary AI models instead of storing it only for compliance.
+* **Build platforms:** Use modular systems and APIs so partners and customers can connect to core services. Revenue can then grow without headcount growing at the same rate.
+* **Improve the customer journey:** Use technology to reduce checkout friction or shorten the sales cycle. A 20% improvement is a business result, not just a technical result.
+* **Fund experiments quickly:** Give promising pilots more funding as soon as they show results instead of making them wait for the next budget cycle.
+* **Make the CIO a business partner:** Technology leaders should work with finance and marketing leaders to own digital revenue, not just deliver systems to other departments.
 
-## AI Impact
+## How Companies Use AI
 
-The impact of AI on business models is bifurcated between firms using it to compress costs and those leveraging it for structural transformation. Research indicates that while 80% of companies prioritize efficiency as an AI objective, the "high performers"—the top 6% of respondents—focus on growth and transformative innovation, committing more than 20% of their digital budgets to AI technologies.21
+Companies tend to use AI in one of two ways. Some use it to reduce the cost of existing work. Others use it to create products and services that were not possible before.
+
+This distinction matters. About 80% of companies say efficiency is an AI goal. But the top 6% of performers focus more on growth and transformation, and spend more than 20% of their digital budgets on AI.
 
 ### Cost Optimization
 
-For many organizations, AI is a tool for "absorbing" existing tasks to improve margins. This often manifests in manufacturing and heavy industries where equipment downtime can cost millions.
+For many organizations, AI is mainly an efficiency tool. It takes over repetitive tasks and improves margins. This is especially valuable in manufacturing and heavy industry, where equipment failures can cost millions.
 
-* **Predictive Maintenance:** AI monitors machinery conditions to perform repairs only when necessary, saving up to 30% in maintenance costs and eliminating up to 70% of unplanned downtime. Siemens, GE, and Shell use these systems to monitor jet engines and industrial machines.22  
-* **Automated Logistics:** Amazon and Walmart use AI-driven logistics to dynamically reroute deliveries and minimize fuel and labor costs. DHL has implemented AI to predict workload and optimize staff deployment in warehouses.22  
-* **Workforce Management:** Retailers and customer support centers use AI to align staffing with actual demand, avoiding both overstaffing and understaffing. Hilton Hotels used AI to streamline employee scheduling, which indirectly improved guest experiences by ensuring staff were not overworked.22  
-* **Customer Support Automation:** AI agents handle seasonal peaks and technical inquiries with accuracy rates between 95% and 99.8%. Rachio, a smart sprinkler company, used AI agents to manage over one million support queries, reducing costs by 30% and eliminating seasonal hiring.24
+* **Predictive maintenance:** AI monitors machinery and schedules repairs when they are needed. This can reduce maintenance costs by up to 30% and unplanned downtime by up to 70%. Siemens, GE, and Shell use these systems.
+* **Logistics:** Amazon and Walmart use AI to reroute deliveries and reduce fuel and labor costs. DHL uses it to predict warehouse workload and schedule staff.
+* **Workforce management:** Retailers and support centers use AI to match staffing to demand. Hilton used AI to improve employee scheduling and reduce overwork.
+* **Customer support:** AI agents can handle peak periods and technical questions with reported accuracy between 95% and 99.8%. Rachio used AI to manage more than one million support queries, reducing costs by 30% and eliminating seasonal hiring.
 
 | Industry | Optimization Use Case | Quantifiable Impact |
 | :---- | :---- | :---- |
-| Manufacturing | Predictive maintenance of machinery. 23 | 30% cost reduction; 70% less downtime. |
-| Logistics | Route optimization and workforce deployment. 23 | Fewer stockouts; lower fuel/labor costs. |
-| Customer Care | AI agents for ticket resolution. 14 | 30% cost reduction; 24/7 multilingual support. |
-| Finance | Automated invoice anomaly detection. 23 | Reduced fraud and overspending. |
+| Manufacturing | Predictive maintenance of machinery. | 30% cost reduction; 70% less downtime. |
+| Logistics | Route optimization and workforce deployment. | Fewer stockouts; lower fuel/labor costs. |
+| Customer Care | AI agents for ticket resolution. | 30% cost reduction; 24/7 multilingual support. |
+| Finance | Automated invoice anomaly detection. | Reduced fraud and overspending. |
 
 ### Radical Innovation
 
-Radical innovation brings 15–25 points of return more than other types, yet it is often missed by standard AI investments.25 This phase of transformation enables products or services that were previously impossible.
+The bigger opportunity is not just doing the same work more cheaply. It is creating a different product or business model. Radical innovation can produce 15 to 25 points more return than other types of innovation, but standard AI programs often miss it.
 
-* **Precision Agriculture:** John Deere has shifted from selling tractors to selling "precision agriculture as a service." Their machines recognize weeds in real-time and spray them on the spot, allowing farmers to use a fraction of the chemicals while improving crop health.26  
-* **Hyper-Personalization in Media:** Netflix treats artwork as a dynamic variable rather than a static asset. Their AI selects movie thumbnails based on your viewing history—showing a romance scene for a comedy if you typically watch romance—increasing click-through rates.22  
-* **AI-Native Insurance:** Lemonade has built its entire business model around "AI Jim," a bot that handles claims. Simple claims are cross-checked and approved in seconds, disrupting legacy insurers who rely on paper-heavy processes.26  
-* **Accelerated Science:** Pfizer and other pharmaceutical firms use AI to significantly streamline drug discovery and reduce the time to identify viable drug candidates, transforming the R\&D cycle from years to months.25
+* **Precision agriculture:** John Deere uses machines that identify weeds and spray them immediately. The company is moving from selling tractors to selling precision agriculture as a service.
+* **Personalized media:** Netflix changes the artwork shown for a film based on a viewer's history. A comedy might show a romance scene to someone who usually watches romance, increasing the chance of a click.
+* **AI-native insurance:** Lemonade uses a bot called "AI Jim" to process claims. Simple claims can be checked and approved in seconds instead of moving through a paper-heavy process.
+* **Faster scientific research:** Pfizer and other pharmaceutical companies use AI to find promising drug candidates faster, potentially reducing parts of the research cycle from years to months.
 
 | Industry | Transformation Use Case | Business Model Shift |
 | :---- | :---- | :---- |
-| Agriculture | AI-enabled weed detection and spraying. 26 | From hardware sales to precision-as-a-service. |
-| Healthcare | Early tumor screening via large models. 29 | 100,000+ complex cases assisted. |
-| Retail | Virtual Artist for personalized makeup advice. 22 | Hyper-personalization drives higher engagement. |
-| Insurance | End-to-end automated claims handling. 27 | Disruption of legacy, manual processing. |
+| Agriculture | AI-enabled weed detection and spraying. | From hardware sales to precision-as-a-service. |
+| Healthcare | Early tumor screening via large models. | 100,000+ complex cases assisted. |
+| Retail | Virtual Artist for personalized makeup advice. | Hyper-personalization drives higher engagement. |
+| Insurance | End-to-end automated claims handling. | Disruption of legacy, manual processing. |
 
-## Where Software Development Lies
+## Where Software Is Built
 
-A critical question for tech strategy is where the majority of software development actually occurs. The data reveals a complex ecosystem where the vast majority of software is hidden within enterprise applications and supported by a massive, invisible foundation of open-source components.
+Where does most software development happen? Not only in software companies. Much of it happens inside large enterprises, where teams build internal tools, connect systems, and maintain custom applications.
 
 ### Software Development Volume
 
-The software market is projected to reach $1.11 trillion by 2031, with a CAGR of 11.74%.30 Large enterprises hold the majority of spending power, accounting for over 62% of the market.30 This dominance is due to their ability to invest heavily in research and development and manage custom integrations.
+The software market is projected to reach $1.11 trillion by 2031, growing at 11.74% per year. Large enterprises account for more than 62% of software spending. They have the budgets to fund research, custom integrations, and internal development.
 
 | Segment | Market Share / Data Point | Growth Projection |
 | :---- | :---- | :---- |
-| Large Enterprises | 62.4% of total software spending 30 | 11.8% CAGR for overall software 31 |
-| Cloud Deployment | 71.3% of revenue in 2025 30 | 12.2% CAGR through 2031 30 |
-| IT Outsourcing | $618 billion in 2025 31 | 3.3% CAGR through 2031 31 |
-| Custom Software | $53 billion in 2025 31 | 22.7% CAGR (Projected to $334B by 2034\) 31 |
+| Large Enterprises | 62.4% of total software spending | 11.8% CAGR for overall software |
+| Cloud Deployment | 71.3% of revenue in 2025 | 12.2% CAGR through 2031 |
+| IT Outsourcing | $618 billion in 2025 | 3.3% CAGR through 2031 |
+| Custom Software | $53 billion in 2025 | 22.7% CAGR (Projected to $334B by 2034\) |
 
-In the United States, there were approximately 1.7 million software developers in 2024\.32 Their distribution across sectors highlights that "software publishing"—the category containing traditional SaaS and commercial vendors—is only a small portion of the actual workforce.
+The United States had about 1.7 million software developers in 2024. Their distribution across industries shows that software publishing, which includes traditional SaaS vendors, employs only a small share of them.
 
 | Employer Type | Share of Developers |
 | :---- | :---- |
@@ -122,60 +133,60 @@ In the United States, there were approximately 1.7 million software developers i
 | Manufacturing | 8% |
 | Management of Companies | 5% |
 
-This data suggests that the majority of software development is "internal" or "custom," focused on the specific operational needs of large corporations rather than being sold as a mass-market product. These developers are often building the "glue" between systems, maintaining legacy architectures, or creating proprietary advantages that never see the light of the public market.33
+This suggests that much software development is internal or custom. Teams build for a company's specific operations rather than for a mass market. They connect systems, maintain older architectures, and create advantages that may never become public products.
 
 ### The Open Source Foundation
 
-Perhaps the most significant insight into the modern software landscape is the ubiquity of Open Source Software (OSS). It is estimated that 96% of all commercial codebases contain open-source components, and OSS typically constitutes 70% to 90% of any given software solution.3
+The other major part of the picture is open source. An estimated 96% of commercial codebases contain open-source components, and those components usually make up 70% to 90% of a software solution.
 
-* **Economic Value:** If OSS did not exist, companies would need to spend an estimated $8.8 trillion to rewrite that software from scratch. The supply-side cost to build these packages is estimated at $4.2 billion, highlighting the massive leverage provided by community contributions.4  
-* **Internal Reliance:** Approximately 77% of internal enterprise code is drawn from open-source libraries and frameworks. This indicates that the vast majority of software developed within organizations relies on a shared foundation.3  
-* **Mission-Critical Usage:** Over 70% of enterprises report using open source in mission-critical systems. In the US, nearly 60% of development teams incorporate OSS frameworks for web, cloud, data, and AI projects.3
+* **Economic value:** Replacing OSS from scratch would cost companies an estimated $8.8 trillion. The estimated cost of producing the packages is only $4.2 billion.
+* **Internal reliance:** About 77% of internal enterprise code comes from open-source libraries and frameworks.
+* **Mission-critical usage:** More than 70% of enterprises use open source in critical systems. In the US, nearly 60% of development teams use OSS frameworks for web, cloud, data, and AI projects.
 
-However, this reliance creates a "free lunch dilemma." While 96% of commercial programs include OSS, nearly half of the world's code (45%) is deemed "fragile" due to tech debt, outdated libraries, and understaffed projects.35 This fragility is a significant risk for the global supply chains and health systems that run on this invisible code.
+There is a risk in this dependence. While 96% of commercial programs include OSS, nearly half of the world's code, 45%, is considered "fragile" because of technical debt, old libraries, and understaffed projects. Global supply chains and health systems rely on this largely invisible code, so neglected open-source projects can become a serious operational risk.
 
 ## The Future of SaaS
 
-The "SaaSpocalypse" narrative suggests that the traditional SaaS model—centered on seat-based licensing and recurring rents—is reaching a breaking point.1 Several forces are colliding to disrupt the economics of recurring revenue.
+The traditional SaaS model depends on seat-based subscriptions: more employees means more seats and more revenue. AI is challenging that assumption. Several changes are now pushing SaaS toward a different pricing model.
 
 ### Seat-Based Pricing Erosion
 
-For decades, the core logic of SaaS was that more employees equaled more seats, which equaled more revenue. AI agents invert this logic. When one user with AI can perform the work of several employees, companies may need far fewer seats, potentially undermining the core revenue model.1 Investors are repricing the durability of SaaS growth because seat expansion is no longer guaranteed.
+For decades, SaaS revenue grew as companies added employees. AI agents reverse that logic. If one person with AI can do the work of several employees, a company may need fewer seats. That can reduce the vendor's revenue. Investors are therefore questioning whether seat growth will remain reliable.
 
-By 2030, Gartner predicts that 35% of point-product SaaS tools will be replaced by AI agents or absorbed into larger agent ecosystems.38 This shift is forcing a transition toward "Outcome-Based Pricing" and "Consumption Credits."
+Gartner predicts that by 2030, AI agents or larger agent ecosystems will replace or absorb 35% of point-product SaaS tools. Vendors are responding with outcome-based pricing and usage credits.
 
 | Pricing Model | Mechanism | Strategic Implication |
 | :---- | :---- | :---- |
-| Seat-Based | Fixed fee per user per month. | Structurally exposed by AI productivity gains. 1 |
-| Outcome-Based | Fee per successful resolution or transaction. | Vendor assumes the performance risk. 14 |
-| Consumption / Credits | Usage of compute/tokens/actions. | Protects margins while offering predictability. 2 |
-| Hybrid | Flat platform fee \+ usage-based add-ons. | Becoming the default for incumbents. 2 |
+| Seat-Based | Fixed fee per user per month. | Structurally exposed by AI productivity gains. |
+| Outcome-Based | Fee per successful resolution or transaction. | Vendor assumes the performance risk. |
+| Consumption / Credits | Usage of compute/tokens/actions. | Protects margins while offering predictability. |
+| Hybrid | Flat platform fee \+ usage-based add-ons. | Becoming the default for incumbents. |
 
-Intercom’s Fin AI, for example, charges $0.99 per successful resolution. If the AI doesn't solve the issue, the customer doesn't pay. Salesforce and ServiceNow have announced similar models, pricing customer service resolutions at $2 per conversation rather than per seat.37 This shift aligns the cost of software with the actual value it creates, moving away from the "all-you-can-eat" rent-seeking model of the past.
+Intercom's Fin AI, for example, charges $0.99 per successful resolution. If it does not solve the issue, the customer does not pay. Salesforce and ServiceNow have announced similar models, charging about $2 per customer-service conversation rather than per seat. The customer pays for a result, not unlimited access.
 
 ### Build vs. Buy
 
-Historically, building custom software was too slow and expensive for most companies, making SaaS the logical choice. However, AI coding agents (e.g., Claude Code, GitHub Copilot) have dramatically lowered the barriers to entry. 92% of developers now use AI coding tools, and product velocity has increased to the point where the gap between an idea and a prototype has narrowed significantly.2
+Building custom software used to be too slow and expensive for most companies. SaaS was the practical choice. AI coding agents such as Claude Code and GitHub Copilot are changing that. 92% of developers now use AI coding tools, and the time from idea to prototype has fallen sharply.
 
-This is causing a "SaaS repatriation." When Klarna replaced Salesforce with an internally developed AI system, it signaled to the market that established vendors could be displaced by internal teams using AI to build bespoke tools faster and cheaper than paying subscription rents.1 As one investor noted, the barriers to entry for creating software are so low now that the "build versus buy" decision is shifting toward build in many cases.37
+This is leading to what some people call "SaaS repatriation": bringing work back in-house. Klarna's replacement of Salesforce with an internal AI system suggested that teams can sometimes build bespoke tools faster and more cheaply than they can pay subscription fees. The build-versus-buy decision is moving toward build in more situations.
 
 ### AI Repatriation
 
-A surprising trend emerging in 2025 is the repatriation of AI workloads. Due to the high cost and margin erosion associated with public cloud AI services—where 84% of companies report margin impact of 6% or higher—67% of enterprises are actively planning to move AI workloads back to hybrid or private infrastructure.40
+Another trend is moving AI workloads back from public clouds to hybrid or private infrastructure. Public cloud AI can be expensive: 84% of companies report a margin impact of 6% or more, and 67% of enterprises are planning to move some workloads.
 
-This move is driven by a lack of visibility and forecasting precision. 80% of enterprises miss their AI infrastructure forecasts by more than 25%, and data platforms remain a top source of unexpected spend.40 Without clear attribution, companies are making pricing and investment decisions in the dark. Consequently, those who charge for AI services show twice the cost maturity and discipline of those who treat AI as a free internal utility.40
+The problem is often poor cost visibility. 80% of enterprises miss their AI infrastructure forecasts by more than 25%, and data platforms are a major source of unexpected spending. Companies that charge for AI services show twice the cost maturity of those that treat AI as a free internal utility. Charging forces teams to measure what the service actually costs.
 
 ## Conclusions
 
-The convergence of AI, rent-seeking architectures, and the evolution of IT leads to several nuanced conclusions for the future of business models. The traditional boundaries between software provider and software consumer are blurring, as AI provides both the means to automate and the tools to build.
+AI is blurring the line between software provider and software customer. The same tools can automate work, build new software, and challenge the companies that sell software.
 
-1. **Commoditization of Generic Intelligence:** As open-source models close the performance gap with proprietary ones, the "rent" that can be charged for generic model access will collapse.12 Sustainable competitive advantage will shift from the model layer to proprietary data, distribution moats, and deep workflow integration.39  
-2. **SaaS as an Ingredient, Not an Interface:** SaaS applications will likely evolve into a "federation of real-time workflow services" that AI agents interact with.38 The primary interface for work will increasingly be the AI agent, making the underlying application less visible and reducing its brand-based pricing power.1  
-3. **The Rise of the "Internal VC" CIO:** The transition of IT from a cost center to a profit center is no longer a philosophical choice but an operational necessity. Organizations that continue to manage IT through the lens of cost minimization will be outcompeted by high performers who invest in radical innovation and data monetization.17  
-4. **Open Source as the Competitive Floor:** Open-source AI acts as a "competitive floor" that disciplines the pricing of closed-source providers. Organizations can save billions by strategically utilizing open models for specific tasks while reserving closed models for high-stakes, specialized reasoning.12  
-5. **Outcome-Centric Economics:** The industry is moving toward a model where the vendor assumes more performance risk. Outcome-based pricing aligns the incentives of the software provider with the success of the customer, potentially increasing margins for high-performing tools while punishing low-value software.10
+1. **Generic intelligence will become cheaper:** As open models catch up with proprietary ones, providers will find it harder to charge high prices for general-purpose intelligence. Durable advantages will come from proprietary data, distribution, and deep workflow integration.
+2. **SaaS will become an ingredient:** AI agents will interact with software services in the background. The application itself may become less visible, weakening the pricing power of its brand.
+3. **CIOs will own more business outcomes:** IT leaders will need to fund experiments, monetize data, and connect technical work to revenue.
+4. **Open source will set a price floor:** Open models give customers a credible alternative to expensive closed providers. Companies can use open models for routine work and reserve closed models for specialized or high-risk tasks.
+5. **Software pricing will follow results:** Outcome-based pricing makes the vendor share more of the performance risk. It rewards tools that create measurable value and exposes tools that do not.
 
-The majority of software development will continue to lie within large enterprise environments, increasingly leveraging AI-augmented developers and a vast foundation of open-source code to bypass traditional SaaS "tolls." While rent-seeking business models will persist through infrastructure control and specialized APIs, the transparency and accessibility of AI tools will likely lead to a more fragmented and competitive landscape, where value is captured through the radical transformation of business processes rather than the mere provision of access.
+Most software development will continue to happen inside large enterprises, supported by AI coding tools and open-source components. SaaS will not disappear, but its role will change. Companies will capture value less by controlling access and more by improving business processes, owning useful data, and delivering measurable outcomes.
 
 ## References
 
@@ -221,5 +232,3 @@ The majority of software development will continue to lie within large enterpris
 40. 2025 State of AI Cost Management Research Finds 85% of Companies Miss AI Forecasts by \>10% \- PR Newswire, accessed on April 20, 2026, [https://www.prnewswire.com/news-releases/2025-state-of-ai-cost-management-research-finds-85-of-companies-miss-ai-forecasts-by-10-302551947.html](https://www.prnewswire.com/news-releases/2025-state-of-ai-cost-management-research-finds-85-of-companies-miss-ai-forecasts-by-10-302551947.html)  
 41. The Free Lunch Dilemma: How Companies Are Converting Open Source AI Into Profitable Business Models | California Management Review, accessed on April 20, 2026, [https://cmr.berkeley.edu/2026/02/the-free-lunch-dilemma-how-companies-are-converting-open-source-ai-into-profitable-business-models/](https://cmr.berkeley.edu/2026/02/the-free-lunch-dilemma-how-companies-are-converting-open-source-ai-into-profitable-business-models/)  
 42. New Study Shows Open Source AI Is Catalyst for Economic Growth \- About Meta, accessed on April 20, 2026, [https://about.fb.com/news/2025/05/new-study-shows-open-source-ai-catalyst-economic-growth/](https://about.fb.com/news/2025/05/new-study-shows-open-source-ai-catalyst-economic-growth/)
-
-[image1]: <data:image/png;base64,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>
