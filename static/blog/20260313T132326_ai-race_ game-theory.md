@@ -1,67 +1,77 @@
 # The Global AI Race
 
-The pursuit of Artificial General Intelligence (AGI) has fundamentally transcended the boundaries of technological innovation to become the central organizing principle of global geopolitics and industrial strategy in the mid-2020s. By 2025, the "AI race" is no longer a rhetorical device used by Silicon Valley enthusiasts but a high-stakes "existential gamble" involving the total mobilization of national resources, the weaponization of semiconductor supply chains, and the fundamental restructuring of the global software economy. This report provides an exhaustive analysis of these dynamics, utilizing game theory to model the likely outcomes of the current competitive environment while synthesizing the impact of contemporary conflicts, capital reallocation trends, and the quest for compute dominance.
+The pursuit of Artificial General Intelligence (AGI) is no longer only a technology story. It has become a major part of how governments and companies think about power, investment, and national security. The “AI race” now involves huge spending on chips and data centres, pressure on semiconductor supply chains, and major changes in the software business.
+
+This article uses a few simple ideas from game theory to explain why the competition is difficult to slow down. It also looks at how wars, investment, energy, and access to computing power are shaping the race.
 
 ## Defining the AI Race
 
-The AI race in 2025 is defined by a frantic contest between corporate titans and nation-states to achieve a "one-time" technological threshold: the creation of a system that surpasses human cognitive power across all economically and strategically valuable domains. This race is characterized by two distinct paradigms of success, primarily championed by the United States and the People's Republic of China, which prioritize different end-states for artificial intelligence.
+The AI race is a contest between companies and countries to build systems that can perform a wide range of useful intellectual tasks. People often call the hoped-for destination Artificial General Intelligence (AGI). There is no agreed test for AGI, and progress may happen through many smaller improvements rather than one dramatic breakthrough.
+
+The United States and China have different priorities, although both are investing in general-purpose models, chips, data centres, and practical applications.
 
 ### The US Paradigm
 
-For the United States and its leading AI laboratories—OpenAI, Anthropic, Google, and Meta—the race is defined as the pursuit of Artificial General Intelligence. This paradigm views AGI as a self-improving system capable of executing complex real-world knowledge work tasks better than humans. Success is measured by "model performance," with 2025 representing a pivotal year where "emerging" AGI systems like GPT-4 and its successors began demonstrating PhD-level intelligence in specific benchmarks. The American strategy relies on a massive "wagering" of capital on hundreds of billions of dollars in compute, hyperscale superclusters, and increasingly large language models, aiming for a "winner-take-all" advantage that triggers explosive economic growth.
+For leading US AI laboratories such as OpenAI, Anthropic, Google, and Meta, success means building increasingly capable general-purpose models. These models are trained with enormous amounts of computing power and tested on tasks such as coding, research, writing, and analysis.
+
+The US strategy assumes that a significant lead could create major economic and military advantages. That belief helps explain the huge investment in specialised chips, large data centres, and increasingly capable models.
 
 ### The Chinese Paradigm
 
-Beijing has adopted a more application-oriented definition, focusing on "embodied intelligence" and the "comprehensive intelligent transformation" of the physical economy. Rather than focusing solely on large language models—which some Chinese state officials have occasionally characterized as "capitalist drivel"—the 14th Five-Year Plan directs AI toward manufacturing, industrial production, and logistics. China's Ministry of Industry and Information Technology estimates that by the end of 2025, over 60 percent of large Chinese manufacturers will have integrated "AI \+ Manufacturing" systems. Their long-term objective is a 100 percent saturation of AI across key industrial sectors by 2035, leveraging their leadership in industrial robotics and clean energy to power a physical-world intelligence advantage.
+China is also building large AI models, but its strategy puts more emphasis on factories, logistics, robotics, and other physical-world applications. This is sometimes called “embodied intelligence”: AI that can sense and act in the real world rather than only generate text or images.
 
-### Intelligence Classification
+China’s strength in manufacturing, robotics, batteries, and renewable energy could help it deploy AI widely even if it has less access to the most advanced chips.
 
-The classification of progress in this race has been formalized by researchers at Google DeepMind, who in 2023 proposed a five-level framework for AGI performance. This framework is crucial for understanding the current state of the race and the milestones being contested by global powers.
+### A Simple Capability Ladder
+
+Researchers at Google DeepMind proposed a five-level framework for describing AI capability. It is not an official scorecard, but it gives us a simple way to discuss progress.
 
 | Performance Level | Definition | 2025 Status |
 | :---- | :---- | :---- |
 | **Level 1: Emerging** | Outperforms unskilled humans (e.g., ChatGPT, LLaMA 2). | Current baseline for all major models. |
-| **Level 2: Competent** | Outperforms 50% of skilled adults in non-physical tasks. | Achieved by frontier models in coding and legal tasks. |
+| **Level 2: Competent** | Performs as well as many skilled adults at non-physical tasks. | Seen in areas such as coding and legal analysis. |
 | **Level 3: Expert** | Outperforms 90% of skilled adults. | Target for 2025–2026 model releases. |
 | **Level 4: Virtuoso** | Outperforms 99% of skilled adults. | Projected for late 2020s. |
-| **Level 5: Superhuman** | Outperforms 100% of humans (Artificial Superintelligence). | The ultimate "finish line" of the race. |
+| **Level 5: Superhuman** | Better than people across essentially all useful tasks. | Speculative. |
 
-This hierarchy clarifies that the AI race is not a singular event but a continuous cycle of improvement and refinement. However, the strategic perception remains that the actor who first achieves Level 5—Superhuman AGI—will possess an unassailable advantage in cyberwarfare, scientific discovery, and economic planning.
+The ladder shows that the AI race is not a single event with a clear finish line. New capabilities can still change the balance between countries and companies, even if nobody reaches “superhuman” AI.
 
 ## Game Theory and Escalation
 
-Game theory provides the most robust framework for predicting the outcomes of the AI race, as it formalizes the strategic interactions between agents whose outcomes depend on the choices of others. The current race is widely modeled as a "Prisoner’s Dilemma" (PD), although elements of the "Stag Hunt" and the "Game of Chicken" are increasingly visible in the 2025 landscape.
+Game theory is useful here because the result depends on what each player expects the others to do. Three simple models help explain the pressure: the Prisoner’s Dilemma, the Stag Hunt, and the Game of Chicken.
 
 ### The Prisoner's Dilemma
 
-In the AI race, the "Prisoner’s Dilemma" describes a scenario where two primary actors (e.g., the US and China, or OpenAI and Google) must choose between "Cooperation" (prioritizing safety, slowing down scaling, and sharing research) and "Defection" (racing ahead as fast as possible, cutting safety corners).
+In the AI race, the Prisoner’s Dilemma describes two actors choosing between cooperation and competition. Cooperation could mean more safety testing, slower releases, or sharing some research. Competition means trying to move ahead as quickly as possible.
 
-The fundamental tragedy of the Prisoner’s Dilemma in this context is that although mutual cooperation would benefit everyone by reducing existential risk and ensuring safe alignment, the "rational" choice for each individual actor is to defect. Because reaching AGI is viewed as a "one-time threshold" that grants the winner a definitive advantage, there is no "iterated" game to enforce cooperation through future punishment.
+The problem is that both actors may prefer the safe result, but each has a reason to compete. If one slows down while the other moves ahead, the slower actor could lose funding, customers, or political influence. Because the players are unsure how long the race will last, they cannot rely on future cooperation to repair today’s disadvantage.
 
 |  | Actor B: Cooperates (Safety) | Actor B: Defects (Race) |
 | :---- | :---- | :---- |
-| **Actor A: Cooperates (Safety)** | (3, 3\) Moderate, safe growth for both. | (0, 5\) Actor A is left behind; Actor B wins big. |
-| **Actor A: Defects (Race)** | (5, 0\) Actor A wins big; Actor B is left behind. | (1, 1\) High risk of catastrophe; winner uncertain. |
+| **Actor A: Cooperates (Safety)** | (3, 3) Moderate, safe growth for both. | (0, 5) Actor A is left behind; Actor B wins big. |
+| **Actor A: Races** | (5, 0) Actor A wins big; Actor B is left behind. | (1, 1) High risk of catastrophe; winner uncertain. |
 
-The numerical payoffs illustrate that "racing" is the strictly dominant strategy. If Actor B cooperates, Actor A gets 5 by racing vs. 3 by slowing down. If Actor B races, Actor A gets 1 by racing vs. 0 by slowing down. Consequently, the logic of the matrix dictates that all players will race, leading to an equilibrium of "Mutual Defection". In 2025, this is manifested in the "AI safety is dead" narrative, where corporations and nations prioritize innovation velocity over ethical guardrails to avoid individual defeat.
+The numbers are illustrative, not measurements. They show why racing can look like the best choice in either situation. The result is a stable but unattractive outcome: both actors keep competing and accept more risk than they would like.
 
 ### The Stag Hunt
 
-The "Stag Hunt" or "Assurance Game" presents a more optimistic but fragile alternative. In this model, players must decide whether to hunt a "Stag" (cooperate for a high-value, safe AGI) or a "Hare" (act individually for a smaller, guaranteed reward). The highest payoff (10, 10\) occurs if both cooperate. However, if one player fears the other will defect to catch a hare (7, 0), they will likely defect as well to avoid being left with nothing.
+The Stag Hunt presents a more hopeful but fragile alternative. Players can work together for a large reward, or act alone for a smaller reward they can count on. Working together produces the best outcome only when each side trusts the other to do the same.
 
-In the AI race, "hunting the stag" represents global cooperation on safety standards and verification, while "hunting the hare" represents nationalistic "Sovereign AI" initiatives. The 2026 AI Impact Summit in India reflects an attempt to shift the game toward a Stag Hunt by emphasizing inclusive collaboration, yet the persistent "electron gap" and semiconductor export controls maintain a high degree of mutual suspicion.
+In AI, the large shared reward would be common safety tests and reporting rules. The smaller reward would be building a national system without waiting for rivals. Efforts such as India’s 2026 AI Impact Summit try to encourage cooperation, but disputes over chips, energy, and security make trust difficult.
 
 ### The Game of Chicken
 
-As the race nears the AGI threshold, the dynamic begins to resemble the "Game of Chicken" (or Hawk-Dove). In this model, two actors drive toward each other; the one who "swerves" (slows down for safety) loses face, but if neither swerves, both perish in a catastrophic collision. By 2025, the proliferation of autonomous weapons and AI-enabled cyberwarfare has introduced "flash war" risks, where automated retaliation could escalate minor accidents into global conflicts before human intervention is possible. The refusal of the US and UK to sign the 2025 Paris Summit statement on sustainable AI highlights a "no-swerve" posture, as leaders fear that any unilateral slowdown will be exploited by adversaries.
+The race can also resemble the Game of Chicken. Two actors move toward each other; each hopes the other will slow down first. If neither does, both may suffer a crash.
+
+In AI, slowing down could mean pausing a risky release or accepting slower progress. A company or government may fear that restraint will simply give a rival time to move ahead. This is especially worrying when AI is connected to cyber operations, weapons, or automatic responses, where events can move faster than human decision-making.
 
 ## The SaaS Apocalypse
 
-The AI race has triggered a fundamental restructuring of the technology sector, particularly within the Software-as-a-Service (SaaS) ecosystem. By 2025, the traditional SaaS model, which relied on "per-seat" pricing and human-centered workflows, has encountered what analysts call the "AI Funding Apocalypse".
+The AI race is changing the software market, especially Software-as-a-Service (SaaS). Traditional SaaS often charges per employee and helps people carry out a workflow. New AI products increasingly try to carry out the workflow themselves.
 
 ### AI-Native vs. AI-Enhanced
 
-Venture capital investors in 2025 have radically shifted their focus away from "traditional" SaaS. AI startups received 53% of all global venture capital dollars in the first half of 2025, a concentration that has left traditional software founders "shut out" of the market. Investors are increasingly abandoning several categories of AI software that were popular only two years prior.
+Investors have shifted much of their attention toward AI startups. That makes it harder for ordinary software companies to raise funding, even when their products are useful. The market is moving toward products that can complete work, not only help people coordinate it.
 
 | Categorical Shift | Abandoned (2023–2024) | Prioritized (2025–2026) |
 | :---- | :---- | :---- |
@@ -71,11 +81,11 @@ Venture capital investors in 2025 have radically shifted their focus away from "
 | **Integrations** | Specialized "connectors." | Universal protocols (e.g., Anthropic MCP). |
 | **Moat** | Code complexity. | Proprietary data and workflow ownership. |
 
-### Agentic Acquisitions
+### Software That Does More Work
 
-To survive this transition, major SaaS incumbents are divesting non-core business units to fund massive AI infrastructure builds and "Agentic" AI strategies. This is a defensive maneuver to hedge against "disruption risk" from agile, AI-native entrants.
+To respond, large SaaS companies are buying AI and data companies and investing in their own infrastructure. They are trying to build “agents”: software that can plan and complete several steps in a process, such as answering a customer question or preparing a sales report.
 
-Salesforce has been the most active strategic buyer in 2025, completing 10 acquisitions—including the $8 billion cash offer for Informatica—to accelerate its "Agentforce" strategy. This strategy focuses on building autonomous digital workers that can manage entire customer service and sales workflows without human oversight. Similarly, ServiceNow has acquired niche technologies like Cuein and Data.World to enhance its AI-driven workflow automation platforms.
+Salesforce and ServiceNow are examples of companies pursuing this strategy through acquisitions and new AI products. Their goal is to own more of the customer workflow, data, and software used to complete it.
 
 Other notable 2025 divestments and acquisitions include:
 
@@ -85,21 +95,21 @@ Other notable 2025 divestments and acquisitions include:
 
 ### The Collapse of Thin Wrappers
 
-The 2025 market has been particularly brutal for startups building "thin AI wrappers" on existing models. As AI agents become capable of executing tasks directly, the value of tools designed solely for human coordination has plummeted. Technological advancements like Anthropic’s Model Context Protocol (MCP) have further simplified connections between AI models and external data, turning what were once valuable integration "moats" into basic utilities. Consequently, investors now prioritize "proprietary data moats" and companies that demonstrate clear "workflow ownership".
+Startups that only place a simple interface around an existing model may be easy to copy. Shared connection standards such as Anthropic’s Model Context Protocol (MCP) also make basic integrations less distinctive. Stronger advantages come from trusted data, specialist knowledge, or a product that is deeply built into how a customer works.
 
 ## Geopolitical Crucible
 
-The AI race is inextricably linked to the active conflicts in Ukraine and the Middle East, which have become the primary "test ranges" for next-generation autonomous systems. These wars are not just humanitarian crises but kinetic milestones where AI models are trained on real-time combat data, accelerating the development of lethal autonomous weapons (LAWS).
+The AI race is also connected to the wars in Ukraine and the Middle East. These conflicts are showing how software, sensors, drones, and electronic warfare work together. They are not technology demonstrations; the human cost remains central.
 
 ### Ukraine
 
-The Russia-Ukraine conflict has demonstrated the decisive role of AI in overcoming electronic warfare. Extensive Russian jamming has rendered GPS-guided precision munitions ineffective, prompting Ukraine and its Western allies to develop drones that use edge-AI for autonomous navigation and target recognition.
+The war in Ukraine has shown how electronic interference can disrupt GPS and communication links. In response, both sides have developed systems that can navigate with less direct control and use cameras or other sensors to identify objects.
 
 Strategic developments in this theater include:
 
-* **Autonomous Swarms:** The transition from tele-operated drones to autonomous swarms that can coordinate attacks without a direct human link.  
-* **Predictive Logistics:** The use of AI to analyze satellite imagery and sensor data to predict adversary movements and optimize the delivery of critical aid.  
-* **Manpower Reduction:** AI-driven robots are being used to venture into high-risk areas for medical evacuation and demining, reducing the manpower burden in a war of attrition.
+* **Groups of drones:** Systems that coordinate with one another instead of relying on one operator for every movement.  
+* **Logistics support:** Software that combines satellite and sensor data to help plan movement and supplies.  
+* **Dangerous tasks:** Robots used for work such as demining or medical evacuation.
 
 ### The Middle East
 
@@ -112,29 +122,29 @@ The 2025 escalation in the Middle East has highlighted a critical vulnerability 
 | **Physical Infrastructure** | Drone strikes on data centers. | Delays in regional AI hub expansions (e.g., Amazon, Nvidia). |
 | **Sovereign Cloud** | National security imperatives. | Acceleration of locally-owned, redundant infrastructure. |
 
-South Korean chipmakers warned in early 2026 that conflict in the Middle East could disrupt the supply of helium gas, for which there is "no viable alternative" in the semiconductor production process. This represents a "high-severity shock" that could elevate DRAM and NAND pricing, directly increasing the infrastructure costs for AI deployments globally.
+That dependence creates a risk for the whole industry. A disruption to a small but important material can increase chip and memory prices, even when the disruption happens far from a data centre.
 
-### Weaponized Interdependence
+### Supply Chains as Leverage
 
-Semiconductors have become the "new weapon of geopolitics". The US "Small Yard, High Fence" strategy has effectively weaponized the semiconductor technology stack, restricting China's access to the most advanced GPUs (like the Nvidia H20 and Blackwell chips) required for AGI training. In retaliation, China has consolidated control over the "inputs" of the future—critical minerals like gallium, germanium, graphite, and tungsten—which are essential for the next generation of American chips. This "weaponized interdependence" creates a feedback loop where each actor’s attempt to secure their supply chain further destabilizes the other’s, reinforcing the Prisoner’s Dilemma equilibrium.
+Semiconductors have become a tool of foreign policy. The US has restricted China’s access to some advanced chips and chip-making equipment. China has responded with controls on several minerals that are important to modern industry. Each side is trying to reduce its dependence on the other, but those actions can make the global supply chain more expensive and less stable.
 
 ## The Compute War
 
-The AI race is fundamentally a "race for compute". In 2025, compute dominance is viewed as the primary indicator of national power, with 60–95% of recent AI performance gains attributed to scaling compute and data rather than algorithmic breakthroughs.
+The AI race is also a race for computing power. Leading models need advanced chips, large data centres, electricity, and fast networks. Better algorithms matter, but access to hardware can determine which ideas can be tested and deployed.
 
 ### US Export Controls
 
-As of March 2025, the United States controlled 75% of worldwide AI compute capacity, while China’s share had decreased to 14.1%. This disparity is a direct result of US export controls, which have evolved through the "AI Diffusion Rule" of early 2025 to group nations into tiers based on their alignment with US security interests.
+The US has major advantages in leading AI companies, advanced chips, and access to high-end computing. Export controls are intended to limit China’s access to some of this technology. China is trying to close the gap through domestic chip production, better use of available hardware, and large infrastructure investments.
 
 Key metrics of the 2025 compute war:
 
-* **Training Scaling:** Compute requirements for frontier models have doubled every six months since 2015\.  
-* **Inference Scaling:** New "long thinking" (test-time scaling) techniques for GPT-5 class models can consume over 100x more compute than traditional inference.  
-* **Lithography Constraints:** Export controls continue to block China's access to ASML’s Extreme Ultraviolet (EUV) lithography machines. However, Chinese firms like SMIC have reportedly "cracked" 5nm production using complex Self-Aligned Quadruple Patterning (SAQP) with older Deep Ultraviolet (DUV) tools.
+* **Training:** The computing cost of leading models has grown rapidly.  
+* **Reasoning:** New systems can use extra computing time to work through difficult questions, making each answer more expensive.  
+* **Chip production:** China is trying to make more advanced chips despite limits on access to some of the equipment used by leading manufacturers.
 
-### The Electron Gap
+### Chips and Energy
 
-While the US leads in high-end silicon, China possesses a significant advantage in the energy required to power those chips. The "Electron Gap" refers to China’s ability to build and scale data center energy infrastructure faster and more sustainably than the US.
+The US has better access to some of the most advanced chips. China may have an advantage in building energy and industrial infrastructure quickly. A slightly weaker chip can still be useful if there are enough of them and they have affordable electricity.
 
 | Energy Metric (2030 Projections) | United States | China |
 | :---- | :---- | :---- |
@@ -143,50 +153,54 @@ While the US leads in high-end silicon, China possesses a significant advantage 
 | **Grid Constraints** | High (Regulatory hurdles for new projects) | Low (State-led infrastructure build) |
 | **Strategic Advantage** | Access to most efficient GPUs. | Access to massive, cheap energy. |
 
-The International Energy Agency forecasts that US data center electricity demand will more than double by 2030\. Unlike the US, where energy projects are often delayed by regulatory "patchworks," China's historically rapid pace of energy expansion ensures that energy supply is unlikely to be a constraint for their AI ambitions. David Victor of Brookings notes that while the US controls the "chips of today," China’s control over renewable energy and raw materials makes it harder for the US to build the "chips of tomorrow".
+The International Energy Agency expects US data-centre electricity use to more than double by 2030. New US power projects can take years to approve, while China has built energy and manufacturing capacity at great speed. Both sides are investing to improve their weaker position.
 
 ## International Governance
 
-The rapid advancement of AI has prompted a series of global summits aimed at establishing "red lines" for unacceptable risks, such as AI-enabled bioterrorism or unauthorized nuclear escalation. However, by 2026, these efforts are increasingly seen as "summitology as a dying art".
+Governments have held several AI summits and proposed limits for high-risk uses, including biosecurity, cyber operations, and nuclear decision-making. Progress has been limited because countries want safety, but they also fear giving rivals an advantage.
 
 ### Middle Powers
 
-Middle powers like India, Brazil, and South Africa are using AI summits to signal their "strategic autonomy". India’s 2026 AI Impact Summit represents a pivotal shift away from "frontier competition" toward "absorption capacity"—the ability to translate AI into economic development for the Global Majority. Prime Minister Modi’s vision of "democratizing AI" positions India as a third pole that can "weather US and Chinese AI dominance".
+Countries such as India, Brazil, and South Africa are trying to shape the debate rather than choose permanently between the US and China. Their focus is often practical: affordable access, local skills, reliable infrastructure, and using AI to improve public services and economic development.
 
-### The Verifiability Crisis
+India’s approach has been described as building “absorption capacity”. In plain language, this means developing the people, institutions, energy, and businesses needed to turn AI tools into real benefits.
 
-The primary obstacle to a meaningful international AI treaty is the "verifiability" problem. Unlike nuclear non-proliferation, where inspectors can count warheads or detect uranium enrichment, AI progress is largely invisible.
+### The Verification Problem
+
+An international agreement is difficult to enforce if nobody can tell whether others are following it. Nuclear programmes leave physical traces that inspectors can look for. AI progress can happen inside private data centres and is much harder to observe.
 
 Current proposed verification mechanisms include:
 
-* **Hardware Verification:** Installing "narrow-purpose verification hardware" inside data centers to monitor compute usage.  
-* **Mutually Verified Data Centers:** Creating international compute hubs that run "privacy-preserving computations" to allow for oversight without revealing proprietary model weights.  
-* **Technical Standards:** Building agreement on "red lines" and digital watermarks for deepfakes.
+* **Hardware checks:** Equipment that records how much computing power is being used.  
+* **Shared facilities:** Independently monitored computing centres where sensitive work can still remain private.  
+* **Common standards:** Agreed tests for dangerous capabilities and labels for synthetic media.
 
-Despite these proposals, the 2025 Paris Summit failed to produce substantial commitments to AI safety, as the US and UK refused to sign declarations that they felt would hamper their competitive velocity. The UN Scientific Panel on AI remains a hopeful "depoliticizing" venue, but its influence is currently limited to "soft law" and non-binding recommendations.
+These ideas may help, but they involve privacy, commercial secrecy, and national security. Voluntary promises are easier to make than rules that countries can verify and enforce.
 
 ### Split in Global Norms
 
-A "patchwork" of conflicting regulations is emerging. The European Union’s AI Act remains the most comprehensive regulatory framework, focusing on managed risk ex-ante. Meanwhile, the US has favored a "light-touch" approach of voluntary commitments and executive orders (e.g., EO 14179\) to avoid stifling innovation. China combines rapid deployment with "strong political oversight," mandating that AI systems align with state priorities. This "diverging governance pathway" reinforces the game-theoretic perception that the AI race is a zero-sum contest where "regulatory drag" is a strategic liability.
+The European Union has built a detailed risk-based legal framework. The US has generally preferred lighter rules and voluntary commitments, although its policy changes over time. China combines rapid deployment with close political oversight.
+
+These different approaches make it harder for companies to build one global product and harder for governments to agree on shared limits. They also create a risk that safety rules become part of the competition instead of a way to manage it.
 
 ## Conclusion
 
-The convergence of game theoretic pressures, SaaS divestments, and real-world military testing suggests that the AI race is entering its most volatile and decisive phase. Based on the analysis of current trends and the underlying strategic logic, several likely outcomes emerge for the 2026–2030 period.
+The AI race is being shaped by three forces at once: pressure to move quickly, major changes in software, and real-world use of AI in conflict. The outcome is uncertain, but several developments are plausible between 2026 and 2030.
 
 ### Likely Outcomes
 
-* **Bifurcation of the AI Ecosystem:** The world will likely split into two incompatible AI "regimes." One sphere will be led by the US, prioritizing closed-source, high-compute frontier models; the other by China, prioritizing open-source, embodied intelligence integrated into the global manufacturing supply chain.  
-* **The "Safety Squeeze":** In the absence of a breakthrough in verification technology, the Prisoner’s Dilemma will continue to drive "mutual defection" on safety. Corporations will likely "cut corners" to reach AGI first, increasing the risk of catastrophic accidents or rogue AI behavior.  
-* **SaaS Consolidation and Agentic Hegemony:** Traditional SaaS will continue to undergo massive consolidation. The market will be dominated by a few "Winner-Take-Most" platforms (e.g., Salesforce, Microsoft, Google) that own the data and the autonomous agents that execute workflows.  
-* **Kinetic AI Escalation:** Current wars will accelerate the normalization of lethal autonomous weapons. The first "AI flash war" is a distinct possibility as automated systems reduce the time for human judgment in military escalation.
+* **Separate AI ecosystems:** US and Chinese technology standards, suppliers, and software platforms may become less compatible.
+* **Pressure on safety:** Companies and governments may delay safeguards when they believe a rival is close to an important breakthrough.
+* **More software consolidation:** Large platforms may combine models, data, and agents, while smaller companies focus on specialised industries.
+* **More autonomous military systems:** Drones and other systems may require less direct control, increasing the importance of human oversight and clear responsibility.
 
 ### Strategic Recommendations
 
-* **For Corporations:** Prioritize "workflow ownership" and "proprietary data moats" rather than thin technology layers. Transition from subscription models to consumption-based pricing to capture the value of AI execution.  
-* **For Middle Powers:** Focus on "absorption capacity" and "Sovereign AI" infrastructure. Invest in locally-owned data centers and energy reserves to mitigate the volatility of the US-China compute war.  
-* **For Regulators:** Shift from abstract "ethics" to "verifiable safety standards". Support the development of hardware-level verification and "red lines" for high-risk domains like biosecurity and nuclear command and control.
+* **For companies:** Build around real customer problems, useful data, and knowledge of a specific workflow. A thin layer around a public model is unlikely to be a lasting advantage.
+* **For middle powers:** Invest in skills, local computing, dependable energy, and the ability to use AI effectively. Access alone is not enough.
+* **For regulators:** Focus on rules that can be tested and enforced, especially for systems used in biosecurity, cyber operations, weapons, and critical infrastructure.
 
-The AI race of 2025 is a "continuous cycle of improvement" that challenges our ethics and redefines what it means to be human. While the risks are existential, the potential for AGI to solve the most pressing challenges of humanity—from curing diseases to accelerating the green transition—remains the primary driver of this frantic global contest. The ultimate outcome will be determined not just by who has the most chips, but by who can most effectively manage the strategic dilemmas of speed versus caution and competition versus collusion.
+The central question is not simply who will build the most powerful model first. It is whether competition can coexist with enough cooperation to keep powerful systems reliable, controllable, and useful. The countries and companies that manage both sides of that problem may gain a more durable advantage than those that only move fastest.
 
 ## References
 
