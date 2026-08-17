@@ -103,9 +103,18 @@ export const books: Book[] = [
     {
         title: 'The Gate of the Feral Gods',
         author: 'Matt Dinniman',
-        status: 'reading',
+        status: 'read',
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 4,
+        rating: 5,
+        comment: 'Could have done more with the deep water fear, like Subnautica did. Love that Carl is fighting back now.'
+    },
+    {
+        title: 'The Butcher\'s Masquerade',
+        author: 'Matt Dinniman',
+        status: 'reading',
+        seriesName: 'Dungeon Crawler Carl',
+        seriesOrder: 5,
     },
     {
         title: 'Mistborn: The Final Empire',
