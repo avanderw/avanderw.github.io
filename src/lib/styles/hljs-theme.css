@@ -1,0 +1,135 @@
+/* ============================================================
+   hljs-theme.css — highlight.js follows the site theme
+   Loaded AFTER highlight.js/styles/github.css (light baseline).
+   Instead of toggling two CSS files, we redefine the github token
+   colors ONCE with light-dark() so code blocks track the same
+   `color-scheme` as the rest of the site (Goal 3). Values are the
+   github light (#24292e family) and github-dark (#c9d1d9 family)
+   palettes.
+   ============================================================ */
+
+:root {
+	/* foreground + background */
+	--hl-fg: light-dark(#24292e, #c9d1d9);
+	--hl-bg: light-dark(#ffffff, var(--code-bg));
+
+	/* syntax groups */
+	--hl-kw: light-dark(#d73a49, #ff7b72); /* keyword/type/doctag */
+	--hl-title: light-dark(#6f42c1, #d2a8ff); /* title/function/class */
+	--hl-var: light-dark(#005cc5, #79c0ff); /* attr/attribute/literal/number/operator/variable */
+	--hl-string: light-dark(#032f62, #a5d6ff); /* string/regexp */
+	--hl-built: light-dark(#e36209, #ffa657); /* built_in/symbol */
+	--hl-comment: light-dark(#6a737d, #8b949e); /* comment/code/formula */
+	--hl-name: light-dark(#22863a, #7ee787); /* name/quote/selector-tag/pseudo */
+	--hl-subst: light-dark(#24292e, #c9d1d9);
+	--hl-section: light-dark(#005cc5, #1f6feb);
+	--hl-bullet: light-dark(#735c0f, #f2cc60);
+	--hl-emphasis: light-dark(#24292e, #c9d1d9);
+	--hl-strong: light-dark(#24292e, #c9d1d9);
+	--hl-addition-bg: light-dark(#f0fff4, #033a16);
+	--hl-addition-fg: light-dark(#22863a, #aff5b4);
+	--hl-deletion-bg: light-dark(#ffeef0, #67060c);
+	--hl-deletion-fg: light-dark(#b31d28, #ffdcd7);
+}
+
+.hljs {
+	color: var(--hl-fg);
+	background: var(--hl-bg);
+	border-radius: var(--radius-sm);
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+	color: var(--hl-kw);
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+	color: var(--hl-title);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-variable {
+	color: var(--hl-var);
+}
+
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+	color: var(--hl-string);
+}
+
+.hljs-built_in,
+.hljs-symbol {
+	color: var(--hl-built);
+}
+
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+	color: var(--hl-comment);
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+	color: var(--hl-name);
+}
+
+.hljs-subst {
+	color: var(--hl-subst);
+}
+
+.hljs-section {
+	color: var(--hl-section);
+	font-weight: bold;
+}
+
+.hljs-bullet {
+	color: var(--hl-bullet);
+}
+
+.hljs-emphasis {
+	color: var(--hl-emphasis);
+	font-style: italic;
+}
+
+.hljs-strong {
+	color: var(--hl-strong);
+	font-weight: bold;
+}
+
+.hljs-addition {
+	color: var(--hl-addition-fg);
+	background-color: var(--hl-addition-bg);
+}
+
+.hljs-deletion {
+	color: var(--hl-deletion-fg);
+	background-color: var(--hl-deletion-bg);
+}
+
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+	color: var(--hl-fg);
+}

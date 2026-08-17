@@ -1,5 +1,6 @@
 <script lang="ts">
 	import BlogTable from '$lib/components/BlogTable.svelte';
+	import SearchBox from '$lib/components/SearchBox.svelte';
 	import { onMount } from 'svelte';
 	import { blogPosts } from '$lib/data/blog.js';
 	import { setHeaderContent, setNavLinks } from '$lib/stores/layout';
@@ -23,13 +24,7 @@
 		<p>Writing, thoughts, and explorations.</p>
 	</hgroup>
 
-	<input
-		type="search"
-		name="search"
-		placeholder="Search posts"
-		aria-label="Search posts"
-		bind:value={searchTerm}
-	/>
+	<SearchBox bind:value={searchTerm} placeholder="Search posts" ariaLabel="Search posts" />
 
 	<BlogTable {blogPosts} {searchTerm} />
 </main>

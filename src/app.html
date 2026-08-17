@@ -5,10 +5,20 @@
 	<meta charset="utf-8" />
 	<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	%sveltekit.head%
-	<link rel="alternate" type="application/rss+xml" title="Andrew van der Westhuizen" href="/rss.xml" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
+		<script>
+			(function () {
+				try {
+					var theme = localStorage.getItem('theme');
+					var dark =
+						theme === 'dark' ||
+						(!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+					var root = document.documentElement;
+					root.setAttribute('data-theme', dark ? 'dark' : 'light');
+				} catch (e) {}
+			})();
+		</script>
+		%sveltekit.head%
+		<link rel="alternate" type="application/rss+xml" title="Andrew van der Westhuizen" href="/rss.xml" />
 	<script defer data-domain="avanderw.co.za" src="https://tracking.avanderw.co.za/js/script.js"></script>
 
 </head>

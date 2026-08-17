@@ -38,10 +38,13 @@ export interface SocialLink {
 
 export interface CareerEntry {
 	period: string;
+	year: number;
+	duration: string;
 	roles: string[];
 	company: string;
 	companyUrl: string;
 	location: string;
+	categories: string[];
 }
 
 export type BookStatus = 'read' | 'reading';

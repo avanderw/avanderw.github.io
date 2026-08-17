@@ -1,0 +1,90 @@
+/* ============================================================
+   tokens.css — Design tokens for avanderw.co.za
+   Replaces Pico CSS v2 (removed in Goal 1). Single source of
+   truth for typography, colour, spacing, radius and shadows.
+   Modern theming: the root toggles `color-scheme`; every colour
+   is declared ONCE via light-dark() (Goal 3). The theme toggle
+   sets data-theme="light|dark" (default = follow OS).
+   ============================================================ */
+
+:root {
+	/* ---- Typography ---- */
+	--font-serif: et-book, Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia,
+		serif;
+	--font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+	--font-body-size: 14pt;
+	--line-height-base: 1.5;
+	--font-heading-weight: 400;
+
+	/* ---- Prose (long-form articles; Board A R1/R2) ---- */
+	--measure-prose: 65ch;                /* 50-75ch readability range, ~2/3 of the shell */
+	--line-height-prose: 1.625;           /* gentler leading for reading */
+	--space-prose: 1.25rem;               /* gap between paragraphs in article copy */
+
+	/* ---- Index / list copy (Board B S1/S2) ---- */
+	--measure-list-copy: 60ch;            /* comfortable scan width for index descriptions */
+	--space-page-top: 2rem;               /* page top breathing room (main first child) */
+	--space-section: 2.5rem;              /* gap between major page sections */
+	--space-block: 1.5rem;                /* gap between stacked blocks (tables, groups) */
+	--space-card-inset: 1.25rem;          /* inner padding for cards/panels */
+	--space-meta: 0.25rem;                /* tiny gap between stacked metadata lines */
+
+	/* ---- Spacing scale (mirrors Pico v2) ---- */
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-6: 1.5rem;
+	--space-8: 2rem;
+	--space-10: 2.5rem;
+	--space-12: 3rem;
+	--space-16: 4rem;
+
+	/* ---- Type scale (Board B S5) ---- */
+	--font-size-2xs: 0.75rem;
+	--font-size-xs: 0.8rem;
+	--font-size-sm: 0.875rem;
+	--font-size-md: 1rem;
+	--font-size-lg: 1.125rem;
+	--font-size-xl: 1.25rem;
+	--font-size-2xl: 1.5rem;
+
+	/* ---- Radii & shadows ---- */
+	--radius-sm: 0.25rem; /* Pico default border-radius */
+	--radius-md: 0.375rem;
+	--shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+	/* ---- Motion ---- */
+	--transition-fast: 0.15s ease;
+
+	/* ============================================================
+	   Theme. `color-scheme` is set on :root by default (system)
+	   and overridden per data-theme below. All colour tokens are
+	   declared once with light-dark(<light>, <dark>).
+	   ============================================================ */
+	color-scheme: light dark;
+
+	--color-bg: light-dark(#ffffff, #1b1f1f);
+	--color-surface: light-dark(#ffffff, #232829); /* cards, article panels */
+	--color-text: light-dark(#1e1e1e, #e6e8e7);
+	--color-muted: light-dark(#6a6a6a, #9aa3a1);
+	--color-border: light-dark(#e0e0e0, #3a4140);
+	--color-accent: light-dark(#2a7f66, #5cbda0); /* sea green — #2a7f66 = 4.85:1 (AA small) */
+	--color-accent-hover: light-dark(#236b55, #6fcbb0);
+	--color-accent-contrast: light-dark(#ffffff, #0f1412); /* text on accent-filled elements */
+	--color-link-hover: var(--color-accent-hover);
+
+	/* Code blocks (MarkdownViewer / web-components page) */
+	--code-bg: light-dark(#f4f6f4, #151918);
+	--code-border: var(--color-border);
+}
+
+/* ---- Dark theme (mirrors Pico's [data-theme="dark"]) ---- */
+[data-theme='dark'] {
+	color-scheme: dark;
+}
+
+[data-theme='light'] {
+	color-scheme: light;
+}

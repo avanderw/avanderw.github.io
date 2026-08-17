@@ -1,36 +1,48 @@
-/* Global styles - minimal overrides for Pico CSS */
+/* Global styles - tokens-driven, replacing hard-coded values */
 body {
-    width: 60%;
-    margin: 1rem auto;
-    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	width: auto;
+	margin: 1rem auto;
+	overflow-x: hidden;
+	font-family: var(--font-serif);
 }
 
 @media (orientation: portrait) {
-    body {
-        width: 90%;
-    }
+	body {
+		width: auto;
+	}
 }
 
+/* Fluid body type: cap at 1.4rem so tablet/phone feels less oversized.
+   The token's 14pt remains the desktop floor. */
 html {
-    font-size: 14pt;
+	font-size: clamp(1rem, 1.05rem + 0.5vw, var(--font-body-size));
 }
 
 /* Typography overrides */
-h1, h2, h3, h4 {
-    font-weight: 400;
+h1,
+h2,
+h3,
+h4 {
+	font-weight: var(--font-heading-weight);
 }
 
 h2 {
-    font-style: italic;
+	font-style: italic;
 }
 
 /* SVG icon styling */
 svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
+	width: 1.5rem;
+	height: 1.5rem;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+
+@media (max-width: 768px) {
+	body {
+		width: auto;
+	}
 }

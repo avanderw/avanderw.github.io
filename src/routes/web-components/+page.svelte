@@ -66,8 +66,9 @@
 
 	<h2>&lt;site-header&gt;</h2>
 	<p>
-		A responsive site header with breadcrumb navigation, icon links, and a light/dark theme toggle.
-		Theme preference is persisted in <code>localStorage</code>.
+		A responsive site header with a current-location trail, clearly identifiable primary links,
+		icon actions, and a light/dark theme toggle. Theme preference is persisted in
+		<code>localStorage</code>.
 	</p>
 
 	<h3>Live demo</h3>
@@ -105,8 +106,8 @@
 					<td><code>links</code></td>
 					<td><code>"[]"</code></td>
 					<td
-						>JSON array of breadcrumb nav links: <code
-							>[{`{"href":"/page","text":"Label","tooltip":"Optional"}`}]</code
+						>JSON array of current-location trail links; the final label is the current
+						page: <code>[{`{"href":"/page","text":"Label","tooltip":"Optional"}`}]</code
 						>.</td
 					>
 				</tr>
@@ -167,7 +168,7 @@
 
 <style>
 	.demo-box {
-		border: 1px solid var(--pico-muted-border-color, #ddd);
+		border: 1px solid var(--color-border);
 		border-radius: 0.25rem;
 		padding: 0.5rem 1rem;
 		margin-bottom: 1rem;

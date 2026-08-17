@@ -5,6 +5,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import SiteHeaderCore from '$lib/components/SiteHeaderCore.svelte';
+	import { isDark, initializeTheme, toggleTheme } from '$lib/stores/theme';
 
 	interface NavLink {
 		href: string;
@@ -20,8 +21,6 @@
 	export let subscribeTooltip: string = 'Subscribe';
 	export let links: string = '[]';
 
-	let isDarkMode = false;
-
 	$: navLinks = (() => {
 		try {
 			return JSON.parse(links) as NavLink[];
@@ -30,21 +29,12 @@
 		}
 	})();
 
-	function toggleTheme() {
-		isDarkMode = !isDarkMode;
-		document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-		localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-	}
-
 	onMount(() => {
-		const saved = localStorage.getItem('theme');
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		isDarkMode = saved === 'dark' || (!saved && prefersDark);
-		document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+		initializeTheme();
 	});
 </script>
 
-<div class="site-header" class:dark={isDarkMode}>
+<div class="site-header" class:dark={$isDark}>
 	<div class="header-inner">
 		<SiteHeaderCore
 			{home}
@@ -54,7 +44,7 @@
 			{subscribeLabel}
 			{subscribeTooltip}
 			navLinks={navLinks}
-			{isDarkMode}
+			isDarkMode={$isDark}
 			on:themeToggle={toggleTheme}
 		/>
 	</div>
@@ -140,12 +130,12 @@
 		outline: none;
 	}
 
-	/* Breadcrumb separator */
-	:global(nav[aria-label="breadcrumb"] li + li::before) {
-		content: '/';
-		color: var(--color-border);
-		margin-right: 0.25rem;
-	}
+	/* Breadcrumb separator (exclude the mobile sheet list) */
+		:global(nav[aria-label="breadcrumb"] ul:not(.sheet-list) li + li::before) {
+			content: '/';
+			color: var(--color-border);
+			margin-right: 0.25rem;
+		}
 
 	/* ---- Icons ---- */
 	:global(svg) {

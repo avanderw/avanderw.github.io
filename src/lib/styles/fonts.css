@@ -1,0 +1,31 @@
+/* ============================================================
+   fonts.css — Self-hosted et-book (Board C Q2)
+   et-book is the Tufte CSS typeface (MIT-licensed, see
+   static/fonts/LICENSE-et-book.txt). WOFF2 only; the stack falls
+   back to Palatino/Georgia if fonts fail to load (font-display:
+   swap avoids invisible-text flash).
+   ============================================================ */
+
+@font-face {
+	font-family: 'et-book';
+	src: url('/fonts/et-book-roman.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'et-book';
+	src: url('/fonts/et-book-italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'et-book';
+	src: url('/fonts/et-book-bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}

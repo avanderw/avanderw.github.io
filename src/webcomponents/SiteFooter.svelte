@@ -76,13 +76,16 @@
 		}
 	}
 
-	/* Targets SiteFooterCore's rendered output inside the shadow root */
-	:global(nav ul) {
-		list-style: none;
+	/* Targets SiteFooterCore's rendered output inside the shadow root.
+	   The core now uses a single flex-wrap row (.footer-links), so we
+	   let its own styles drive; only icon sizing is applied here. */
+	:global(.footer-links) {
 		display: flex;
-		align-items: center;
-		gap: 0.5rem;
 		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.25rem 0.5rem;
+		padding-bottom: 2.5rem;
 	}
 
 	:global(a) {
