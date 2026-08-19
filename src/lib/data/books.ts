@@ -76,6 +76,7 @@ export const books: Book[] = [
 		title: 'Dungeon Crawler Carl',
 		author: 'Matt Dinniman',
 		status: 'read',
+        yearRead: 2026,
         rating: 5,
         comment: 'My first read of litRPG and I loved it, the humour and absurdity of the story was a great escape from reality.',
         seriesName: 'Dungeon Crawler Carl',
@@ -86,6 +87,7 @@ export const books: Book[] = [
         title: 'Carl\'s Doomsday Scenario',
         author: 'Matt Dinniman',
         status: 'read',
+        yearRead: 2026,
         rating: 5,
         comment: 'New achievement! First real quest completed with absurd results.',
         seriesName: 'Dungeon Crawler Carl',
@@ -95,6 +97,7 @@ export const books: Book[] = [
         title: 'The Dungeon Anarchist\'s Cookbook',
         author: 'Matt Dinniman',
         status: 'read',
+        yearRead: 2026,
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 3,
         rating: 4,
@@ -104,6 +107,7 @@ export const books: Book[] = [
         title: 'The Gate of the Feral Gods',
         author: 'Matt Dinniman',
         status: 'read',
+        yearRead: 2026,
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 4,
         rating: 5,
@@ -411,5 +415,20 @@ export const books: Book[] = [
         seriesName: 'Dresden Files',
         seriesOrder: 17,
         seriesTotal: 18,
+    }
+    ,
+    {
+        title: 'Fooled by Randomness',
+        author: 'Nassim Nicholas Taleb',
+        status: 'read',
+        comment: 'A good exploration of the role of chance, and I preferred it to The Black Swan.',
+        rating: 5,
+    },
+    {
+        title: 'The Black Swan',
+        author: 'Nassim Nicholas Taleb',
+        status: 'read',
+        comment: 'A good exploration of uncertainty and highly improbable events.',
+        rating: 4,
     }
 ];
