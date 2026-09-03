@@ -116,6 +116,7 @@
 				<li><a href="/stream" title="Writing and notes">Stream</a></li>
 				<li><a href="/sandbox" title="Projects and experiments">Sandbox</a></li>
 				<li><a href="/books" title="Reading list">Books</a></li>
+				<li><a href="/principles" title="Personal principles">Principles</a></li>
 			</ul>
 		</nav>
 
@@ -262,6 +263,7 @@
 				<li><a href="/stream" class="sheet-link" on:click={closeSheet}>Stream</a></li>
 				<li><a href="/sandbox" class="sheet-link" on:click={closeSheet}>Sandbox</a></li>
 				<li><a href="/books" class="sheet-link" on:click={closeSheet}>Books</a></li>
+				<li><a href="/principles" class="sheet-link" on:click={closeSheet}>Principles</a></li>
 			</ul>
 		</nav>
 		<nav aria-label="Site actions">

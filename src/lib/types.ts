@@ -36,6 +36,18 @@ export interface SocialLink {
 	year: number;
 }
 
+export interface Principle {
+	id: string;
+	title: string;
+	description: string;
+}
+
+export interface PrincipleGroup {
+	title: string;
+	description: string;
+	principles: Principle[];
+}
+
 export interface CareerEntry {
 	period: string;
 	year: number;
