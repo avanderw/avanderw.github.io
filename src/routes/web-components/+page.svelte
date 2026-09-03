@@ -7,11 +7,11 @@
 	import 'highlight.js/styles/github-dark.css';
 
 	onMount(() => {
-		setNavLinks([{ href: '/web-components', text: 'Web Components' }]);
+		setNavLinks([{ href: '/design-system', text: 'Design System' }]);
 		setHeaderContent({
-			title: 'Web Components',
+			title: 'Design System',
 			description:
-				'Shared UI components published from this site and usable in any project via a single script tag.'
+				'A living reference for the type, language, and reusable site components used across avanderw.co.za.'
 		});
 	});
 
@@ -43,14 +43,88 @@
 </script>
 
 <svelte:head>
-	<title>Web Components · avanderw.co.za</title>
+	<title>Design System · avanderw.co.za</title>
 	<meta
 		name="description"
-		content="Usage and examples for the site-header and site-footer web components published by avanderw.co.za."
+		content="A living reference for typography, inline language, and reusable web components on avanderw.co.za."
 	/>
 </svelte:head>
 
 <main class="container">
+	<section id="type" aria-labelledby="type-heading">
+		<h2 id="type-heading">Type</h2>
+		<p class="section-intro">
+			One serif voice carries reading and navigation; monospace is reserved for code and literal values.
+			The hierarchy comes from semantic HTML first, then the browser-friendly scale beneath it.
+		</p>
+
+		<div class="type-specimens">
+			<div class="type-specimen">
+				<div class="display-sample">A page makes one clear claim</div>
+				<div>
+					<p class="type-name"><code>&lt;h1&gt;</code> Page title</p>
+					<p>Use once per page for its subject. The site header supplies it on route pages.</p>
+				</div>
+			</div>
+			<div class="type-specimen">
+				<div class="section-sample">A meaningful division</div>
+				<div>
+					<p class="type-name"><code>&lt;h2&gt;</code> Section heading</p>
+					<p>Use to divide a page into independently scannable subjects.</p>
+				</div>
+			</div>
+			<div class="type-specimen">
+				<div class="subsection-sample">A smaller group within that division</div>
+				<div>
+					<p class="type-name"><code>&lt;h3&gt;</code> Subsection heading</p>
+					<p>Use for a group that belongs to the section immediately above it.</p>
+				</div>
+			</div>
+			<div class="type-specimen">
+				<p class="body-sample">Good prose makes room for a thought to land before it asks for the next one.</p>
+				<div>
+					<p class="type-name"><code>&lt;p&gt;</code> Reading text</p>
+					<p>Use for paragraphs, introductions, and explanatory copy. Keep long-form text near 65 characters wide.</p>
+				</div>
+			</div>
+			<div class="type-specimen">
+				<p class="meta-sample">Published 03 September 2026 · 4 min read</p>
+				<div>
+					<p class="type-name">Muted metadata</p>
+					<p>Use for dates, bylines, counts, and supporting facts that should not compete with the main copy.</p>
+				</div>
+			</div>
+			<div class="type-specimen">
+				<code class="code-sample">const intent = 'precise';</code>
+				<div>
+					<p class="type-name"><code>&lt;code&gt;</code> Literal text</p>
+					<p>Use for code, commands, file names, and values that must be copied exactly.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="inline-language" aria-labelledby="inline-heading">
+		<h2 id="inline-heading">Inline language</h2>
+		<p class="section-intro">
+			Use semantic elements to show the reader what kind of information they are encountering, rather than styling words for decoration.
+		</p>
+		<blockquote>
+			<p>
+				A <a href="/principles">principle</a> can be <strong>important</strong>, a term can have
+				<em>emphasis</em>, and <code>npm run check</code> remains literal. Use a quote when the
+				words belong to someone else.
+			</p>
+		</blockquote>
+	</section>
+
+	<section id="web-components" aria-labelledby="components-heading">
+		<h2 id="components-heading">Web components</h2>
+		<p class="section-intro">
+			Shared UI components published from this site and usable in any project via a single script tag.
+		</p>
+	</section>
+
 	<h2>Installation</h2>
 	<p>
 		Drop one script tag into any HTML page. No npm, no build step required on the consuming side.
@@ -76,7 +150,7 @@
 		<SiteHeaderCore
 			home="/"
 			rss="/rss.xml"
-			navLinks={[{ href: '/web-components', text: 'Web Components' }]}
+			navLinks={[{ href: '/design-system', text: 'Design System' }]}
 			isDarkMode={false}
 		/>
 	</div>
@@ -167,6 +241,79 @@
 </main>
 
 <style>
+	section {
+		margin-top: var(--space-10);
+	}
+
+	.section-intro {
+		max-width: var(--measure-prose);
+		color: var(--color-muted);
+	}
+
+	.type-specimens {
+		margin-top: var(--space-6);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.type-specimen {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+		gap: var(--space-6);
+		align-items: center;
+		padding: var(--space-6) 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.type-specimen p {
+		margin: 0;
+	}
+
+	.type-specimen p + p {
+		margin-top: var(--space-2);
+		color: var(--color-muted);
+		font-size: var(--font-size-sm);
+	}
+
+	.display-sample,
+	.section-sample,
+	.subsection-sample {
+		font-family: var(--font-serif);
+		font-weight: var(--font-heading-weight);
+		line-height: 1.25;
+	}
+
+	.display-sample {
+		font-size: 2rem;
+	}
+
+	.section-sample {
+		font-size: var(--font-size-2xl);
+		font-style: italic;
+	}
+
+	.subsection-sample {
+		font-size: var(--font-size-xl);
+	}
+
+	.body-sample {
+		max-width: 38ch;
+		line-height: var(--line-height-prose);
+	}
+
+	.meta-sample {
+		color: var(--color-muted);
+		font-size: var(--font-size-sm);
+	}
+
+	.code-sample {
+		justify-self: start;
+	}
+
+	.type-name {
+		color: var(--color-text) !important;
+		font-size: var(--font-size-md) !important;
+	}
+
 	.demo-box {
 		border: 1px solid var(--color-border);
 		border-radius: 0.25rem;
@@ -175,6 +322,8 @@
 	}
 
 	pre {
+		max-width: 100%;
+		box-sizing: border-box;
 		overflow-x: auto;
 		margin-bottom: 1rem;
 		border-radius: 0.375rem;
@@ -189,7 +338,23 @@
 		width: 100%;
 	}
 
+	figure {
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
 	td:first-child {
 		white-space: nowrap;
+	}
+
+	@media (max-width: 640px) {
+		.type-specimen {
+			grid-template-columns: 1fr;
+			gap: var(--space-3);
+		}
+
+		.display-sample {
+			font-size: var(--font-size-2xl);
+		}
 	}
 </style>

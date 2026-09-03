@@ -36,7 +36,7 @@
 	<a href="https://tracking.avanderw.co.za/avanderw.co.za" data-tooltip="View analytics" data-placement="top" title="View analytics" aria-label="View analytics">
 		<ChartNoAxesCombinedIcon />
 	</a>
-	<a href="/web-components" data-tooltip="Web component docs" data-placement="top" title="Web component docs" aria-label="Web component docs">
+	<a href="/design-system" data-tooltip="Design system" data-placement="top" title="Design system" aria-label="Design system">
 		<Component />
 	</a>
 </nav>
