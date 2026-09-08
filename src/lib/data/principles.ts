@@ -96,6 +96,12 @@ export const principleGroups: PrincipleGroup[] = [
 					'Do not delay work that can be completed now. Prompt action prevents small tasks from becoming persistent mental overhead.'
 			},
 			{
+				id: 'focus-on-the-first-milestone',
+				title: 'Focus on the First Milestone',
+				description:
+					'Define the smallest meaningful outcome and reach it before expanding scope. Early evidence and learning are more valuable than polishing an unproven plan.'
+			},
+			{
 				id: 'get-enough-sleep',
 				title: 'Get Enough Sleep',
 				description:
