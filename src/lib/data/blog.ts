@@ -2,6 +2,21 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: "Nielsen's 10 Usability Heuristics",
+		url: '/blog/nielsens-10-usability-heuristics',
+		slug: 'nielsens-10-usability-heuristics',
+		summary: {
+			whatIsDiscussed: 'Nielsen\'s ten rules for checking whether an interface is clear, predictable, forgiving, and easy to use.',
+			whyItMatters: 'Usability problems are cheaper to fix early, before they become engineering work, support costs, or barriers to completing important tasks.',
+			keyTakeaway: 'Use heuristic reviews early, prioritise the most serious problems, and combine expert findings with user testing.'
+		},
+		description: 'A plain-language guide to Nielsen\'s ten usability heuristics, including how to run an evaluation, score problems, and apply the principles to enterprise, spatial, and AI systems.',
+		year: 2026,
+		date: '2026-09-14',
+		readingMinutes: 9,
+		markdownPath: '/blog/20260914T120922_nielsen-usability-heuristics.md',
+	},
+	{
 		title: 'The Ladder of Inference',
 		url: '/blog/ladder-of-inference',
 		slug: 'ladder-of-inference',
