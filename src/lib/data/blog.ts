@@ -13,8 +13,23 @@ export const blogPosts: BlogPost[] = [
 		description: 'A practical guide to the Ladder of Inference, showing how we jump from facts to conclusions and how to slow down for better decisions and clearer conversations.',
 		year: 2026,
 		date: '2026-09-14',
-		readingMinutes: 7,
+		readingMinutes: 8,
 		markdownPath: '/blog/20260914T105928_ladder-of-inference.md',
+	},
+	{
+		title: 'Nelson Rules for Statistical Process Control',
+		url: '/blog/nelson-rules-for-statistical-process-control',
+		slug: 'nelson-rules-for-statistical-process-control',
+		summary: {
+			whatIsDiscussed: 'The eight Nelson rules for spotting unusual shifts, trends, and patterns in statistical process control charts.',
+			whyItMatters: 'Using every rule at once can create false alarms and cause operators to ignore signals that deserve attention.',
+			keyTakeaway: 'Choose a small, risk-based set of trusted rules and treat each signal as the start of an investigation.'
+		},
+		description: 'A plain-language guide to the eight Nelson rules, including their practical uses, limitations, false-alarm risks, and response workflows.',
+		year: 2026,
+		date: '2026-09-14',
+		readingMinutes: 8,
+		markdownPath: '/blog/20260914T111759_nelson-rules-in-process-control.md',
 	},
 	{
 		title: 'AI Writing, Authorship, and What We Should Value Now',
@@ -43,7 +58,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'How Unix design principles can improve reliability, governance, and scalability in long-running LLM workflows.',
 		year: 2026,
 		date: '2026-07-24',
-		readingMinutes: 17,
+		readingMinutes: 18,
 		markdownPath: '/blog/20260724T135123_file-Based-LLM-pipeline-research.md',
 	},
 	{
@@ -58,7 +73,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An analysis of Cell C\'s spectrum ownership, virtualized network model, and active litigation in South Africa\'s telecom sector.',
 		year: 2026,
 		date: '2026-07-24',
-		readingMinutes: 21,
+		readingMinutes: 17,
 		markdownPath: '/blog/20260724T104959_cellc-spectrum-claim-analysis.md',
 	},
 	{
@@ -88,7 +103,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'A practical comparison of vertical slice and layered architectures, including trade-offs in coupling, delivery speed, and long-term maintainability.',
 		year: 2026,
 		date: '2026-06-01',
-		readingMinutes: 21,
+		readingMinutes: 18,
 		markdownPath: '/blog/20260601T104324_vertical-slices-vs-horizontal-layers.md',
 	},
 	{
@@ -148,7 +163,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An exploration of the evolution of virtual pets, from early digital companions to modern AI-driven entities.',
 		year: 2026,
 		date: '2026-05-14',
-		readingMinutes: 6,
+		readingMinutes: 7,
 		markdownPath: '/blog/20260514T152200_virtual-pet-evolution.md',
 	},
 	{
@@ -163,7 +178,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An exploration of the "Parse Don\'t Validate" principle in software development, examining its benefits and applications.',
 		year: 2026,
 		date: '2026-05-12',
-		readingMinutes: 4,
+		readingMinutes: 3,
 		markdownPath: '/blog/20260512T104049_parse-dont-validate.md',
 	},
 	{
@@ -178,7 +193,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An analysis of the balance between automation and human intervention in various domains.',
 		year: 2026,
 		date: '2026-04-24',
-		readingMinutes: 19,
+		readingMinutes: 20,
 		markdownPath: '/blog/20260424T102912_automation-vs-human-intervention-analysis.md',
 	},
 	{
@@ -193,7 +208,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An exploration of algorithmic arbitrage, examining the structural shift in global software development.',
 		year: 2026,
 		date: '2026-04-20',
-		readingMinutes: 9,
+		readingMinutes: 18,
 		markdownPath: '/blog/20260420T134900_AI-Rent-Seeking-IT-Costs.md'
 	},
 	{
@@ -208,7 +223,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An exploration of the art and science of corporate project naming, examining the impact of names on project success and organizational culture.',
 		year: 2026,
 		date: '2026-04-20',
-		readingMinutes: 18,
+		readingMinutes: 19,
 		markdownPath: "/blog/20260420T134300_Corporate-Project-Naming.md",
 	},
 	{
@@ -224,7 +239,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An exploration of the leadership paradox of agency, examining the balance between individual initiative and organizational control.',
 		year: 2026,
 		date: '2026-03-16',
-		readingMinutes: 24,
+		readingMinutes: 6,
 	},
 	{
 		title: 'AI Doom Narrative - Profit or Precaution?',
@@ -239,7 +254,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An exploration of the AI doom narrative, examining the balance between profit-driven motives and precautionary measures in AI development.',
 		year: 2026,
 		date: '2026-03-13',
-		readingMinutes: 10,
+		readingMinutes: 19,
 	},
 	{
 		title: 'The Global AI Race',
@@ -284,7 +299,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'A comprehensive analysis of Contract-First versus Code-First paradigms in AI-driven software architecture.',
 		year: 2026,
 		date: '2026-01-29',
-		readingMinutes: 24,
+		readingMinutes: 8,
 	},
 	{
 		title: 'Hexagonal Architecture',
@@ -314,7 +329,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'An in-depth look at the principles and applications of the Wardley Doctrine.',
 		year: 2025,
 		date: '2025-12-03',
-		readingMinutes: 22,
+		readingMinutes: 14,
 	},
 	{
 		title: 'Wardley Mapping',
@@ -359,7 +374,7 @@ export const blogPosts: BlogPost[] = [
 		description: "A critical analysis of the XY Problem and its relevance to business delivery.",
 		year: 2025,
 		date: '2025-10-17',
-		readingMinutes: 24,
+		readingMinutes: 7,
 	},
 	{
 		title: 'The Hook Model',
@@ -404,7 +419,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'Understanding your customer through their eyes with structured empathy mapping.',
 		year: 2025,
 		date: '2025-09-17',
-		readingMinutes: 16,
+		readingMinutes: 15,
 	},
 	{
 		title: 'Strategy on a Page',
@@ -419,7 +434,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'A working backwards approach to strategic clarity and organizational alignment.',
 		year: 2025,
 		date: '2025-09-17',
-		readingMinutes: 13,
+		readingMinutes: 12,
 	},
 	{
 		title: 'Amazon Six Pager',

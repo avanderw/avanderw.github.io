@@ -45,6 +45,8 @@ npm run dev           # Dev server (hot reload)
 npm run build         # Production build (vite build + web components)
 npm run check         # Type-check via svelte-check
 npm run preview       # Preview production build
+npm run blog:reading-minutes        # Recalculate readingMinutes in blog.ts from markdown word counts
+npm run blog:reading-minutes:check  # Verify readingMinutes is in sync (no write, exits 1 if stale)
 ```
 
 Run `npm run check` before committing. Types are strict.
@@ -58,3 +60,10 @@ GitHub Actions (`.github/workflows/deploy.yml`) — triggers on push to `master`
 Blog posts support two formats:
 - **Markdown** — `markdownPath` points to a `.md` file in `static/`
 - **HTML components** — `htmlComponent` names a Svelte component rendered directly (e.g. Laws of Software)
+
+### Adding a Markdown Blog Post
+
+1. Add the `.md` file to `static/blog/` (filename convention: `YYYYMMDDTHHMMSS_slug.md`).
+2. Add an entry to the `blogPosts` array in `src/lib/data/blog.ts` (title, url, slug, summary, description, year, date, `readingMinutes` — any placeholder value, `markdownPath`).
+3. Run `npm run blog:reading-minutes` to compute the real `readingMinutes` from the markdown word count (200 wpm) and update the entry in place.
+4. Run `npm run check` before committing.
