@@ -2,6 +2,21 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'The Ladder of Inference',
+		url: '/blog/ladder-of-inference',
+		slug: 'ladder-of-inference',
+		summary: {
+			whatIsDiscussed: 'How people move from observable facts to interpretations, assumptions, beliefs, and actions.',
+			whyItMatters: 'Unexamined assumptions can turn small misunderstandings into poor decisions and lasting conflict.',
+			keyTakeaway: 'Separate facts from interpretations, explain your reasoning, and look for evidence that could change your mind.'
+		},
+		description: 'A practical guide to the Ladder of Inference, showing how we jump from facts to conclusions and how to slow down for better decisions and clearer conversations.',
+		year: 2026,
+		date: '2026-09-14',
+		readingMinutes: 7,
+		markdownPath: '/blog/20260914T105928_ladder-of-inference.md',
+	},
+	{
 		title: 'AI Writing, Authorship, and What We Should Value Now',
 		url: '/blog/ai-writing-authorship-and-what-we-should-value-now',
 		slug: 'ai-writing-authorship-and-what-we-should-value-now',
