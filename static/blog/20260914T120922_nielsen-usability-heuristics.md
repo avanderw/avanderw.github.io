@@ -67,7 +67,7 @@ Good design should reduce the need for documentation, but complex products still
 
 ## Why heuristic reviews matter
 
-Usability problems are cheaper to fix early. A common rule of thumb says that a problem costing about $1 to fix in a design can cost about $10 during development and $100 or more after release. The exact numbers vary, but the pattern is useful: late fixes also bring support costs, lost conversions, churn, emergency releases, and damage to trust.
+Usability problems are cheaper to fix early. A common rule of thumb says that a problem costing about USD 1 to fix in a design can cost about USD 10 during development and USD 100 or more after release. The exact numbers vary, but the pattern is useful: late fixes also bring support costs, lost conversions, churn, emergency releases, and damage to trust.
 
 Heuristic reviews are usually faster and less expensive than user testing. The methods answer different questions:
 
@@ -272,7 +272,7 @@ Tooltips, contextual guidance, searchable documentation, and focused examples ar
 
 ## Why heuristic reviews matter
 
-Usability problems are cheaper to fix early. A common rule of thumb says that a problem costing about $1 to fix in a design can cost about $10 during development and $100 or more after release. The exact numbers vary, but the pattern is useful: late fixes also bring support costs, lost conversions, churn, emergency releases, and damage to trust.
+Usability problems are cheaper to fix early. A common rule of thumb says that a problem costing about USD 1 to fix in a design can cost about USD 10 during development and USD 100 or more after release. The exact numbers vary, but the pattern is useful: late fixes also bring support costs, lost conversions, churn, emergency releases, and damage to trust.
 
 Heuristic reviews are usually faster and less expensive than user testing. The methods answer different questions:
 
@@ -437,7 +437,7 @@ Good design should reduce the need for documentation, but complex products still
 ## **The Business Value and Economic Imperative of Heuristic Audits**
 
 The business justification for heuristic evaluations rests on a well-established cost-of-change dynamic in software engineering known as the 1-10-100 Rule. Originally formulated in quality management by George Labovitz and Yu Sang Chang, and supported by software cost models from Barry Boehm, this principle illustrates how the financial expense of addressing usability defects escalates dramatically across the software development lifecycle.  
-Resolving an interface flaw during early design prototype phases costs approximately $1 in design overhead. If that same flaw passes undetected into the software engineering phase, refactoring code, rewriting test scripts, and redeploying builds increases the remediation cost to roughly $10. If the usability defect reaches live production, the financial remediation cost expands to $100 or more. This escalation incorporates lost customer conversions, elevated churn rates, inflated support ticket volumes, emergency code patches, and long-term brand equity erosion.  
+Resolving an interface flaw during early design prototype phases costs approximately USD 1 in design overhead. If that same flaw passes undetected into the software engineering phase, refactoring code, rewriting test scripts, and redeploying builds increases the remediation cost to roughly USD 10. If the usability defect reaches live production, the financial remediation cost expands to USD 100 or more. This escalation incorporates lost customer conversions, elevated churn rates, inflated support ticket volumes, emergency code patches, and long-term brand equity erosion.
 Evaluating usability through expert heuristic audits provides clear speed and financial advantages over alternative inspection and testing methodologies. Comparing inspection methods highlights distinct operational trade-offs across expert evaluations, task walkthroughs, and empirical user testing:
 
 | Evaluation Dimension | Heuristic Analysis | Cognitive Walkthrough | End-User Usability Testing |
@@ -445,7 +445,7 @@ Evaluating usability through expert heuristic audits provides clear speed and fi
 | **Primary Evaluators** | 3 to 5 UX Experts. | UX Designers and Product Managers. | Target End-Users. |
 | **Methodological Focus** | Inspecting UI against general principles. | Stepping through explicit task goals. | Observing realistic task execution. |
 | **Execution Velocity** | Extremely Fast (Hours to Days). | Fast (1 to 2 Days). | Slow (2 to 4 Weeks). |
-| **Financial Investment** | Low ($1,000 \- $3,000 equivalent). | Very Low (Internal team allocation). | High ($5,000 \- $15,000+). |
+| **Financial Investment** | Low (USD 1,000 - USD 3,000 equivalent). | Very Low (Internal team allocation). | High (USD 5,000 - USD 15,000+). |
 | **Typical Problem Yield** | Broad structural usability flaws. | Sequential path navigation roadblocks. | Unexpected mental model misalignments. |
 | **Optimal Project Phase** | Wireframes, pre-code builds, post-redesign. | Early task-flow mapping. | Validating functional interactive builds. |
 
@@ -489,7 +489,7 @@ Following independent reviews, evaluators merge their observations into a consol
 ### **Phase 4: Clustering, Prioritization, and Remediation Roadmap**
 
 To transform raw audit data into an actionable engineering backlog, issues are clustered into thematic categories, such as navigation structure, terminology, form inputs, and system feedback. Each cluster is ranked using an objective prioritization formula:  
-\[span\_296\](start\_span)\[span\_296\](end\_span)\\text{Priority Score} \= \\text{Severity Score (0--4)} \+ \\text{Frequency Score (1--3)} \+ \\text{Business Impact (1--3)}$$  
+Priority Score = Severity Score (0--4) + Frequency Score (1--3) + Business Impact (1--3)
 This framework ensures that critical usability catastrophes, such as payment gateway blockages, are flagged for immediate engineering hotfixes, while cosmetic issues are queued for routine backlog grooming.
 
 ## **Modern Horizons: Extending Heuristics to Spatial Computing and Generative AI**

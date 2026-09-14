@@ -2,6 +2,21 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Zero-Knowledge Proofs: Proving Without Revealing',
+		url: '/blog/zero-knowledge-proofs',
+		slug: 'zero-knowledge-proofs',
+		summary: {
+			whatIsDiscussed: 'How zero-knowledge proofs verify a claim without exposing the private information used to make it.',
+			whyItMatters: 'They can reduce unnecessary data collection and make expensive computation easier for others to verify.',
+			keyTakeaway: 'Prove the minimum fact a verifier needs, and use zero knowledge only when simpler security controls are not enough.'
+		},
+		description: 'A plain-language introduction to zero-knowledge proofs, with practical examples for logins, identity checks, Signal, rollups, and zkVMs.',
+		year: 2026,
+		date: '2026-09-14',
+		readingMinutes: 7,
+		markdownPath: '/blog/20260914T133715_zero-knowledge-proofs.md',
+	},
+	{
 		title: "Nielsen's 10 Usability Heuristics",
 		url: '/blog/nielsens-10-usability-heuristics',
 		slug: 'nielsens-10-usability-heuristics',
@@ -13,7 +28,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'A plain-language guide to Nielsen\'s ten usability heuristics, including how to run an evaluation, score problems, and apply the principles to enterprise, spatial, and AI systems.',
 		year: 2026,
 		date: '2026-09-14',
-		readingMinutes: 9,
+		readingMinutes: 34,
 		markdownPath: '/blog/20260914T120922_nielsen-usability-heuristics.md',
 	},
 	{
