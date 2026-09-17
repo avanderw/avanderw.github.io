@@ -2,6 +2,21 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Getting Things Done',
+		url: '/blog/getting-things-done',
+		slug: 'getting-things-done',
+		summary: {
+			whatIsDiscussed: 'A practical version of Getting Things Done built around capture, clear next actions, and one shared task list.',
+			whyItMatters: 'Undecided commitments create mental overhead, while clear actions and trusted lists make work easier to start and finish.',
+			keyTakeaway: 'Capture everything, clarify what it means, and turn each commitment into one concrete next action.'
+		},
+		description: 'A practical reflection on the parts of Getting Things Done that survived years of use, including capture, clarification, next actions, recurring tasks, and voice input.',
+		year: 2026,
+		date: '2026-09-17',
+		readingMinutes: 5,
+		markdownPath: '/blog/20260917T130832_getting-things-done.md',
+	},
+	{
 		title: 'Zero-Knowledge Proofs: Proving Without Revealing',
 		url: '/blog/zero-knowledge-proofs',
 		slug: 'zero-knowledge-proofs',
