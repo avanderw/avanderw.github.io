@@ -431,4 +431,12 @@ export const books: Book[] = [
         comment: 'A good exploration of uncertainty and highly improbable events.',
         rating: 4,
     }
+    ,
+    {
+        title: 'Getting Things Done: The Art of Stress-Free Productivity',
+        author: 'David Allen',
+        status: 'read',
+        comment: 'Dated, but its principles helped me manage the demands of transitioning into senior management.',
+        rating: 4,
+    }
 ];
