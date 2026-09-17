@@ -17,6 +17,21 @@ export const blogPosts: BlogPost[] = [
 		markdownPath: '/blog/20260917T130832_getting-things-done.md',
 	},
 	{
+		title: 'What Extreme Ownership Taught Me About Getting Things Done',
+		url: '/blog/extreme-ownership',
+		slug: 'extreme-ownership',
+		summary: {
+			whatIsDiscussed: 'Lessons from Extreme Ownership about clear ownership, simple decisions, focused execution, and consistent strategy.',
+			whyItMatters: 'Ambiguous ownership, priorities, and strategy make good decisions slower and allow technical debt to compound.',
+			keyTakeaway: 'Remove ambiguity by making ownership, purpose, priority, and strategic direction clear.'
+		},
+		description: 'Reflections on how Extreme Ownership applies to teams, software architecture, prioritization, and the balance between tactical agility and strategic consistency.',
+		year: 2026,
+		date: '2026-09-17',
+		readingMinutes: 4,
+		markdownPath: '/blog/20260917T151441_extreme-ownership.md',
+	},
+	{
 		title: 'Zero-Knowledge Proofs: Proving Without Revealing',
 		url: '/blog/zero-knowledge-proofs',
 		slug: 'zero-knowledge-proofs',
@@ -43,7 +58,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'A plain-language guide to Nielsen\'s ten usability heuristics, including how to run an evaluation, score problems, and apply the principles to enterprise, spatial, and AI systems.',
 		year: 2026,
 		date: '2026-09-14',
-		readingMinutes: 34,
+		readingMinutes: 10,
 		markdownPath: '/blog/20260914T120922_nielsen-usability-heuristics.md',
 	},
 	{
