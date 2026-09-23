@@ -2,6 +2,21 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'Why Retries Quietly Turn Into Outages',
+		url: '/blog/why-retries-turn-into-outages',
+		slug: 'why-retries-turn-into-outages',
+		summary: {
+			whatIsDiscussed: 'How retry logic compounds exponentially across service chains, turning a local decision into a system-wide cascade.',
+			whyItMatters: 'A single retry per hop becomes exponential load on the weakest service, creating retry storms that can collapse entire systems.',
+			keyTakeaway: 'Retries have a blast radius that grows exponentially with chain depth; use retry budgets, circuit breakers, and error ownership to prevent cascades.'
+		},
+		description: 'How distributed systems turn sensible retry logic into exponential traffic amplification, why the problem stays hidden until it cascades, and mechanisms like retry budgets, circuit breakers, and error ownership to prevent retry storms.',
+		year: 2026,
+		date: '2026-09-23',
+		readingMinutes: 7,
+		markdownPath: '/blog/20260923T101117_the-retry-cost.md',
+	},
+	{
 		title: 'Getting Things Done',
 		url: '/blog/getting-things-done',
 		slug: 'getting-things-done',
