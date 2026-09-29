@@ -116,9 +116,19 @@ export const books: Book[] = [
     {
         title: 'The Butcher\'s Masquerade',
         author: 'Matt Dinniman',
-        status: 'reading',
+        status: 'read',
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 5,
+        yearRead: 2026,
+        rating: 5,
+        comment: 'I realise that I really like it when a story arc from a few books back comes to fruition.',
+    },
+    {
+        title: 'The Eye of the Bedlam Bride',
+        author: 'Matt Dinniman',
+        status: 'reading',
+        seriesName: 'Dungeon Crawler Carl',
+        seriesOrder: 6,
     },
     {
         title: 'Mistborn: The Final Empire',
