@@ -2,6 +2,21 @@ import type { BlogPost } from '../types.js';
 
 export const blogPosts: BlogPost[] = [
 	{
+		title: 'The N+1 Query Problem, and How to Actually Fix It',
+		url: '/blog/n-plus-one-query-problem',
+		slug: 'n-plus-one-query-problem',
+		summary: {
+			whatIsDiscussed: 'How N+1 queries happen, how to detect them, and how to fix them across common ORMs.',
+			whyItMatters: 'On a frequently used hot path, per-row queries multiply into heavy database traffic, exhausting connection pools and increasing latency.',
+			keyTakeaway: 'Load related data in bulk with joins or batch queries, and prioritize N+1 issues on high-traffic, latency-sensitive paths.'
+		},
+		description: 'A practical guide to the N+1 query problem, how to detect it, and how to fix it with eager and batch loading in common ORMs. It also explains why an N+1 on a hot path can multiply database load across requests.',
+		year: 2026,
+		date: '2026-10-01',
+		readingMinutes: 5,
+		markdownPath: '/blog/20261001T110829_n+1-database-queries.md',
+	},
+	{
 		title: 'Why Retries Quietly Turn Into Outages',
 		url: '/blog/why-retries-turn-into-outages',
 		slug: 'why-retries-turn-into-outages',
@@ -13,7 +28,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'How distributed systems turn sensible retry logic into exponential traffic amplification, why the problem stays hidden until it cascades, and mechanisms like retry budgets, circuit breakers, and error ownership to prevent retry storms.',
 		year: 2026,
 		date: '2026-09-23',
-		readingMinutes: 7,
+		readingMinutes: 4,
 		markdownPath: '/blog/20260923T101117_the-retry-cost.md',
 	},
 	{
@@ -88,7 +103,7 @@ export const blogPosts: BlogPost[] = [
 		description: 'A practical guide to the Ladder of Inference, showing how we jump from facts to conclusions and how to slow down for better decisions and clearer conversations.',
 		year: 2026,
 		date: '2026-09-14',
-		readingMinutes: 8,
+		readingMinutes: 6,
 		markdownPath: '/blog/20260914T105928_ladder-of-inference.md',
 	},
 	{
