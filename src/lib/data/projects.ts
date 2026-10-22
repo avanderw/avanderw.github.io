@@ -5,6 +5,12 @@ export const years: Year[] = [
 		number: 2026,
 		projects: [
 			{
+				name: 'Open Skill',
+				url: 'https://avanderw.co.za/open-skill',
+				description: 'Leaderboard tracking for competitive activities.',
+				highlighted: true
+			},
+			{
 				name: 'Proximity Playground',
 				url: 'https://avanderw.co.za/proximity-playground',
 				description: 'An Interactive Guide to Geometric Graphs.',
@@ -29,8 +35,7 @@ export const years: Year[] = [
 			{
 				name: 'Minimum Spanning Tree',
 				url: 'https://avanderw.co.za/minimum-spanning-tree',
-				description: 'Minimum Spanning Tree visualization and implementation.',
-				highlighted: true
+				description: 'Minimum Spanning Tree visualization and implementation.'
 			},
 			{
 				name: 'Weighted Sort',
@@ -61,8 +66,7 @@ export const years: Year[] = [
 			{
 				name: '2D RGB Shift',
 				url: 'https://avanderw.co.za/rgb-shift-fx',
-				description: 'An image distortion technique often seen in glitch art and modern digital design.',
-				highlighted: true
+				description: 'An image distortion technique often seen in glitch art and modern digital design.'
 			},
 			{
 				name: '2D Flood Fill',
