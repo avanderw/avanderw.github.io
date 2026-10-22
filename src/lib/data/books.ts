@@ -126,9 +126,19 @@ export const books: Book[] = [
     {
         title: 'The Eye of the Bedlam Bride',
         author: 'Matt Dinniman',
-        status: 'reading',
+        status: 'read',
         seriesName: 'Dungeon Crawler Carl',
         seriesOrder: 6,
+        rating: 5,
+        comment: 'The setup is complete and things get complicated.',
+        yearRead: 2026,
+    },
+    {
+        title: 'The Inevitable Ruin',
+        author: 'Matt Dinniman',
+        status: 'reading',
+        seriesName: 'Dungeon Crawler Carl',
+        seriesOrder: 7,
     },
     {
         title: 'Mistborn: The Final Empire',
