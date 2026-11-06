@@ -134,11 +134,21 @@ export const books: Book[] = [
         yearRead: 2026,
     },
     {
-        title: 'The Inevitable Ruin',
+        title: 'This Inevitable Ruin',
+        author: 'Matt Dinniman',
+        status: 'read',
+        seriesName: 'Dungeon Crawler Carl',
+        seriesOrder: 7,
+        rating: 5,
+        comment: 'Less laughs, greater stakes, more seriousness and we learn more about the universe.',
+        yearRead: 2026,
+    },
+    {
+        title: 'A Parade of Horribles',
         author: 'Matt Dinniman',
         status: 'reading',
         seriesName: 'Dungeon Crawler Carl',
-        seriesOrder: 7,
+        seriesOrder: 8,
     },
     {
         title: 'Mistborn: The Final Empire',
