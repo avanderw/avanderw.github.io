@@ -3,9 +3,11 @@
 	import SearchBox from '$lib/components/SearchBox.svelte';
 	import { onMount } from 'svelte';
 	import { blogPosts } from '$lib/data/blog.js';
+	import { blogLabels, type BlogLabel } from '$lib/types.js';
 	import { setHeaderContent, setNavLinks } from '$lib/stores/layout';
 
 	let searchTerm = '';
+	let selectedLabel: BlogLabel | '' = '';
 
 	onMount(() => {
 		setNavLinks([{ href: '/stream', text: 'Stream' }]);
@@ -26,5 +28,31 @@
 
 	<SearchBox bind:value={searchTerm} placeholder="Search posts" ariaLabel="Search posts" />
 
-	<BlogTable {blogPosts} {searchTerm} />
+	<label class="label-filter">
+		Label
+		<select bind:value={selectedLabel}>
+			<option value="">All labels</option>
+			{#each blogLabels as label}
+				<option value={label}>{label}</option>
+			{/each}
+		</select>
+	</label>
+
+	<BlogTable {blogPosts} {searchTerm} {selectedLabel} />
 </main>
+
+<style>
+	.label-filter {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: var(--space-4);
+		font-size: 0.9rem;
+	}
+
+	.label-filter select {
+		width: auto;
+		margin: 0;
+		font: inherit;
+	}
+</style>

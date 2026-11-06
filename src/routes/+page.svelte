@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import BlogPostTitle from '$lib/components/BlogPostTitle.svelte';
 	import { years } from '$lib/data/projects.js';
 	import { blogPosts } from '$lib/data/blog.js';
 	import { careerEntries } from '$lib/data/career.js';
@@ -66,7 +67,7 @@
 						<div class="read-time">{post.readingMinutes} min read</div>
 						</td>
 						<td>
-							<a href={post.url} class="title">{post.title}</a>
+							<BlogPostTitle {post} />
 							<div class="desc">{post.description}</div>
 						</td>
 					</tr>
@@ -147,6 +148,7 @@
 	}
 
 	.date {
+		width: 1%;
 		color: var(--color-muted);
 		white-space: nowrap;
 		vertical-align: top;

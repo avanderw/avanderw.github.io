@@ -1,8 +1,10 @@
 <script lang="ts">
-	import type { BlogPost } from '$lib/types.js';
+	import type { BlogLabel, BlogPost } from '$lib/types.js';
+	import BlogPostTitle from './BlogPostTitle.svelte';
 
 	export let blogPosts: BlogPost[];
 	export let searchTerm: string = '';
+	export let selectedLabel: BlogLabel | '' = '';
 
 	const monthNames = [
 		'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -17,8 +19,9 @@
 	}
 
 	$: filteredPosts = blogPosts.filter(post =>
-		post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-		post.description.toLowerCase().includes(searchTerm.toLowerCase())
+		(!selectedLabel || post.labels?.includes(selectedLabel)) &&
+		(post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+		post.description.toLowerCase().includes(searchTerm.toLowerCase()))
 	);
 </script>
 
@@ -30,8 +33,7 @@
 			<thead class="sr-only">
 				<tr>
 					<th>Date</th>
-					<th>Title</th>
-					<th>Description</th>
+					<th>Title and description</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,8 +43,8 @@
 							{formatDate(post.date)}
 							<div class="read-time">{post.readingMinutes} min read</div>
 						</td>
-						<td>
-							<a href={post.url} class="title">{post.title}</a>
+						<td class="post-content">
+							<BlogPostTitle {post} />
 							<div class="desc">{post.description}</div>
 						</td>
 					</tr>
@@ -51,7 +53,7 @@
 		</table>
 	</div>
 
-	{#if searchTerm}
+	{#if searchTerm || selectedLabel}
 		<p class="results-count" aria-live="polite">
 			{filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
 			{#if filteredPosts.length > 0}
@@ -60,13 +62,18 @@
 		</p>
 	{/if}
 
-	{#if searchTerm && filteredPosts.length === 0}
-		<p class="no-results">No blog posts found matching "{searchTerm}"</p>
+	{#if (searchTerm || selectedLabel) && filteredPosts.length === 0}
+		<p class="no-results">No blog posts found{#if searchTerm} matching "{searchTerm}"{/if}{#if selectedLabel} with label "{selectedLabel}"{/if}.</p>
 	{/if}
 </section>
 
 <style>
+	.post-content {
+		min-width: 0;
+	}
+
 	.date {
+		width: 1%;
 		color: var(--color-muted);
 		white-space: nowrap;
 		vertical-align: top;
@@ -79,12 +86,6 @@
 		font-size: 0.8rem;
 		margin-top: var(--space-meta);
 		white-space: nowrap;
-	}
-
-	.title {
-		font-weight: 600;
-		font-size: 1.05rem;
-		line-height: 1.35;
 	}
 
 	.desc {
@@ -123,10 +124,6 @@
 	@media (max-width: 768px) {
 		.date {
 			font-size: 0.85rem;
-		}
-
-		.title {
-			font-size: 1rem;
 		}
 	}
 </style>

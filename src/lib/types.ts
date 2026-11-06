@@ -10,10 +10,14 @@ export interface Year {
 	projects: Project[];
 }
 
+export const blogLabels = ['technology', 'leadership', 'management', 'review'] as const;
+export type BlogLabel = (typeof blogLabels)[number];
+
 export interface BlogPost {
 	title: string;
 	url: string;
 	slug: string;
+	labels?: BlogLabel[];
 	markdownPath?: string; // Optional for HTML-based posts
 	htmlComponent?: string; // Optional component name for curated HTML posts
 	summary: BlogSummary;

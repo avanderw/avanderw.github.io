@@ -5,6 +5,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'The N+1 Query Problem, and How to Actually Fix It',
 		url: '/blog/n-plus-one-query-problem',
 		slug: 'n-plus-one-query-problem',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'How N+1 queries happen, how to detect them, and how to fix them across common ORMs.',
 			whyItMatters: 'On a frequently used hot path, per-row queries multiply into heavy database traffic, exhausting connection pools and increasing latency.',
@@ -20,6 +21,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Why Retries Quietly Turn Into Outages',
 		url: '/blog/why-retries-turn-into-outages',
 		slug: 'why-retries-turn-into-outages',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'How retry logic compounds exponentially across service chains, turning a local decision into a system-wide cascade.',
 			whyItMatters: 'A single retry per hop becomes exponential load on the weakest service, creating retry storms that can collapse entire systems.',
@@ -35,6 +37,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Getting Things Done',
 		url: '/blog/getting-things-done',
 		slug: 'getting-things-done',
+		labels: ['management', 'review'],
 		summary: {
 			whatIsDiscussed: 'A practical version of Getting Things Done built around capture, clear next actions, and one shared task list.',
 			whyItMatters: 'Undecided commitments create mental overhead, while clear actions and trusted lists make work easier to start and finish.',
@@ -50,6 +53,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'What Extreme Ownership Taught Me About Getting Things Done',
 		url: '/blog/extreme-ownership',
 		slug: 'extreme-ownership',
+		labels: ['leadership', 'management', 'review'],
 		summary: {
 			whatIsDiscussed: 'Lessons from Extreme Ownership about clear ownership, simple decisions, focused execution, and consistent strategy.',
 			whyItMatters: 'Ambiguous ownership, priorities, and strategy make good decisions slower and allow technical debt to compound.',
@@ -65,6 +69,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Zero-Knowledge Proofs: Proving Without Revealing',
 		url: '/blog/zero-knowledge-proofs',
 		slug: 'zero-knowledge-proofs',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'How zero-knowledge proofs verify a claim without exposing the private information used to make it.',
 			whyItMatters: 'They can reduce unnecessary data collection and make expensive computation easier for others to verify.',
@@ -80,6 +85,7 @@ export const blogPosts: BlogPost[] = [
 		title: "Nielsen's 10 Usability Heuristics",
 		url: '/blog/nielsens-10-usability-heuristics',
 		slug: 'nielsens-10-usability-heuristics',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Nielsen\'s ten rules for checking whether an interface is clear, predictable, forgiving, and easy to use.',
 			whyItMatters: 'Usability problems are cheaper to fix early, before they become engineering work, support costs, or barriers to completing important tasks.',
@@ -95,6 +101,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'The Ladder of Inference',
 		url: '/blog/ladder-of-inference',
 		slug: 'ladder-of-inference',
+		labels: ['leadership'],
 		summary: {
 			whatIsDiscussed: 'How people move from observable facts to interpretations, assumptions, beliefs, and actions.',
 			whyItMatters: 'Unexamined assumptions can turn small misunderstandings into poor decisions and lasting conflict.',
@@ -110,6 +117,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Nelson Rules for Statistical Process Control',
 		url: '/blog/nelson-rules-for-statistical-process-control',
 		slug: 'nelson-rules-for-statistical-process-control',
+		labels: ['management'],
 		summary: {
 			whatIsDiscussed: 'The eight Nelson rules for spotting unusual shifts, trends, and patterns in statistical process control charts.',
 			whyItMatters: 'Using every rule at once can create false alarms and cause operators to ignore signals that deserve attention.',
@@ -125,6 +133,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'AI Writing, Authorship, and What We Should Value Now',
 		url: '/blog/ai-writing-authorship-and-what-we-should-value-now',
 		slug: 'ai-writing-authorship-and-what-we-should-value-now',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'How AI-assisted writing changes authorship, incentives, and what readers should value when text is machine-assisted.',
 			whyItMatters: 'Visibility and volume can outrun verification, so readers need stronger signals than polish alone to judge trustworthiness.',
@@ -140,6 +149,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'From "Everything Is a File" to "Files Are All You Need"',
 		url: '/blog/files-are-all-you-need',
 		slug: 'files-are-all-you-need',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'File-based Unix-style workflows for LLM pipelines and long-running automation, with files acting as the main coordination boundary.',
 			whyItMatters: 'Clear file boundaries improve reliability, auditability, and governance because state is visible instead of implicit.',
@@ -170,6 +180,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Confidence, Competence, and Calibration in AI and Human Systems',
 		url: '/blog/confidence-in-ai-and-humans',
 		slug: 'confidence-in-ai-and-humans',
+		labels: ['technology', 'leadership'],
 		summary: {
 			whatIsDiscussed: 'Confidence calibration in AI models and human decision-making, and how both can appear more certain than they really are.',
 			whyItMatters: 'Unjustified certainty creates bad decisions whether it comes from a model, a manager, or a team culture.',
@@ -185,6 +196,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Vertical Slices vs Layered Architecture',
 		url: '/blog/vertical-slices-vs-horizontal-layers',
 		slug: 'vertical-slices-vs-horizontal-layers',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'A comparison of vertical slice delivery and layered architecture, with attention to how work flows through a system.',
 			whyItMatters: 'Architecture choices shape coupling, delivery speed, and ownership, so the wrong structure makes change harder than it needs to be.',
@@ -200,6 +212,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Push vs. Pull Deployment Models',
 		url: '/blog/push-vs-pull-deployment-models',
 		slug: 'push-vs-pull-deployment-models',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Push and pull deployment patterns for releasing software, and how they differ in control and reconciliation.',
 			whyItMatters: 'Deployment direction changes security boundaries, failure handling, and scaling behavior across distributed systems.',
@@ -215,6 +228,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Compile-Time First for Agentic Engineering',
 		url: '/blog/compile-time-errors-with-ai',
 		slug: 'compile-time-errors-with-ai',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Compile-time-first verification for agent-generated code, with compilers used as the primary gate before execution.',
 			whyItMatters: 'Earlier failures are cheaper and easier for agents to repair than runtime defects, and they produce more deterministic feedback.',
@@ -230,6 +244,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Git Branching Strategies',
 		url: '/blog/git-branching-strategies',
 		slug: 'git-branching-strategies',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Major Git branching models and the trade-offs they create for integration and release management.',
 			whyItMatters: 'Branch strategy shapes integration friction, release cadence, and coordination overhead across the team.',
@@ -245,6 +260,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Virtual pet evolution',
 		url: '/blog/virtual-pet-evolution',
 		slug: 'virtual-pet-evolution',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'The evolution of virtual pets from simple digital toys to AI-driven companions that respond more like living systems.',
 			whyItMatters: 'The category shows how personalization and interaction deepen product value and keep users engaged over time.',
@@ -260,6 +276,7 @@ export const blogPosts: BlogPost[] = [
 		title: "Parse Don't Validate",
 		url: '/blog/parse-dont-validate',
 		slug: 'parse-dont-validate',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Parsing untrusted input into domain types that encode business rules instead of leaving the system in a loose, general state.',
 			whyItMatters: 'Stronger types reduce repeated checks, make refactoring safer, and move business logic to one obvious boundary.',
@@ -275,6 +292,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Automation vs Human Intervention Analysis',
 		url: '/blog/automation-vs-human-intervention-analysis',
 		slug: 'automation-vs-human-intervention-analysis',
+		labels: ['technology', 'management'],
 		summary: {
 			whatIsDiscussed: 'Where automation should replace or augment human intervention across operational workflows.',
 			whyItMatters: 'Over-automation and under-automation both create operational risk, just in different ways and at different costs.',
@@ -290,6 +308,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'The Algorithmic Arbitrage',
 		url: '/blog/algorithmic-arbitrage',
 		slug: 'algorithmic-arbitrage',
+		labels: ['technology', 'management'],
 		summary: {
 			whatIsDiscussed: 'How algorithmic leverage changes the economics of global software work and the value of automation.',
 			whyItMatters: 'The value shifts from labor arbitrage to systems that compound automated output, so the old cost model stops explaining the business.',
@@ -305,6 +324,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Corporate Project Naming',
 		url: '/blog/corporate-project-naming',
 		slug: 'corporate-project-naming',
+		labels: ['management'],
 		summary: {
 			whatIsDiscussed: 'How project names influence perception, alignment, and organizational culture before the work is even delivered.',
 			whyItMatters: 'Names shape expectations and can either clarify intent or create confusion that spreads through the organization.',
@@ -320,6 +340,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Leadership Paradox of Agency',
 		url: '/blog/leadership-paradox-of-agency',
 		slug: 'leadership-paradox-of-agency',
+		labels: ['leadership', 'management'],
 		summary: {
 			whatIsDiscussed: 'The tension between hiring autonomous people and then constraining them with process, approval layers, or vague control.',
 			whyItMatters: 'Suppressing agency undermines the talent leaders claim to want and usually lowers the quality of decisions they get.',
@@ -335,6 +356,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'AI Doom Narrative - Profit or Precaution?',
 		url: '/blog/ai-doom-narrative',
 		slug: 'ai-doom-narrative',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'The tension between profit motives and precaution in AI doom narratives, and how those stories are framed.',
 			whyItMatters: 'Fear can be used either to justify real safety work or to attract attention, funding, and authority.',
@@ -350,6 +372,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'The Global AI Race',
 		url: '/blog/global-ai-race',
 		slug: 'global-ai-race',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'The geopolitical and game-theoretic competition for AGI, compute, and industrial advantage across the US, China, and the wider market.',
 			whyItMatters: 'Race dynamics push actors toward mutual defection, supply-chain weaponization, and safety pressure, which raises the cost of slowing down.',
@@ -365,6 +388,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Distributed Rate Limits',
 		url: '/blog/distributed-rate-limits',
 		slug: 'distributed-rate-limits',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Distributed rate limiting patterns such as centralized buckets, queues, and log-based coordination, with each scheme solving a different coordination problem.',
 			whyItMatters: 'Consistent throttling is critical for fairness, protection, and predictable throughput, especially when multiple services can emit traffic at once.',
@@ -380,6 +404,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Contract-First Development',
 		url: '/blog/contract-first',
 		slug: 'contract-first',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Contract-first development versus code-first implementation, with the contract treated as the primary design artifact.',
 			whyItMatters: 'Explicit schemas and interfaces reduce ambiguity, especially in AI-assisted work where implementation details can drift quickly.',
@@ -395,6 +420,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Hexagonal Architecture',
 		url: '/blog/hexagonal-architecture',
 		slug: 'hexagonal-architecture',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'Hexagonal architecture and its ports-and-adapters boundary between the domain and the outside world.',
 			whyItMatters: 'Isolating the domain from infrastructure makes systems easier to test, change, and reason about over time.',
@@ -410,6 +436,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'The Wardley Doctrine',
 		url: '/blog/wardley-doctrine',
 		slug: 'wardley-doctrine',
+		labels: ['leadership', 'management'],
 		summary: {
 			whatIsDiscussed: 'The Wardley Doctrine as a strategy lens for system evolution and competitive positioning.',
 			whyItMatters: 'Component maturity changes what you should build, buy, standardize, or ignore, so strategy has to move with the landscape.',
@@ -425,6 +452,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Wardley Mapping',
 		url: '/blog/wardley-mapping',
 		slug: 'wardley-mapping',
+		labels: ['management'],
 		summary: {
 			whatIsDiscussed: 'Wardley mapping as a way to visualize landscape, movement, dependency, and how parts of a system mature.',
 			whyItMatters: 'Seeing commodity-to-custom evolution clarifies where to invest, differentiate, or standardize instead of guessing from first principles.',
@@ -455,6 +483,7 @@ export const blogPosts: BlogPost[] = [
 		title: "The XY Problem",
 		url: "/blog/xy-problem",
 		slug: "xy-problem",
+		labels: ['technology', 'management'],
 		summary: {
 			whatIsDiscussed: 'The XY Problem and how teams can end up solving the wrong problem with the wrong solution.',
 			whyItMatters: 'Hidden requirements waste delivery effort, distort decision-making, and make the eventual fix look more complicated than it is.',
@@ -470,6 +499,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'The Hook Model',
 		url: '/blog/hook-model',
 		slug: 'hook-model',
+		labels: ['management'],
 		summary: {
 			whatIsDiscussed: 'The Hook Model for habit formation and engagement, including the recurring loops that keep users coming back.',
 			whyItMatters: 'Recurring loops drive retention, but they also raise ethical design concerns when the loop is stronger than the value.',
@@ -485,6 +515,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'The Toulmin Model',
 		url: '/blog/toulmin-model',
 		slug: 'toulmin-model',
+		labels: ['leadership'],
 		summary: {
 			whatIsDiscussed: 'The Toulmin model as a structure for argumentation and decision-making, with claims, evidence, and warrants separated explicitly.',
 			whyItMatters: 'Clearer claims, evidence, and warrants improve reasoning quality and make weak assumptions easier to spot.',
@@ -500,6 +531,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Empathy Maps',
 		url: '/blog/empathy-maps',
 		slug: 'empathy-maps',
+		labels: ['management'],
 		summary: {
 			whatIsDiscussed: 'Empathy maps as a method for understanding customer perspectives through what people say, think, feel, and do.',
 			whyItMatters: 'Better insight into lived context improves product decisions because you stop designing against a caricature of the user.',
@@ -515,6 +547,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Strategy on a Page',
 		url: '/blog/strategy-on-a-page',
 		slug: 'strategy-on-a-page',
+		labels: ['leadership', 'management'],
 		summary: {
 			whatIsDiscussed: 'Using a one-page strategy artifact to force clarity, alignment, and a smaller set of real choices.',
 			whyItMatters: 'Concise strategy surfaces trade-offs, priorities, and constraints that often disappear in longer slide decks or docs.',
@@ -530,6 +563,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Amazon Six Pager',
 		url: '/blog/amazon-six-pager',
 		slug: 'amazon-six-pager',
+		labels: ['leadership', 'management'],
 		summary: {
 			whatIsDiscussed: "Amazon's six-page narrative memo format and the working-backwards style it reinforces.",
 			whyItMatters: 'Narrative documents force evidence, logic, and decision-quality thinking instead of shallow presentation polish.',
@@ -545,6 +579,7 @@ export const blogPosts: BlogPost[] = [
 		title: 'Laws of Software',
 		url: '/blog/laws-of-software',
 		slug: 'laws-of-software',
+		labels: ['technology'],
 		summary: {
 			whatIsDiscussed: 'A curated collection of software laws and aphorisms about design, scaling, and delivery across different system sizes.',
 			whyItMatters: 'These heuristics compress experience into reusable guidance for real systems, especially when formal rules are too rigid.',
